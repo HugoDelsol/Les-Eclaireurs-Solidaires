@@ -1,0 +1,27 @@
+<%- include('../partials/_head') %>
+<%- include('../partials/_header') %>
+<link rel="stylesheet" href="/style/home/header.css">
+<script src="/javaScript/menuBurger.js" defer></script>
+
+<link rel="stylesheet" href="/style/connection/styleLogin.css">
+
+<main>
+    <section class="login">
+        <form class="form" action="/auth" method="post">
+            <img src="/pictures/login.png" alt="">
+            <label><input type="email" id="email" placeholder="Email" name="email" value=""></label>
+            <label><input type="password" id="password" placeholder="Mot de passe" name="password"></label>
+            <div class="remember">
+                <div class="checkbox" id="rememberMe">
+                    <label><input type="checkbox"></label>
+                    <p>Se souvenir de moi</p>
+                </div>
+                <a href="">Mot de passe oublié ?</a>
+            </div>
+            <div class="buttonLogin">
+                <button type="submit" class="btnSecondary btnHover widthBtnContact">CONNEXION</button>
+                <a href="/signUp">Créer un compte ?</a>
+            </div>            
+        </form>
+    </section>
+</main>

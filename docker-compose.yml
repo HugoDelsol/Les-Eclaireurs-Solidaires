@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: filRougeNodeJs_db
+    volumes:
+      - mysql_data:/var/lib/mysql       
+      - ./mysql_backup:/backup 
+      - ./:/docker-entrypoint-initdb.d         
+    ports:
+      - "3300:3306"
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8090:80"
+    depends_on:
+      - mysql
+    restart: always
+
+volumes:
+  mysql_data:

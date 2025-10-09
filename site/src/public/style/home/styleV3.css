@@ -1,0 +1,1063 @@
+/***STYLE-GENERAL***/
+
+* {
+    margin: 0;
+    color: rgb(15, 28, 63);
+    font-family: "Lora", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 300;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1900px;
+    margin: auto;
+}
+
+body {  
+    
+    background: #F8F5EE;
+    position: relative;
+}
+
+span {
+    color: #F28B50;
+}
+
+.btnPrimary {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 6px #00000079;
+    background-color: #F9CF80;
+    border: none;
+    padding: 0.6em 2em;
+    border-radius: 2em;
+    font-weight: 400;
+}
+
+.btnSecondary {
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid rgba(0, 0, 0, 0.11);
+    box-shadow: 0px 0px 6px #F9CF80;
+    background-color: #F8F5EE;
+    padding: 0.6em 2em;
+    border-radius: 2em;
+    font-weight: 400;
+}
+
+.btnHover {
+    display: inline-block;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btnHover:hover {
+    transform: scale(1.1);
+}
+
+.txtModH2 {
+    font-size: 3.4em;
+    font-style: italic;
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+    font-weight: 400;
+}
+
+.line {
+    position: relative;
+    border-bottom: 0.2em solid #F28B50;
+    border-radius: 4em;
+}
+
+.displayResponsivMobile {
+    display: none;
+}
+
+/***BACKGROUND***/
+
+.backGroundPicture {
+    position: absolute;
+    z-index: -3;
+    background-image: url("/pictures/backGroundCards/heroSection.jpg");
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: top 6em right 2%;
+    background-size: 45em;
+}
+
+.backGroundCard {
+    position: absolute;
+    z-index: -3;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+
+}
+
+/*------------------*/
+
+.heroSectionCard {
+    position: absolute;
+    background-image: url("../../pictures/backGroundCards/Group47.png");
+    top: 28em;
+    left: 56em;
+    background-size: 200px;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    transform-origin: right;
+    opacity: 0.75;
+}
+
+/*------------------*/
+
+.aboutCard {
+    position: absolute;
+    background-image: url("../../pictures/backGroundCards/Group48.png");
+    top: 122em;
+    left: 84em;
+    background-size: 200px;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    transform-origin: right;
+    opacity: 0.75;
+}
+
+
+/***HERO-SECTION***/
+
+.heroSection {
+    padding-top: 8em;
+    margin: 0 6em;
+}
+
+.heroSection h1 {    
+    font-size: 5.4em;
+    font-weight: 800;
+}
+
+.heroSection .title {
+    margin: 1.4em 0;
+}
+
+.heroSection .title h2 {
+    margin: 0.2em 0;
+    font-size: 2.6em;
+}
+
+.heroSection .title h3 {
+    margin-top: 0.8em;
+    font-size: 1.4em;
+    font-weight: 400;
+}
+
+.buttonTitleMarginTop {
+    margin-top: 2.8em;
+}
+
+.marginBtnTitle {
+    margin-right: 2em;
+}
+
+.statistics {
+    margin-top: 0.4em;
+    font-size: 1.6em;
+    display: flex;
+    text-align: center;
+}
+
+.statistics div {
+    margin: 2em 0.4em;
+}
+
+.statistics span {
+    font-weight: 1000;
+}
+
+.borderStat {
+    border-right: solid rgba(0, 0, 0, 0.459) 0.1em;
+    border-left: solid rgba(0, 0, 0, 0.452) 0.1em;
+    padding: 0em 0.8em;
+}
+
+.btnReserch {
+    margin: 0.6em 0em;
+    border-radius: 0.4em;
+    font-size: 2.4em;
+    padding: 0.4em 0.6em;
+}
+
+.btnReserch img {
+    margin-right: 0.4em;
+    position: relative;
+    top: 4px;
+}
+
+/***MISSIONS-SECTION***/
+
+.currentMission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5em;
+}
+
+.currentMission h3 {
+    font-weight: 400;
+}
+
+.pictureMissionAndTxt {
+    background-color: #F8F5EE;
+    display: flex;
+    flex-direction: row;
+    border: solid 0.16em #F9D082;
+    border-radius: 1em;
+    padding: 1.4em;
+    margin: 0.6em;
+    width: 70%;
+}
+
+.pictureMissionAndTxt div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 1em;
+}
+
+.currentMission img {
+    width: 350px;
+    border-radius: 0.5em;
+    object-fit: cover;
+    box-shadow: 0px 0px 12px rgba(26, 30, 66, 0.473);
+}
+
+.widthBtnMission {
+    display: flex;
+    justify-content: center;
+    margin-right: 2em;
+    width: 18%;
+    text-align: center;
+    font-size: 1em;
+}
+
+.lineMissions {
+    margin: 1em 0;
+    width: 10%;
+    left: -1em;
+}
+
+.pictureMissionAndTxt .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1.4em;
+    justify-content: flex-start;
+}
+
+.pictureMissionAndTxt .link {
+    color: #F28B50;
+    text-decoration: underline;
+}
+
+/***ABOUT-SECTION***/
+
+.aboutTxt {
+    margin-left: 18em;
+    width: 50%;
+}
+
+.aboutTxt p {
+    font-size: 1.6em;
+}
+
+.aboutLine {
+    margin: 2.8em 0;
+
+    width: 38%;
+}
+
+.aboutPictures {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 18em;
+}
+
+.aboutPictureAndName h3 {
+    margin-top: 0.8em;
+}
+
+/***CONTACT-SECTION***/
+
+.contact {
+    width: 80%;
+    margin: auto;
+}
+
+.contact h3 {
+    position: relative;
+    top: -1.8em;
+    font-size: 2.8em;
+    font-style: italic;
+    background-color: #f28b508c;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 0.8em 0em;
+    border-radius: 0.4em;
+    width: 75%;
+    margin: auto;
+    margin-bottom: -0.6em;
+}
+
+form {
+    background: linear-gradient(to top, rgba(249, 207, 128, 0.8), rgba(212, 163, 115, 0.2));
+    padding-bottom: 2em;
+    border-radius: 0.8em;
+    margin-top: -6em;
+    
+}
+
+form input {
+    padding: 0.4em;
+    border: rgba(0, 0, 0, 0.205) solid 1px;
+    border-radius: 0.4em;
+    height: 3em;
+}
+
+form textarea {
+    padding: 0.8em;
+    border: rgba(0, 0, 0, 0.205) solid 1px;
+    border-radius: 0.4em;
+    height: 8em;
+}
+
+.rowUp {
+    display: flex;
+    justify-content: center;
+}
+
+.nameForm,
+.emailForm,
+.rowDown {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.nameForm,
+.emailForm {
+    margin: 0 1%;
+    width: 34%;
+}
+
+.rowDown {
+    margin-top: 1em;
+    width: 70%;
+}
+
+.widthBtnContact {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 1em;
+    width: 20%;
+}
+
+/***REVIEWS-SECTION***/
+
+.styleTitleReviews {
+    margin-top: 2em;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewsLine {
+    margin: 1em;
+    border-radius: 4em;
+    width: 20%;
+}
+
+.reviewsWidth {    
+    margin: auto;
+    margin-bottom: 4em;
+}
+
+.reviews h2 {
+    font-style: italic;
+    font-size: 2em;
+}
+
+.reviewsDisplay {
+    margin: 1em 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom: 8em;
+}
+
+.reviewsSize {
+    padding: 1em 2em;
+    width: 24%;
+    border: 1px solid #1e22242c;
+    border-radius: 1em;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.192);
+}
+
+.reviewPictureAndName {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.reviewPictureAndName div h3,
+.reviewPictureAndName div h4 {
+    font-weight: 600;
+}
+
+.reviewPictureAndName img {
+    margin-right: 2em;
+}
+
+/***FOOTER***/
+
+footer {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1em;
+    background: linear-gradient(to right, rgba(249, 207, 128, 0.8), rgba(249, 207, 128, 0.2));
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.459);
+}
+
+footer img {
+    height: 50px;
+    margin: 0 5em;
+}
+
+footer h4 {
+    margin: 1em 0;
+}
+
+
+
+/*******************************************************************************************************************************/
+
+
+@media (min-width: 511px) and (max-width: 1485px) {
+
+    .backGroundPicture {
+        background-position: top 14em right -2em;
+        background-size: 36em;
+    }
+
+    .heroSectionCard,
+    .aboutCard {
+        display: none;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 1315px) {
+
+    .backGroundPicture {
+        background-position: top 16em right -2em;
+        background-size: 32em;
+    }
+
+    .aboutTxt {
+        margin: auto;
+        width: 75%;
+    }
+
+    .aboutPictureAndName img {
+        width: 100%;
+    }
+
+    .aboutPictureAndName h3,
+    .aboutPictureAndName p {
+        font-size: 0.6em;
+        margin-left: 2em;
+    }
+
+    .aboutPictures {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 14em;
+    }
+
+    .contact {
+        width: 75%;
+    }
+
+    form {
+        padding: 1em 4em 0.2em 4em;
+    }
+
+    .contact h3 {
+
+        font-size: 1.6em;
+        padding: 1.4em 0;
+        top: -2.4em;
+        width: 100%;
+    }
+
+    .rowUp {
+        flex-direction: column;
+    }
+
+    .nameForm,
+    .emailForm,
+    .rowDown {
+        margin: auto;
+        width: 100%;
+    }
+
+    .widthBtnContact {
+        font-size: 1em;
+        width: 50%; 
+        margin: auto;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+
+    .reviews h2 {
+        font-size: 1.6em;
+    }
+
+    .reviewsLine {
+        margin: 0.4em;
+        width: 6%;
+    }
+
+    .reviewsDisplay {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reviewsSize {
+        width: 90%;
+        margin: 0.6em 0;
+    }
+
+    footer img {
+        height: 2.8em;
+        margin: 0 1.6em;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 1235px) {
+
+
+    .backGroundPicture {
+        background-position: top 20em right -2em;
+        background-size: 32em;
+    }
+
+    .heroSection h1 {
+        font-size: 4.4em;
+        font-weight: 800;
+    }
+
+    .lineMissions {
+        width: 25%;       
+    }
+}
+
+@media (min-width: 511px) and (max-width: 1080px) {
+
+    .backGroundPicture {
+        background-position: top 20em right -2em;
+        background-size: 26em;
+    }
+
+    .displayResponsivMobile {
+        display: block;
+    }
+
+    .hiddenTablet {
+        display: none;
+    }
+
+    .headerResponsiv {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .menuBurger,
+    .menuBurgerCross {
+        height: 1.6em;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 1025px) {
+
+    .backGroundPicture {
+        background-position: top 18em right -4.8em;
+        background-size: 26em;
+    }
+
+    .heroSection {
+        margin: 0 2em;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 975px) {
+
+    .backGroundPicture {
+        background-position: top 10em right -8em;
+        background-size: 34em;
+    }
+
+    .heroSection {
+        padding-top: 6.4em;
+        margin: 0 1em;
+    }
+
+    .heroSection h1 {
+        font-size: 3.8em;
+    }
+
+    .heroSection .title h2 span {
+        font-size: 0.6em;
+        font-weight: 400;
+    }
+
+    .heroSection .title h3 {
+        margin-top: 1.4em;
+        font-size: 1.2em;
+        font-weight: 100;
+        width: 90%;
+    }
+
+    .statistics {
+        margin-top: 1.4em;
+        font-size: 1.2em;
+    }
+
+    .btnReserch {
+        margin: 1em 0.8em;
+        border-radius: 0.8em;
+        font-size: 2em;
+        padding: 0.6em;
+        text-align: center;
+    }
+
+    .btnReserch img {
+        margin-right: 0.6em;
+        position: relative;
+        top: 2px;
+        height: 1em;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 835px) {
+
+    .backGroundPicture {
+        opacity: 0.75;
+    }
+
+    .pictureMissionAndTxt {
+        flex-direction: column;
+    }
+
+    .currentMission h3 {
+        font-weight: 400;
+        margin-top: 1.6em;
+    }
+
+    .currentMission img {
+        width: 100%;
+        height: 240px;
+    }
+
+}
+
+@media (min-width: 511px) and (max-width: 775px) {
+
+    .backGroundPicture {
+        opacity: 0.50;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 735px) {
+
+    .backGroundPicture {
+        opacity: 0.25;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 735px) {
+
+    .backGroundPicture {
+        opacity: 0.25;
+    }
+
+    .heroSection h1 {
+        font-size: 2.2em;
+
+    }
+
+    .heroSection .title h2 {
+        line-height: 24px;
+        margin-top: 0.6em;
+    }
+
+    .txtModH2 {
+        font-size: 2.4em;
+        margin-top: 2em;
+    }
+
+    .aboutTxt p {
+        margin: 0.6em 0;
+        font-size: 1.2em;
+    }
+
+    .aboutLine {
+        margin: 1.8em 0;
+    }
+}
+
+@media (min-width: 511px) and (max-width: 565px) {
+
+    .heroSection .title h2 {
+        font-size: 2.2em;
+    }
+
+    .buttonTitleMarginTop .btnPrimary {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        margin-bottom: 1em;
+    }
+
+    .buttonTitleMarginTop .btnSecondary {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+
+    }
+
+    .statistics {
+        font-size: 1em;
+        justify-content: center;
+    }
+
+    .btnReserch {
+        width: 75%;
+        font-size: 1.4em;
+        padding: 0.6em 0.2em;
+    }
+
+    .btnReserch img {
+        margin-right: 0.4em;
+        position: relative;
+        top: 4px;
+    }
+
+    .statAndReserch .justifyContent {
+        display: flex;
+        justify-content: center;
+    }
+
+
+}
+
+/*****************************************************************************************************************************************/
+
+
+@media all and (max-width: 510px) {
+
+    * {
+        margin: 0;
+    }
+
+    .backGroundPicture {
+        background-position: top 14em right -6em;
+        background-size: 24em;
+        opacity: 0.6;
+    }
+
+    .heroSectionCard,
+    .aboutCard {
+        display: none;
+    }
+
+    .displayDesktop {
+        display: none;
+    }
+
+    .displayResponsivMobile {
+        display: block;
+    }
+
+    .txtModH2 {
+        font-size: 2em;
+        margin-top: 0.8em;
+    }
+
+    /*****************************/
+
+    .headerResponsiv {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .headerResponsiv img {
+        margin: 0.2em 0.8em;
+    }
+
+    .menuBurger,
+    .menuBurgerCross {
+        height: 1.2em;
+    }
+
+    .btnPrimary {
+        text-align: center;
+        padding: 0.6em 1.2em;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    /***********************************************/
+
+    .heroSection {
+        padding-top: 4em;
+        margin: 1.4em;
+    }
+
+    .heroSection h1 {
+        font-size: 1.86em;
+        font-weight: 900;
+    }
+
+    .heroSection .title h2 span {
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .heroSection .title h2 {
+        line-height: 18px;
+    }
+
+    .heroSection .title h3 {
+        margin-top: 1em;
+        font-size: 1.2em;
+        font-weight: 100;
+        width: 90%;
+    }
+
+    .buttonTitleMarginTop {
+        margin-top: 1em;
+    }
+
+    .statistics {
+        position: relative;
+        margin-top: 1.4em;
+        font-size: 1em;
+        flex-direction: column;
+        align-items: center;
+        right: 80px;
+
+    }
+
+    .borderStat {
+        border: none;        
+    }
+
+    .marginResponsiv {
+        padding: 0em 1em;
+    }
+
+    .statistics div {
+        margin: 0.2em 0em;
+        line-height: 32px;
+
+    }
+
+    .statAndReserch .justifyContent {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btnReserch {
+        padding: 0.8em 0;
+        margin: 1em 0.8em;
+        border-radius: 0.6em;
+        font-size: 1.2em;
+        text-align: center;
+        width: 100%;
+    }
+
+    .btnReserch img {
+        margin-right: 0.2em;
+        position: relative;
+        top: 2px;
+        height: 1em;
+    }
+
+    .currentMission h3 {
+        font-weight: 400;
+        margin-top: 1.6em;
+    }
+
+    .pictureMissionAndTxt {
+        flex-direction: column;
+    }
+
+    .currentMission img {
+        width: 100%;
+        height: 160px;
+    }
+
+    .widthBtnMission {
+        display: flex;
+        justify-content: center;
+        margin-right: 2em;
+    }
+
+    .lineMissions {
+        width: 25%;
+    }
+
+    .pictureMissionAndTxt .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 1.4em;
+        justify-content: flex-start;
+        margin-left: -4px;
+    }
+
+    .pictureMissionAndTxt .link {
+        color: #F28B50;
+        text-decoration: underline;
+    }
+
+    /************************/
+
+    .aboutTxt {
+        margin: auto;
+        width: 80%;
+    }
+
+    .aboutTxt p {
+        margin: 0.6em 0;
+        font-size: 1.14em;
+    }
+
+    .aboutLine {
+        margin: 1em 0;
+        left: 0.2em;
+    }
+
+    .aboutPictureAndName img {
+        width: 100%;
+    }
+
+    .aboutPictureAndName h3 {
+        margin-top: 0.8em;
+        margin-left: 10px;
+    }
+
+    .aboutPictureAndName h3,
+    .aboutPictureAndName p {
+        font-size: 1em;
+        margin-left: 10px;
+    }
+
+    .aboutPictures {
+        margin-bottom: 14em;
+    }
+
+    /***************************/
+
+
+    .contact {
+        width: 100%;
+    }
+
+    form {
+        padding: 1em 4em 0.2em 4em;
+        border-radius: 0;
+    }
+
+    .contact h3 {
+        font-size: 1.6em;
+        padding: 1.4em 0;
+        top: -2.4em;
+        width: 100%;
+    }
+
+    .rowUp {
+        flex-direction: column;
+    }
+
+    .nameForm,
+    .emailForm,
+    .rowDown {
+        margin: auto;
+        width: 100%;
+    }
+
+    .widthBtnContact {
+        font-size: 1em;
+        width: 100%;
+        margin: 2em 0;
+    }
+
+    /**************/
+
+    .reviews h2 {
+        font-size: 1.6em;
+    }
+
+    .reviewsLine {
+        margin: 0.4em;
+        width: 6%;
+    }
+
+    .reviewsDisplay {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reviewsSize {
+        width: 80%;
+        margin: 0.6em 0;
+        padding: 1em;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+
+    footer hr {
+        opacity: 1;
+        width: 25%;
+    }
+
+    footer img {
+        height: 2em;
+        margin: 0 1.2em;
+    }
+}
+
+@media all and (max-width: 380px) {
+
+    .backGroundPicture {
+        background-position: top 16em right -6.6em;
+        background-size: 24em;
+    }
+}
