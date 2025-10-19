@@ -1,12 +1,15 @@
+<link rel="stylesheet" href="/style/home/header.css">
+<link rel="stylesheet" href="/style/connection/styleRegister.css">
+<script src="/javaScript/menuBurger.js" defer></script>
+<script src="/javaScript/login.js" defer></script>
+
 <%- include('../partials/_head') %>
 <%- include('../partials/_header') %>
-<link rel="stylesheet" href="/style/home/header.css">
-<script src="/javaScript/menuBurger.js" defer></script>
-<link rel="stylesheet" href="/style/connection/styleRegister.css">
+
 
 <main>
     <section class="register">
-        <form class="form" action="index.php?page=user&action=signUp" method="post">
+        <form class="form" action="/saveUser" method="post">
             <img src="/pictures/login.png" alt="">
             <div class="nameRegister">
                 <label><input class="marginRight" type="text" placeholder="Prénom" name="firstName" value=""></label>

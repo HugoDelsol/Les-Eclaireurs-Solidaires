@@ -1,5 +1,5 @@
-const db =  require('../config/database');
-
+const db = require('../config/database');
+const bcrypt = require('bcrypt')
 
 async function testConnection() {
     try {
@@ -13,27 +13,54 @@ async function testConnection() {
 testConnection();
 
 
-exports.getOneUserByEmail = async (email) => {   
-    
+exports.getOneUserByEmail = async (email) => {
+
     try {
-              
+
         const request = `SELECT * FROM identifier 
                         LEFT JOIN user
                         ON user._id_identifier = identifier.id_identifier
                         LEFT JOIN admin
                         ON admin._id_identifier = identifier.id_identifier
-                        WHERE identifier_mail = ?`; 
+                        WHERE identifier_mail = ?`;
 
-        const [result] = await db.query(request,[email]);
-        
+        const [result] = await db.query(request, [email]);
+
         return result && result[0] ? result[0] : null;
 
-    } catch (e) {  
+    } catch (e) {
 
         throw e;
     }
 }
 
+exports.addUser = async(
+    firstName,
+    lastName,
+    email,
+    password,    
+) => {
+    try {
+
+        const saltRound = await bcrypt.genSalt(10);
+        const passwordHash = await bcrypt.hash(password,saltRound);
+
+        const requestIdentifier = `INSERT INTO identifier (identifier_mail, identifier_password) VALUES (?, ?)`
+        const [resultIdentifier] = await db.query(requestIdentifier, [email, passwordHash]);
+
+        let lasInsertId = resultIdentifier.insertId;        
+
+        const requestUser = `INSERT INTO user (user_first_name, user_last_name, _id_identifier) VALUES (?, ?, ?)`
+        const [resultUser] = await db.query(requestUser, [firstName, lastName, lasInsertId]);
+        
+        return resultUser;
+        
+    } catch (e) {
+
+        throw e;
+        
+    }
+}
 
 /*<?php
 
@@ -86,7 +113,7 @@ class UserModel
                                             VALUES (?, ?, ?)");
 
             $request->execute([$firstName, $lastName, $userIdentifierId]);
-        } catch (PDOException $e) {
+        } catch (PDOException $e) {+
 
 
             var_dump("ECHEC : " . $e->getMessage());

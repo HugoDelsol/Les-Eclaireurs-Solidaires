@@ -88,7 +88,7 @@ input {
 textarea {
     height: 8em;
     padding: 1em;
-    width: 95.6%;
+    width: 97.8%;
 }
 
 .timeDate {
@@ -150,4 +150,9 @@ input[type="number"] {
     display: flex;
     justify-content: space-between;
 
+}
+
+.displayListCity {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.274);
 }

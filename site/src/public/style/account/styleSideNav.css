@@ -57,7 +57,7 @@ span {
     transform: scale(1.1);
 }
 
-.sideNav {
+.sideNav {    
     width: 12%;
     height: 100vh;
     display: flex;

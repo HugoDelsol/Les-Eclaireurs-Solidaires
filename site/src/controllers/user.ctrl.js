@@ -11,6 +11,50 @@ exports.signUp = async (req, res) => {
     res.render('connection/signUp')
 }
 
+exports.saveUser = async (req, res) => {
+
+    try {
+
+        let firstName = req.body.firstName;
+        let lastName = req.body.lastName;
+        let email = req.body.email;
+        let password = req.body.password;
+        let passwordConfirm = req.body.passwordConfirm;
+
+        if (!req.body.firstName ||
+            !req.body.lastName ||
+            !req.body.email ||
+            !req.body.password ||
+            !req.body.passwordConfirm) {
+
+            throw new Error('Merci de compléter tous les champs');
+        }
+
+        let userExist = await userModel.getOneUserByEmail(email);
+
+        console.log('-->>>>>>', userExist);
+
+        if (userExist) {
+
+            throw new Error("Un utilisateur utilise deja cette email")
+        }
+        const saveUser = await userModel.addUser(
+            firstName,
+            lastName,
+            email,
+            password,
+        )
+
+        if (saveUser) {
+            res.render('home/homePage')
+        }
+
+    } catch (error) {
+
+        console.log(error)
+    }
+}
+
 exports.auth = async (req, res) => {
 
     try {
@@ -24,9 +68,7 @@ exports.auth = async (req, res) => {
         }
 
         const userExist = await exports.verifyAccountExist(email, password);
-
-        console.log('-------USER-EXIST----------->', userExist)
-
+        
         if (userExist.role === 'admin') {
 
             req.session.userExist = {
@@ -34,14 +76,13 @@ exports.auth = async (req, res) => {
                 firstName: userExist.admin_first_name,
                 isAdmin: true
             }
-            console.log('----------SESSION-------->', req.session.userExist)
 
-            res.render('account/dashboardAdmin', {  
+            res.render('account/dashboardAdmin', {
             })
         }
 
         if (userExist.role === 'user') {
-
+            
             req.session.userExist = {
                 id: userExist.id_user,
                 firstName: userExist.user_first_name,
@@ -49,6 +90,7 @@ exports.auth = async (req, res) => {
             }
 
             res.render('account/dashboardAdmin', {
+                Pseudo: req.session.userExist.firstName
             })
         }
 
@@ -58,9 +100,8 @@ exports.auth = async (req, res) => {
         console.error(e)
 
         res.render('connection/signIn', {
-            })
 
-
+        })
     }
 }
 
@@ -70,7 +111,10 @@ exports.verifyAccountExist = async (email, password) => {
 
         const userMail = await userModel.getOneUserByEmail(email);
 
-        if (userMail && bcrypt.compare(password, userMail.identifier_password)) {
+        console.log('--identifier_password--->>>>>>>', userMail.identifier_password)
+        console.log('--identifier_email--->>>>>>>', userMail.identifier_mail)
+
+        if (userMail && await bcrypt.compare(password, userMail.identifier_password)) {
 
             if (userMail.id_user) {
 
@@ -90,10 +134,10 @@ exports.verifyAccountExist = async (email, password) => {
 
     } catch (e) {
 
+        console.error(e)
+
     }
 }
-
-
 
 
 /*<?php

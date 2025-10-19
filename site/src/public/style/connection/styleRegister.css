@@ -132,8 +132,7 @@ img {
 input {
     border: none;
     border-radius: 0.8em;
-    width: 400px;
-    height: 25px;
+    width: 400px;    
     margin-top: 2em;
     padding: 1em;
 }

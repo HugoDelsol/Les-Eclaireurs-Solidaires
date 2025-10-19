@@ -27,15 +27,15 @@ submitForm.addEventListener("submit", function (event) {
         emailForm.value == "" ||
         txtArea.value == ""
     ) {
-        
-        alertForm.innerHTML = "<p style='margin-top: 1em ; color: red; '>Veuillez compléter tous les champs.</p>";          
-        
+
+        alertForm.innerHTML = "<p style='margin-top: 1em ; color: red; '>Veuillez compléter tous les champs.</p>";
+
         console.log("ERROR");
 
 
     } else {
 
-       btnSubmit.textContent = "Message envoyé ! ✅"
+        btnSubmit.textContent = "Message envoyé ! ✅"
 
         alertForm.innerHTML = "";
 
@@ -77,3 +77,11 @@ async function apiDataForm() {
         console.log("Erreur :", error);
     }
 }
+
+
+
+
+
+
+
+
