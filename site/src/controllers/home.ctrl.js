@@ -1,6 +1,8 @@
+const homeModel = require('../models/HomeModel')
+
 //--- VIEWS ---//
 
-exports.homePage = async  (req, res) => {
+exports.homePage = async (req, res) => {
 
     res.render('home/homePage')
 }
@@ -14,6 +16,31 @@ exports.becomeVolunteer = async (req, res) => {
 //------------------//
 
 
+exports.submitForm = async (req, res) => {
+
+    try {
+
+        const nameForm = req.body.nameForm;
+        const emailForm = req.body.emailForm;
+        const txtArea = req.body.txtArea;
+
+        const result = await homeModel.addMessageForm(nameForm, emailForm, txtArea);
+
+        console.log('---->', result.insertId)
+
+    } catch (error) {
+        
+        res.render('home/homePage', {
+            //////////////////////////////AlertMsg: "Le formulaire n'a pas pus etre soumis"
+        })
+
+        console.log('--->', error);
+
+    }
+
+
+
+}
 
 
 
@@ -94,25 +121,7 @@ class HomeController
         require_once "src/frontend/views/home/becomeVolunteer.php";
     }
 
-    public function submitForm()
-    {
-
-        $data = json_decode(file_get_contents("php://input"), true);
-
-        var_dump($data);
-
-        if (!$data || !isset($data['nameForm'])) {
-            http_response_code(400);
-            echo json_encode(["error" => "Données invalides"]);
-            return;
-        }
-
-        $nameForm = htmlspecialchars($data['nameForm'], ENT_QUOTES, 'UTF-8') ;
-        $emailForm = htmlspecialchars($data['emailForm'],ENT_QUOTES, 'UTF-8') ;
-        $txtAreaForm = htmlspecialchars($data['txtArea'], ENT_QUOTES, 'UTF-8') ;
-
-        $this->messageFormModel->addMessageForm($nameForm, $emailForm, $txtAreaForm);
-    }
+    
 }
 
 */

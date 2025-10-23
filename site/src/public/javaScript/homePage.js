@@ -7,15 +7,3 @@ window.addEventListener("scroll", () => {
     imgScrollAnimationHeroSection.style.transform = "rotate(" + window.scrollY + "deg)";
     imgScrollAnimationAboutSection.style.transform = "rotate(" + window.scrollY + "deg)";
 });
-
-
-
-
-
-
-
-
-
-
-
-

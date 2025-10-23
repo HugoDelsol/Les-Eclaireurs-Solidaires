@@ -1,6 +1,8 @@
 const userModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 
+// --- VIEWS ---
+
 exports.signIn = async (req, res) => {
 
     res.render('connection/signIn')
@@ -10,6 +12,20 @@ exports.signUp = async (req, res) => {
 
     res.render('connection/signUp')
 }
+
+exports.dashboardAdmin = async (req, res) => {
+
+    res.render('account/dashboardAdmin', {
+        pseudoUser: req.session.userExist.firstName
+    })
+}
+
+exports.dashboardUser = async (req, res) => {
+
+    res.render('account/dashboardUser')
+}
+
+// --- --- ---
 
 exports.saveUser = async (req, res) => {
 
@@ -36,8 +52,9 @@ exports.saveUser = async (req, res) => {
 
         if (userExist) {
 
-            throw new Error("Un utilisateur utilise deja cette email")
+            throw new Error("Un utilisateur utilise deja cette email");
         }
+        
         const saveUser = await userModel.addUser(
             firstName,
             lastName,
@@ -46,7 +63,9 @@ exports.saveUser = async (req, res) => {
         )
 
         if (saveUser) {
-            res.render('home/homePage')
+            res.render('home/homePage',{
+                alertMsg: null,
+            })
         }
 
     } catch (error) {
@@ -71,7 +90,7 @@ exports.auth = async (req, res) => {
         
         if (userExist.role === 'admin') {
 
-            req.session.userExist = {
+            req.session.userExist = {                
                 id: userExist.id_admin,
                 firstName: userExist.admin_first_name,
                 isAdmin: true
@@ -90,7 +109,8 @@ exports.auth = async (req, res) => {
             }
 
             res.render('account/dashboardAdmin', {
-                Pseudo: req.session.userExist.firstName
+                alertMsg: null,
+                pseudoUser: req.session.userExist.firstName
             })
         }
 

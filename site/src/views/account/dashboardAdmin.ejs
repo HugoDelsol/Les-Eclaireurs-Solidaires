@@ -1,5 +1,63 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
+<link rel="stylesheet" href="/style/account/styleDashboardAdmin.css">
 <%- include('../partials/_head') %>
-    <%- include('../partials/_sideNavAdmin', {pseudoVar: Pseudo, alertMsgVar: AlertMsg, allCitysVar: TabCitys}) %>
 
-    
+    <main>
+        <div class="container" style='display: flex;'>
+            <%- include('../partials/_sideNavAdmin') %>
+
+                <div class="title">
+                    <h1>Vue synthétique - Missions & Bénévoles</h1>
+                    <p>Période : 30 prochains jours</p>
+                </div>
+
+                <div class="header">
+                    <div>
+                        <h2>Missions à venir</h2>
+                        <!--Récuperer le nbr de missions a venir-->
+                        <p>Planifiées sur 30 jours</p>
+                    </div>
+
+                    <div>
+                        <h2>Bénévoles engagés</h2>
+                        <!--Récuperer le nbr de Bénévole inscrit sur 30 jours-->
+                        <p>Somme des inscrits</p>
+                    </div>
+
+                    <div>
+                        <h2>Taux moyen de remplissage</h2>
+                        <!--Moyenne sur l'ensemble de smissions-->
+                        <p>Moyenne sur l'ensemble de smissions</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h1>Détail des missions</h1>
+                    <div>
+                        <h2>Missions</h2>
+                        <h2>Date</h2>
+                        <h2>Bénévole engagés</h2>
+                        <h2>Besoin restants</h2>
+                        <h2>Taux de remplissage</h2>
+                    </div>
+                    <div>
+                        <!--titleMissions-->
+                        <!--titleMissions-->
+                        <!--titleMissions-->
+                    </div>
+                </div>
+
+
+                <h3 style="color: green;">
+                    <%= alertMsg %>
+                </h3>
+
+
+
+                
+        </div>
+    </main>
+
+    </body>
+
+    </html>

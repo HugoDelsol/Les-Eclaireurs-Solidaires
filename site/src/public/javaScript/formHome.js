@@ -34,12 +34,12 @@ submitForm.addEventListener("submit", function (event) {
 
 
     } else {
+        
+        apiDataForm();
 
         btnSubmit.textContent = "Message envoyé ! ✅"
 
-        alertForm.innerHTML = "";
-
-        apiDataForm();
+        alertForm.innerHTML = "";        
 
         console.log("SUCCESS");
 
@@ -62,7 +62,7 @@ async function apiDataForm() {
 
         console.log(dataForm);
 
-        const response = await fetch("index.php?action=submitForm", {
+        const response = await fetch("homeForm", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataForm)

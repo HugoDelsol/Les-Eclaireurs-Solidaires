@@ -1,5 +1,7 @@
 const missionModel = require('../models/MissionModel');
 
+// --- --- --- --- ---
+
 exports.addMissionShow = async (req, res) => {
 
     try {
@@ -18,12 +20,12 @@ exports.addMissionShow = async (req, res) => {
             allTab.push(objCategory);
         }
 
-        res.render('account/addMission', {
-            Pseudo: req.session.userExist.firstName,
-            AlertMsg: null,
-            Categories: allTab,
-            AllcitysTab: null,
+        req.session.categoriesMission = allTab;
 
+        res.render('account/addMission', {
+            alertMsg: null,
+            pseudoUser: req.session.userExist.firstName,
+            categoriesMission: req.session.categoriesMission,
         })
 
     } catch (error) {
@@ -33,6 +35,8 @@ exports.addMissionShow = async (req, res) => {
     }
 
 }
+
+// --- --- --- --- ---
 
 exports.addMission = async (req, res) => {
 
@@ -44,7 +48,7 @@ exports.addMission = async (req, res) => {
         const date = req.body.date;
         const startTime = req.body.startTime;
         const endTime = req.body.endTime;
-        const city = req.body.city;
+        const cityId = req.body.cityId;
         const placeName = req.body.placeName;
         const spaceAvailable = req.body.spaceAvailable;
         const uploadImg = req.body.uploadImg;
@@ -56,15 +60,15 @@ exports.addMission = async (req, res) => {
             !req.body.date ||
             !req.body.startTime ||
             !req.body.endTime ||
-            !req.body.city ||
+            !req.body.cityId ||
             !req.body.placeName ||
             !req.body.spaceAvailable ||
             !req.body.uploadImg) {
 
-            console.log("***", req.body.date);
-
             throw new Error("Veuillez remplir tous les champs.");
         }
+
+        console.log("***", req.body.cityId);
 
         const insertMission = await missionModel.insertMission
             (
@@ -74,7 +78,7 @@ exports.addMission = async (req, res) => {
                 date,
                 startTime,
                 endTime,
-                city,
+                cityId,
                 placeName,
                 spaceAvailable,
                 uploadImg
@@ -83,9 +87,8 @@ exports.addMission = async (req, res) => {
         if (insertMission) {
 
             res.render('account/dashboardAdmin', {
-                Pseudo: req.session.userExist.firstName,
-                AlertMsg: 'Missions ajoutée',
-                AllcitysTab: null,
+                pseudoUser: req.session.userExist.firstName,
+                alertMsg: 'Missions ajoutée',
 
             })
 
@@ -94,9 +97,19 @@ exports.addMission = async (req, res) => {
 
     } catch (error) {
 
+        res.render('account/addMission', {
+
+            pseudoUser: req.session.userExist.firstName,            
+            categoriesMission: req.session.categoriesMission,
+            alertMsg: 'Veuillez remplir tous les champs.',
+
+        })
+
         console.log(error);
     }
 }
+
+// --- --- --- --- ---
 
 exports.searchCity = async (req, res) => {
 
@@ -107,14 +120,18 @@ exports.searchCity = async (req, res) => {
     let allCitys = []
 
     for (c of searchCity) {
-        allCitys.push(c.city_name, c._id_region);
-        
+
+        const data = {
+            idCity: c.id_city,
+            cityName: c.city_name,
+            idRegion: c._id_region,
+        }
+
+        allCitys.push(data);
+
     }
 
-    console.log(allCitys)
-
     res.json(allCitys)
-
 }
 
 

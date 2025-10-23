@@ -18,7 +18,7 @@ exports.getAllCategories = async () => {
 exports.insertMission = async (
     title,
     category,
-    description,    
+    description,
     date,
     startTime,
     endTime,
@@ -48,7 +48,7 @@ exports.insertMission = async (
             category,
             description,
             date,
-            startTime,            
+            startTime,
             endTime,
             city,
             placeName,
@@ -67,15 +67,24 @@ exports.insertMission = async (
 
 exports.searchCityInSql = async (q) => {
 
-    const query = `SELECT * FROM city WHERE city_name LIKE ? LIMIT 10`;
+    try {
 
-    const [result] = await db.query(query, [`${q}%`]);
-    
-    return result;
-    
+        const query = `SELECT * FROM city WHERE city_name LIKE ? LIMIT 20`;
+
+        const [result] = await db.query(query, [`${q}%`]);
+
+        return result;
+        
+    } catch (error) {
+
+        throw error;
+    }
+
+
+
 }
 
-
+            
 /*<?php
 class MissionModel
 {
