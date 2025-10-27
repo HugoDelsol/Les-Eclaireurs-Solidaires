@@ -57,7 +57,10 @@ span {
 }
 
 .btnHover:hover {
-    transform: scale(1.1);
+    border-bottom-right-radius: 5px; 
+    border-top-left-radius: 5px;
+    /*border-inline-start-width: 5px;*/
+    border-color: #0000007e;
 }
 
 .txtModH2 {
@@ -189,7 +192,7 @@ span {
 
 .btnReserch {
     margin: 0.6em 0em;
-    border-radius: 0.4em;
+    border-radius: 1.4em;
     font-size: 2.4em;
     padding: 0.4em 0.6em;
 }

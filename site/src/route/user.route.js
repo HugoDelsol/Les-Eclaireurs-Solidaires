@@ -21,7 +21,9 @@ router.post('/saveUser', userCtrl.saveUser);
 router.get('/logout', sessionMdw.logout);
 
 // --- DASHBOARD ---
-router.post('/dashboardUser', userCtrl.dashboardUser);
+router.get('/dashboardUser', userCtrl.dashboardUser);
+router.get('/missionUserShow', userCtrl.missionUserShow)
 
 
 module.exports = router;
+

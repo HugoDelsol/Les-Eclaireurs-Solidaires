@@ -5,24 +5,34 @@ const bcrypt = require('bcrypt');
 
 exports.signIn = async (req, res) => {
 
-    res.render('connection/signIn')
+    res.render('connection/signIn');
 }
 
 exports.signUp = async (req, res) => {
 
-    res.render('connection/signUp')
+    res.render('connection/signUp');
 }
 
 exports.dashboardAdmin = async (req, res) => {
 
     res.render('account/dashboardAdmin', {
         pseudoUser: req.session.userExist.firstName
-    })
+    });
 }
 
 exports.dashboardUser = async (req, res) => {
 
-    res.render('account/dashboardUser')
+    res.render('account/dashboardUser', {
+        pseudoUser: req.session.userExist.firstName
+    });
+}
+
+exports.missionUserShow = async (req, res) => {
+
+    res.render('account/listMissionUser', {
+        pseudoUser: req.session.userExist.firstName
+    });
+
 }
 
 // --- --- ---
@@ -108,7 +118,7 @@ exports.auth = async (req, res) => {
                 isAdmin: false
             }
 
-            res.render('account/dashboardAdmin', {
+            res.render('account/dashboardUser', {
                 alertMsg: null,
                 pseudoUser: req.session.userExist.firstName
             })
