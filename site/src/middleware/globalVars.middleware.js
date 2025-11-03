@@ -16,6 +16,7 @@ const centralizedVar = (req, res, next) => {
     res.locals.passwordConfirm = null;
 
     next();
+    
 }
 
 const userData = (req, res, next) => {

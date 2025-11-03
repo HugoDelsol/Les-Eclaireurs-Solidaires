@@ -32,7 +32,7 @@ exports.submitForm = async (req, res) => {
             //////////////////////////////AlertMsg: "Le formulaire n'a pas pus etre soumis"
         })
 
-        console.log('--->', error);
+        //console.log('--->', error);
 
     }
 

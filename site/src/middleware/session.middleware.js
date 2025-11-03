@@ -18,7 +18,7 @@ const sessionUser = (req, res, next) => {
 
     if (req.session.userExist) {
 
-        console.log('---->>>', req.session.userExist)
+        //console.log('---->>>', req.session.userExist)
     }
 
     next();

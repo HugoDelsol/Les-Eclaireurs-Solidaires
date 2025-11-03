@@ -10,7 +10,9 @@ exports.signIn = async (req, res) => {
 
 exports.signUp = async (req, res) => {
 
-    res.render('connection/signUp');
+    res.render('connection/signUp', {
+        firstName: null
+    });
 }
 
 exports.dashboardAdmin = async (req, res) => {
