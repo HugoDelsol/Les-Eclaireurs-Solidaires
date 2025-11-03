@@ -79,9 +79,30 @@ exports.searchCityInSql = async (q) => {
 
         throw error;
     }
+}
 
+exports.getAllRegions = async () => {
 
+    const request = `SELECT * FROM region`;
 
+    const [result] = await db.query(request);
+
+    return result;
+}
+
+exports.getAllMission = async () => {
+
+    const request = `SELECT mission_title, DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date, mission_category_name,  city_name                 
+                    FROM mission
+                    LEFT JOIN city
+                    ON id_city = _id_city
+                    LEFT JOIN mission_category
+                    ON id_mission_category = _id_mission_category`
+    ;
+
+    const [result] = await db.query(request);
+
+    return result;
 }
 
             

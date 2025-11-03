@@ -1,6 +1,7 @@
 // ------------------------------------
 // 📦 IMPORTS DES MODULES
 // ------------------------------------
+const middleware = require('../site/src/middleware/globalVars.middleware')
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -62,11 +63,22 @@ app.use(express.static(path.join(__dirname, '/src/public')));
 const userRoute = require('./src/route/user.route');
 const adminRoute = require('./src/route/admin.route');
 
+app.use(middleware.centralizedVar);
+app.use(middleware.userData);
+
 // Routes publiques (site utilisateur)
 app.use('/', userRoute);
 
 // Routes administrateur (interface d'administration)
 app.use('/admin', adminRoute);
+
+// Page 404 pour les routes non trouvées
+app.use((req, res) => {
+
+  console.log('--req', req)
+
+    res.status(404).render('home/404');
+});
 
 // ------------------------------------
 // 🚀 LANCEMENT DU SERVEUR

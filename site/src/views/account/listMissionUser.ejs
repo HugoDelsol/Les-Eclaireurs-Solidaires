@@ -8,64 +8,64 @@
                 <section class="blocListMission">
 
                     <div class="titleAndCategorySearch">
-                        <h1>Mission disponible :</h1>
-                        <select name="category" id="">
-                            <option value="">Catégories</option>
-                        </select>
-                        <select name="category" id="">
-                            <option value="">Lieux</option>
-                        </select>
-                        <select name="category" id="">
-                            <option value="">Date</option>
-                        </select>
-                    </div>
-
-
-                    <table style="">                        
-                        <thead>
-                            <tr style="text-align: left;">
-                                <th>MISSION</th>
-                                <th><h3>MISSION</h3></th>
-                                <th><h3>MISSION</h3></th>
-                                <th><h3>MISSION</h3></th>
-                                <th><h3>MISSION</h3></th>
-                                <th><h3>MISSION</h3></th>                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr  style="text-align: left;">
-                                <th>Nettoyage des berges</th>
-                                <td>25/10/2025</td>
-                                <td>Environement</td>
-                                <td>Grenoble</td>
-                                <td>Voir d’avantage</td>
-                                <td>Je participe</td>
-                            </tr>                            
-                        </tbody>  
-                        <tbody>
-                            <tr  style="text-align: left;">
-                                <th>Nettoyage des berges</th>
-                                <td>25/10/2025</td>
-                                <td>Environement</td>
-                                <td>Grenoble</td>
-                                <td>Voir d’avantage</td>
-                                <td>Je participe</td>
-                            </tr>                            
-                        </tbody>                       
-                    </table>
-                    <!-- <div class="listMission">
-                        <div class="titleDescription">
-                            <h3>MISSION</h3>
-                            <h3>DATE</h3>
-                            <h3>CATÉGORIE</h3>
-                            <h3>LIEUX</h3>
-                            <h3>DÉTAIL</h3>
-                            <h3>S’INSCRIRE</h3>
+                        <div>
+                            <h1>Mission disponible :</h1>
+                            <div class="line"></div>
                         </div>
 
-                    </div>-->
-
-
+                        <select name="category" id="">
+                            <% for (let category of categoriesMission) { %>
+                                <option value="<%= category.categoryId %>">
+                                    <%= category.categoryName %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <select name="category" id="">
+                            <% for (let region of regions) { %>
+                                <option value="<%= region.id_region %>">
+                                    <%= region.region_name %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <a href="/searchByCategories" class="btnSecondary btnHover">Rechercher ✅</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>MISSION</th>
+                                <th>DATE</th>
+                                <th>CATEGORIES</th>
+                                <th>LIEUX</th>
+                                <th>DETAILS</th>
+                                <th>S'INSCRIRE</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fixMax">
+                            <% for (let m of missions) { %>
+                                <tr>
+                                    <td>
+                                        <p>
+                                            <%= m.mission_title %>
+                                        </p>
+                                    </td>
+                                    <td class="color">
+                                        <%= m.mission_date %>
+                                    </td>
+                                    <td>
+                                        <%= m.mission_category_name %>
+                                    </td>
+                                    <td class="color">
+                                        <%= m.city_name %>
+                                    </td>
+                                    <td> <a href="/idMission">Voir d’avantage</a></td>
+                                    <td>
+                                        Je participe
+                                        <input type="checkbox">
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
                 </section>
         </div>
     </main>

@@ -12,16 +12,18 @@
         <form class="form" action="/saveUser" method="post">
             <img src="/pictures/login.png" alt="">
             <div class="nameRegister">
-                <label><input class="marginRight" type="text" placeholder="Prénom" name="firstName" value=""></label>
-                <label><input type="text" placeholder="Nom" name="lastName" value=""></label>
+                <label><input class="marginRight" type="text" placeholder="Prénom" name="firstName" value="<%= !firstName ? "" : firstName %>"></label>
+                <label><input type="text" placeholder="Nom" name="lastName" value="<%= !lastName ? "" : lastName %>"></label>
             </div>
-            <label><input type="email" id="email" placeholder="Email" name="email" value=""></label>
-            <label><input type="password" id="password" placeholder="Mot de passe" name="password"></label>
-            <label><input type="password" id="passwordConfirm" placeholder="Confirmer le mot de passe" name="passwordConfirm"></label>
+            <label><input type="email" id="email" placeholder="Email" name="email" value="<%= !email ? "" : email %>"></label>
+            <label><input type="password" id="password" placeholder="Mot de passe" name="password" value="<%= !password ? "" : password %>"></label>
+            <label><input type="password" id="passwordConfirm" placeholder="Confirmer le mot de passe" name="passwordConfirm" value="<%= !passwordConfirm ? "" : passwordConfirm %>"></label>
             <div class="buttonLogin">
-                <button type="submit" class="btnSecondary btnHover widthBtnContact">INSCRIPTION</button>
+                <button type="submit" class="btnSecondary btnHover widthBtnContact">INSCRIPTION</button>                
                 <a href="/signIn">Déja inscrit ?</a>
+                
             </div>
+            <%= alertMsg  %> 
         </form>
     </section>
 </main>

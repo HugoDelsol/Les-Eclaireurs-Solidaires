@@ -25,8 +25,8 @@ body {
 .btnPrimary {
     display: flex;
     justify-content: center;    
-    background-color: #f9cf807c;
-    border: 0.1px solid #f9cf807c;
+    background-color: #f8950038;
+    border: 0.1px solid #00000013;
     padding: 0.6em 2em;
     border-radius: 2em;
     font-weight: 400;

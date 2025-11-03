@@ -12,9 +12,7 @@ exports.becomeVolunteer = async (req, res) => {
     res.render('home/becomeVolunteer')
 }
 
-
 //------------------//
-
 
 exports.submitForm = async (req, res) => {
 
@@ -26,7 +24,7 @@ exports.submitForm = async (req, res) => {
 
         const result = await homeModel.addMessageForm(nameForm, emailForm, txtArea);
 
-        console.log('---->', result.insertId)
+        //console.log('---->', result[0].insertId)
 
     } catch (error) {
         
@@ -38,22 +36,7 @@ exports.submitForm = async (req, res) => {
 
     }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*<?php

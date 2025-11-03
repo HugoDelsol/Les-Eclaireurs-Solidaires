@@ -16,23 +16,15 @@ exports.signUp = async (req, res) => {
 exports.dashboardAdmin = async (req, res) => {
 
     res.render('account/dashboardAdmin', {
-        pseudoUser: req.session.userExist.firstName
+        //pseudoUser: req.session.userExist.firstName
     });
 }
 
 exports.dashboardUser = async (req, res) => {
 
     res.render('account/dashboardUser', {
-        pseudoUser: req.session.userExist.firstName
+        // pseudoUser: req.session.userExist.firstName
     });
-}
-
-exports.missionUserShow = async (req, res) => {
-
-    res.render('account/listMissionUser', {
-        pseudoUser: req.session.userExist.firstName
-    });
-
 }
 
 // --- --- ---
@@ -45,7 +37,6 @@ exports.saveUser = async (req, res) => {
         let lastName = req.body.lastName;
         let email = req.body.email;
         let password = req.body.password;
-        let passwordConfirm = req.body.passwordConfirm;
 
         if (!req.body.firstName ||
             !req.body.lastName ||
@@ -58,13 +49,13 @@ exports.saveUser = async (req, res) => {
 
         let userExist = await userModel.getOneUserByEmail(email);
 
-        console.log('-->>>>>>', userExist);
+        //console.log('-->>>>>>', userExist);
 
         if (userExist) {
 
             throw new Error("Un utilisateur utilise deja cette email");
         }
-        
+
         const saveUser = await userModel.addUser(
             firstName,
             lastName,
@@ -73,14 +64,27 @@ exports.saveUser = async (req, res) => {
         )
 
         if (saveUser) {
-            res.render('home/homePage',{
-                alertMsg: null,
-            })
+            res.render('connection/signIn', {
+
+                alertMsg: "Votre inscription a bien été prise en compte. Veuillez vous connecter pour continuer."
+            });
         }
 
     } catch (error) {
 
-        console.log(error)
+        //console.log(error.message)
+
+        res.render('connection/signUp', {
+
+            firstName: req.body.firstName,            
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,            
+            passwordConfirm: req.body.passwordConfirm,            
+
+            alertMsg: error.message
+        });
+
     }
 }
 
@@ -97,31 +101,36 @@ exports.auth = async (req, res) => {
         }
 
         const userExist = await exports.verifyAccountExist(email, password);
-        
+
         if (userExist.role === 'admin') {
 
-            req.session.userExist = {                
+            req.session.userExist = {
                 id: userExist.id_admin,
                 firstName: userExist.admin_first_name,
                 isAdmin: true
             }
 
             res.render('account/dashboardAdmin', {
-            })
-        }
 
-        if (userExist.role === 'user') {
-            
+            });
+
+        } else if (userExist.role === 'user') {
+
             req.session.userExist = {
                 id: userExist.id_user,
                 firstName: userExist.user_first_name,
                 isAdmin: false
             }
 
+            console.log(req.session.userExist.id)
+
             res.render('account/dashboardUser', {
-                alertMsg: null,
-                pseudoUser: req.session.userExist.firstName
-            })
+                //alertMsg: null,
+                //pseudoUser: req.session.userExist.firstName,
+
+            });
+
+
         }
 
 
@@ -131,7 +140,7 @@ exports.auth = async (req, res) => {
 
         res.render('connection/signIn', {
 
-        })
+        });
     }
 }
 
@@ -164,7 +173,7 @@ exports.verifyAccountExist = async (email, password) => {
 
     } catch (e) {
 
-        console.error(e)
+        console.error(e);
 
     }
 }

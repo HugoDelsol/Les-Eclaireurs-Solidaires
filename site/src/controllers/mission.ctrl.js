@@ -1,4 +1,54 @@
 const missionModel = require('../models/MissionModel');
+const service = require('../service/getGlobalData');
+
+exports.missionUserShow = async (req, res) => {
+
+    try {
+
+        const regionsServ = await service.region();
+
+        req.session.regions = regionsServ
+
+        const dataTab = await service.categories();
+
+        req.session.categoriesMission = dataTab
+
+        const getAllMissions = await missionModel.getAllMission();
+
+        //console.log(getAllMissions)
+
+       /*  const dataMissionList = {
+
+            titleMission: getAllMissions.mission_title,
+            dateMission: getAllMissions.mission_date,
+            categoryMission: getAllMissions.mission_category_name,
+            cityMission: getAllMissions.city_name
+
+        } */        
+
+        res.render('account/listMissionUser', {
+            alertMsg: null,
+            pseudoUser: req.session.userExist.firstName,
+            categoriesMission: req.session.categoriesMission,
+            regions: req.session.regions,
+            missions: getAllMissions
+        });
+
+        console.log('-----function mission user show------>',req.session.userExist.firstName)
+
+    } catch (error) {
+
+        console.log(error);
+        res.render('account/listMissionUser', {
+            alertMsg: null,
+            pseudoUser: req.session.userExist.firstName,
+            categoriesMission: req.session.categoriesMission,
+            regions: req.session.regions
+        });
+
+    }
+
+}
 
 // --- --- --- --- ---
 
@@ -6,21 +56,9 @@ exports.addMissionShow = async (req, res) => {
 
     try {
 
-        let allCategories = await missionModel.getAllCategories();
+        const dataTab = await service.categories();
 
-        let allTab = [];
-
-        for (let category of allCategories) {
-
-            objCategory = {
-                categoryId: category.id_mission_category,
-                categoryName: category.mission_category_name
-            }
-
-            allTab.push(objCategory);
-        }
-
-        req.session.categoriesMission = allTab;
+        req.session.categoriesMission = dataTab;
 
         res.render('account/addMission', {
             alertMsg: null,
@@ -99,7 +137,7 @@ exports.addMission = async (req, res) => {
 
         res.render('account/addMission', {
 
-            pseudoUser: req.session.userExist.firstName,            
+            pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             alertMsg: 'Veuillez remplir tous les champs.',
 
@@ -136,7 +174,26 @@ exports.searchCity = async (req, res) => {
 
 
 
+exports.searchByCategories = async (req, res) => {
 
+    try {
+
+    } catch (error) {
+
+    }
+}
+
+exports.getAllMissions = async (req, res) => {
+
+    try {
+
+
+
+
+    } catch (error) {
+
+    }
+}
 
 
 

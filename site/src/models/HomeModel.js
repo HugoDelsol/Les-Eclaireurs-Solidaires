@@ -6,7 +6,9 @@ exports.addMessageForm = async (nameForm, emailForm, txtArea) => {
 
         const request = `INSERT INTO message_form (name_form, email_form, message_text_form) VALUES (?, ?, ?)`
         
-        await db.query(request, [nameForm, emailForm, txtArea])        
+        const result = await db.query(request, [nameForm, emailForm, txtArea])  
+        
+        return result
 
     } catch (error) {
 

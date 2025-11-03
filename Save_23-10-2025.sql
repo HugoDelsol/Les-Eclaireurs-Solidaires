@@ -2,8 +2,8 @@
 -- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : db
--- Généré le : ven. 03 oct. 2025 à 15:04
+-- Hôte : mysql
+-- Généré le : jeu. 23 oct. 2025 à 17:59
 -- Version du serveur : 8.0.43
 -- Version de PHP : 8.2.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `filrouge`
+-- Base de données : `filRougeNodeJs_db`
 --
 
 -- --------------------------------------------------------
@@ -29,25 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id_admin` int NOT NULL,
-  `admin_first_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `admin_last_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `admin_first_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `admin_last_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `admin_created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `admin_adress` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `admin_phone_number` char(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `admin_adress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `admin_phone_number` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `admin_birthday` date NOT NULL,
   `_id_admin_role` int DEFAULT NULL,
   `_id_city` int DEFAULT NULL,
   `_id_identifier` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `admin`
---
-
-INSERT INTO `admin` (`id_admin`, `admin_first_name`, `admin_last_name`, `admin_created_at`, `admin_adress`, `admin_phone_number`, `admin_birthday`, `_id_admin_role`, `_id_city`, `_id_identifier`) VALUES
-(10, 'Admin01', 'Admin01', '2025-09-22 16:17:38', '', '', '0000-00-00', NULL, NULL, 39),
-(11, 'HugoLadmin', 'youg', '2025-09-23 12:17:43', '', '', '0000-00-00', NULL, NULL, 41),
-(12, 'admin02', 'youg', '2025-09-23 12:19:05', '', '', '0000-00-00', NULL, NULL, 42);
 
 -- --------------------------------------------------------
 
@@ -57,8 +48,8 @@ INSERT INTO `admin` (`id_admin`, `admin_first_name`, `admin_last_name`, `admin_c
 
 CREATE TABLE `admin_role` (
   `id_admin_role` int NOT NULL,
-  `role_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `role_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39328,8 +39319,8 @@ CREATE TABLE `history_mission` (
 
 CREATE TABLE `identifier` (
   `id_identifier` int NOT NULL,
-  `identifier_mail` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `identifier_password` varchar(250) COLLATE utf8mb4_general_ci NOT NULL
+  `identifier_mail` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `identifier_password` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39337,10 +39328,8 @@ CREATE TABLE `identifier` (
 --
 
 INSERT INTO `identifier` (`id_identifier`, `identifier_mail`, `identifier_password`) VALUES
-(39, 'Admin01@gmail.com', '$2y$10$ApTuPqRXhL.fUTPT0OnW4OhaGJRKOofFpHQwn3r5pZiS0ATkfm6xG'),
-(40, 'User01@gmail.com', '$2y$10$SdtBDTbcHLQt3zpXaG7nx.GFgDhFzfFMBHysgP1e79hJjFBKZpK8G'),
-(41, 'hugo.delsol64@gmail.com', '$2y$10$UE1bBeLlMcXZ0EjBXSQxPempYZ9BR.buVDusmSWwnf/K0oDNcna/e'),
-(42, 'admin02@gmail.com', '$2y$10$GQmy9EnyOVg5qU5o31rRWu5EjNBU0lT1SMdhTHCPYizKh9aqJQmJ2');
+(60, 'user01@gmail.com', '$2b$10$p/.9VE7lgEyh1y4cylAnre5QCV6JIbPn3ffLmZJhuzrkz6PwLuxRW'),
+(63, 'lucas@gmail.com', '$2b$10$8GcN6daOHirj/0T9sjs0BOpg80VB5Ti11N5UkOpW2ew.3e3Sc2ZLy');
 
 -- --------------------------------------------------------
 
@@ -39350,9 +39339,9 @@ INSERT INTO `identifier` (`id_identifier`, `identifier_mail`, `identifier_passwo
 
 CREATE TABLE `message_form` (
   `id_message_form` int NOT NULL,
-  `name_form` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `email_form` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `message_text_form` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name_form` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email_form` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `message_text_form` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `date_sent_message_form` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39361,23 +39350,8 @@ CREATE TABLE `message_form` (
 --
 
 INSERT INTO `message_form` (`id_message_form`, `name_form`, `email_form`, `message_text_form`, `date_sent_message_form`) VALUES
-(35, 'Hugo', 'taiooo@gmail.com', 'Est ce que ca marche?', '2025-09-17 09:46:53'),
-(36, 'Hugo2', 'ggr@gmail.com', 'Quand le formulaire est bien remplie cela me vide les champs', '2025-09-17 09:50:23'),
-(37, 'vvdvdd', 'vdvd@gmail.fr', 'grgrggrg', '2025-09-17 10:14:41'),
-(38, 'cefe', 'hugo.delsol64@gmail.commm', 'hdzih>><<<script>> /*-\n', '2025-09-17 10:15:20'),
-(39, 'bbt', 'hugo.delsol64@gmail.comhthh', 'btbtbt', '2025-09-17 10:17:10'),
-(40, '&lt;script&gt; src /* bjfhffhefe', 'hugo.delsol64@gmail.comhthh', 'rrgrg', '2025-09-17 10:21:33'),
-(41, 'Hugo', 'hugo.delsol64@gmail.com', 'alert success ???', '2025-09-17 11:12:12'),
-(42, 'Hugo', 'daboubi@gmail.com', 'Je regarde si ca fonctionne encore !', '2025-09-17 15:51:33'),
-(43, 'uèuèu', 'okok@gmail.com', 'Hufjffr', '2025-09-18 15:23:28'),
-(44, 'ok', 'tibo@gmail.com', 'f', '2025-09-18 16:15:44'),
-(45, 'deded', 'hugo.delsol64@gmail.com', 'dede', '2025-09-18 16:16:35'),
-(46, 'c', 'tibo@gmail.com', 'c', '2025-09-18 16:17:30'),
-(47, 'efe', 'hugo.delsol64@gmail.com', 'fefe', '2025-09-18 16:22:46'),
-(48, 'vd', 'hugo.delsol64@gmail.commm', 'vddv', '2025-09-18 16:24:15'),
-(49, 'h', 'hugo.delsol64@gmail.com', 'htth', '2025-09-18 16:24:59'),
-(50, 'voili', 'taiooo@gmail.com', 'dzdzdzd', '2025-09-19 09:10:47'),
-(51, 'Encore', 'un@gmail.com', 'Test!!', '2025-09-23 16:42:58');
+(66, 'Hugo', 'hugo.delsol64@gmail.com', 'Formulaire d\'envoi avec NodeJs', '2025-10-20 15:18:26'),
+(67, 'Hugo', 'hugo.delsol64@gmail.com', 'Formulaire d\'envoi avec NodeJs', '2025-10-20 15:19:46');
 
 -- --------------------------------------------------------
 
@@ -39387,9 +39361,9 @@ INSERT INTO `message_form` (`id_message_form`, `name_form`, `email_form`, `messa
 
 CREATE TABLE `message_recall_template` (
   `id_message_recall_template` int NOT NULL,
-  `message_object` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `message_content` text COLLATE utf8mb4_general_ci NOT NULL,
-  `label` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `message_object` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `message_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -39400,11 +39374,11 @@ CREATE TABLE `message_recall_template` (
 
 CREATE TABLE `mission` (
   `id_mission` int NOT NULL,
-  `mission_title` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `mission_title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `mission_date` date NOT NULL,
   `mission_start_time` time NOT NULL,
   `mission_end_time` time NOT NULL,
-  `mission_description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `mission_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `mission_place_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `mission_available_place` smallint NOT NULL,
   `mission_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -39417,9 +39391,23 @@ CREATE TABLE `mission` (
 --
 
 INSERT INTO `mission` (`id_mission`, `mission_title`, `mission_date`, `mission_start_time`, `mission_end_time`, `mission_description`, `mission_place_name`, `mission_available_place`, `mission_img`, `_id_mission_category`, `_id_city`) VALUES
-(1, 'jyjyjyj', '2025-10-16', '01:11:00', '01:02:00', 'jyyj', 'h', 1, 'Capture d’écran (110).png', 5, 2),
-(2, 'jyjyjyj', '2025-10-16', '01:11:00', '01:02:00', 'jyyj', 'h', 1, 'Capture d’écran (110).png', 5, 2),
-(3, ' <<<s', '2025-10-29', '14:04:00', '12:22:00', 'csscsccscs', 'wcw', 4, 'Capture d’écran (110).png', 5, 2);
+(41, 'Bénévolat', '2025-10-23', '13:30:00', '17:30:00', 'bla bla bla', 'Mairie de grenobe', 25, 'Capture d’écran 2025-09-04 110448.png', 4, 15701),
+(42, 'Bénévolat', '2025-10-23', '13:30:00', '17:30:00', 'bla bla bla', 'Mairie de grenobe', 25, 'Capture d’écran 2025-09-04 110448.png', 4, 15701),
+(43, 'dzdzz', '2025-10-16', '14:42:00', '23:24:00', 'dzdzzdz', 'effefe', 2, 'Capture d’écran 2025-10-03 100303.png', 5, 7018),
+(44, 'dzdzdzdz', '2025-10-17', '04:04:00', '04:04:00', 'ddzdz', 'jyjy', 1, 'Capture d’écran 2025-10-03 100303.png', 5, 2116),
+(45, 'dzdzdzdz', '2025-10-17', '04:04:00', '04:04:00', 'ddzdz', 'jyjy', 1, 'Capture d’écran 2025-10-03 100303.png', 5, 2116),
+(46, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(47, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(48, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(49, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(50, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(51, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(52, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(53, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(54, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(55, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(56, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
+(57, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116);
 
 -- --------------------------------------------------------
 
@@ -39483,6 +39471,26 @@ INSERT INTO `region` (`id_region`, `region_name`) VALUES
 (5, 'Occitanie'),
 (12, 'Pays de la Loire'),
 (3, 'Provence-Alpes-Côte d\'Azur');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int UNSIGNED NOT NULL,
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `sessions`
+--
+
+INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
+('0jnUB58YHhAhS-kHMq6QRnRFn_XuQYzs', 1761328224, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2025-10-24T17:50:19.702Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"},\"userExist\":{\"id\":45,\"firstName\":\"UserHugo\",\"isAdmin\":false},\"categoriesMission\":[{\"categoryId\":1,\"categoryName\":\"Éducation & Tutorat\"},{\"categoryId\":2,\"categoryName\":\"Santé & Bien-être\"},{\"categoryId\":3,\"categoryName\":\"Environnement & Nature\"},{\"categoryId\":4,\"categoryName\":\"Solidarité & Action sociale\"},{\"categoryId\":5,\"categoryName\":\"Culture & Loisirs\"},{\"categoryId\":6,\"categoryName\":\"Urgence & Secours\"},{\"categoryId\":7,\"categoryName\":\"Sport & Loisirs\"},{\"categoryId\":8,\"categoryName\":\"Technologie & Numérique\"},{\"categoryId\":9,\"categoryName\":\"International & Humanitaire\"},{\"categoryId\":10,\"categoryName\":\"Recherche & Innovation sociale\"}]}'),
+('A7jdiEyVeJcEcjlpW4hbFmagpUG1hEiJ', 1761142411, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2025-10-22T14:13:27.836Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}');
 
 -- --------------------------------------------------------
 
@@ -78745,11 +78753,11 @@ INSERT INTO `temp_city` (`nom_commune_complet`, `code_postal`, `nom_region`) VAL
 
 CREATE TABLE `user` (
   `id_user` int NOT NULL,
-  `user_first_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `user_last_name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_first_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `user_last_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_adress` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `user_phone_number` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_adress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `user_birthday` date DEFAULT NULL,
   `_id_city` int DEFAULT NULL,
   `_id_identifier` int DEFAULT NULL
@@ -78760,7 +78768,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `user_first_name`, `user_last_name`, `user_created_at`, `user_adress`, `user_phone_number`, `user_birthday`, `_id_city`, `_id_identifier`) VALUES
-(32, 'User01', 'User01', '2025-09-22 16:18:59', '', '', NULL, NULL, 40);
+(45, 'UserHugo', 'DelsolUser', '2025-10-10 09:41:06', NULL, NULL, NULL, NULL, 60),
+(48, 'Lucas', 'David', '2025-10-10 15:58:19', NULL, NULL, NULL, NULL, 63);
 
 -- --------------------------------------------------------
 
@@ -78770,7 +78779,7 @@ INSERT INTO `user` (`id_user`, `user_first_name`, `user_last_name`, `user_create
 
 CREATE TABLE `user_opinion` (
   `id_user_opinion` int NOT NULL,
-  `user_opinion_message` text COLLATE utf8mb4_general_ci NOT NULL,
+  `user_opinion_message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_opinion_date` datetime NOT NULL,
   `_id_user` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -78846,6 +78855,12 @@ ALTER TABLE `region`
   ADD UNIQUE KEY `region_name` (`region_name`);
 
 --
+-- Index pour la table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`session_id`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
@@ -78880,7 +78895,7 @@ ALTER TABLE `admin_role`
 -- AUTO_INCREMENT pour la table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id_city` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65536;
+  MODIFY `id_city` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39202;
 
 --
 -- AUTO_INCREMENT pour la table `history_mission`
@@ -78892,13 +78907,13 @@ ALTER TABLE `history_mission`
 -- AUTO_INCREMENT pour la table `identifier`
 --
 ALTER TABLE `identifier`
-  MODIFY `id_identifier` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_identifier` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT pour la table `message_form`
 --
 ALTER TABLE `message_form`
-  MODIFY `id_message_form` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_message_form` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT pour la table `message_recall_template`
@@ -78910,7 +78925,7 @@ ALTER TABLE `message_recall_template`
 -- AUTO_INCREMENT pour la table `mission`
 --
 ALTER TABLE `mission`
-  MODIFY `id_mission` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_mission` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT pour la table `mission_category`
@@ -78928,7 +78943,7 @@ ALTER TABLE `region`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT pour la table `user_opinion`
