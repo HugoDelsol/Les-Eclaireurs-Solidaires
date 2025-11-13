@@ -43,6 +43,7 @@ exports.insertMission = async (
                         mission_available_place,
                         mission_img) VALUES 
                         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+
         const [result] = await db.query(request, [
             title,
             category,
@@ -103,6 +104,11 @@ exports.getAllMission = async () => {
     const [result] = await db.query(request);
 
     return result;
+}
+
+exports.registerMissionUser = async (idUser , idMission) => {
+    const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)'
+    await db.query(request,[idUser, idMission]);
 }
 
             

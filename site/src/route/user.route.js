@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const homeCtrl = require('../controllers/home.ctrl');
 const userCtrl = require('../controllers/user.ctrl');
 const missionCtrl = require('../controllers/mission.ctrl');
@@ -22,9 +23,11 @@ router.get('/logout', sessionMdw.logout);
 // --- DASHBOARD ---
 router.get('/dashboardUser', sessionMdw.sessionUser, userCtrl.dashboardUser);
 router.get('/missionUserShow', sessionMdw.sessionUser, missionCtrl.missionUserShow);
-router.get('/searchByCategories', sessionMdw.sessionUser, missionCtrl.searchByCategories)
+router.get('/searchByCategories', sessionMdw.sessionUser, missionCtrl.searchByCategories);
 
-router.get('/dataMission/:idMission', missionCtrl.dataMissionShow)
+router.post('/dataMission/:idMission', missionCtrl.dataMissionShow);
+
+router.get('/registerMissionUser', missionCtrl.registerMissionUser);
 
 module.exports = router;
 

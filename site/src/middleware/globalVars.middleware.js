@@ -16,20 +16,19 @@ const centralizedVar = (req, res, next) => {
     res.locals.passwordConfirm = null;
 
     next();
-    
+
 }
 
 const userData = (req, res, next) => {
 
     if (req.session && req.session.userExist) {
 
-        res.locals = {
+        res.locals.idUser = req.session.userExist.id;
+        res.locals.pseudoUser = req.session.userExist.firstName;
 
-            pseudoUser: req.session.userExist.firstName
-
-        }
     } else {
 
+        res.locals.idUser = null
         res.locals.pseudoUser = null
     }
 

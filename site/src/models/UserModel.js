@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 async function testConnection() {
     try {
-        const [rows, fields] = await db.query('SELECT 1 + 1 AS solution');
+        const [rows] = await db.query('SELECT 1 + 2 AS solution');
         console.log('Connexion OK, test SQL:', rows[0].solution);
     } catch (err) {
         console.error('Erreur connexion DB:', err.message);

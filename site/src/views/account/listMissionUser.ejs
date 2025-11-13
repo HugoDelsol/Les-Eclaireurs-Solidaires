@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleListMissionUser.css">
+<script src="/javaScript/registerMission.js" defer></script>
 <%- include('../partials/_head') %>
 
     <main>
@@ -76,9 +77,9 @@
                                             <%= m.city_name %>
                                         </td>
                                         <td> <a href="/dataMission/<%= m.id_mission %>">Voir d’avantage</a></td>
-                                        <td>
+                                        <td >
                                             Je participe
-                                            <input type="checkbox" name="missionRegistration" value="1">
+                                            <input data-id="<%= m.id_mission %>" type="checkbox" name="missionRegistration" class="checkbox"  value="0">
                                         </td>
                                     </tr>
                                     <% } %>

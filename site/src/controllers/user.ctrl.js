@@ -67,7 +67,6 @@ exports.saveUser = async (req, res) => {
 
         if (saveUser) {
             res.render('connection/signIn', {
-
                 alertMsg: "Votre inscription a bien été prise en compte. Veuillez vous connecter pour continuer."
             });
         }

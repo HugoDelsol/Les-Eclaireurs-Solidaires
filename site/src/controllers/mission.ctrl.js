@@ -1,3 +1,4 @@
+const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const service = require('../service/getGlobalData');
 
@@ -15,16 +16,16 @@ exports.missionUserShow = async (req, res) => {
 
         const getAllMissions = await missionModel.getAllMission();
 
-        console.log(getAllMissions)
+        //console.log(getAllMissions)
 
-       /*  const dataMissionList = {
-
-            titleMission: getAllMissions.mission_title,
-            dateMission: getAllMissions.mission_date,
-            categoryMission: getAllMissions.mission_category_name,
-            cityMission: getAllMissions.city_name
-
-        } */        
+        /*  const dataMissionList = {
+ 
+             titleMission: getAllMissions.mission_title,
+             dateMission: getAllMissions.mission_date,
+             categoryMission: getAllMissions.mission_category_name,
+             cityMission: getAllMissions.city_name
+ 
+         } */
 
         res.render('account/listMissionUser', {
             alertMsg: null,
@@ -34,7 +35,7 @@ exports.missionUserShow = async (req, res) => {
             missions: getAllMissions
         });
 
-        console.log('-----function mission user show------>',req.session.userExist.firstName)
+        console.log('-----function mission user show------>', req.session.userExist.firstName)
 
     } catch (error) {
 
@@ -49,7 +50,7 @@ exports.missionUserShow = async (req, res) => {
     }
 
 }
-    
+
 // --- --- --- --- ---
 
 exports.addMissionShow = async (req, res) => {
@@ -186,19 +187,34 @@ exports.searchByCategories = async (req, res) => {
 exports.getAllMissions = async (req, res) => {
 
     try {
-
-
-
-
     } catch (error) {
 
     }
 }
 
-
 exports.dataMissionShow = async (req, res) => {
     console.log(req.params.idMission)
+}
+
+exports.registerMissionUser = async (req, res) => {
     
+    try {
+        const idUser = parseInt(req.query.idUser)
+        const idMission = parseInt(req.query.idMission)
+
+        console.log(idUser, idMission)
+
+        if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
+            
+            return res.status(400).json({message: "Petit coquin, tu as bien failli m'avoir"})
+        } else {
+
+            await missionModel.registerMissionUser(idUser, idMission);
+        }
+        
+    } catch (error) {
+
+    }
 }
 
 
