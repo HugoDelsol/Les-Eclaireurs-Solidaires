@@ -32,7 +32,6 @@ submitForm.addEventListener("submit", function (event) {
 
         console.log("ERROR");
 
-
     } else {
         
         apiDataForm();
@@ -62,7 +61,7 @@ async function apiDataForm() {
 
         console.log(dataForm);
 
-        const response = await fetch("homeForm", {
+        const response = await fetch("/homeForm", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataForm)

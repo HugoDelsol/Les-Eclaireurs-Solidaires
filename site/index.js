@@ -74,9 +74,6 @@ app.use('/admin', adminRoute);
 
 // Page 404 pour les routes non trouvées
 app.use((req, res) => {
-
-  //console.log('--req', req)
-
     res.status(404).render('home/404');
 });
 

@@ -15,7 +15,7 @@ exports.missionUserShow = async (req, res) => {
 
         const getAllMissions = await missionModel.getAllMission();
 
-        //console.log(getAllMissions)
+        console.log(getAllMissions)
 
        /*  const dataMissionList = {
 
@@ -49,7 +49,7 @@ exports.missionUserShow = async (req, res) => {
     }
 
 }
-
+    
 // --- --- --- --- ---
 
 exports.addMissionShow = async (req, res) => {
@@ -195,6 +195,11 @@ exports.getAllMissions = async (req, res) => {
     }
 }
 
+
+exports.dataMissionShow = async (req, res) => {
+    console.log(req.params.idMission)
+    
+}
 
 
 

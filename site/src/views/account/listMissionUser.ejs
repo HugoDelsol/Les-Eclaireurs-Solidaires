@@ -3,73 +3,147 @@
 <%- include('../partials/_head') %>
 
     <main>
-        <div class="container" style='display: flex;'>
+        <div class="container">
             <%- include('../partials/_sideNavUser') %>
-                <section class="blocListMission">
+                <%- include('../partials/_mobileHeader') %>
+                    <section class="blocListMission">
+                        <div class="titleAndCategorySearch">
+                            <div class="rowResponsiv ">
+                                <div class="line responsiv"></div>
+                                <h1>Mission disponible</h1>
+                                <div class="line"></div>
+                            </div>
+                            <div class="rowResponsiv rowDesktop">
+                                <div>
+                                    <p class="responsivMob">Lieu</p>
+                                    <select name="category" id="">
+                                        <% for (let region of regions) { %>
+                                            <option value="<%= region.id_region %>">
+                                                <%= region.region_name %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                    <p class="responsivMob">Categorie</p>
+                                    <select name="category" id="">
+                                        <% for (let category of categoriesMission) { %>
+                                            <option value="<%= category.categoryId %>">
+                                                <%= category.categoryName %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                </div>
+                                <div class="filterDate">
+                                    <div>
+                                        <p>Du :</p>
+                                        <input type="date" id="dateDebut" placeholder="Date">
+                                    </div>
+                                    <div>
+                                        <p>Au :</p>
+                                        <input type="date" id="dateFin">
+                                    </div>
 
-                    <div class="titleAndCategorySearch">
-                        <div>
-                            <h1>Mission disponible :</h1>
-                            <div class="line"></div>
+                                </div>
+                                <a href="/searchByCategories" class="btnSecondary btnHover">Rechercher ✅</a>
+
+                            </div>
                         </div>
-
-                        <select name="category" id="">
-                            <% for (let category of categoriesMission) { %>
-                                <option value="<%= category.categoryId %>">
-                                    <%= category.categoryName %>
-                                </option>
-                                <% } %>
-                        </select>
-                        <select name="category" id="">
-                            <% for (let region of regions) { %>
-                                <option value="<%= region.id_region %>">
-                                    <%= region.region_name %>
-                                </option>
-                                <% } %>
-                        </select>
-                        <a href="/searchByCategories" class="btnSecondary btnHover">Rechercher ✅</a>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>MISSION</th>
-                                <th>DATE</th>
-                                <th>CATEGORIES</th>
-                                <th>LIEUX</th>
-                                <th>DETAILS</th>
-                                <th>S'INSCRIRE</th>
-                            </tr>
-                        </thead>
-                        <tbody class="fixMax">
-                            <% for (let m of missions) { %>
+                        <table class="desktop">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <p>
-                                            <%= m.mission_title %>
-                                        </p>
-                                    </td>
-                                    <td class="color">
-                                        <%= m.mission_date %>
-                                    </td>
-                                    <td>
-                                        <%= m.mission_category_name %>
-                                    </td>
-                                    <td class="color">
-                                        <%= m.city_name %>
-                                    </td>
-                                    <td> <a href="/idMission">Voir d’avantage</a></td>
-                                    <td>
-                                        Je participe
-                                        <input type="checkbox">
-                                    </td>
+                                    <th>MISSION</th>
+                                    <th>DATE</th>
+                                    <th>CATEGORIES</th>
+                                    <th>LIEUX</th>
+                                    <th>DETAILS</th>
+                                    <th>S'INSCRIRE</th>
                                 </tr>
-                                <% } %>
-                        </tbody>
-                    </table>
-                </section>
+                            </thead>
+                            <tbody class="fixMax">
+                                <% for (let m of missions) { %>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <%= m.mission_title %>
+                                            </p>
+                                        </td>
+                                        <td class="color">
+                                            <%= m.mission_date %>
+                                        </td>
+                                        <td>
+                                            <%= m.mission_category_name %>
+                                        </td>
+                                        <td class="color">
+                                            <%= m.city_name %>
+                                        </td>
+                                        <td> <a href="/dataMission/<%= m.id_mission %>">Voir d’avantage</a></td>
+                                        <td>
+                                            Je participe
+                                            <input type="checkbox" name="missionRegistration" value="1">
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- RESPONSIV MOBILE CARD -->
+                    <!-- --------------------- -->
+                    <!-- --------------------- -->
+
+                    <div class="responsiv cardFlexMission">
+                        <div class="pictureMissionAndTxt">
+                            <img src="/pictures/Bénévolat.jpg" a>
+                            <div>
+                                <h3>Nettoyage des berges - Samedi 03 juillet</h3>
+                                <div class="line lineMissions"></div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Quam hic reprehenderit obcaecati accusantium repellendus
+                                    consectetur, quo eos tempore ea molestiae quibusdam porro!
+                                    Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
+                                </p>
+                                <div class="row">
+                                    <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pictureMissionAndTxt">
+                            <img src="/pictures/Bénévolat6.jpg" alt="">
+                            <div>
+                                <h3>Nettoyage des berges - Samedi 03 juillet</h3>
+                                <div class="line lineMissions"></div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Quam hic reprehenderit obcaecati accusantium repellendus
+                                    consectetur, quo eos tempore ea molestiae quibusdam porro!
+                                    Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
+                                </p>
+                                <div class="row">
+                                    <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pictureMissionAndTxt">
+                            <img src="/pictures/Bénévolat2.jpg" alt="">
+                            <div>
+                                <h3>Nettoyage des berges - Samedi 03 juillet</h3>
+                                <div class="line lineMissions"></div>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Quam hic reprehenderit obcaecati accusantium repellendus
+                                    consectetur, quo eos tempore ea molestiae quibusdam porro!
+                                    Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
+                                </p>
+                                <div class="row">
+                                    <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- --------------------- -->
+                    <!-- --------------------- -->
+                    <!-- --------------------- -->
         </div>
     </main>
-
-    </body>
-
-    </html>
+    <%- include('../partials/_mobileFooter') %>

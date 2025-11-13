@@ -92,7 +92,7 @@ exports.getAllRegions = async () => {
 
 exports.getAllMission = async () => {
 
-    const request = `SELECT mission_title, DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date, mission_category_name,  city_name                 
+    const request = `SELECT id_mission, mission_title, DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date, mission_category_name,  city_name                 
                     FROM mission
                     LEFT JOIN city
                     ON id_city = _id_city

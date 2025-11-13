@@ -31,7 +31,7 @@ exports.region = async () => {
 
     const allRegion = await missionModel.getAllRegions();
 
-    console.log(allRegion)
+    //console.log(allRegion)
 
     return allRegion
 }

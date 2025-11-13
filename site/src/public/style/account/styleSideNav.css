@@ -10,10 +10,6 @@
     scroll-behavior: smooth;
 }
 
-span {
-    color: #F28B50;
-}
-
 .center {
     width: 100%;
     display: flex;
@@ -24,7 +20,7 @@ span {
 .line {
     border-bottom: 0.2em solid #F28B50;
     border-radius: 4em;
-    width: 66%;
+    width: 33%;
     margin-top: 1.4em;
 }
 

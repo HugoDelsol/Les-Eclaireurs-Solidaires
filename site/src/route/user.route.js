@@ -24,5 +24,7 @@ router.get('/dashboardUser', sessionMdw.sessionUser, userCtrl.dashboardUser);
 router.get('/missionUserShow', sessionMdw.sessionUser, missionCtrl.missionUserShow);
 router.get('/searchByCategories', sessionMdw.sessionUser, missionCtrl.searchByCategories)
 
+router.get('/dataMission/:idMission', missionCtrl.dataMissionShow)
+
 module.exports = router;
 
