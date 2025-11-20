@@ -17,8 +17,8 @@
     margin: auto;
 }
 
-body {  
-    
+body {
+
     background: #F8F5EE;
     position: relative;
 }
@@ -57,7 +57,7 @@ span {
 }
 
 .btnHover:hover {
-    border-bottom-right-radius: 5px; 
+    border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
     border-color: #0000007e;
@@ -109,7 +109,7 @@ span {
     position: absolute;
     background-image: url("../../pictures/backGroundCards/Group47.png");
     top: 28em;
-    left: 56em;
+    left: 58em;
     background-size: 200px;
     background-repeat: no-repeat;
     width: 200px;
@@ -141,7 +141,7 @@ span {
     margin: 0 6em;
 }
 
-.heroSection h1 {    
+.heroSection h1 {
     font-size: 5.4em;
     font-weight: 800;
 }
@@ -272,12 +272,17 @@ span {
 /***ABOUT-SECTION***/
 
 .aboutTxt {
-    margin-left: 18em;
-    width: 50%;
+    margin: auto;
+    width: 70%;
 }
 
 .aboutTxt p {
     font-size: 1.6em;
+
+}
+
+.aboutTxtWidth {
+    width: 80%;
 }
 
 .aboutLine {
@@ -325,7 +330,7 @@ form {
     padding-bottom: 2em;
     border-radius: 0.8em;
     margin-top: -6em;
-    
+
 }
 
 form input {
@@ -390,7 +395,7 @@ form textarea {
     width: 20%;
 }
 
-.reviewsWidth {    
+.reviewsWidth {
     margin: auto;
     margin-bottom: 4em;
 }
@@ -457,6 +462,41 @@ footer h4 {
 
 /*******************************************************************************************************************************/
 
+@media all and (min-width: 2000px) {
+    .backGroundPicture {
+        background-position: top 8em right 4em;
+        background-size: 50em;
+    }
+}
+
+@media all and (min-width: 2400px) {
+    .backGroundPicture {
+        background-position: top 6em right 14em;
+        background-size: 50em;
+    }
+
+    .heroSectionCard,
+    .aboutCard {
+        display: none;
+    }
+}
+
+@media (max-width: 1800px) {
+
+    .heroSectionCard,
+    .aboutCard {
+        display: none;
+    }
+}
+
+@media (min-width: 511px) and  (max-width: 1600px) {
+
+    .backGroundPicture {
+        background-position: top 14em right -2em;
+        background-size: 40em;
+    }
+
+}
 
 @media (min-width: 511px) and (max-width: 1485px) {
 
@@ -528,7 +568,7 @@ footer h4 {
 
     .widthBtnContact {
         font-size: 1em;
-        width: 50%; 
+        width: 50%;
         margin: auto;
         margin-top: 2em;
         margin-bottom: 2em;
@@ -574,7 +614,7 @@ footer h4 {
     }
 
     .lineMissions {
-        width: 25%;       
+        width: 25%;
     }
 }
 
@@ -597,7 +637,7 @@ footer h4 {
         display: flex;
         justify-content: space-between;
     }
-    
+
     .menuBurger,
     .menuBurgerCross {
         height: 1.6em;
@@ -876,7 +916,7 @@ footer h4 {
     }
 
     .borderStat {
-        border: none;        
+        border: none;
     }
 
     .marginResponsiv {

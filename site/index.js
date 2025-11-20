@@ -1,13 +1,15 @@
 // ------------------------------------
 // 📦 IMPORTS DES MODULES
 // ------------------------------------
+require('dotenv').config();
 const middleware = require('../site/src/middleware/globalVars.middleware')
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-require('dotenv').config();
 
+console.log("DB_HOST:", process.env.DB_HOST);
+console.log("DB_PORT:", process.env.DB_PORT);
 // ------------------------------------
 // ⚙️ INITIALISATION DE L'APPLICATION
 // ------------------------------------
