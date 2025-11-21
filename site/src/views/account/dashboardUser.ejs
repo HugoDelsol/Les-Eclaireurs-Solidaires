@@ -31,7 +31,7 @@
                             <div class="titleCard">
                                 <h1>Missions proche de chez vous</h1>
                                 <div class="lineTitle"></div>
-                            </div>                            
+                            </div>
                             <div class="flexCardsMission">
                                 <div class="cardMission">
                                     <p class="strong">Distributions de repas</p>
@@ -57,80 +57,57 @@
                     </div>
                     <div class="middleDashboard">
                         <div class="titleCard">
-                                <h1>Mission à venir</h1>
-                                <div class="lineTitle"></div>
-                            </div>                         
+                            <% if (!missionsUser) { %>
+                                <h1>Vos missions seront visible ici</h1>
+                                <% } else { %>
+                                    <h1>Mission à venir</h1>
+                                    <% } %>
+                                        <div class="lineTitle"></div>
+                        </div>
                         <table>
                             <thead>
                                 <tr>
                                     <th>MISSION</th>
                                     <th>DATE</th>
                                     <th>LIEUX</th>
-                                    <th>ACTION</th>
+                                    <th>DETAILS</th>
                                     <th>SE DÉSINSCRIRE</th>
                                 </tr>
                             </thead>
                             <tbody class="fixMax">
-                                <tr>
-                                    <td>
-                                        <p>Distribution alimentaire</p>
-                                    </td>
-                                    <td class="color">2025-11-15</td>
-                                    <td class="color">Lyon</td>
-                                    <td><a href="#">Voir davantage</a></td>
-                                    <td>Désinscription<input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Nettoyage du parc</p>
-                                    </td>
-                                    <td class="color">2025-11-20</td>
-                                    <td class="color">Marseille</td>
-                                    <td><a href="#">Voir davantage</a></td>
-                                    <td>Je participe <input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Collecte de vêtements</p>
-                                    </td>
-                                    <td class="color">2025-12-01</td>
-                                    <td class="color">Toulouse</td>
-                                    <td><a href="#">Voir davantage</a></td>
-                                    <td>Je participe <input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Soutien scolaire</p>
-                                    </td>
-                                    <td class="color">2025-12-10</td>
-                                    <td class="color">Paris</td>
-                                    <td><a href="#">Voir davantage</a></td>
-                                    <td>Je participe <input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Soutien scolaire</p>
-                                    </td>
-                                    <td class="color">2025-12-10</td>
-                                    <td class="color">Paris</td>
-                                    <td><a href="#">Voir davantage</a></td>
-                                    <td>Je participe <input type="checkbox"></td>
-                                </tr>
+                                
+                                <% for (let i = 0; i < missionsUser.length; i++) { %>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <%= missionsUser[i].mission_title %>
+                                            </p>
+                                        </td>
+                                        <td class="color">
+                                            <%= missionsUser[i].mission_date %>
+                                        </td>
+                                        <td class="color">
+                                            <%= missionsUser[i].city_name %>
+                                        </td>
+                                        <td><a href="#">Voir davantage</a></td>
+                                        <td>Désinscription<input type="checkbox"></td>
+                                    </tr>
+                                    <% } %>
                             </tbody>
                         </table>
                     </div>
                     <div class="middleDashboard">
                         <div class="titleCard">
-                                <h1>Missions accomplies</h1>
-                                <div class="lineTitle"></div>
-                            </div>                         
+                            <h1>Missions accomplies</h1>
+                            <div class="lineTitle"></div>
+                        </div>
                         <table class="completed">
                             <thead>
                                 <tr>
                                     <th>MISSION</th>
                                     <th>DATE</th>
                                     <th>STATUT</th>
-                                    <th>ACTION</th>                                    
+                                    <th>AVIS</th>
                                 </tr>
                             </thead>
                             <tbody class="fixMax">
@@ -140,7 +117,7 @@
                                     </td>
                                     <td class="color">2025-11-15</td>
                                     <td class="color">Terminé</td>
-                                    <td><a href="#">Laisser un avis</a></td>                                    
+                                    <td><a href="#">Laisser un avis</a></td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -148,45 +125,47 @@
                                     </td>
                                     <td class="color">2025-11-15</td>
                                     <td class="color">Terminé</td>
-                                    <td><a href="#">Laisser un avis</a></td>                                    
+                                    <td><a href="#">Laisser un avis</a></td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td>
                                         <p>Distribution alimentaire</p>
                                     </td>
                                     <td class="color">2025-11-15</td>
                                     <td class="color">Terminé</td>
-                                    <td><a href="#">Laisser un avis</a></td>                                    
+                                    <td><a href="#">Laisser un avis</a></td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td>
                                         <p>Distribution alimentaire</p>
                                     </td>
                                     <td class="color">2025-11-15</td>
                                     <td class="color">Terminé</td>
-                                    <td><a href="#">Laisser un avis</a></td>                                    
+                                    <td><a href="#">Laisser un avis</a></td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td>
                                         <p>Distribution alimentaire</p>
                                     </td>
                                     <td class="color">2025-11-15</td>
                                     <td class="color">Terminé</td>
-                                    <td><a href="#">Laisser un avis</a></td>                                    
-                                </tr> <tr>
+                                    <td><a href="#">Laisser un avis</a></td>
+                                </tr>
+                                <tr>
                                     <td>
                                         <p>Distribution alimentaire</p>
                                     </td>
                                     <td class="color">2025-11-15</td>
                                     <td class="color">Terminé</td>
-                                    <td><a href="#">Laisser un avis</a></td>                                    
-                                </tr> <tr>
+                                    <td><a href="#">Laisser un avis</a></td>
+                                </tr>
+                                <tr>
                                     <td>
                                         <p>Distribution alimentaire</p>
                                     </td>
                                     <td class="color">2025-11-15</td>
                                     <td class="color">Terminé</td>
-                                    <td><a href="#">Laisser un avis</a></td>                                    
+                                    <td><a href="#">Laisser un avis</a></td>
                                 </tr>
                             </tbody>
                         </table>

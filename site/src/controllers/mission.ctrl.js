@@ -2,6 +2,10 @@ const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const service = require('../service/getGlobalData');
 
+// --- G-E-T ---
+// --- P-O-S-T ---
+
+// --- G-E-T ---
 exports.missionUserShow = async (req, res) => {
 
     try {
@@ -52,7 +56,7 @@ exports.missionUserShow = async (req, res) => {
 }
 
 // --- --- --- --- ---
-
+// --- G-E-T ---
 exports.addMissionShow = async (req, res) => {
 
     try {
@@ -76,7 +80,7 @@ exports.addMissionShow = async (req, res) => {
 }
 
 // --- --- --- --- ---
-
+// --- P-O-S-T ---
 exports.addMission = async (req, res) => {
 
     try {
@@ -152,28 +156,46 @@ exports.addMission = async (req, res) => {
 
 exports.searchCity = async (req, res) => {
 
-    const valueInput = req.query.q
+    try {
 
-    const searchCity = await missionModel.searchCityInSql(valueInput);
+        const valueInput = req.query.q;
 
-    let allCitys = []
+        const searchCity = await missionModel.searchCityInSql(valueInput);
 
-    for (c of searchCity) {
+        let allCitys = [];
 
-        const data = {
-            idCity: c.id_city,
-            cityName: c.city_name,
-            idRegion: c._id_region,
+        for (c of searchCity) {
+
+            const data = {
+                idCity: c.id_city,
+                cityName: c.city_name,
+                idRegion: c._id_region,
+            }
+
+            allCitys.push(data);
+
         }
 
-        allCitys.push(data);
+        res.json(allCitys);
+
+    } catch (error) {
+
+        console.error('Erreur:', error);
 
     }
 
-    res.json(allCitys)
+
 }
 
+exports.getRegistrationByUserId = async (req, res) => {
 
+    try {
+
+
+    } catch (error) {
+
+    }
+}
 
 exports.searchByCategories = async (req, res) => {
 
@@ -187,34 +209,72 @@ exports.searchByCategories = async (req, res) => {
 exports.getAllMissions = async (req, res) => {
 
     try {
+
+
     } catch (error) {
 
     }
 }
 
 exports.dataMissionShow = async (req, res) => {
-    console.log(req.params.idMission)
+    //console.log(req.params.idMission);
 }
 
 exports.registerMissionUser = async (req, res) => {
-    
+
     try {
+
         const idUser = parseInt(req.query.idUser)
         const idMission = parseInt(req.query.idMission)
-
-        console.log(idUser, idMission)
-
+        
+        const registrationByUser = await missionModel.getRegistrationByUserId(idMission , idUser);
+        console.log("====",registrationByUser)
+        
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
             
-            return res.status(400).json({message: "Petit coquin, tu as bien failli m'avoir"})
-        } else {
-
-            await missionModel.registerMissionUser(idUser, idMission);
+            return res.status(400).json({ message: "Petit coquin, tu as bien failli m'avoir" });
+            
         }
+
+        if (registrationByUser) {
+            console.log("mission deja ajoutée");
+            return res.json({ exists: true });
+        } 
         
+        console.log("ajouter");
+        await missionModel.registerMissionUser(idUser, idMission);
+        return res.json({ added: true });
+
     } catch (error) {
 
+        console.error("Erreur registerMissionUser :", error);
+
     }
+}
+
+exports.getAllMissionsByUser = async (req, res, idUser) => {
+
+    try {
+       
+    
+        const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
+    
+        console.log(allMissionByUser)
+
+        res.render('account/dashboardUser', {
+
+            missionsUser : allMissionByUser.length ? allMissionByUser : false
+            
+        })
+
+        
+        
+    } catch (error) {
+        
+         console.log("Controler===",error)
+    }
+
+
 }
 
 

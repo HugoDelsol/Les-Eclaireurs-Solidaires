@@ -1,5 +1,6 @@
 const userModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
+const { getAllMissionsByUser } = require('./mission.ctrl');
 
 // --- VIEWS ---
 
@@ -24,9 +25,10 @@ exports.dashboardAdmin = async (req, res) => {
 
 exports.dashboardUser = async (req, res) => {
 
-    res.render('account/dashboardUser', {
-        // pseudoUser: req.session.userExist.firstName
-    });
+    const idUser = req.session.userExist.id;
+
+    getAllMissionsByUser(req, res, idUser);
+
 }
 
 // --- --- ---
@@ -77,11 +79,11 @@ exports.saveUser = async (req, res) => {
 
         res.render('connection/signUp', {
 
-            firstName: req.body.firstName,            
+            firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            password: req.body.password,            
-            passwordConfirm: req.body.passwordConfirm,            
+            password: req.body.password,
+            passwordConfirm: req.body.passwordConfirm,
 
             alertMsg: error.message
         });
@@ -125,12 +127,9 @@ exports.auth = async (req, res) => {
 
             console.log(req.session.userExist.id)
 
-            res.render('account/dashboardUser', {
-                //alertMsg: null,
-                //pseudoUser: req.session.userExist.firstName,
+            const idUser = req.session.userExist.id;
 
-            });
-
+            getAllMissionsByUser(req, res, idUser);
 
         }
 
