@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleListMissionUser.css">
+<link rel="stylesheet" href="/style/modal/subscribe.css">
 <script src="/javaScript/registerMission.js" defer></script>
 <%- include('../partials/_head') %>
 
     <main>
+        <div class="modalContain"></div>
         <div class="container">
             <%- include('../partials/_sideNavUser') %>
                 <%- include('../partials/_mobileHeader') %>
@@ -60,26 +62,26 @@
                                 </tr>
                             </thead>
                             <tbody class="fixMax">
-                                <% for (let m of missions) { %>
+                                <% for (let i = 0; i < missions.length; i++) { %>
                                     <tr>
                                         <td>
                                             <p>
-                                                <%= m.mission_title %>
+                                                <%= missions[i].mission_title %>
                                             </p>
                                         </td>
                                         <td class="color">
-                                            <%= m.mission_date %>
+                                            <%= missions[i].mission_date %>
                                         </td>
                                         <td>
-                                            <%= m.mission_category_name %>
+                                            <%= missions[i].mission_category_name %>
                                         </td>
                                         <td class="color">
-                                            <%= m.city_name %>
+                                            <%= missions[i].city_name %>
                                         </td>
-                                        <td> <a href="/dataMission/<%= m.id_mission %>">Voir d’avantage</a></td>
+                                        <td> <a href="/dataMission/<%= missions[i].id_mission %>">Voir d’avantage</a></td>
                                         <td>
                                             Je participe
-                                            <input data-id="<%= m.id_mission %>" type="checkbox"
+                                            <input data-id="<%= missions[i].id_mission %>" type="checkbox"
                                                 name="missionRegistration" class="checkbox" value="0">
                                         </td>
                                     </tr>

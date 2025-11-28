@@ -29,5 +29,6 @@ router.post('/dataMission/:idMission', missionCtrl.dataMissionShow);
 
 router.get('/registerMissionUser', missionCtrl.registerMissionUser);
 
+
 module.exports = router;
 

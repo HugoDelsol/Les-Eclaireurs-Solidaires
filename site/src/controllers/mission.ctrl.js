@@ -12,16 +12,27 @@ exports.missionUserShow = async (req, res) => {
 
         const regionsServ = await service.region();
 
-        req.session.regions = regionsServ
+        req.session.regions = regionsServ;
 
         const dataTab = await service.categories();
 
-        req.session.categoriesMission = dataTab
+        req.session.categoriesMission = dataTab;
 
         const getAllMissions = await missionModel.getAllMission();
 
-        //console.log(getAllMissions)
+        const idUser = req.session.userExist.id
+        const alreadyRegisteredByUser = await missionModel.alreadyRegistered(idUser)
+        //console.log("efefefe", alreadyRegisteredByUser.length);
 
+        if (getAllMissions.length > 0 && alreadyRegisteredByUser.length > 0) {
+            for (let i = 0; i < alreadyRegisteredByUser.length; i++) {
+                for (let u = 0; u < getAllMissions.length; u++) {
+                    if (alreadyRegisteredByUser[i]._id_mission === getAllMissions[u].id_mission) {
+                        console.log(`${getAllMissions[u].id_mission} /// ${alreadyRegisteredByUser[i]._id_mission}`)
+                    }
+                }
+            }
+        }
         /*  const dataMissionList = {
  
              titleMission: getAllMissions.mission_title,
@@ -30,6 +41,7 @@ exports.missionUserShow = async (req, res) => {
              cityMission: getAllMissions.city_name
  
          } */
+
 
         res.render('account/listMissionUser', {
             alertMsg: null,
@@ -224,26 +236,27 @@ exports.registerMissionUser = async (req, res) => {
 
     try {
 
-        const idUser = parseInt(req.query.idUser)
-        const idMission = parseInt(req.query.idMission)
-        
-        const registrationByUser = await missionModel.getRegistrationByUserId(idMission , idUser);
-        console.log("====",registrationByUser)
-        
+        const idUser = parseInt(req.query.idUser);
+        const idMission = parseInt(req.query.idMission);
+
+        const registrationByUser = await missionModel.getRegistrationByUserId(idMission, idUser);
+        console.log("====", registrationByUser)
+
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
-            
+
             return res.status(400).json({ message: "Petit coquin, tu as bien failli m'avoir" });
-            
+
         }
 
         if (registrationByUser) {
             console.log("mission deja ajoutée");
-            return res.json({ exists: true });
-        } 
-        
-        console.log("ajouter");
+            return res.render('modal/subscribe');
+        }
+
         await missionModel.registerMissionUser(idUser, idMission);
-        return res.json({ added: true });
+        console.log("ajouter");
+
+        return res.render('modal/subscribe');
 
     } catch (error) {
 
@@ -255,23 +268,23 @@ exports.registerMissionUser = async (req, res) => {
 exports.getAllMissionsByUser = async (req, res, idUser) => {
 
     try {
-       
-    
+
+
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
-    
-        console.log(allMissionByUser)
+
+        //console.log(allMissionByUser)
 
         res.render('account/dashboardUser', {
 
-            missionsUser : allMissionByUser.length ? allMissionByUser : false
-            
+            missionsUser: allMissionByUser.length ? allMissionByUser : false
+
         })
 
-        
-        
+
+
     } catch (error) {
-        
-         console.log("Controler===",error)
+
+        console.log("Controler===", error)
     }
 
 

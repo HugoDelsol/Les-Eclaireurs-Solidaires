@@ -144,7 +144,7 @@ exports.getRegistrationByUserId = async (idMission, idUser) => {
         const request = "SELECT _id_mission FROM registration_mission WHERE _id_mission = ? AND _id_user = ?";
         const [result] = await db.query(request, [idMission, idUser]);
 
-        console.log(result);
+        console.log("defeffef", result);
 
         console.log(idMission, idUser);
 
@@ -173,11 +173,24 @@ exports.getAllMissionsByUser = async (IdUser) => {
 
     } catch (error) {
 
-        throw error
+        throw error;
+    }
+}
+
+exports.alreadyRegistered = async (idUser) => {
+    try {
+
+        const request = `SELECT _id_mission FROM registration_mission WHERE _id_user = ?`;
+        const [result] = await db.query(request, [idUser]);        
+        return result;
+        
+    } catch (error) {
+
+        throw error;
     }
 
-
 }
+
 
 /*<?php
 class MissionModel

@@ -20,14 +20,28 @@ async function registerMissionUser(c) {
 
             const response = await fetch(`/registerMissionUser?idMission=${c.dataset.id}&idUser=${idUserValue}`, {
                 method: "GET"
-            })
-
-            const data = await response.json();
+            });
 
             if (!response.ok) {
                 window.location.href = "/";
                 console.log(data.message)
             }
+
+            const htmlResponse = await response.text();
+
+            //console.log(htmlResponse);
+
+            document.querySelector(".modalContain").innerHTML = htmlResponse
+
+            if (document.querySelector(".close").addEventListener("click", () => {
+                document.querySelector('.modalContain').innerHTML = ""
+                c.checked = false
+            }));
+
+            if (document.querySelector('subscribe').addEventListener('click', () => {
+
+            }));
+
         }
 
     } catch (error) {
