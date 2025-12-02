@@ -22,13 +22,14 @@ exports.missionUserShow = async (req, res) => {
 
         const idUser = req.session.userExist.id
         const alreadyRegisteredByUser = await missionModel.alreadyRegistered(idUser)
-        //console.log("efefefe", alreadyRegisteredByUser.length);
+        //console.log(alreadyRegisteredByUser.length);
 
         if (getAllMissions.length > 0 && alreadyRegisteredByUser.length > 0) {
             for (let i = 0; i < alreadyRegisteredByUser.length; i++) {
                 for (let u = 0; u < getAllMissions.length; u++) {
                     if (alreadyRegisteredByUser[i]._id_mission === getAllMissions[u].id_mission) {
                         console.log(`${getAllMissions[u].id_mission} /// ${alreadyRegisteredByUser[i]._id_mission}`)
+                        //FAIRE UN TABLEAU DE GET ALL MISSION POUR ENSUITE POP CELLE DONT LE USER A DEJA REGISTERED
                     }
                 }
             }
