@@ -38,6 +38,5 @@ const userData = (req, res, next) => {
 
 module.exports = {
     centralizedVar,
-    userData
-
+    userData,
 }

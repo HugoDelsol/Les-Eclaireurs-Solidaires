@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="/style/modal/subscribe.css">
 <script src="/javaScript/registerMission.js" defer></script>
 <%- include('../partials/_head') %>
+<%- include('../partials/_alert')  %>
 
     <main>
         <div class="modalContain"></div>
@@ -29,8 +30,8 @@
                                     <p class="responsivMob">Categorie</p>
                                     <select name="category" id="">
                                         <% for (let category of categoriesMission) { %>
-                                            <option value="<%= category.categoryId %>">
-                                                <%= category.categoryName %>
+                                            <option value="<%= category.id_mission_category %>">
+                                                <%= category.mission_category_name %>
                                             </option>
                                             <% } %>
                                     </select>

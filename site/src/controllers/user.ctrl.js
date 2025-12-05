@@ -155,11 +155,11 @@ exports.verifyAccountExist = async (email, password) => {
 
             if (userMail.id_user) {
 
-                userMail['role'] = 'user';
+                userMail['role'] = 'admin';
 
             } else if (userMail.id_admin) {
 
-                userMail['role'] = 'admin';
+                userMail['role'] = 'user';
             }
 
             return userMail;

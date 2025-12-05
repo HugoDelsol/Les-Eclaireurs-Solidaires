@@ -8,7 +8,7 @@ exports.categories = async () => {
 
     let allCategories = await missionModel.getAllCategories();
 
-    let dataTab = [];
+    /* let dataTab = [];
 
     for (let category of allCategories) {
 
@@ -21,8 +21,8 @@ exports.categories = async () => {
         dataTab.push(data)
 
     } 
-
-    return dataTab
+ */
+    return allCategories
 
 }
 

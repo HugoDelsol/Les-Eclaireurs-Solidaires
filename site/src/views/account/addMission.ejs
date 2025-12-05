@@ -3,6 +3,8 @@
 <script src="/javaScript/inputCityAuto.js" defer></script>
 
 <%- include("../partials/_head") %>
+<%- include('../partials/_alert')  %>
+
 
     <main>
         <div class="container" style='display: flex;'>
@@ -16,8 +18,8 @@
                                     value="" /></label>
                             <select name="category" id="category">
                                 <% for (let category of categoriesMission) { %>
-                                    <option value="<%= category.categoryId %>">
-                                        <%= category.categoryName %>
+                                    <option value="<%= category.id_mission_category %>">
+                                        <%= category.mission_category_name %>
                                     </option>
                                     <% } %>
                             </select>
@@ -45,10 +47,7 @@
                                 <input id="fileUpload" type="file" class="paddingTypeFile" name="uploadImg" value="" />
                             </label>
                         </div>
-                        <h3 style="color: red;">
-                            <%= alertMsg %>
-                        </h3>
-                        <button type="submit" class="btnPrimary btnHover">PUBLIER</button>
+                        <button type="submit" class="btnSecondary btnHover">PUBLIER</button>
                     </form>
                 </section>
         </div>

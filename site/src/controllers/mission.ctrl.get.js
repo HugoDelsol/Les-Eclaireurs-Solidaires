@@ -3,12 +3,13 @@ const missionModel = require('../models/MissionModel');
 const service = require('../service/getGlobalData');
 const missionCtrlPost = require('./mission.ctrl.post');
 
-
 //---
 //---AFICHER LA LISTE DES MISSIONS A L'UTILISATEUR
 //---
 
 exports.missionUserShow = async (req, res) => {
+
+    let getAllMissions = [];
 
     try {
 
@@ -20,62 +21,43 @@ exports.missionUserShow = async (req, res) => {
 
         req.session.categoriesMission = dataTab;
 
-        const getAllMissions = await missionModel.getAllMission();
-
-        
+        getAllMissions = await missionModel.getAllMission();
 
         const idUser = req.session.userExist.id
-        const alreadyRegisteredByUser = await missionModel.alreadyRegistered(idUser)
-        //console.log(alreadyRegisteredByUser.length);
 
-        let sortedMission = []
+        const alreadyRegisteredByUser = await missionModel.alreadyRegistered(idUser)
 
         if (getAllMissions.length > 0 && alreadyRegisteredByUser.length > 0) {
             for (let i = 0; i < alreadyRegisteredByUser.length; i++) {
                 for (let u = 0; u < getAllMissions.length; u++) {
                     if (alreadyRegisteredByUser[i]._id_mission === getAllMissions[u].id_mission) {
-                        console.log(`${getAllMissions[u].id_mission} /// ${alreadyRegisteredByUser[i]._id_mission}`)
-                        getAllMissions.splice([u], 1)
-                        //console.log("....................", sortedMission)
-                        //FAIRE UN TABLEAU DE GET ALL MISSION POUR ENSUITE POP CELLE DONT LE USER A DEJA REGISTERED
-                    } else {
-                        //sortedMission.push(getAllMissions[u])
+                        getAllMissions.splice([u], 1);
                     }
                 }
             }
         }
-        /*  const dataMissionList = {
- 
-             titleMission: getAllMissions.mission_title,
-             dateMission: getAllMissions.mission_date,
-             categoryMission: getAllMissions.mission_category_name,
-             cityMission: getAllMissions.city_name
- 
-         } */
 
+        //throw new Error("Essai du catch");
 
         res.render('account/listMissionUser', {
-            alertMsg: null,
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
             missions: getAllMissions
         });
 
-        console.log('-----function mission user show------>', req.session.userExist.firstName)
-
     } catch (error) {
 
-        console.log(error);
+        console.error(error);
+
         res.render('account/listMissionUser', {
-            alertMsg: null,
+            alertMsg: "Impossible d'afficher la liste des missions.",
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
-            regions: req.session.regions
+            regions: req.session.regions,
+            missions: getAllMissions
         });
-
     }
-
 }
 
 //---
@@ -90,18 +72,24 @@ exports.addMissionShow = async (req, res) => {
 
         req.session.categoriesMission = dataTab;
 
+        //throw new Error("Essai du catch");
+
         res.render('account/addMission', {
             alertMsg: null,
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
-        })
+        });
 
     } catch (error) {
 
         console.error(error);
 
+        res.render('account/addMission', {
+            alertMsg: "Impossible d'afficher le formulaire",
+            pseudoUser: req.session.userExist.firstName,
+            categoriesMission: req.session.categoriesMission,
+        });
     }
-
 }
 
 //---
@@ -127,7 +115,6 @@ exports.searchCity = async (req, res) => {
             }
 
             allCitys.push(data);
-
         }
 
         res.json(allCitys);
@@ -135,7 +122,6 @@ exports.searchCity = async (req, res) => {
     } catch (error) {
 
         console.error('Erreur:', error);
-
     }
 }
 
