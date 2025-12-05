@@ -1,0 +1,2 @@
+-- Creer des fonction pour segmenter le code le rendre plus structuré
+-- 

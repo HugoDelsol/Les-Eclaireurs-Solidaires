@@ -1,4 +1,4 @@
-const { userData } = require('../middleware/globalVars.middleware');
+/* const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const service = require('../service/getGlobalData');
 
@@ -34,14 +34,14 @@ exports.missionUserShow = async (req, res) => {
                 }
             }
         }
-        /*  const dataMissionList = {
+          const dataMissionList = {
  
              titleMission: getAllMissions.mission_title,
              dateMission: getAllMissions.mission_date,
              categoryMission: getAllMissions.mission_category_name,
              cityMission: getAllMissions.city_name
  
-         } */
+         } 
 
 
         res.render('account/listMissionUser', {

@@ -108,8 +108,8 @@ exports.getAllMission = async () => {
                     LEFT JOIN city
                     ON id_city = _id_city
                     LEFT JOIN mission_category
-                    ON id_mission_category = _id_mission_category`
-            ;
+                    ON id_mission_category = _id_mission_category
+                    ORDER BY mission_date DESC`;
 
         const [result] = await db.query(request);
 
@@ -128,7 +128,7 @@ exports.registerMissionUser = async (idUser, idMission) => {
     try {
 
         const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
-        await db.query(request, [idUser, idMission]);
+        await db.query(request, [idUser, idMission]);        
 
     } catch (error) {
 
@@ -144,7 +144,7 @@ exports.getRegistrationByUserId = async (idMission, idUser) => {
         const request = "SELECT _id_mission FROM registration_mission WHERE _id_mission = ? AND _id_user = ?";
         const [result] = await db.query(request, [idMission, idUser]);
 
-        console.log("defeffef", result);
+        console.log("=======", result);
 
         console.log(idMission, idUser);
 
@@ -165,7 +165,7 @@ exports.getAllMissionsByUser = async (IdUser) => {
                         LEFT JOIN mission
                         ON id_mission = _id_mission
                         LEFT JOIN city
-                        ON id_city = _id_mission
+                        ON id_city = _id_city
                         WHERE _id_user = ?`;
         const [result] = await db.query(request, [IdUser]);
 

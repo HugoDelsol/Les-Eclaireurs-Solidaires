@@ -1,6 +1,5 @@
 const missionModel = require('../models/MissionModel');
 
-
 exports.categories = async () => {
 
     //helpers

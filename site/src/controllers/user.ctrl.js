@@ -1,6 +1,6 @@
 const userModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
-const { getAllMissionsByUser } = require('./mission.ctrl');
+const { getAllMissionsByUser } = require('./mission.ctrl.get');
 
 // --- VIEWS ---
 
@@ -113,9 +113,7 @@ exports.auth = async (req, res) => {
                 isAdmin: true
             }
 
-            res.render('account/dashboardAdmin', {
-
-            });
+            res.render('account/dashboardAdmin');            
 
         } else if (userExist.role === 'user') {
 
@@ -123,7 +121,7 @@ exports.auth = async (req, res) => {
                 id: userExist.id_user,
                 firstName: userExist.user_first_name,
                 isAdmin: false
-            }
+            }            
 
             console.log(req.session.userExist.id)
 

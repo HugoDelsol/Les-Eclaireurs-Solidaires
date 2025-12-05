@@ -34,32 +34,41 @@ exports.getOneUserByEmail = async (email) => {
     }
 }
 
-exports.addUser = async(
+exports.addUser = async (
     firstName,
     lastName,
     email,
-    password,    
+    password,
 ) => {
     try {
 
         const saltRound = await bcrypt.genSalt(10);
-        const passwordHash = await bcrypt.hash(password,saltRound);
+        const passwordHash = await bcrypt.hash(password, saltRound);
 
         const requestIdentifier = `INSERT INTO identifier (identifier_mail, identifier_password) VALUES (?, ?)`
         const [resultIdentifier] = await db.query(requestIdentifier, [email, passwordHash]);
 
-        let lasInsertId = resultIdentifier.insertId;        
+        let lasInsertId = resultIdentifier.insertId;
 
         const requestUser = `INSERT INTO user (user_first_name, user_last_name, _id_identifier) VALUES (?, ?, ?)`
         const [resultUser] = await db.query(requestUser, [firstName, lastName, lasInsertId]);
-        
+
         return resultUser;
-        
+
     } catch (e) {
 
         throw e;
-        
+
     }
+}
+
+exports.addAdmin = async (
+    firstName,
+    lastName,
+    email,
+    password,
+) => {
+
 }
 
 /*<?php

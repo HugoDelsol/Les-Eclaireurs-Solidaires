@@ -81,7 +81,7 @@
                                         <td> <a href="/dataMission/<%= missions[i].id_mission %>">Voir d’avantage</a></td>
                                         <td>
                                             Je participe
-                                            <input data-id="<%= missions[i].id_mission %>" type="checkbox"
+                                            <input data-id="<%= JSON.stringify({id: missions[i].id_mission, title: missions[i].mission_title}) %>" type="checkbox"
                                                 name="missionRegistration" class="checkbox" value="0">
                                         </td>
                                     </tr>
