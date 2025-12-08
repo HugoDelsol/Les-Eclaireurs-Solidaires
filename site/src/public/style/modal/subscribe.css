@@ -3,7 +3,7 @@
     justify-content: center;
     background-color: #f9cf807c;
     border: 0.1px solid #00000013;
-    padding: 0.6em 2em;
+    padding: 0.6em 1em;
     border-radius: 2em;
     font-weight: 400;
 }
@@ -78,7 +78,8 @@
 
 .modal div {
     display: flex;
-    margin-top: 1em;
+    margin-top: 2em;
+    justify-content: center;
 }
 
 .modal div a {
@@ -96,4 +97,41 @@
 
 .toggleBlock {
     display: flex;
+}
+
+
+@media all and (max-width : 1000px) {
+    .modal h2 {
+        font-size: 20px;
+    }
+
+    .modal p {
+        font-size: 14px;
+    }
+
+    .btnCol {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal div a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .modal {
+        width: 70%;
+        left: 15%;
+    }
+
+    .modalToggle {
+        width: 70%;
+        left: 15%;
+    }
+
+    .modalToggle h2 {
+        font-size: 20px;
+    }
 }

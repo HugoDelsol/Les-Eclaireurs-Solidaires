@@ -1,4 +1,5 @@
 const checkBox = document.querySelectorAll('.checkbox');
+const btnRegistration = document.querySelectorAll('.btnRegistration')
 const idUser = document.querySelector(".idUser");
 
 const idUserValue = parseInt(idUser.textContent)
@@ -6,19 +7,34 @@ const idUserValue = parseInt(idUser.textContent)
 for (let c of checkBox) {
 
     c.addEventListener('click', () => {
-        const dataParse = JSON.parse(c.dataset.id)
+
+        const dataParse = JSON.parse(c.dataset.id);
 
         const idMission = dataParse.id;
         const titleMission = dataParse.title;
 
-        modalRegisterMission(c, idMission, titleMission);
-        //console.log(idUser)
+        modalRegisterMission(c, "", idMission, titleMission);
     })
 }
 
-async function modalRegisterMission(c, idMission, titleMission) {
+for (let b of btnRegistration) {
 
-    if (c.checked) {
+    b.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        const dataParse = JSON.parse(b.dataset.id);
+        
+        const idMission = dataParse.id;
+        const titleMission = dataParse.title;
+
+        modalRegisterMission("", b, idMission, titleMission);
+    })
+}
+
+async function modalRegisterMission(c, b, idMission, titleMission) {
+
+    if (c.checked || b.classList.contains("btnRegistration")) {
 
         const response = await fetch("/modalRegisterMission", {
             method: "GET",

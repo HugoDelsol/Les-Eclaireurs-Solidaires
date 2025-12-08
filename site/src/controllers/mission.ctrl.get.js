@@ -4,7 +4,7 @@ const service = require('../service/getGlobalData');
 const missionCtrlPost = require('./mission.ctrl.post');
 
 //---
-//---AFICHER LA LISTE DES MISSIONS A L'UTILISATEUR
+//--- AFICHER LA LISTE DES MISSIONS A L'UTILISATEUR
 //---
 
 exports.missionUserShow = async (req, res) => {
@@ -61,7 +61,7 @@ exports.missionUserShow = async (req, res) => {
 }
 
 //---
-//---AFICHER LE FORMULAIRE D'AJOUT DE MISSION
+//--- AFICHER LE FORMULAIRE D'AJOUT DE MISSION
 //---
 
 exports.addMissionShow = async (req, res) => {
@@ -93,7 +93,7 @@ exports.addMissionShow = async (req, res) => {
 }
 
 //---
-//---SYSTEME D'AUTOCOMPLETION LORS DE L'AJOUT DUNE VILLE DANS LE FORMULAIRE D'AJOUT DE MISSION VIA JS + QUERY
+//--- SYSTEME D'AUTOCOMPLETION LORS DE L'AJOUT DUNE VILLE DANS LE FORMULAIRE D'AJOUT DE MISSION VIA JS + QUERY
 //---
 
 exports.searchCity = async (req, res) => {
@@ -126,7 +126,7 @@ exports.searchCity = async (req, res) => {
 }
 
 //---
-//---RECUPERER TOUTE LES MISSIONS DU BENEVOLE
+//--- RECUPERER TOUTE LES MISSIONS DU BENEVOLE
 //---
 
 exports.getAllMissionsByUser = async (req, res, idUser) => {
@@ -150,7 +150,7 @@ exports.getAllMissionsByUser = async (req, res, idUser) => {
 }
 
 //---
-//---FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
+//--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
 //---
 
 exports.searchByCategories = async (req, res) => {
@@ -163,13 +163,13 @@ exports.searchByCategories = async (req, res) => {
 }
 
 //---
-//---AFFICHER UN MODAL POUR VALIDER LINSCRIPTIONNA UNE MISSION
+//--- AFFICHER UN MODAL POUR VALIDER L'INSCRIPTIONN A UNE MISSION
 //---
 
 exports.modalRegisterMission = async (req, res) => {
     try {
 
-        return res.render('modal/subscribe');
+        return res.render('modals/subscribe');
 
     } catch (error) {
 
@@ -177,7 +177,7 @@ exports.modalRegisterMission = async (req, res) => {
 }
 
 //---
-//---ENREGISTRER L'INSCRIPTION DUN BENEVOLE DANS UNE MISSION
+//--- ENREGISTRER L'INSCRIPTION DUN BENEVOLE DANS UNE MISSION
 //---
 
 exports.addRegisterMissionUser = async (req, res) => {
@@ -219,7 +219,7 @@ exports.addRegisterMissionUser = async (req, res) => {
 }
 
 //---
-//---AFFICHER LES DONNEES D'UNE MISSION
+//--- AFFICHER LES DONNEES D'UNE MISSION
 //---
 
 exports.getDataMission = async (req, res) => {

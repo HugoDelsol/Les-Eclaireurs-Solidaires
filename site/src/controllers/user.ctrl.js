@@ -105,7 +105,7 @@ exports.auth = async (req, res) => {
 
         const userExist = await exports.verifyAccountExist(email, password);
 
-        if (userExist.role === 'admin') {
+        if (userExist.role === 'user') {
 
             req.session.userExist = {
                 id: userExist.id_admin,
@@ -115,7 +115,7 @@ exports.auth = async (req, res) => {
 
             res.render('account/dashboardAdmin');            
 
-        } else if (userExist.role === 'user') {
+        } else if (userExist.role === 'admin') {
 
             req.session.userExist = {
                 id: userExist.id_user,

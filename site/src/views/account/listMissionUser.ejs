@@ -3,152 +3,126 @@
 <link rel="stylesheet" href="/style/modal/subscribe.css">
 <script src="/javaScript/registerMission.js" defer></script>
 <%- include('../partials/_head') %>
-<%- include('../partials/_alert')  %>
+    <%- include('../partials/_alert') %>
 
-    <main>
-        <div class="modalContain"></div>
-        <div class="container">
-            <%- include('../partials/_sideNavUser') %>
-                <%- include('../partials/_mobileHeader') %>
-                    <section class="blocListMission">
-                        <div class="titleAndCategorySearch">
-                            <div class="rowResponsiv ">
-                                <div class="line responsiv"></div>
-                                <h1>Mission disponible</h1>
-                                <div class="line"></div>
-                            </div>
-                            <div class="rowResponsiv rowDesktop">
-                                <div>
-                                    <p class="responsivMob">Lieu</p>
-                                    <select name="category" id="">
-                                        <% for (let region of regions) { %>
-                                            <option value="<%= region.id_region %>">
-                                                <%= region.region_name %>
-                                            </option>
-                                            <% } %>
-                                    </select>
-                                    <p class="responsivMob">Categorie</p>
-                                    <select name="category" id="">
-                                        <% for (let category of categoriesMission) { %>
-                                            <option value="<%= category.id_mission_category %>">
-                                                <%= category.mission_category_name %>
-                                            </option>
-                                            <% } %>
-                                    </select>
+        <main>
+            <div class="modalContain"></div>
+            <div class="container">
+                <%- include('../partials/_sideNavUser') %>
+                    <%- include('../partials/_mobileHeader') %>
+                        <section class="blocListMission">
+                            <div class="titleAndCategorySearch">
+                                <div class="rowResponsiv ">
+                                    <div class="line responsiv"></div>
+                                    <h1>Mission disponible</h1>
+                                    <div class="line"></div>
                                 </div>
-                                <div class="filterDate">
+                                <div class="rowResponsiv rowDesktop">
                                     <div>
-                                        <p>Du :</p>
-                                        <input type="date" id="dateDebut" placeholder="Date">
+                                        <p class="responsivMob">Lieu</p>
+                                        <select name="category" id="">
+                                            <% for (let region of regions) { %>
+                                                <option value="<%= region.id_region %>">
+                                                    <%= region.region_name %>
+                                                </option>
+                                                <% } %>
+                                        </select>
+                                        <p class="responsivMob">Categorie</p>
+                                        <select name="category" id="">
+                                            <% for (let category of categoriesMission) { %>
+                                                <option value="<%= category.id_mission_category %>">
+                                                    <%= category.mission_category_name %>
+                                                </option>
+                                                <% } %>
+                                        </select>
                                     </div>
-                                    <div>
-                                        <p>Au :</p>
-                                        <input type="date" id="dateFin">
+                                    <div class="filterDate">
+                                        <div>
+                                            <p>Du :</p>
+                                            <input type="date" id="dateDebut" placeholder="Date">
+                                        </div>
+                                        <div>
+                                            <p>Au :</p>
+                                            <input type="date" id="dateFin">
+                                        </div>
+
                                     </div>
+                                    <a href="/searchByCategories" class="btnSecondary btnHover">Rechercher ✅</a>
 
                                 </div>
-                                <a href="/searchByCategories" class="btnSecondary btnHover">Rechercher ✅</a>
-
                             </div>
-                        </div>
-                        <table class="desktop">
-                            <thead>
-                                <tr>
-                                    <th>MISSION</th>
-                                    <th>DATE</th>
-                                    <th>CATEGORIES</th>
-                                    <th>LIEUX</th>
-                                    <th>DETAILS</th>
-                                    <th>S'INSCRIRE</th>
-                                </tr>
-                            </thead>
-                            <tbody class="fixMax">
-                                <% for (let i = 0; i < missions.length; i++) { %>
+                            <table class="desktop">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <p>
-                                                <%= missions[i].mission_title %>
-                                            </p>
-                                        </td>
-                                        <td class="color">
-                                            <%= missions[i].mission_date %>
-                                        </td>
-                                        <td>
-                                            <%= missions[i].mission_category_name %>
-                                        </td>
-                                        <td class="color">
-                                            <%= missions[i].city_name %>
-                                        </td>
-                                        <td> <a href="/dataMission/<%= missions[i].id_mission %>">Voir d’avantage</a></td>
-                                        <td>
-                                            Je participe
-                                            <input data-id="<%= JSON.stringify({id: missions[i].id_mission, title: missions[i].mission_title}) %>" type="checkbox"
-                                                name="missionRegistration" class="checkbox" value="0">
-                                        </td>
+                                        <th>MISSION</th>
+                                        <th>DATE</th>
+                                        <th>CATEGORIES</th>
+                                        <th>LIEUX</th>
+                                        <th>DETAILS</th>
+                                        <th>S'INSCRIRE</th>
                                     </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
-                    </section>
+                                </thead>
+                                <tbody class="fixMax">
+                                    <% for (let i=0; i < missions.length; i++) { %>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <%= missions[i].mission_title %>
+                                                </p>
+                                            </td>
+                                            <td class="color">
+                                                <%= missions[i].mission_date %>
+                                            </td>
+                                            <td>
+                                                <%= missions[i].mission_category_name %>
+                                            </td>
+                                            <td class="color">
+                                                <%= missions[i].city_name %>
+                                            </td>
+                                            <td> <a href="/dataMission/<%= missions[i].id_mission %>">Voir
+                                                    d’avantage</a></td>
+                                            <td>
+                                                Je participe
+                                                <input
+                                                    data-id="<%= JSON.stringify({id: missions[i].id_mission, title: missions[i].mission_title}) %>"
+                                                    type="checkbox" name="missionRegistration" class="checkbox"
+                                                    value="0">
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </section>
 
-                    <!-- RESPONSIV MOBILE CARD -->
-                    <!-- --------------------- -->
-                    <!-- --------------------- -->
+                        <!-- RESPONSIV MOBILE CARD -->
+                        <!-- --------------------- -->
+                        <!-- --------------------- -->
 
-                    <div class="responsiv cardFlexMission">
-                        <div class="pictureMissionAndTxt">
-                            <img src="/pictures/Bénévolat.jpg" a>
-                            <div>
-                                <h3>Nettoyage des berges - Samedi 03 juillet</h3>
-                                <div class="line lineMissions"></div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Quam hic reprehenderit obcaecati accusantium repellendus
-                                    consectetur, quo eos tempore ea molestiae quibusdam porro!
-                                    Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
-                                </p>
-                                <div class="row">
-                                    <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
+                        <div class="responsiv cardFlexMission">
+                            <% for (let i=0; i < missions.length; i++) { %>
+                                <div class="pictureMissionAndTxt">
+                                    <img src="/pictures/Bénévolat.jpg" a>
+                                    <div>
+                                        <h3>
+                                            <%= missions[i].mission_title %> - <%= missions[i].mission_date %>
+                                        </h3>
+                                        <div class="line lineMissions"></div>
+                                        <p><%= missions[i].mission_description%>
+                                        </p>
+                                        <div class="row flex">
+                                            <a href=""
+                                                data-id="<%= JSON.stringify({id: missions[i].id_mission, title: missions[i].mission_title}) %>"
+                                                class="btnSecondary btnHover widthBtnMission btnRegistration">Rejoindre</a>
+                                            <a href="" class="btnPrimary btnHover">Détail</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <% } %>
                         </div>
-                        <div class="pictureMissionAndTxt">
-                            <img src="/pictures/Bénévolat6.jpg" alt="">
-                            <div>
-                                <h3>Nettoyage des berges - Samedi 03 juillet</h3>
-                                <div class="line lineMissions"></div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Quam hic reprehenderit obcaecati accusantium repellendus
-                                    consectetur, quo eos tempore ea molestiae quibusdam porro!
-                                    Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
-                                </p>
-                                <div class="row">
-                                    <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pictureMissionAndTxt">
-                            <img src="/pictures/Bénévolat2.jpg" alt="">
-                            <div>
-                                <h3>Nettoyage des berges - Samedi 03 juillet</h3>
-                                <div class="line lineMissions"></div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Quam hic reprehenderit obcaecati accusantium repellendus
-                                    consectetur, quo eos tempore ea molestiae quibusdam porro!
-                                    Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
-                                </p>
-                                <div class="row">
-                                    <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- --------------------- -->
-                    <!-- --------------------- -->
-                    <!-- --------------------- -->
-        </div>
-    </main>
-    <%- include('../partials/_mobileFooter') %>
+                        <!-- --------------------- -->
+                        <!-- --------------------- -->
+                        <!-- --------------------- -->
+            </div>
+        </main>
+        <%- include('../partials/_mobileFooter') %>
