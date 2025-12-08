@@ -1,6 +1,6 @@
 
 const checkAuth = (req, res, next) => {
-
+    
     return req.session && req.session.userExist && req.session.userExist.id;
 }
 

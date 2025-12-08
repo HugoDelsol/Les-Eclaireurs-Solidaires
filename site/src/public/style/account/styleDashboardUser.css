@@ -40,10 +40,10 @@ body {
     padding: 0.6em 1em;
     border-radius: 2em;
     font-weight: 400;
-    
+
 }
 
-.btnHover {    
+.btnHover {
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
@@ -65,6 +65,18 @@ h3 {
     font-size: 15px;
 }
 
+.container {
+    display: flex;
+}
+
+.responsiv {
+    display: none;
+}
+
+.responsivMob {
+    display: none;
+}
+
 .dashboardContainer {
     height: 94vh;
     width: 80vw;
@@ -74,27 +86,27 @@ h3 {
     justify-content: space-between;
 }
 
-.headerDashboard {    
+.headerDashboard {
     width: 100%;
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
 }
 
 .titleCard {
     display: flex;
     align-items: center;
-    
+
 }
 
 .myStats {
     width: 30%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;    
+    justify-content: space-around;
 }
 
 .nearMission {
-    width: 63%; 
+    width: 63%;
 }
 
 .statAlign {
@@ -109,7 +121,7 @@ h3 {
 .background {
     background: linear-gradient(to top, #f5c09f, #ffffff00);
     border-radius: 1em;
-    padding: 10px 20px; 
+    padding: 10px 20px;
     box-shadow: 0px 0px 12px rgba(30, 28, 165, 0.151);
 }
 
@@ -121,8 +133,8 @@ h3 {
     border-radius: 10px;
 }
 
-.strong { 
-    font-weight: 900; 
+.strong {
+    font-weight: 900;
 }
 
 .cardMission p {
@@ -136,7 +148,7 @@ h3 {
 }
 
 .cardMission a {
-    width: 50%;    
+    width: 50%;
 }
 
 span {
@@ -155,8 +167,8 @@ span {
 table {
     display: flex;
     flex-direction: column;
-    margin: 0.8em 0;       
-    text-align: center;    
+    margin: 0.8em 0;
+    text-align: center;
     border-radius: 10px;
 }
 
@@ -186,7 +198,7 @@ table td {
     border-radius: 10px;
 }
 
-table tr {    
+table tr {
     position: relative;
 }
 
@@ -220,18 +232,48 @@ tr input {
     border-radius: 0 0 10px 10px;
 }
 
-th, td {     
-    width: calc(100% / 5);    
+th,
+td {
+    width: calc(100% / 5);
 }
 
-.completed th, td {
+.completed th,
+td {
     width: calc(100% / 4);
 }
 
-.color {    
+.color {
     color: #378341;
 }
 
 td a {
     text-decoration: underline;
+}
+
+
+
+
+@media all and (max-width : 1300px) {
+
+    .responsivMob {
+        display: none;
+    }
+
+    .dashboardContainer {
+        padding-top: 100px;
+        padding-bottom: 130px;
+    }
+
+    .sideNav,
+    .desktop {
+        display: none;
+    }
+
+}
+
+@media all and (max-width : 1000px) {
+
+    .responsivMob {
+        display: block;
+    }
 }

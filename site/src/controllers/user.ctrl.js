@@ -131,7 +131,6 @@ exports.auth = async (req, res) => {
 
         }
 
-
     } catch (e) {
 
         console.error(e)

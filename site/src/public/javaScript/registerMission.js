@@ -83,7 +83,6 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
 
                 setTimeout(()=>{
                     document.querySelector('.modalContain').innerHTML = ""
-                    c.checked = false
                     location.reload()
                 }, 3000);   
                 

@@ -1,0 +1,48 @@
+@media all and (max-width : 1300px) {
+
+
+    .responsiv {
+        display: flex;
+    }
+
+    .responsiv header nav,
+    .responsiv footer nav {
+        width: 100vw;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px 0;
+        position: fixed;
+        z-index: 10;
+        align-items: center;
+        background: linear-gradient(to right, rgba(249, 207, 128, 0.8), rgba(249, 207, 128, 0.2));
+        backdrop-filter: blur(4px);
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .responsiv header nav {
+        top: 0;
+    }
+
+    .responsiv footer nav {
+        bottom: 0;
+    }
+
+    .responsiv header nav img,
+    .responsiv footer nav img {
+        width: 36px;
+        margin-bottom: 2px;
+    }
+
+    .responsiv header nav p,
+    .responsiv footer nav p {
+        font-size: 12px;
+    }
+
+    .responsiv header nav div,
+    .responsiv footer nav div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

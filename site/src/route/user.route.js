@@ -14,16 +14,16 @@ router.post('/homeForm', homeCtrl.submitForm);
 
 // --- SIGN ---
 router.get('/signIn', userCtrl.signIn);
-router.post('/auth', userCtrl.auth);
+router.post('/auth', userCtrl.auth); 
 router.get('/auth', sessionMdw.requireAuth, userCtrl.dashboardUser);
 router.get('/signUp', userCtrl.signUp);
 router.post('/saveUser', userCtrl.saveUser);
 router.get('/logout', sessionMdw.logout);
 
 // --- DASHBOARD ---
-router.get('/dashboardUser', sessionMdw.sessionUser, userCtrl.dashboardUser);
-router.get('/missionUserShow', sessionMdw.sessionUser, missionCtrlGet.missionUserShow);
-router.get('/searchByCategories', sessionMdw.sessionUser, missionCtrlGet.searchByCategories);
+router.get('/dashboardUser', sessionMdw.requireAuth, userCtrl.dashboardUser);
+router.get('/missionUserShow', sessionMdw.requireAuth, missionCtrlGet.missionUserShow);
+router.get('/searchByCategories', sessionMdw.requireAuth, missionCtrlGet.searchByCategories);
 
 router.get('/dataMission/:idMission', missionCtrlGet.getDataMission);
 router.get('/modalRegisterMission', missionCtrlGet.modalRegisterMission);
