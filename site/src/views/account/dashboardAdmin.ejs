@@ -1,61 +1,89 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleDashboardAdmin.css">
 <%- include('../partials/_head') %>
-<%- include('../partials/_alert')  %>
+    <%- include('../partials/_alert') %>
 
-    <main>
-        <div class="container" style='display: flex;'>
-            <%- include('../partials/_sideNavAdmin') %>
+        <main>
+            <div class="container" style='display: flex;'>
+                <%- include('../partials/_sideNavAdmin') %>
 
-                <div class="title">
-                    <h1>Vue synthétique - Missions & Bénévoles</h1>
-                    <p>Période : 30 prochains jours</p>
-                </div>
+                    <div class="dashboardContainer">
 
-                <div class="header">
-                    <div>
-                        <h2>Missions à venir</h2>
-                        <!--Récuperer le nbr de missions a venir-->
-                        <p>Planifiées sur 30 jours</p>
+                        <div class="colHeader">
+                            <div class="title">
+                                <h1>Vue synthétique - Missions & Bénévoles</h1>
+                                <p>Période : 30 prochains jours</p>
+                            </div>
+                            <div class="header">
+                                <div class="headerCards background">
+                                    <h2>Missions à venir</h2>
+                                    <h3>12</h3>
+                                    <p>Planifiées sur 30 jours</p>
+                                </div>
+                                <div class="headerCards background">
+                                    <h2>Bénévoles engagés</h2>
+                                    <h3>74</h3>
+                                    <p>Sommes des inscrits</p>
+                                </div>
+                                <div class="headerCards background">
+                                    <h2>Taux moyen de remplissage</h2>
+                                    <h3>72.5%</h3>
+                                    <p>Moyenne sur l'ensemble de missions</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="desktop background">
+                                <thead>
+                                    <tr>
+                                        <th>MISSION</th>
+                                        <th>DATE</th>
+                                        <th>BENEVOLE ENGAGEE</th>
+                                        <th>BESOIN RESTANT</th>
+                                        <th>TAUX DE REMPLISSAGE</th>
+                                        <th>STATUS</th>
+                                        <th>MODIFIER</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="fixMax">
+                                    <% //for (let i=0; i < missions.length; i++) { %>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    titre misison
+                                                </p>
+                                            </td>
+                                            <td class="color">
+                                                mission date
+                                            </td>
+                                            <td>
+                                               mission category
+                                            </td>
+                                            <td>
+                                               mission category
+                                            </td>
+                                            <td class="color">
+                                                lieuxxx
+                                            </td>
+                                            <td> <a href="/dataMission/<%=// missions[i].id_mission %>">Voir
+                                                    d’avantage</a></td>
+                                            <td>
+                                                Je participe
+                                                <input
+                                                    data-id="<%= //JSON.stringify({id: missions[i].id_mission, title: missions[i].mission_title}) %>"
+                                                    type="checkbox" name="missionRegistration" class="checkbox"
+                                                    value="0">
+                                            </td>
+                                        </tr>
+                                        <% //} %>
+                                </tbody>
+                            </table>
                     </div>
 
-                    <div>
-                        <h2>Bénévoles engagés</h2>
-                        <!--Récuperer le nbr de Bénévole inscrit sur 30 jours-->
-                        <p>Somme des inscrits</p>
-                    </div>
 
-                    <div>
-                        <h2>Taux moyen de remplissage</h2>
-                        <!--Moyenne sur l'ensemble de smissions-->
-                        <p>Moyenne sur l'ensemble de smissions</p>
-                    </div>
-                </div>
+            </div>
+        </main>
 
-                <div>
-                    <h1>Détail des missions</h1>
-                    <div>
-                        <h2>Missions</h2>
-                        <h2>Date</h2>
-                        <h2>Bénévole engagés</h2>
-                        <h2>Besoin restants</h2>
-                        <h2>Taux de remplissage</h2>
-                    </div>
-                    <div>
-                        <!--titleMissions-->
-                        <!--titleMissions-->
-                        <!--titleMissions-->
-                    </div>
-                </div>
+        </body>
 
-
-                <h3 style="color: green;">
-                    <%= // alertMsg %>
-                </h3>
-
-        </div>
-    </main>
-
-    </body>
-
-    </html>
+        </html>
