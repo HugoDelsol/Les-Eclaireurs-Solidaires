@@ -4,5 +4,8 @@
 -- Responsiv header footer dashboard admin/user
 -- Vue details missions
 -- Quelle maniere inserrer les images pour missions
+-- Quelle maniere inserer image pour profil
 -- Creer des fonction pour segmenter le code le rendre plus structuré
 -- Gerer les error des controller avec vues
+-- Version Admin de signin
+-- Verification de la similarité des mot de passe a lenregistrement d'un user 

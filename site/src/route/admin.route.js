@@ -7,6 +7,10 @@ const missionCtrlPost = require('../controllers/mission.ctrl.post');
 const sessionMdw = require('../middleware/session.middleware');
 const globalVarsMdw = require('../middleware/globalVars.middleware');
 
+// --- SIGN ---
+router.get('/signUpAdminForm', userCtrl.signUpAdminForm);
+router.post('/saveAdmin', userCtrl.saveAdmin);
+
 // --- DAHBOARD ---
 router.get('/addMissionShow', missionCtrlGet.addMissionShow);
 router.get('/dashboardAdmin', userCtrl.dashboardAdmin);

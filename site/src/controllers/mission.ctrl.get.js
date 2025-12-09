@@ -137,6 +137,7 @@ exports.getAllMissionsByUser = async (req, res, idUser) => {
 
         res.render('account/dashboardUser', {
 
+            pseudoUser: req.session.userExist.firstName, 
             missionsUser: allMissionByUser.length ? allMissionByUser : false
 
         })

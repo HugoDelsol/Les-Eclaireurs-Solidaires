@@ -1,15 +1,18 @@
 <nav class="sideNav">
     <div class="center">
-        <img src="/pictures/login.png" alt="">
+        <img src="/pictures/securite-personnelle.png" alt="">
         <h2>Bonjour <%= pseudoUser %></span></h2> 
         <div class="linesideNav"></div>
     </div>
     <div class="linkStyle">
         <a href="/admin/dashboardAdmin" class="btnPrimary btnHover">📊 Tableau de bord</a>
         <a href="/admin/addMissionShow" class="btnPrimary btnHover">🎯 Missions</a>
+        <a href="" class="btnPrimary btnHover">🐝 Bénévoles</a>
         <a href="" class="btnPrimary btnHover">💬 Messagerie</a>
         <a href="" class="btnPrimary btnHover">⏰ Rappel</a>
-        <a href="" class="btnPrimary btnHover">👤 Profil</a>
+        <% if (isSuperAdmin) { %>
+        <a href="" class="btnPrimary btnHover">👤 Admin</a>
+        <% } %>
     </div>
     <a href="/logout" class="btnSecondary btnHover">Deconnexion</a>
 </nav>

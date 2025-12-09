@@ -9,9 +9,7 @@ async function testConnection() {
         console.error('Erreur connexion DB:', err.message);
     }
 }
-
 testConnection();
-
 
 exports.getOneUserByEmail = async (email) => {
 
@@ -35,11 +33,14 @@ exports.getOneUserByEmail = async (email) => {
 }
 
 exports.addUser = async (
+
     firstName,
     lastName,
     email,
     password,
+
 ) => {
+
     try {
 
         const saltRound = await bcrypt.genSalt(10);
@@ -63,12 +64,34 @@ exports.addUser = async (
 }
 
 exports.addAdmin = async (
+
     firstName,
     lastName,
     email,
     password,
+    idAdminRole,
+
 ) => {
 
+    try {       
+        
+        const saltRound = await bcrypt.genSalt(10);
+        const passwordHash = await bcrypt.hash(password, saltRound);
+        
+        const requestIdentifier = `INSERT INTO identifier (identifier_mail, identifier_password) VALUES (?, ?)`;
+        const [resultIdentifier] = await db.query(requestIdentifier, [email, passwordHash]);
+        
+        const lastInsertId = resultIdentifier.insertId
+        
+        const requestAdmin = `INSERT INTO admin (admin_first_name, admin_last_name, _id_admin_role, _id_identifier) VALUES (?, ?, ?, ?)`;
+        const [resultAdmin] = await db.query(requestAdmin, [firstName, lastName, idAdminRole, lastInsertId]);
+        
+        return resultAdmin;
+        
+    } catch (error) {
+        
+        throw error;
+    }
 }
 
 /*<?php

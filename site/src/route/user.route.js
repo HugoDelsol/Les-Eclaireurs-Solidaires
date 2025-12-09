@@ -15,7 +15,7 @@ router.post('/homeForm', homeCtrl.submitForm);
 // --- SIGN ---
 router.get('/signIn', userCtrl.signIn);
 router.post('/auth', userCtrl.auth); 
-router.get('/auth', sessionMdw.requireAuth, userCtrl.dashboardUser);
+/* router.get('/auth', sessionMdw.requireAuth, userCtrl.dashboardUser);*/
 router.get('/signUp', userCtrl.signUp);
 router.post('/saveUser', userCtrl.saveUser);
 router.get('/logout', sessionMdw.logout);

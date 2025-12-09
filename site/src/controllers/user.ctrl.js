@@ -1,37 +1,121 @@
 const userModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
+const service = require('../service/generateToken')
 const { getAllMissionsByUser } = require('./mission.ctrl.get');
 
 // --- VIEWS ---
 
-exports.signIn = async (req, res) => {
 
+exports.signIn = async (req, res) => {    
     res.render('connection/signIn');
 }
 
-exports.signUp = async (req, res) => {
-
+exports.signUp = async (req, res) => {    
     res.render('connection/signUp', {
         firstName: null
     });
 }
 
-exports.dashboardAdmin = async (req, res) => {
+exports.signUpAdminForm = async (req, res) => {
+    res.render('connection/signUpAdmin');
+}
 
-    res.render('account/dashboardAdmin', {
-        //pseudoUser: req.session.userExist.firstName
-    });
+exports.dashboardAdmin = async (req, res) => {    
+    res.render('account/dashboardAdmin');
 }
 
 exports.dashboardUser = async (req, res) => {
-
     const idUser = req.session.userExist.id;
-
     getAllMissionsByUser(req, res, idUser);
-
 }
 
 // --- --- ---
+
+exports.saveAdmin = async (req, res) => {
+
+    try {
+
+        let firstName = req.body.firstName;
+        let lastName = req.body.lastName;
+        let email = req.body.email;
+        let password = req.body.password;
+        let token = req.body.token;
+
+
+        if (!req.body.firstName ||
+            !req.body.lastName ||
+            !req.body.email ||
+            !req.body.password ||
+            !req.body.passwordConfirm ||
+            !req.body.token) {
+
+            throw new Error('Merci de compléter tous les champs');
+        }
+
+        let userExist = await userModel.getOneUserByEmail(email);
+
+        if (userExist) {
+            throw new Error("Un utilisateur utilise deja cette email");
+        }
+
+        const tokenRole = service.verifyToken(token, email);
+
+        if (!tokenRole) throw new Error("Le token ou email est invalide")
+
+        if (tokenRole === "superAdmin") {
+
+            console.log("superAdmin")
+
+            const idAdminRole = 1;
+
+            const saveAdmin = await userModel.addAdmin(
+                firstName,
+                lastName,
+                email,
+                password,
+                idAdminRole,
+            )
+
+            if (saveAdmin) {
+                res.render('connection/signIn', {
+                    alertMsg: "Veuillez vous connecter pour accéder à votre compte."
+                });
+            }
+
+        } else if (tokenRole === "admin") {
+
+            console.log("admin")
+
+            const idAdminRole = 2;
+
+            const saveAdmin = await userModel.addAdmin(
+                firstName,
+                lastName,
+                email,
+                password,
+                idAdminRole,
+            )
+
+            if (saveAdmin) {
+                res.render('connection/signIn', {
+                    alertMsg: "Veuillez vous connecter pour accéder à votre compte."
+                });
+            }
+
+        } 
+
+    } catch (error) {
+
+        res.render('connection/signUpAdmin', {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
+            passwordConfirm: req.body.passwordConfirm,
+            alertMsg: error.message
+        });
+    }
+}
 
 exports.saveUser = async (req, res) => {
 
@@ -53,8 +137,6 @@ exports.saveUser = async (req, res) => {
 
         let userExist = await userModel.getOneUserByEmail(email);
 
-        //console.log('-->>>>>>', userExist);
-
         if (userExist) {
 
             throw new Error("Un utilisateur utilise deja cette email");
@@ -69,7 +151,7 @@ exports.saveUser = async (req, res) => {
 
         if (saveUser) {
             res.render('connection/signIn', {
-                alertMsg: "Votre inscription a bien été prise en compte. Veuillez vous connecter pour continuer."
+                alertMsg: "Veuillez vous connecter pour accéder à votre compte."
             });
         }
 
@@ -78,16 +160,13 @@ exports.saveUser = async (req, res) => {
         //console.log(error.message)
 
         res.render('connection/signUp', {
-
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password,
             passwordConfirm: req.body.passwordConfirm,
-
             alertMsg: error.message
         });
-
     }
 }
 
@@ -105,38 +184,59 @@ exports.auth = async (req, res) => {
 
         const userExist = await exports.verifyAccountExist(email, password);
 
-        if (userExist.role === 'user') {
+        if (!userExist) {
+            throw new Error("Email ou mot de passe incorrect.");
+        }
 
-            req.session.userExist = {
-                id: userExist.id_admin,
-                firstName: userExist.admin_first_name,
-                isAdmin: true
+        if (userExist.role === 'admin') {
+
+            if (userExist._id_admin_role === 1) {
+
+                req.session.userExist = {
+                    id: userExist.id_admin,
+                    firstName: userExist.admin_first_name,
+                    isSuperAdmin: true
+                }
+
+                res.render("account/dashboardAdmin", {                    
+                    pseudoUser: req.session.userExist.firstName,
+                    isSuperAdmin: req.session.userExist.isSuperAdmin,
+                });
+
+            } else if (userExist._id_admin_role === 2) {
+
+                req.session.userExist = {
+                    id: userExist.id_admin,
+                    firstName: userExist.admin_first_name,
+                    isAdmin: true
+                }                
+
+                res.render("account/dashboardAdmin", {
+                    pseudoUser: req.session.userExist.firstName,
+                    isAdmin: req.session.userExist.isAdmin,
+                });
             }
 
-            res.render('account/dashboardAdmin');            
-
-        } else if (userExist.role === 'admin') {
+        } else if (userExist.role === 'user') {
 
             req.session.userExist = {
                 id: userExist.id_user,
                 firstName: userExist.user_first_name,
                 isAdmin: false
-            }            
-
-            console.log(req.session.userExist.id)
-
+            }
+            
             const idUser = req.session.userExist.id;
 
             getAllMissionsByUser(req, res, idUser);
 
         }
 
-    } catch (e) {
+    } catch (error) {
 
-        console.error(e)
+        console.error(error)
 
         res.render('connection/signIn', {
-
+            alertMsg: error.message
         });
     }
 }
@@ -147,18 +247,18 @@ exports.verifyAccountExist = async (email, password) => {
 
         const userMail = await userModel.getOneUserByEmail(email);
 
-        console.log('--identifier_password--->>>>>>>', userMail.identifier_password)
-        console.log('--identifier_email--->>>>>>>', userMail.identifier_mail)
+        //console.log('--identifier_password--->>>>>>>', userMail.identifier_password)
+        //console.log('--identifier_email--->>>>>>>', userMail.identifier_mail)
 
         if (userMail && await bcrypt.compare(password, userMail.identifier_password)) {
 
             if (userMail.id_user) {
 
-                userMail['role'] = 'admin';
+                userMail['role'] = 'user';
 
             } else if (userMail.id_admin) {
 
-                userMail['role'] = 'user';
+                userMail['role'] = 'admin';
             }
 
             return userMail;

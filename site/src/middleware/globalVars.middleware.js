@@ -15,9 +15,9 @@ const centralizedVar = (req, res, next) => {
     res.locals.email = null;
     res.locals.password = null;
     res.locals.passwordConfirm = null;
+    res.locals.token = null
 
     next();
-
 }
 
 const userData = (req, res, next) => {
@@ -26,11 +26,15 @@ const userData = (req, res, next) => {
 
         res.locals.idUser = req.session.userExist.id;
         res.locals.pseudoUser = req.session.userExist.firstName;
+        res.locals.isAdmin = req.session.userExist.isAdmin;
+        res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
 
     } else {
 
-        res.locals.idUser = null
-        res.locals.pseudoUser = null
+        res.locals.idUser = null;
+        res.locals.pseudoUser = null;
+        res.locals.isAdmin = null;
+        res.locals.isSuperAdmin = null;
     }
 
     next()
