@@ -76,14 +76,16 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
 
             const data = await response.json();
 
+            console.log(c)                 
+
             if (!data.alreadyAdded) {
 
                 modal.classList.toggle('toggleNone');
                 modalToggle.classList.toggle('toggleBlock');
 
                 setTimeout(()=>{
-                    document.querySelector('.modalContain').innerHTML = ""
-                    location.reload()
+                    document.querySelector('.modalContain').innerHTML = "";
+                    c.disabled = true                 
                 }, 3000);   
                 
                 

@@ -1,6 +1,57 @@
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 
+//---
+//--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
+//---
+
+exports.searchByCategories = async (req, res) => {
+
+    let missionsSelected = []
+
+    try {
+
+        const regionSelected = req.body.regionSelected;
+        const categorySelected = req.body.categorySelected;
+        let tripStart = req.body.tripStart;
+        let tripEnd = req.body.tripEnd;
+
+        console.log(regionSelected)
+        console.log(categorySelected);
+
+
+        !tripStart ? tripStart = false : tripStart;
+        !tripEnd ? tripEnd = false : tripEnd;
+
+        if (tripStart && !tripEnd || !tripStart && tripEnd) {
+            throw new Error("Veuillez saisir une date de début et une date de fin.")
+        }
+
+        missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
+
+        if (req.session.userExist.isAdmin === false) {
+            
+            res.render('account/listMissionUser', {
+                missionSelected: missionsSelected,
+                categoriesMission: req.session.categoriesMission,
+                regions: req.session.regions,
+            });
+
+        } else {
+            
+            res.render('account/listMissionsAdmin', {
+                missionSelected: missionsSelected,
+                categoriesMission: req.session.categoriesMission,
+                regions: req.session.regions,
+            });
+        }
+
+    } catch (error) {
+
+        console.log(error)
+    }
+}
+
 exports.addMission = async (req, res) => {
 
     try {
@@ -77,7 +128,7 @@ exports.registerMissionUser = async (idUser, idMission) => {
     try {
 
         await missionModel.registerMissionUser(idUser, idMission);
-        
+
 
     } catch (error) {
 

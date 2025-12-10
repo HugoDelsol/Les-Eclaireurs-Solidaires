@@ -3,6 +3,43 @@ const missionModel = require('../models/MissionModel');
 const service = require('../service/getGlobalData');
 const missionCtrlPost = require('./mission.ctrl.post');
 
+exports.missionAdminShow = async (req, res) => {
+
+    let getAllMissions = [];
+
+    try {
+
+        const regionsServ = await service.region();
+
+        req.session.regions = regionsServ;
+
+        const dataTab = await service.categories();
+
+        req.session.categoriesMission = dataTab;
+
+        getAllMissions = await missionModel.getAllMission();
+
+        res.render('account/listMissionsAdmin', {
+            pseudoUser: req.session.userExist.firstName,
+            categoriesMission: req.session.categoriesMission,
+            regions: req.session.regions,
+            missions: getAllMissions
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.render('account/listMissionsAdmin', {
+            alertMsg: "Impossible d'afficher la liste des missions.",
+            pseudoUser: req.session.userExist.firstName,
+            categoriesMission: req.session.categoriesMission,
+            regions: req.session.regions,
+            missions: getAllMissions
+        });
+    }
+}
+
 //---
 //--- AFICHER LA LISTE DES MISSIONS A L'UTILISATEUR
 //---
@@ -35,15 +72,13 @@ exports.missionUserShow = async (req, res) => {
                     }
                 }
             }
-        }
-
-        //throw new Error("Essai du catch");
+        }        
 
         res.render('account/listMissionUser', {
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
-            missions: getAllMissions
+            missions: getAllMissions,
         });
 
     } catch (error) {
@@ -55,7 +90,7 @@ exports.missionUserShow = async (req, res) => {
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
-            missions: getAllMissions
+            missions: getAllMissions,
         });
     }
 }
@@ -137,7 +172,7 @@ exports.getAllMissionsByUser = async (req, res, idUser) => {
 
         res.render('account/dashboardUser', {
 
-            pseudoUser: req.session.userExist.firstName, 
+            pseudoUser: req.session.userExist.firstName,
             missionsUser: allMissionByUser.length ? allMissionByUser : false
 
         })
@@ -146,22 +181,8 @@ exports.getAllMissionsByUser = async (req, res, idUser) => {
 
         console.log("Controler : ", error)
     }
-
-
 }
 
-//---
-//--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
-//---
-
-exports.searchByCategories = async (req, res) => {
-
-    try {
-
-    } catch (error) {
-
-    }
-}
 
 //---
 //--- AFFICHER UN MODAL POUR VALIDER L'INSCRIPTIONN A UNE MISSION
@@ -178,7 +199,7 @@ exports.modalRegisterMission = async (req, res) => {
 }
 
 //---
-//--- ENREGISTRER L'INSCRIPTION DUN BENEVOLE DANS UNE MISSION
+//--- ENREGISTRER L'INSCRIPTION D'UN BENEVOLE DANS UNE MISSION
 //---
 
 exports.addRegisterMissionUser = async (req, res) => {

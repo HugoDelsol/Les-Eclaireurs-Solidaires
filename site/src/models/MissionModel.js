@@ -1,10 +1,62 @@
 const db = require('../config/database');
 
+exports.searchByCategories = async (regionSelected, categorySelected, tripStart, tripEnd) => {
+
+    try {
+
+        if (tripStart && tripEnd) {
+
+            const request = `SELECT 
+                                *, 
+                                DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date 
+                            FROM mission
+                            LEFT JOIN city
+                                ON id_city = _id_city
+                            LEFT JOIN region
+                                ON id_region = _id_region
+                            LEFT JOIN mission_category
+                            ON id_mission_category = _id_mission_category
+                            WHERE id_region = ? 
+                            AND id_mission_category = ? 
+                            AND mission_date BETWEEN ? AND ?;`
+
+            const [result] = await db.query(request, [regionSelected, categorySelected, tripStart, tripEnd]);
+
+            //console.log(result)
+
+            return result;
+
+        } else {
+
+            const request = `SELECT 
+                                *, 
+                                DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date 
+                            FROM mission
+                            LEFT JOIN city
+                                ON id_city = _id_city
+                            LEFT JOIN region
+                                ON id_region = _id_region
+                            LEFT JOIN mission_category
+                                ON id_mission_category = _id_mission_category
+                            WHERE id_region = ? 
+                            AND id_mission_category = ?;`
+
+            const [result] = await db.query(request, [regionSelected, categorySelected]);
+            console.log(result)
+            return result;
+        }
+
+    } catch (error) {
+
+        throw error;
+    }
+}
+
 exports.getAllCategories = async () => {
 
     try {
 
-        const request = `SELECT * FROM mission_category`;
+        const request = `SELECT * FROM mission_category;`
         const [result] = await db.query(request);
 
         return result && result[0] ? result : null;
@@ -43,7 +95,7 @@ exports.insertMission = async (
                         mission_place_name,
                         mission_available_place,
                         mission_img) VALUES 
-                        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+                        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
 
         const [result] = await db.query(request, [
             title,
@@ -71,7 +123,7 @@ exports.searchCityInSql = async (q) => {
 
     try {
 
-        const query = `SELECT * FROM city WHERE city_name LIKE ? LIMIT 20`;
+        const query = `SELECT * FROM city WHERE city_name LIKE ? LIMIT 20;`
 
         const [result] = await db.query(query, [`${q}%`]);
 
@@ -104,12 +156,12 @@ exports.getAllMission = async () => {
     try {
 
         const request = `SELECT id_mission, mission_title, DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date, mission_category_name,  city_name, mission_description                 
-                    FROM mission
-                    LEFT JOIN city
-                    ON id_city = _id_city
-                    LEFT JOIN mission_category
-                    ON id_mission_category = _id_mission_category
-                    ORDER BY mission_date DESC`;
+                        FROM mission
+                        LEFT JOIN city
+                        ON id_city = _id_city
+                        LEFT JOIN mission_category
+                        ON id_mission_category = _id_mission_category
+                        ORDER BY mission_date DESC;`
 
         const [result] = await db.query(request);
 
@@ -128,7 +180,7 @@ exports.registerMissionUser = async (idUser, idMission) => {
     try {
 
         const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
-        await db.query(request, [idUser, idMission]);        
+        await db.query(request, [idUser, idMission]);
 
     } catch (error) {
 
@@ -151,6 +203,7 @@ exports.getRegistrationByUserId = async (idMission, idUser) => {
         return result.length ? true : false;
 
     } catch (error) {
+
         console.error("Erreur SQL getRegistrationByUserId :", error);
         throw error;
     }
@@ -181,9 +234,9 @@ exports.alreadyRegistered = async (idUser) => {
     try {
 
         const request = `SELECT _id_mission FROM registration_mission WHERE _id_user = ?`;
-        const [result] = await db.query(request, [idUser]);        
+        const [result] = await db.query(request, [idUser]);
         return result;
-        
+
     } catch (error) {
 
         throw error;

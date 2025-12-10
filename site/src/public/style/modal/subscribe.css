@@ -1,4 +1,4 @@
-.btnPrimary {
+.modalBackground .btnPrimary {
     display: flex;
     justify-content: center;
     background-color: #f9cf807c;
@@ -8,7 +8,7 @@
     font-weight: 400;
 }
 
-.btnSecondary {
+.modalBackground .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.11);
@@ -18,10 +18,17 @@
     font-weight: 400;
 }
 
-.btnHover {
+.modalBackground .btnHover {
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
+}
+
+.modalBackground .btnHover:hover {
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /*border-inline-start-width: 5px;*/
+    border-color: #00000075;
 }
 
 .modalBackground {

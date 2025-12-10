@@ -22,7 +22,7 @@ body {
     margin-top: 1.4em;
 }
 
-.btnPrimary {
+.blocAddMission .btnPrimary {
     display: flex;
     justify-content: center;    
     background-color: #f9cf807c;
@@ -32,7 +32,7 @@ body {
     font-weight: 400;
 }
 
-.btnSecondary {
+.blocAddMission .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.11);    
@@ -42,14 +42,14 @@ body {
     font-weight: 400;
 }
 
-.btnHover {
+.blocAddMission .btnHover {
     display: inline-block;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.btnHover:hover {   
+.blocAddMission .btnHover:hover {   
     border-bottom-right-radius: 5px; 
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/

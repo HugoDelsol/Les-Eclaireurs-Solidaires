@@ -12,12 +12,14 @@ router.get('/signUpAdminForm', userCtrl.signUpAdminForm);
 router.post('/saveAdmin', userCtrl.saveAdmin);
 
 // --- DAHBOARD ---
-router.get('/addMissionShow', missionCtrlGet.addMissionShow);
-router.get('/dashboardAdmin', userCtrl.dashboardAdmin);
+router.get('/dashboardAdmin', sessionMdw.requireAuth, userCtrl.dashboardAdmin);
 
 // --- MISSION ---
-router.post('/addMission', missionCtrlPost.addMission);
-router.get('/searchCity', missionCtrlGet.searchCity);
+router.get('/missionAdminShow', sessionMdw.requireAuth, missionCtrlGet.missionAdminShow);
+router.get('/addMissionShow', sessionMdw.requireAuth, missionCtrlGet.addMissionShow);
+router.post('/addMission', sessionMdw.requireAuth, missionCtrlPost.addMission);
+router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
+router.post('/searchByCategories', missionCtrlPost.searchByCategories);
 
 module.exports = router;
 

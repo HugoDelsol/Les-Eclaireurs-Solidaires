@@ -31,7 +31,6 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    align-items: center;
 }
 
 .titleAndCategorySearch select,
@@ -56,7 +55,7 @@ body {
     margin-top: 1.4em;
 }
 
-.btnPrimary {
+.blocListMission .btnPrimary {
     display: flex;
     justify-content: center;
     background-color: #f9cf807c;
@@ -66,7 +65,7 @@ body {
     font-weight: 400;
 }
 
-.btnSecondary {
+.blocListMission .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.26);
@@ -76,21 +75,21 @@ body {
     font-weight: 400;
 }
 
-.btnHover {
+.blocListMission .btnHover {
     display: inline-block;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.btnHover:hover {
+.blocListMission .btnHover:hover {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
     border-color: #00000075;
 }
 
-.blocListMission {
+.blocListMission{
     background: linear-gradient(to top, #f5c09f, #ffffff00);
     box-shadow: 0px 0px 12px rgba(30, 28, 165, 0.15);
     border-radius: 2em;
@@ -203,6 +202,10 @@ td {
 
 td a {
     text-decoration: underline;
+}
+
+.fixMax img {
+    width: 28px;
 }
 
 @media all and (max-width : 1300px) {

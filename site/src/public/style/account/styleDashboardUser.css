@@ -22,7 +22,7 @@ body {
     margin-left: 20px;
 }
 
-.btnPrimary {
+.dashboardContainer .btnPrimary {
     display: flex;
     justify-content: center;
     background-color: #f9cf807c;
@@ -32,7 +32,7 @@ body {
     font-weight: 400;
 }
 
-.btnSecondary {
+.dashboardContainer .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.11);
@@ -43,13 +43,13 @@ body {
 
 }
 
-.btnHover {
+.dashboardContainer .btnHover {
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.btnHover:hover {
+.dashboardContainer .btnHover:hover {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
@@ -115,7 +115,11 @@ h3 {
 }
 
 .statAlign p {
-    margin: 6px 0;
+    margin: 6px 0;   
+}
+
+.statAlign span {
+     font-size: 24px;
 }
 
 .background {
@@ -155,7 +159,8 @@ span {
     font-weight: 900;
 }
 
-.middleDashboard {
+.middleDashboard,
+.endDashboard {
     background: linear-gradient(to top, #f5c09f, #ffffff00);
     box-shadow: 0px 0px 12px rgba(30, 28, 165, 0.151);
     border-radius: 1em;
@@ -191,11 +196,15 @@ table th {
     padding: 16px 8px;
     font-size: 1.2em;
     font-weight: 500;
+    text-align: left;
+    margin: 0 10px;
 }
 
 table td {
     padding: 16px;
     border-radius: 10px;
+    text-align: left;
+margin: 0 10px;
 }
 
 table tr {
@@ -232,14 +241,16 @@ tr input {
     border-radius: 0 0 10px 10px;
 }
 
-th,
-td {
-    width: calc(100% / 5);
+
+
+.endDashboard th,
+.endDashboard td {
+    width: calc(100% / 4);
 }
 
-.completed th,
-td {
-    width: calc(100% / 4);
+.middleDashboard th,
+.middleDashboard td {
+    width: calc(100% / 5);
 }
 
 .color {
@@ -250,7 +261,10 @@ td a {
     text-decoration: underline;
 }
 
-
+.colorBack {
+    background-color: #f28b5036;
+    border-radius: 10px 10px 0 0;
+}
 
 
 @media all and (max-width : 1300px) {

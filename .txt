@@ -7,5 +7,7 @@
 -- Quelle maniere inserer image pour profil
 -- Creer des fonction pour segmenter le code le rendre plus structuré
 -- Gerer les error des controller avec vues
--- Version Admin de signin
+/-- Version Admin de signin
 -- Verification de la similarité des mot de passe a lenregistrement d'un user 
+-- ALT de toutes les images
+--  date sur list mission dois pouvoir filtrr de la plus recente a plus anciennes

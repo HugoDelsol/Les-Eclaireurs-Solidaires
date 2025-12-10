@@ -33,16 +33,16 @@
                             </div>
                         </div>
 
-                        <table class="desktop background">
+                        <table class="background tablePadding">
                                 <thead>
-                                    <tr>
-                                        <th>MISSION</th>
-                                        <th>DATE</th>
-                                        <th>BENEVOLE ENGAGEE</th>
-                                        <th>BESOIN RESTANT</th>
-                                        <th>TAUX DE REMPLISSAGE</th>
-                                        <th>STATUS</th>
-                                        <th>MODIFIER</th>
+                                    <tr class="colorBack">
+                                        <th>Mission</th>
+                                        <th>Date</th>
+                                        <th>Bénévoles engagées</th>
+                                        <th>Besoins restants</th>
+                                        <th>Taux de remplissage</th>
+                                        <th>Statut</th>
+                                        <th>Modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fixMax">
@@ -68,11 +68,7 @@
                                             <td> <a href="/dataMission/<%=// missions[i].id_mission %>">Voir
                                                     d’avantage</a></td>
                                             <td>
-                                                Je participe
-                                                <input
-                                                    data-id="<%= //JSON.stringify({id: missions[i].id_mission, title: missions[i].mission_title}) %>"
-                                                    type="checkbox" name="missionRegistration" class="checkbox"
-                                                    value="0">
+                                                <a href="" class="btnPrimary btnHover">Mettre a jour</a>
                                             </td>
                                         </tr>
                                         <% //} %>

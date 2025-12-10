@@ -125,6 +125,7 @@ exports.saveUser = async (req, res) => {
         let lastName = req.body.lastName;
         let email = req.body.email;
         let password = req.body.password;
+        let passwordConfirm = req.body.passwordConfirm;
 
         if (!req.body.firstName ||
             !req.body.lastName ||
@@ -133,6 +134,10 @@ exports.saveUser = async (req, res) => {
             !req.body.passwordConfirm) {
 
             throw new Error('Merci de compléter tous les champs');
+        }
+
+        if (password !== passwordConfirm) {
+            throw new Error('Les mots de passe ne sont pas identiques')
         }
 
         let userExist = await userModel.getOneUserByEmail(email);

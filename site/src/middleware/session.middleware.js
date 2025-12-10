@@ -1,10 +1,9 @@
-
 const checkAuth = (req, res, next) => {
     
     return req.session && req.session.userExist && req.session.userExist.id;
 }
 
-const requireAuth = (req, res, next) => {
+const requireAuth = (req, res, next) => {    
 
     if (!checkAuth(req, res, next)) {
 
@@ -21,7 +20,6 @@ const logout = (req, res, next) => {
         res.redirect('/');
     })
 }
-
 
 module.exports = {
     checkAuth,
