@@ -1,14 +1,70 @@
 const db = require('../config/database');
 
+exports.getStatsMissions = async () => {    
+
+    const request = `SELECT  
+                        m.id_mission,
+                        m.mission_title,
+                        DATE_FORMAT(m.mission_date, '%d/%m/%Y') AS mission_date,
+                        m.mission_start_time,
+                        m.mission_end_time,
+                        m.mission_description,
+                        m.mission_place_name,
+                        m.mission_available_place, 
+                        m.mission_img,
+                        m._id_mission_category,
+                        COUNT(DISTINCT r._id_user) AS nb_volunteers
+                    FROM mission AS m
+                    LEFT JOIN registration_mission AS r
+                        ON r._id_mission = m.id_mission
+                    WHERE m.mission_date >= CURRENT_DATE
+                    GROUP BY 
+                        m.id_mission,
+                        m.mission_title,
+                        m.mission_date,
+                        m.mission_start_time,
+                        m.mission_end_time,
+                        m.mission_description,
+                        m.mission_place_name,
+                        m.mission_available_place, 
+                        m.mission_img,
+                        m._id_mission_category                        
+                    ORDER BY mission_date DESC;`                    
+
+    const [result] = await db.query(request);
+    return result;
+}
+
 exports.searchByCategories = async (regionSelected, categorySelected, tripStart, tripEnd) => {
+
+    let values = [];
+    let params = [];
 
     try {
 
+        if (regionSelected) {
+            values.push("id_region = ?");
+            params.push(regionSelected);
+        }
+
+        if (categorySelected) {
+            values.push("id_mission_category = ?");
+            params.push(categorySelected);
+        }
+
         if (tripStart && tripEnd) {
+            values.push("mission_date BETWEEN ? AND ?");
+            params.push(tripStart);
+            params.push(tripEnd);
+        }  
+
+        if (values.length > 0) {
+
+            const where = "WHERE " + values.join(" AND ");
 
             const request = `SELECT 
                                 *, 
-                                DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date 
+                                DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date 
                             FROM mission
                             LEFT JOIN city
                                 ON id_city = _id_city
@@ -16,38 +72,15 @@ exports.searchByCategories = async (regionSelected, categorySelected, tripStart,
                                 ON id_region = _id_region
                             LEFT JOIN mission_category
                             ON id_mission_category = _id_mission_category
-                            WHERE id_region = ? 
-                            AND id_mission_category = ? 
-                            AND mission_date BETWEEN ? AND ?;`
+                            ${where};`
 
-            const [result] = await db.query(request, [regionSelected, categorySelected, tripStart, tripEnd]);
-
-            //console.log(result)
-
-            return result;
-
-        } else {
-
-            const request = `SELECT 
-                                *, 
-                                DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date 
-                            FROM mission
-                            LEFT JOIN city
-                                ON id_city = _id_city
-                            LEFT JOIN region
-                                ON id_region = _id_region
-                            LEFT JOIN mission_category
-                                ON id_mission_category = _id_mission_category
-                            WHERE id_region = ? 
-                            AND id_mission_category = ?;`
-
-            const [result] = await db.query(request, [regionSelected, categorySelected]);
-            console.log(result)
+            const [result] = await db.query(request, params);
             return result;
         }
 
     } catch (error) {
 
+        console.error("Erreur SQL searchByCategories :", error);
         throw error;
     }
 }
@@ -155,12 +188,19 @@ exports.getAllMission = async () => {
 
     try {
 
-        const request = `SELECT id_mission, mission_title, DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date, mission_category_name,  city_name, mission_description                 
+        const request = `SELECT 
+                            id_mission, 
+                            mission_title, 
+                            DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, 
+                            mission_category_name,  
+                            city_name, 
+                            mission_description                 
                         FROM mission
                         LEFT JOIN city
-                        ON id_city = _id_city
+                            ON id_city = _id_city
                         LEFT JOIN mission_category
-                        ON id_mission_category = _id_mission_category
+                            ON id_mission_category = _id_mission_category
+                        WHERE mission_date >= CURRENT_DATE
                         ORDER BY mission_date DESC;`
 
         const [result] = await db.query(request);

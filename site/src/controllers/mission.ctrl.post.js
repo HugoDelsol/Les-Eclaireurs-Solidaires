@@ -7,18 +7,17 @@ const missionModel = require('../models/MissionModel');
 
 exports.searchByCategories = async (req, res) => {
 
-    let missionsSelected = []
+    let missionsSelected = [];
 
     try {
 
-        const regionSelected = req.body.regionSelected;
-        const categorySelected = req.body.categorySelected;
+        let regionSelected = req.body.regionSelected;
+        let categorySelected = req.body.categorySelected;
         let tripStart = req.body.tripStart;
         let tripEnd = req.body.tripEnd;
 
-        console.log(regionSelected)
-        console.log(categorySelected);
-
+        !regionSelected ? regionSelected = false : regionSelected;
+        !categorySelected ? categorySelected = false : categorySelected;
 
         !tripStart ? tripStart = false : tripStart;
         !tripEnd ? tripEnd = false : tripEnd;
@@ -28,27 +27,33 @@ exports.searchByCategories = async (req, res) => {
         }
 
         missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
-
+        
         if (req.session.userExist.isAdmin === false) {
             
             res.render('account/listMissionUser', {
                 missionSelected: missionsSelected,
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
+                missions: req.session.getAllMissions,
+                categorySelected: categorySelected,
+                regionSelected: regionSelected,
             });
-
+            
         } else {
             
             res.render('account/listMissionsAdmin', {
                 missionSelected: missionsSelected,
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
+                missions : req.session.getAllMissions,
+                categorySelected: categorySelected,
+                regionSelected: regionSelected,
             });
         }
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
     }
 }
 

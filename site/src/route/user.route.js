@@ -22,9 +22,10 @@ router.get('/logout', sessionMdw.logout);
 
 // --- DASHBOARD ---
 router.get('/dashboardUser', sessionMdw.requireAuth, userCtrl.dashboardUser);
+
+// --- MISSION ---
 router.get('/missionUserShow', sessionMdw.requireAuth, missionCtrlGet.missionUserShow);
 router.post('/searchByCategories', sessionMdw.requireAuth, missionCtrlPost.searchByCategories);
-
 router.get('/dataMission/:idMission', missionCtrlGet.getDataMission);
 router.get('/modalRegisterMission', missionCtrlGet.modalRegisterMission);
 router.post('/addRegisterMissionUser', missionCtrlGet.addRegisterMissionUser);

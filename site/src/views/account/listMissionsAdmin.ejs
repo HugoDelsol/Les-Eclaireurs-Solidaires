@@ -20,16 +20,20 @@
                                         <div>
                                             <p class="responsivMob">Lieu</p>
                                             <select name="regionSelected" id="regionSelected">
+                                                <option value="">Régions</option>
                                                 <% for (let region of regions) { %>
-                                                    <option value="<%= region.id_region %>">
+                                                    <option value="<%= region.id_region %>"
+                                                        <%= region.id_region == regionSelected ? "selected" : "" %>>
                                                         <%= region.region_name %>
                                                     </option>
                                                     <% } %>
                                             </select>
                                             <p class="responsivMob">Categorie</p>
                                             <select name="categorySelected" id="categorySelected">
+                                                <option value="">Catégories</option>
                                                 <% for (let category of categoriesMission) { %>
-                                                    <option value="<%= category.id_mission_category %>">
+                                                    <option value="<%= category.id_mission_category %>"
+                                                        <%= category.id_mission_category == categorySelected ? "selected" : "" %>>
                                                         <%= category.mission_category_name %>
                                                     </option>
                                                     <% } %>
@@ -45,7 +49,8 @@
                                                 <input type="date" id="tripEnd" name="tripEnd">
                                             </div>
                                         </div>
-                                        <button class="btnSecondary btnHover" type="submit">Rechercher ✅</button>
+                                        <button class="btnSecondary btnHover" type="submit">Rechercher</button>
+                                        <a href="/admin/missionAdminShow"><img class="btnReset" src="/pictures/recycler.png" alt=""></a>
                                     </div>
                                 </form>
                             </div>

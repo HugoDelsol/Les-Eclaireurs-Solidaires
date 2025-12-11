@@ -28,7 +28,7 @@
                                 <div class="headerCards background">
                                     <h2>Taux moyen de remplissage</h2>
                                     <h3>72.5%</h3>
-                                    <p>Moyenne sur l'ensemble de missions</p>
+                                    <p>Moyenne sur l'ensemble des missions</p>
                                 </div>
                             </div>
                         </div>
@@ -46,32 +46,32 @@
                                     </tr>
                                 </thead>
                                 <tbody class="fixMax">
-                                    <% //for (let i=0; i < missions.length; i++) { %>
+                                    <% for (let t of tabStats) { %>
                                         <tr>
                                             <td>
                                                 <p>
-                                                    titre misison
+                                                    <%= t.mission %>
                                                 </p>
                                             </td>
                                             <td class="color">
-                                                mission date
+                                                <%= t.date %>
                                             </td>
                                             <td>
-                                               mission category
+                                               <%= t.nbVolunteers %>
                                             </td>
                                             <td>
-                                               mission category
+                                               <%= t.spaceAvailable %>
                                             </td>
                                             <td class="color">
-                                                lieuxxx
+                                                <%= t.fillRate %>
                                             </td>
-                                            <td> <a href="/dataMission/<%=// missions[i].id_mission %>">Voir
+                                            <td> <a href="/dataMission/<%= t.id %>">Voir
                                                     d’avantage</a></td>
                                             <td>
                                                 <a href="" class="btnPrimary btnHover">Mettre a jour</a>
                                             </td>
                                         </tr>
-                                        <% //} %>
+                                        <% } %>
                                 </tbody>
                             </table>
                     </div>

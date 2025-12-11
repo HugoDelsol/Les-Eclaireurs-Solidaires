@@ -1,7 +1,8 @@
 const userModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
-const service = require('../service/generateToken')
+const service = require('../service/generateToken');
 const { getAllMissionsByUser } = require('./mission.ctrl.get');
+const { getStatsMissions } = require('./mission.ctrl.get');
 
 // --- VIEWS ---
 
@@ -21,7 +22,7 @@ exports.signUpAdminForm = async (req, res) => {
 }
 
 exports.dashboardAdmin = async (req, res) => {    
-    res.render('account/dashboardAdmin');
+    getStatsMissions(req, res);  
 }
 
 exports.dashboardUser = async (req, res) => {
@@ -203,11 +204,8 @@ exports.auth = async (req, res) => {
                     isSuperAdmin: true
                 }
 
-                res.render("account/dashboardAdmin", {                    
-                    pseudoUser: req.session.userExist.firstName,
-                    isSuperAdmin: req.session.userExist.isSuperAdmin,
-                });
-
+                getStatsMissions(req, res);
+                
             } else if (userExist._id_admin_role === 2) {
 
                 req.session.userExist = {

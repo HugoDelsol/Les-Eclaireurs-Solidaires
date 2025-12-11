@@ -9,6 +9,8 @@ const centralizedVar = (req, res, next) => {
     res.locals.missionsUser = null;
     res.locals.categoriesMission = null;
     res.locals.missionSelected = null;
+    res.locals.categorySelected = null;
+    res.locals.regionSelected = null;
 
     // --- SIGNUP PAGE --- //
     res.locals.firstName = null;

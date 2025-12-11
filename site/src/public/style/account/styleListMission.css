@@ -43,6 +43,18 @@ body {
     width: 46%;
 }
 
+.btnReset {
+    width: 30px;
+    margin-left: 10px;
+    opacity: 0.7;
+    display: inline-block;
+    transition: all 0.4s;
+}
+
+.btnReset:hover {
+    transform: rotate(100deg);
+}
+
 .rowDesktop div {
     display: flex;
     justify-content: space-around;
@@ -73,6 +85,7 @@ body {
     padding: 0.6em 2em;
     border-radius: 2em;
     font-weight: 400;
+    margin-left: 10px;
 }
 
 .blocListMission .btnHover {

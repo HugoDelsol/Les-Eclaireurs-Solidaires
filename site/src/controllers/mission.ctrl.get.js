@@ -3,6 +3,36 @@ const missionModel = require('../models/MissionModel');
 const service = require('../service/getGlobalData');
 const missionCtrlPost = require('./mission.ctrl.post');
 
+exports.getStatsMissions = async (req, res) => {
+
+    let tabStats = [];
+
+    const getStatsMissions = await missionModel.getStatsMissions();
+
+    for (let g of getStatsMissions) {
+
+        const spaceAvailable = g.mission_available_place - g.nb_volunteers;
+        const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
+        const fillRateToString = fillRate + "%"        
+
+        tabStats.push({
+            id: g.id_mission,
+            mission: g.mission_title,
+            date: g.mission_date,
+            nbVolunteers : g.nb_volunteers,
+            spaceAvailable: spaceAvailable,
+            fillRate: fillRateToString
+        })
+    }
+
+    res.render("account/dashboardAdmin", {
+        pseudoUser: req.session.userExist.firstName,
+        isSuperAdmin: req.session.userExist.isSuperAdmin,
+        tabStats: tabStats
+    });
+
+}
+
 exports.missionAdminShow = async (req, res) => {
 
     let getAllMissions = [];
@@ -18,6 +48,8 @@ exports.missionAdminShow = async (req, res) => {
         req.session.categoriesMission = dataTab;
 
         getAllMissions = await missionModel.getAllMission();
+
+        req.session.getAllMissions = getAllMissions
 
         res.render('account/listMissionsAdmin', {
             pseudoUser: req.session.userExist.firstName,
@@ -72,7 +104,7 @@ exports.missionUserShow = async (req, res) => {
                     }
                 }
             }
-        }        
+        }
 
         res.render('account/listMissionUser', {
             pseudoUser: req.session.userExist.firstName,
