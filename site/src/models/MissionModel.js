@@ -2,7 +2,7 @@ const db = require('../config/database');
 
 exports.getStatsMissions = async () => {    
 
-    const request = `SELECT  
+    const requestList = `SELECT  
                         m.id_mission,
                         m.mission_title,
                         DATE_FORMAT(m.mission_date, '%d/%m/%Y') AS mission_date,
@@ -17,7 +17,8 @@ exports.getStatsMissions = async () => {
                     FROM mission AS m
                     LEFT JOIN registration_mission AS r
                         ON r._id_mission = m.id_mission
-                    WHERE m.mission_date >= CURRENT_DATE
+                    WHERE m.mission_date >= CURRENT_DATE()
+                        AND m.mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)                        
                     GROUP BY 
                         m.id_mission,
                         m.mission_title,
@@ -29,10 +30,28 @@ exports.getStatsMissions = async () => {
                         m.mission_available_place, 
                         m.mission_img,
                         m._id_mission_category                        
-                    ORDER BY mission_date DESC;`                    
+                    ORDER BY m.mission_date ASC;`                    
 
-    const [result] = await db.query(request);
-    return result;
+    const [resultList] = await db.query(requestList);    
+
+    const requestSumVolunteers = `SELECT COUNT(DISTINCT _id_user) AS total_next_30_days
+                        FROM registration_mission
+                        LEFT JOIN mission
+                        ON id_mission = _id_mission
+                        WHERE mission_date >= CURRENT_DATE()
+                        AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
+
+    const [resultSumVolunteers] = await db.query(requestSumVolunteers);
+
+    const requestTotalMissions = `SELECT COUNT(*) AS nbr_missions FROM mission;`
+    
+    const [resultTotalMissions] = await db.query(requestTotalMissions);
+
+    return {
+        resultList,
+        resultSumVolunteers,
+        resultTotalMissions
+    }
 }
 
 exports.searchByCategories = async (regionSelected, categorySelected, tripStart, tripEnd) => {
@@ -195,13 +214,13 @@ exports.getAllMission = async () => {
                             mission_category_name,  
                             city_name, 
                             mission_description                 
-                        FROM mission
+                        FROM mission AS m
                         LEFT JOIN city
                             ON id_city = _id_city
                         LEFT JOIN mission_category
                             ON id_mission_category = _id_mission_category
                         WHERE mission_date >= CURRENT_DATE
-                        ORDER BY mission_date DESC;`
+                        ORDER BY m.mission_date ASC;`
 
         const [result] = await db.query(request);
 

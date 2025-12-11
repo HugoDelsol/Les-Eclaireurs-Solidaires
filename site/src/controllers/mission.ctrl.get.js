@@ -7,29 +7,41 @@ exports.getStatsMissions = async (req, res) => {
 
     let tabStats = [];
 
-    const getStatsMissions = await missionModel.getStatsMissions();
+    try {
 
-    for (let g of getStatsMissions) {
+        const getStatsMissions = await missionModel.getStatsMissions();
 
-        const spaceAvailable = g.mission_available_place - g.nb_volunteers;
-        const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
-        const fillRateToString = fillRate + "%"        
+        let average = (getStatsMissions.resultSumVolunteers[0].total_next_30_days / getStatsMissions.resultTotalMissions[0].nbr_missions) * 100;
+        const averageToFixed = average.toFixed(2);
 
-        tabStats.push({
-            id: g.id_mission,
-            mission: g.mission_title,
-            date: g.mission_date,
-            nbVolunteers : g.nb_volunteers,
-            spaceAvailable: spaceAvailable,
-            fillRate: fillRateToString
-        })
+        for (let g of getStatsMissions.resultList) {
+
+            const spaceAvailable = g.mission_available_place - g.nb_volunteers;
+            const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
+            const fillRateToString = fillRate + "%";
+
+            tabStats.push({
+                id: g.id_mission,
+                mission: g.mission_title,
+                date: g.mission_date,
+                nbVolunteers: g.nb_volunteers,
+                spaceAvailable: spaceAvailable,
+                fillRate: fillRateToString,
+            })
+        }
+
+        res.render("account/dashboardAdmin", {
+            pseudoUser: req.session.userExist.firstName,
+            isSuperAdmin: req.session.userExist.isSuperAdmin,
+            tabStats: tabStats,
+            resultSum: getStatsMissions.resultSumVolunteers[0].total_next_30_days,
+            average: averageToFixed,
+        });
+
+    } catch (error) {
+
+        console.log(error)
     }
-
-    res.render("account/dashboardAdmin", {
-        pseudoUser: req.session.userExist.firstName,
-        isSuperAdmin: req.session.userExist.isSuperAdmin,
-        tabStats: tabStats
-    });
 
 }
 
