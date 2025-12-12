@@ -20,6 +20,12 @@ const centralizedVar = (req, res, next) => {
     res.locals.passwordConfirm = null;
     res.locals.token = null
 
+    // --- ADMIN TOKEN --- //
+    res.locals.tokenAdmin = null;
+    res.locals.tokenSuper = null;
+    res.locals.superAdmins = [];
+    res.locals.admins = [];
+
     next();
 }
 

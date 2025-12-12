@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="/style/account/styleSideNav.css">
+<link rel="stylesheet" href="/style/account/styleGenerateToken.css">
+
+<%- include('../partials/_head') %>
+    <%- include('../partials/_alert') %>
+
+        <main>
+            <div class="modalContain"></div>
+
+            <div class="container">
+                <%- include('../partials/_sideNavAdmin') %>
+
+                    <div class="tokenContainer">
+                        <div class="headTitle">
+                            <h1>Gestion des jetons d'authentification</h1>
+                            <form action="/admin/superAdmin/generateToken" method="post">
+                                <label for=""><input type="text" placeholder="Email" name="emailTokenAdmin"
+                                        id="emailTokenAdmin"></label>
+                                <button class="btnSecondary btnHover" type="submit">Administrateur</button>
+                            </form>
+                            <form action="/admin/superAdmin/generateToken" method="post">
+                                <label for=""><input type="text" placeholder="Email" id="emailTokenSuper"
+                                        name="emailTokenSuper"></label>
+                                <button class="btnSecondary btnHover" type="submit">Super Administrateur </button>
+                            </form>
+                            <div class="token">
+                                <h3>
+                                    <%= tokenAdmin ? tokenAdmin : tokenSuper %>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="listAdmins">
+                            <div class="super">
+                                <h2>Super</h2>
+                                <table class="desktop">
+                                    <thead>
+                                        <tr class="colorBack">
+                                            <th>Prénom</th>
+                                            <th>Nom</th>
+                                            <th>Numéro</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fixMax">
+                                        <% for (let a of superAdmins) { %>
+                                            <tr>
+                                                <td>
+                                                    <p>
+                                                        <%= a.admin_first_name %>
+                                                    </p>
+                                                </td>
+                                                <td class="">
+                                                    <%= a.admin_last_name %>                                                    
+                                                </td>
+                                                <td>
+                                                    <%= a.admin_created_at %>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        changer role ou sup
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="admin">
+                                <h2>Admin</h2>
+                                <table class="desktop">
+                                    <thead>
+                                        <tr class="colorBack">
+                                            <th>Nom</th>
+                                            <th>Role</th>
+                                            <th>Créer le</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fixMax">
+                                       <% for (let a of admins) { %>
+                                            <tr>
+                                                <td>
+                                                    <p>
+                                                        <%= a.admin_first_name %>
+                                                    </p>
+                                                </td>
+                                                <td class="">
+                                                    <%= a.admin_last_name %>                                                    
+                                                </td>
+                                                <td>
+                                                    <%= a.admin_created_at %>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        changer role ou sup
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+            </div>
+        </main>
+
+
+        </body>
+
+        </html>

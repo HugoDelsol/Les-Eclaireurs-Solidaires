@@ -27,9 +27,9 @@ exports.searchByCategories = async (req, res) => {
         }
 
         missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
-        
+
         if (req.session.userExist.isAdmin === false) {
-            
+
             res.render('account/listMissionUser', {
                 missionSelected: missionsSelected,
                 categoriesMission: req.session.categoriesMission,
@@ -38,14 +38,14 @@ exports.searchByCategories = async (req, res) => {
                 categorySelected: categorySelected,
                 regionSelected: regionSelected,
             });
-            
+
         } else {
-            
+
             res.render('account/listMissionsAdmin', {
                 missionSelected: missionsSelected,
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
-                missions : req.session.getAllMissions,
+                missions: req.session.getAllMissions,
                 categorySelected: categorySelected,
                 regionSelected: regionSelected,
             });
@@ -54,6 +54,14 @@ exports.searchByCategories = async (req, res) => {
     } catch (error) {
 
         console.log(error);
+        
+        res.render('account/listMissionsAdmin', {
+            alertMsg: error.message,
+            missionSelected: missionsSelected,
+            categoriesMission: req.session.categoriesMission,
+            regions: req.session.regions,
+            missions: req.session.getAllMissions,
+        });
     }
 }
 

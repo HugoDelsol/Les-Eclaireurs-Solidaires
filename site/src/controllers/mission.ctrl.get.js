@@ -37,6 +37,7 @@ exports.getStatsMissions = async (req, res) => {
             tabStats: tabStats,
             resultSum: getStatsMissions.resultSumVolunteers[0].total_next_30_days,
             average: averageToFixed,
+            isSuperAdmin: req.session.userExist.isSuperAdmin
         });
 
     } catch (error) {
@@ -224,7 +225,7 @@ exports.getAllMissionsByUser = async (req, res, idUser) => {
 
     } catch (error) {
 
-        console.log("Controler : ", error)
+        console.log("Controler getAllMissionsByUser: ", error)
     }
 }
 

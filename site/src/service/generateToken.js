@@ -3,20 +3,22 @@ require('dotenv').config();
 
 const secretToken = process.env.TOKEN_SECRET;
 
-exports.generateTokenAdmin = (email, role) => {
+exports.generateToken = (email, role) => {
 
-    const baseToken = { email, role };
+    try {
 
-    const expiry = { expiresIn: "2d" };
+        const baseToken = { email, role };
 
-    return jwt.sign(baseToken, secretToken, expiry);
+        const expiry = { expiresIn: "1d" };
+
+        return jwt.sign(baseToken, secretToken, expiry);
+
+    } catch (error) {
+
+        console.log("Generate Token Service :", error);
+        return null;
+    }
 }
-
-const superAdminToken = exports.generateTokenAdmin("Adm1ne@gmail.com", "superAdmin");
-//console.log("Token super admin :" , superAdminToken);
-
-const adminToken = exports.generateTokenAdmin("adminRegister@gmail.com", "admin");
-//console.log("Token admin :" , adminToken);
 
 exports.verifyToken = (token, email) => {
 
@@ -34,6 +36,7 @@ exports.verifyToken = (token, email) => {
 
     } catch (error) {
 
+        console.log("Generate Token Service :", error);
         return null;
     }
 }

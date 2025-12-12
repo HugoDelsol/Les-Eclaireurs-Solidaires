@@ -11,6 +11,40 @@ async function testConnection() {
 }
 testConnection();
 
+exports.getAllAdmins = async () => {
+    try {
+
+        const requestSuperAdmins = `SELECT 
+                                    *,
+                                    DATE_FORMAT(admin_created_at, '%d/%m/%Y') AS admin_created_at
+                                    FROM admin
+                                    LEFT JOIN admin_role
+                                    ON _id_admin_role = id_admin_role
+                                    WHERE id_admin_role = 1;`
+
+        const [resultSuperAdmins] = await db.query(requestSuperAdmins);
+
+        const requestAdmins = `SELECT 
+                                    *,
+                                    DATE_FORMAT(admin_created_at, '%d/%m/%Y') AS admin_created_at
+                                    FROM admin
+                                    LEFT JOIN admin_role
+                                    ON _id_admin_role = id_admin_role
+                                    WHERE id_admin_role = 2;`
+
+        const [resultAdmins] = await db.query(requestAdmins);        
+        
+        return {
+            resultSuperAdmins,
+            resultAdmins
+        };
+
+    } catch (error) {
+        
+        throw new error;
+    }
+}
+
 exports.getOneUserByEmail = async (email) => {
 
     try {

@@ -7,11 +7,11 @@ const { getStatsMissions } = require('./mission.ctrl.get');
 // --- VIEWS ---
 
 
-exports.signIn = async (req, res) => {    
+exports.signIn = async (req, res) => {
     res.render('connection/signIn');
 }
 
-exports.signUp = async (req, res) => {    
+exports.signUp = async (req, res) => {
     res.render('connection/signUp', {
         firstName: null
     });
@@ -21,8 +21,8 @@ exports.signUpAdminForm = async (req, res) => {
     res.render('connection/signUpAdmin');
 }
 
-exports.dashboardAdmin = async (req, res) => {    
-    getStatsMissions(req, res);  
+exports.dashboardAdmin = async (req, res) => {
+    getStatsMissions(req, res);
 }
 
 exports.dashboardUser = async (req, res) => {
@@ -30,7 +30,60 @@ exports.dashboardUser = async (req, res) => {
     getAllMissionsByUser(req, res, idUser);
 }
 
+exports.tokenView = async (req, res) => {
+
+    const admins = await userModel.getAllAdmins();
+
+    req.session.userExist.admins = admins.resultAdmins;
+    req.session.userExist.superAdmins = admins.resultSuperAdmins;
+
+    res.render('account/generateToken', {
+        admins: admins.resultAdmins,
+        superAdmins: admins.resultSuperAdmins,
+    });
+}
+
+exports.listOfVolunteers = async (req,res) => {
+
+    console.log("coucou")
+
+    res.render('account/listOfVolunteers');
+}
+
 // --- --- ---
+
+
+exports.generateToken = async (req, res) => {
+
+    let generateTokenSuper;
+    let generateTokenAdmin;
+
+    try {
+
+        const emailTokenSuper = req.body.emailTokenSuper;
+        const emailTokenAdmin = req.body.emailTokenAdmin;
+
+        if (req.body.emailTokenSuper) {
+
+            generateTokenSuper = service.generateToken(emailTokenSuper, "superAdmin");
+
+        } else if (req.body.emailTokenAdmin) {
+
+            generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
+        } 
+
+        res.render('account/generateToken', {
+            tokenAdmin: generateTokenAdmin,
+            tokenSuper: generateTokenSuper,
+            admins: req.session.userExist.admins,
+            superAdmins: req.session.userExist.superAdmins,
+        })
+
+    } catch (error) {
+
+        console.log(error)
+    }
+}
 
 exports.saveAdmin = async (req, res) => {
 
@@ -103,7 +156,7 @@ exports.saveAdmin = async (req, res) => {
                 });
             }
 
-        } 
+        }
 
     } catch (error) {
 
@@ -205,19 +258,16 @@ exports.auth = async (req, res) => {
                 }
 
                 getStatsMissions(req, res);
-                
+
             } else if (userExist._id_admin_role === 2) {
 
                 req.session.userExist = {
                     id: userExist.id_admin,
                     firstName: userExist.admin_first_name,
                     isAdmin: true
-                }                
+                }
 
-                res.render("account/dashboardAdmin", {
-                    pseudoUser: req.session.userExist.firstName,
-                    isAdmin: req.session.userExist.isAdmin,
-                });
+                getStatsMissions(req, res);
             }
 
         } else if (userExist.role === 'user') {
@@ -227,7 +277,7 @@ exports.auth = async (req, res) => {
                 firstName: userExist.user_first_name,
                 isAdmin: false
             }
-            
+
             const idUser = req.session.userExist.id;
 
             getAllMissionsByUser(req, res, idUser);
@@ -249,9 +299,6 @@ exports.verifyAccountExist = async (email, password) => {
     try {
 
         const userMail = await userModel.getOneUserByEmail(email);
-
-        //console.log('--identifier_password--->>>>>>>', userMail.identifier_password)
-        //console.log('--identifier_email--->>>>>>>', userMail.identifier_mail)
 
         if (userMail && await bcrypt.compare(password, userMail.identifier_password)) {
 

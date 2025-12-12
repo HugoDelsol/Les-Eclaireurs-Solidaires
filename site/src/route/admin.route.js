@@ -21,5 +21,11 @@ router.post('/addMission', sessionMdw.requireAuth, missionCtrlPost.addMission);
 router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
 router.post('/searchByCategories', missionCtrlPost.searchByCategories);
 
+// --- USER ---
+router.get('/superAdmin/tokenView', userCtrl.tokenView);
+router.post('/superAdmin/generateToken', userCtrl.generateToken);
+router.get('/listOfVolunteers', userCtrl.listOfVolunteers)
+
+
 module.exports = router;
 

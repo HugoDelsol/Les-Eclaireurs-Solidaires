@@ -6,114 +6,123 @@
     font-weight: weight;
     font-style: normal;
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 300;
     scroll-behavior: smooth;
 }
 
-body {
-    background: #F8F5EE;
-    position: relative;
-}
-
-.line {
-    border-bottom: 0.2em solid #F28B50;
-    border-radius: 4em;
-    width: 16%;
-    margin-top: 1.4em;
-}
-
-
-.dashboardContainer {
-    width: 80vw;
-    height: 94vh;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.dashboardContainer .btnPrimary {
+.btnPrimary {
     display: flex;
     justify-content: center;
-    background-color: #f8950038;
-    border: 0.1px solid #00000013;
-    padding: 0.4em 0.6em;
+    background-color: #f9cf807c;
+    border: 0.1px solid #f9cf807c;
+    padding: 0.6em 2em;
     border-radius: 2em;
     font-weight: 400;
 }
 
-.dashboardContainer .btnSecondary {
+.btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.11);
-    background-color: #ff3c0034;
-    padding: 0.4em 0.6em;
-    border-radius: 2em;
+    background-color: #F8F5EE;
+    padding: 0.4em 0.8em;
+    border-radius: 0.4em;
     font-weight: 400;
 }
 
-.dashboardContainer .btnHover {
+.btnHover {
     display: inline-block;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.dashboardContainer .btnHover:hover {
-    border-color: #000000b2;
+.btnHover:hover {
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /*border-inline-start-width: 5px;*/
+    border-color: #00000075;
 }
 
-.colHeader {
+.tokenContainer {
+    width: 80%;
+    height: 90vh;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.token {
+    margin-top: 10px;
+    width: 100%;
+    word-break: break-all;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.178);
+    border-radius: 5px;
+    height: 34px;
+    width: 320px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.container {
+    background: #F8F5EE;
+    display: flex;
+}
+
+.headTitle {
     display: flex;
     flex-direction: column;
-    height: 28vh;
-}
-
-.title {
-    display: flex;
     align-items: center;
+    width: 40%;
     justify-content: space-between;
-    margin-bottom: 20px;
-    padding: 0 6px;
+    padding: 2em;
+    background: linear-gradient(to top, #f5c09f, #ffffff00);
+    box-shadow: 0px 0px 12px rgba(30, 28, 165, 0.15);
+    border-radius: 1em;
+    margin: 0 auto;
 }
 
-.header {
+.headTitle h1 {
+    margin-bottom: 1em;
+}
+
+.listAdmins {
     display: flex;
     width: 100%;
-    height: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-.header h3 {
-    font-weight: 400;
-    font-size: 46px;
-}
-
-.headerCards {
-    border-radius: 10px;
-    padding: 20px;
-    width: calc(88%/3);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.background {
+.super,
+.admin {
+    width: 46%;
+    height: 46vh;
     background: linear-gradient(to top, #f5c09f, #ffffff00);
+    box-shadow: 0px 0px 12px rgba(30, 28, 165, 0.15);
+    padding: 0.4em 1em;
     border-radius: 1em;
-    padding: 10px 20px;
-    box-shadow: 0px 0px 12px rgba(30, 28, 165, 0.151);
+    text-align: center;
 }
 
-.tablePadding {
-    padding: 2em;
+.super h2,
+.admin h2 {
+    margin-top: 10px;
 }
 
 table {
-    height: 62vh;
     display: flex;
     flex-direction: column;
-    margin: 0.8em 0;
+    margin: 1em 0;
     text-align: center;
     border-radius: 10px;
 }
@@ -137,22 +146,16 @@ table th {
     padding: 16px 8px;
     font-size: 1.2em;
     font-weight: 500;
-    margin: 0 10px;
-    text-align: left;
 }
 
 table td {
     padding: 16px;
     border-radius: 10px;
-    text-align: left;
-    margin: 0 10px;
-
 }
 
 table tr {
     position: relative;
 }
-
 
 table tr::before {
     content: "";
@@ -177,28 +180,29 @@ tr input {
 }
 
 .fixMax {
-    height: 84%;
+    height: 32vh;
     overflow-y: scroll;
     display: block;
     border-radius: 0 0 10px 10px;
 }
 
-th,
-td {
-    width: calc(100% / 7);
+th {
+    width: calc(100% / 4);
+    text-align: left;
+    margin: 0 20px;
 }
 
-.completed th,
 td {
-    width: calc(100% / 7);
+    width: calc(100% / 4);
+    text-align: left;
+    margin: 0 20px;
 }
 
 .color {
-    color:  #000000;
+    color: #378341;
 }
 
 .colorBack {
     background-color: #f28b5036;
     border-radius: 10px 10px 0 0;
 }
-

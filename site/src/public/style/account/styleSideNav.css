@@ -11,7 +11,7 @@
 }
 
 
-.btnPrimary {
+.sideNav .btnPrimary {
     display: flex;
     justify-content: center;
     background-color: #f8950038;
@@ -21,7 +21,7 @@
     font-weight: 400;
 }
 
-.btnSecondary {
+.sideNav .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.11);
@@ -31,14 +31,14 @@
     font-weight: 400;
 }
 
-.btnHover {
+.sideNav .btnHover {
     display: inline-block;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.btnHover:hover {
+.sideNav .btnHover:hover {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
