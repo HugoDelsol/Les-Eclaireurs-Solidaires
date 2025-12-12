@@ -43,7 +43,9 @@ exports.getStatsMissions = async () => {
 
     const [resultSumVolunteers] = await db.query(requestSumVolunteers);
 
-    const requestTotalMissions = `SELECT COUNT(*) AS nbr_missions FROM mission;`
+    const requestTotalMissions =    `SELECT COUNT(*) AS nbr_missions FROM mission
+                                    WHERE mission_date >= CURRENT_DATE
+                                    AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
     
     const [resultTotalMissions] = await db.query(requestTotalMissions);
 

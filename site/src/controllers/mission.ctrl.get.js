@@ -11,13 +11,14 @@ exports.getStatsMissions = async (req, res) => {
 
         const getStatsMissions = await missionModel.getStatsMissions();
 
-        let average = (getStatsMissions.resultSumVolunteers[0].total_next_30_days / getStatsMissions.resultTotalMissions[0].nbr_missions) * 100;
-        const averageToFixed = average.toFixed(2);
+        let average = Math.round((getStatsMissions.resultSumVolunteers[0].total_next_30_days / getStatsMissions.resultTotalMissions[0].nbr_missions) * 100);
+        const averageToFixed = average.toFixed(0);
 
         for (let g of getStatsMissions.resultList) {
 
             const spaceAvailable = g.mission_available_place - g.nb_volunteers;
             const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
+            
             const fillRateToString = fillRate + "%";
 
             tabStats.push({
