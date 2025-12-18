@@ -4,77 +4,72 @@
     <%- include('../partials/_alert') %>
 
         <main>
-            <div class="modalContain"></div>
             <div class="container">
                 <%- include('../partials/_sideNavAdmin') %>
-                        <section class="blocListMission">
-                            <div class="titleAndCategorySearch">
-                                <div class="row ">
-                                    <h1>Bénévoles engagés</h1>
-                                    <div class="line"></div>
-                                </div>
-                                <form action="/admin/searchByCategories" method="post">
-                                    <div class="rowDesktop">
-                                        <div>
-                                             <label for=""><input type="text" placeholder="Rechercher par nom"></label>                                        
-                                        
-                                            <select name="regionSelected" id="regionSelected">
-                                                <option value="">Régions</option>                                                  
-                                            </select>
-                                            <select name="categorySelected" id="categorySelected">
-                                                <option value="">Catégories</option>                                                
-                                            </select>
-                                                                                
+                    <section class="blocListVolunteers">
+                        <div class="titleAndCategorySearch">
+                            <div class="">
+                                <h1>Bénévoles engagés</h1>
+                                <div class="line"></div>
+                            </div>
+                            <form action="" method="post">
+                                
+                                        <label for=""><input type="text" placeholder="Rechercher par nom"></label>
+                                        <select name="regionSelected" id="regionSelected">
+                                            <option value="">Régions</option>
+                                        </select>
+                                        <select name="categorySelected" id="categorySelected">
+                                            <option value="">Catégories</option>
+                                        </select>
                                         <button class="btnSecondary btnHover" type="submit">Rechercher</button>
-                                        </div>                                           
                                     
-                                        <p>|</p>
-                                        <button class="btnPrimary btnHover" type="submit">Voir tout / Engagement</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <table class="desktop">
-                                <thead>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>Email</th>
-                                        <th>Adress</th>
-                                        <th>Contacter</th>
-                                        <th>Engagement</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fixMax">                                    
-                                            <tr>
-                                                <td>
-                                                    <p>Nom</p>
-                                                </td>
-                                                <td class="color">
-                                                    <p>Nom</p>
-                                                    
-                                                </td>
-                                                <td>
-                                                    
-                                                    <p>Nom</p>
-                                                </td>
-                                                <td class="color">
-                                                    
-                                                    <p>Nom</p>
-                                                </td>
-                                                <td>
-                                                    <p>Nom</p>
-                                                    
-                                                </td>
-                                                <td>
-                                                    <p>Nom</p>
-                                                    
-                                                </td>
-                                            </tr>                                            
-                                                       
-                                </tbody>
-                            </table>
-                            <div>
-                            </div>
-                        </section>
+                                    <p class="">|</p>
+                                    <button class="btnSecondary btnHover" type="submit">Voir tout / Engagement</button>
+                                
+                            </form>
+                        </div>
+                        <table class="desktop">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Adress</th>
+                                    <th>Contacter</th>
+                                    <th>Engagement</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="fixMax">
+                                <tr>
+                                    <td>
+                                        <p>Nom</p>
+                                    </td>
+                                    <td class="color">
+                                        <p>Nom</p>
+
+                                    </td>
+                                    <td>
+
+                                        <p>Nom</p>
+                                    </td>
+                                    <td class="color">
+
+                                        <p>Nom</p>
+                                    </td>
+                                    <td>
+                                        <p>Nom</p>
+
+                                    </td>
+                                    <td>
+                                        <p>Nom</p>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div>
+                        </div>
+                    </section>
             </div>
         </main>
