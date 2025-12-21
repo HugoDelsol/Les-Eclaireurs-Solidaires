@@ -14,4 +14,7 @@
 -- Bouton Date sur list mission dois pouvoir filtrr de la plus recente a plus anciennes et inversement
 -- Avant de pouvoir sinscrire a une mision il faut avoir completer son profil 
 -- dashboard admin afficher des icons suivant les stats 
--- proteger les admin des user connecter et inversement (url fragile)
+/-- proteger les admin des user connecter et inversement (url fragile)
+-- btn remonter en haut quand mobil user
+-- favicon
+-- Title de chaque page valeur dynamique

@@ -216,8 +216,6 @@ exports.saveUser = async (req, res) => {
 
     } catch (error) {
 
-        //console.log(error.message)
-
         res.render('connection/signUp', {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -275,7 +273,7 @@ exports.auth = async (req, res) => {
             req.session.userExist = {
                 id: userExist.id_user,
                 firstName: userExist.user_first_name,
-                isAdmin: false
+                isVolunteer: true
             }
 
             const idUser = req.session.userExist.id;

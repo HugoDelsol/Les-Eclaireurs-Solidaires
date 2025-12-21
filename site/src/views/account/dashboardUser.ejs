@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleDashboardUser.css">
+<script src="/javaScript/carrouselDashboard.js" defer></script>
 <%- include('../partials/_head') %>
     <%- include('../partials/_alert') %>
 
@@ -33,24 +34,19 @@
                                         <div class="lineTitle"></div>
                                     </div>
                                     <div class="flexCardsMission">
-                                        <div class="cardMission">
-                                            <p class="strong">Distributions de repas</p>
-                                            <p>Place de l'eglise</p>
-                                            <p><span>6</span> places disponible</p>
-                                            <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                        </div>
-                                        <div class="cardMission">
-                                            <p class="strong">Distributions de repas</p>
-                                            <p>Place de l'eglise</p>
-                                            <p><span>6</span> places disponible</p>
-                                            <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                        </div>
-                                        <div class="cardMission">
-                                            <p class="strong">Distributions de repas</p>
-                                            <p>Place de l'eglise</p>
-                                            <p><span>6</span> places disponible</p>
-                                            <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                        </div>
+                                        <% //for (let i = 0; i < 3; i++) { %>      
+                                        <div class="rowArrow">
+                                            <img class="arrowResponsiv arrowLeft" src="pictures/arrow.png" alt="">
+                                            <div class="cardMission">
+                                                <p class="strong">Distributions de repas</p>
+                                                <p>Place de l'eglise</p>
+                                                <p><span>6</span> places disponible</p>
+                                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
+                                            </div>
+                                            <img class="arrowResponsiv arrowRight" src="pictures/arrow.png" alt="">
+                                        </div>                                      
+                                        
+                                        <% //} %>  
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +70,6 @@
                                         </tr>
                                     </thead>
                                     <tbody class="fixMax">
-
                                         <% for (let i=0; i < missionsUser.length; i++) { %>
                                             <tr>
                                                 <td>
@@ -91,7 +86,7 @@
                                                 <td><a href="#">Voir davantage</a></td>
                                                 <td>Désinscription<input type="checkbox"></td>
                                             </tr>
-                                            <% } %>
+                                        <% } %>
                                     </tbody>
                                 </table>
                             </div>

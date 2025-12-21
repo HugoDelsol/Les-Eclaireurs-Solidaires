@@ -12,20 +12,18 @@ router.get('/signUpAdminForm', userCtrl.signUpAdminForm);
 router.post('/saveAdmin', userCtrl.saveAdmin);
 
 // --- DAHBOARD ---
-router.get('/dashboardAdmin', sessionMdw.requireAuth, userCtrl.dashboardAdmin);
+router.get('/dashboardAdmin', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userCtrl.dashboardAdmin);
 
 // --- MISSION ---
-router.get('/missionAdminShow', sessionMdw.requireAuth, missionCtrlGet.missionAdminShow);
-router.get('/addMissionShow', sessionMdw.requireAuth, missionCtrlGet.addMissionShow);
-router.post('/addMission', sessionMdw.requireAuth, missionCtrlPost.addMission);
-router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
-router.post('/searchByCategories', missionCtrlPost.searchByCategories);
+router.get('/missionAdminShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.missionAdminShow);
+router.get('/addMissionShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.addMissionShow);
+router.post('/addMission', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlPost.addMission);
+router.get('/searchCity', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.searchCity);
+router.post('/searchByCategories', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlPost.searchByCategories);
 
-// --- USER ---
-router.get('/superAdmin/tokenView', userCtrl.tokenView);
-router.post('/superAdmin/generateToken', userCtrl.generateToken);
-router.get('/listOfVolunteers', userCtrl.listOfVolunteers)
-
+// --- USER MANAGEMENT ---
+router.get('/superAdmin/tokenView', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userCtrl.tokenView);
+router.post('/superAdmin/generateToken', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userCtrl.generateToken);
+router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userCtrl.listOfVolunteers)
 
 module.exports = router;
-

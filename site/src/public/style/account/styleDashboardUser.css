@@ -32,6 +32,7 @@ body {
     font-weight: 400;
 }
 
+
 .dashboardContainer .btnSecondary {
     display: flex;
     justify-content: center;
@@ -54,6 +55,10 @@ body {
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
     border-color: #00000075;
+}
+
+.arrowResponsiv {
+    display: none;
 }
 
 h1 {
@@ -131,7 +136,7 @@ h3 {
 
 .cardMission {
     background-color: rgba(255, 255, 255, 0.479);
-    width: 28%;
+    width: 100%;
     margin-top: 8px;
     padding: 10px 20px;
     border-radius: 10px;
@@ -275,12 +280,69 @@ td a {
 
     .dashboardContainer {
         padding-top: 100px;
-        padding-bottom: 130px;
+        padding-bottom: 100px;
+        height: auto;
+        width: 90vw;
+    }
+
+    .headerDashboard {
+        flex-direction: column;
+    }
+
+    .myStats, 
+    .nearMission {
+        width: auto;
     }
 
     .sideNav,
     .desktop {
         display: none;
+    }
+
+    .background,
+    .middleDashboard,
+    .endDashboard {
+        margin: 10px 0;
+    }
+
+    h1 {
+        margin:  20px 0;
+    }
+
+    .flexCardsMission {
+        justify-content: center;
+    }
+
+    .arrowLeft {
+        rotate: 90deg;
+    }
+
+    .arrowRight {
+        rotate:  -90deg;
+    }
+
+    .arrowResponsiv {
+        display: block;
+        width: 34px;
+        margin: 0 20px;
+        cursor: pointer;
+    }
+
+    .rowArrow {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+
+    .cardMission p {
+        text-align: center;
+    }
+
+    .cardMission {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
 }
