@@ -67,17 +67,19 @@ body {
     margin-top: 1.4em;
 }
 
-.blocListMission .btnPrimary {
+.blocListMission .btnPrimary,
+.cardFlexMission .btnPrimary {
     display: flex;
     justify-content: center;
     background-color: #f9cf807c;
-    border: 0.1px solid #f9cf807c;
+    border: 0.1px solid #8d764c7c;
     padding: 0.6em 1em;
     border-radius: 2em;
     font-weight: 400;
 }
 
-.blocListMission .btnSecondary {
+.blocListMission .btnSecondary,
+.cardFlexMission .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.26);
@@ -88,14 +90,16 @@ body {
     margin-left: 10px;
 }
 
-.blocListMission .btnHover {
+.blocListMission .btnHover,
+.cardFlexMission .btnHover {
     display: inline-block;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.blocListMission .btnHover:hover {
+.blocListMission .btnHover:hover,
+.cardFlexMission .btnHover:hover {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/

@@ -60,11 +60,13 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
         span.classList.add("spanText")
 
         btnClose.addEventListener("click", () => {
+            
             document.querySelector('.modalContain').innerHTML = ""
             c.checked = false
         })
 
         btnSubscribe.addEventListener("click", async () => {
+
             const response = await fetch(`/addRegisterMissionUser?idMission=${idMission}&idUser=${idUserValue}`, {
                 method: "POST"
             });
@@ -86,12 +88,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 setTimeout(()=>{
                     document.querySelector('.modalContain').innerHTML = "";
                     c.disabled = true                 
-                }, 3000);   
-                
-                
+                }, 3000);                
             }
-
         });
-
     }
 }

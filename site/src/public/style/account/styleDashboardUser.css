@@ -57,6 +57,10 @@ body {
     border-color: #00000075;
 }
 
+.flexCardsMissionResponsiv {
+    display: none;
+}
+
 .arrowResponsiv {
     display: none;
 }
@@ -120,11 +124,11 @@ h3 {
 }
 
 .statAlign p {
-    margin: 6px 0;   
+    margin: 6px 0;
 }
 
 .statAlign span {
-     font-size: 24px;
+    font-size: 24px;
 }
 
 .background {
@@ -135,11 +139,14 @@ h3 {
 }
 
 .cardMission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.479);
-    width: 100%;
     margin-top: 8px;
     padding: 10px 20px;
     border-radius: 10px;
+    width: 26%;
 }
 
 .strong {
@@ -149,6 +156,7 @@ h3 {
 .cardMission p {
     font-size: 18px;
     margin: 12px 0;
+    text-align: center;
 }
 
 .flexCardsMission {
@@ -157,8 +165,9 @@ h3 {
 }
 
 .cardMission a {
-    width: 50%;
+    width: 60%;
 }
+
 
 span {
     font-weight: 900;
@@ -209,7 +218,7 @@ table td {
     padding: 16px;
     border-radius: 10px;
     text-align: left;
-margin: 0 10px;
+    margin: 0 10px;
 }
 
 table tr {
@@ -274,6 +283,60 @@ td a {
 
 @media all and (max-width : 1300px) {
 
+ /*    @keyframes scrollRight {
+        50% {
+            transform: translateX(-150%);
+        }        
+
+        100% {
+            transform: translateX(-150%);
+        }
+
+    }
+
+    @keyframes scrollLeft {
+        33% {
+            transform: translateX(150%);
+        }
+
+        66% {
+            opacity: 0.5;
+        }
+
+        100% {
+            transform: translateX(150%);
+        }
+    }
+
+    .flexCardsMissionResponsiv {
+        overflow: hidden;
+    }
+
+    .carrouselStyleToogleRight {
+        animation: scrollRight 1s;
+    }
+
+     .carrouselStyleToogleLeft {
+        animation: scrollLeft 1s;
+    }
+ */
+
+    .flexCardsMission {
+        display: none;
+    }
+
+    .flexCardsMissionResponsiv {
+        display: block;
+    }
+
+    .dashboardContainer .btnSecondary {
+        width: 30%;
+    }
+
+    .flexCardsMissionResponsiv {
+        width: 100%;
+    }
+
     .responsivMob {
         display: none;
     }
@@ -289,7 +352,7 @@ td a {
         flex-direction: column;
     }
 
-    .myStats, 
+    .myStats,
     .nearMission {
         width: auto;
     }
@@ -306,7 +369,7 @@ td a {
     }
 
     h1 {
-        margin:  20px 0;
+        margin: 20px 0;
     }
 
     .flexCardsMission {
@@ -318,7 +381,7 @@ td a {
     }
 
     .arrowRight {
-        rotate:  -90deg;
+        rotate: -90deg;
     }
 
     .arrowResponsiv {
@@ -335,14 +398,11 @@ td a {
         width: 100%;
     }
 
-    .cardMission p {
-        text-align: center;
-    }
-
     .cardMission {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 80%;
     }
 
 }

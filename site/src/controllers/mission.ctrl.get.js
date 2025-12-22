@@ -3,6 +3,48 @@ const missionModel = require('../models/MissionModel');
 const service = require('../service/getGlobalData');
 const missionCtrlPost = require('./mission.ctrl.post');
 
+//---
+//--- RECUPERER LES 3 PROCHAINES MISSIONS DANS LA REGION DU BENEVOLE
+//---
+
+exports.getMissionByRegion = async (req, res) => {
+
+    try { 
+
+        const idRegion = 1;
+
+        const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);
+
+        return getMissionByRegion
+
+    } catch (error) {
+        
+    }
+}
+
+//---
+//--- AFFICHER EN RESPONSIV LES MISSIONS PAR REGIONS DU BENEVOLE VIA JAVASCRIPT
+//---
+
+exports.fetchMissionByRegionDashboardUser = async (req, res) => {
+
+    try { 
+
+        const idRegion = 1;
+
+        const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);        
+
+        res.json(getMissionByRegion)
+
+    } catch (error) {
+        
+    }
+}
+
+//---
+//--- AFFICHER A L'ADMIN LES STATS ET MISSIONS SUR LES 30 PROCHAIN JOURS
+//---
+
 exports.getStatsMissions = async (req, res) => {
 
     let tabStats = [];
@@ -46,6 +88,10 @@ exports.getStatsMissions = async (req, res) => {
     }
 
 }
+
+//---
+//--- RECUPERER LES MISSIONS A VENIR
+//---
 
 exports.missionAdminShow = async (req, res) => {
 
@@ -210,7 +256,7 @@ exports.searchCity = async (req, res) => {
 //--- RECUPERER TOUTE LES MISSIONS DU BENEVOLE
 //---
 
-exports.getAllMissionsByUser = async (req, res, idUser) => {
+/* exports.getAllMissionsByUser = async (req, res, idUser) => {
 
     try {
 
@@ -220,7 +266,27 @@ exports.getAllMissionsByUser = async (req, res, idUser) => {
 
             pseudoUser: req.session.userExist.firstName,
             missionsUser: allMissionByUser.length ? allMissionByUser : false
+        })
 
+    } catch (error) {
+
+        console.log("Controler getAllMissionsByUser: ", error)
+    }
+} */
+
+exports.dashboardAllStats = async (req, res, idUser) => {
+
+    try {
+
+        const getMissionByRegion = await this.getMissionByRegion()
+
+        const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
+
+        res.render('account/dashboardUser', {
+
+            pseudoUser: req.session.userExist.firstName,
+            missionsUser: allMissionByUser.length ? allMissionByUser : false,
+            missionByRegion: getMissionByRegion
         })
 
     } catch (error) {
@@ -228,7 +294,6 @@ exports.getAllMissionsByUser = async (req, res, idUser) => {
         console.log("Controler getAllMissionsByUser: ", error)
     }
 }
-
 
 //---
 //--- AFFICHER UN MODAL POUR VALIDER L'INSCRIPTIONN A UNE MISSION

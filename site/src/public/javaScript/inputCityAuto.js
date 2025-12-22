@@ -58,7 +58,6 @@ cityInput.addEventListener('input', async (e) => {
     } catch (error) {
 
         console.log('--->>>', error);
-
     }
 
 })

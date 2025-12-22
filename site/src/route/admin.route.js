@@ -18,8 +18,8 @@ router.get('/dashboardAdmin', sessionMdw.requireAuth, sessionMdw.allAdministrato
 router.get('/missionAdminShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.missionAdminShow);
 router.get('/addMissionShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.addMissionShow);
 router.post('/addMission', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlPost.addMission);
-router.get('/searchCity', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.searchCity);
-router.post('/searchByCategories', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlPost.searchByCategories);
+router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
+router.post('/searchByCategories', sessionMdw.requireAuth, missionCtrlPost.searchByCategories);
 
 // --- USER MANAGEMENT ---
 router.get('/superAdmin/tokenView', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userCtrl.tokenView);

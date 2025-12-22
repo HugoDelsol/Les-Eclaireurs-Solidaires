@@ -23,6 +23,7 @@ router.post('/saveUser', userCtrl.saveUser);
 
 // --- DASHBOARD ---
 router.get('/dashboardUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.dashboardUser);
+router.get('/fetchMissionByRegionDashboardUser', sessionMdw.requireAuth, missionCtrlGet.fetchMissionByRegionDashboardUser);
 
 // --- MISSION ---
 router.get('/missionUserShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionCtrlGet.missionUserShow);

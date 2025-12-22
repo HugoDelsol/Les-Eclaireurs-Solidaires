@@ -1,58 +1,89 @@
 const db = require('../config/database');
 
-exports.getStatsMissions = async () => {    
+exports.getMissionByRegion = async (idRegion) => {
 
-    const requestList = `SELECT  
-                        m.id_mission,
-                        m.mission_title,
-                        DATE_FORMAT(m.mission_date, '%d/%m/%Y') AS mission_date,
-                        m.mission_start_time,
-                        m.mission_end_time,
-                        m.mission_description,
-                        m.mission_place_name,
-                        m.mission_available_place, 
-                        m.mission_img,
-                        m._id_mission_category,
-                        COUNT(DISTINCT r._id_user) AS nb_volunteers
-                    FROM mission AS m
-                    LEFT JOIN registration_mission AS r
-                        ON r._id_mission = m.id_mission
-                    WHERE m.mission_date >= CURRENT_DATE()
-                        AND m.mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)                        
-                    GROUP BY 
-                        m.id_mission,
-                        m.mission_title,
-                        m.mission_date,
-                        m.mission_start_time,
-                        m.mission_end_time,
-                        m.mission_description,
-                        m.mission_place_name,
-                        m.mission_available_place, 
-                        m.mission_img,
-                        m._id_mission_category                        
-                    ORDER BY m.mission_date ASC;`                    
+    try {
 
-    const [resultList] = await db.query(requestList);    
+        const request = `SELECT * FROM mission
+                        LEFT JOIN  city
+                            ON id_city = _id_city
+                        LEFT JOIN region
+                            ON id_region = _id_region
+                        WHERE id_region = ?
+                            AND mission_date >= CURRENT_DATE()                        
+                        LIMIT 3`
 
-    const requestSumVolunteers = `SELECT COUNT(DISTINCT _id_user) AS total_next_30_days
-                        FROM registration_mission
-                        LEFT JOIN mission
-                        ON id_mission = _id_mission
-                        WHERE mission_date >= CURRENT_DATE()
-                        AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
+        const [result] = await db.query(request, [idRegion])
+        return result;
 
-    const [resultSumVolunteers] = await db.query(requestSumVolunteers);
+    } catch (error) {
 
-    const requestTotalMissions =    `SELECT COUNT(*) AS nbr_missions FROM mission
-                                    WHERE mission_date >= CURRENT_DATE
-                                    AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
-    
-    const [resultTotalMissions] = await db.query(requestTotalMissions);
+        console.error("Erreur SQL getMissionByRegion :", error);
+        throw error;
+    }
+}
 
-    return {
-        resultList,
-        resultSumVolunteers,
-        resultTotalMissions
+exports.getStatsMissions = async () => {
+
+    try {
+
+        const requestList = `SELECT  
+                                m.id_mission,
+                                m.mission_title,
+                                DATE_FORMAT(m.mission_date, '%d/%m/%Y') AS mission_date,
+                                m.mission_start_time,
+                                m.mission_end_time,
+                                m.mission_description,
+                                m.mission_place_name,
+                                m.mission_available_place, 
+                                m.mission_img,
+                                m._id_mission_category,
+                                COUNT(DISTINCT r._id_user) AS nb_volunteers
+                            FROM mission AS m
+                            LEFT JOIN registration_mission AS r
+                                ON r._id_mission = m.id_mission
+                            WHERE m.mission_date >= CURRENT_DATE()
+                                AND m.mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)                        
+                            GROUP BY 
+                                m.id_mission,
+                                m.mission_title,
+                                m.mission_date,
+                                m.mission_start_time,
+                                m.mission_end_time,
+                                m.mission_description,
+                                m.mission_place_name,
+                                m.mission_available_place, 
+                                m.mission_img,
+                                m._id_mission_category                        
+                            ORDER BY m.mission_date ASC;`
+
+        const [resultList] = await db.query(requestList);
+
+        const requestSumVolunteers = `SELECT COUNT(DISTINCT _id_user) AS total_next_30_days
+                                        FROM registration_mission
+                                        LEFT JOIN mission
+                                        ON id_mission = _id_mission
+                                        WHERE mission_date >= CURRENT_DATE()
+                                        AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
+
+        const [resultSumVolunteers] = await db.query(requestSumVolunteers);
+
+        const requestTotalMissions = `SELECT COUNT(*) AS nbr_missions FROM mission
+                                        WHERE mission_date >= CURRENT_DATE
+                                        AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
+
+        const [resultTotalMissions] = await db.query(requestTotalMissions);
+
+        return {
+            resultList,
+            resultSumVolunteers,
+            resultTotalMissions
+        }
+
+    } catch (error) {
+
+        console.error("Erreur SQL getStatsMissions :", error);
+        throw error;
     }
 }
 
@@ -77,7 +108,7 @@ exports.searchByCategories = async (regionSelected, categorySelected, tripStart,
             values.push("mission_date BETWEEN ? AND ?");
             params.push(tripStart);
             params.push(tripEnd);
-        }  
+        }
 
         if (values.length > 0) {
 

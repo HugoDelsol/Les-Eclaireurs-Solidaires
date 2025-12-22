@@ -3,10 +3,9 @@ const bcrypt = require('bcrypt');
 const service = require('../service/generateToken');
 const { getAllMissionsByUser } = require('./mission.ctrl.get');
 const { getStatsMissions } = require('./mission.ctrl.get');
+const { dashboardAllStats } = require('./mission.ctrl.get')
 
 // --- VIEWS ---
-
-
 exports.signIn = async (req, res) => {
     res.render('connection/signIn');
 }
@@ -27,7 +26,7 @@ exports.dashboardAdmin = async (req, res) => {
 
 exports.dashboardUser = async (req, res) => {
     const idUser = req.session.userExist.id;
-    getAllMissionsByUser(req, res, idUser);
+    dashboardAllStats(req, res, idUser);    
 }
 
 exports.tokenView = async (req, res) => {
@@ -278,7 +277,7 @@ exports.auth = async (req, res) => {
 
             const idUser = req.session.userExist.id;
 
-            getAllMissionsByUser(req, res, idUser);
+            this.dashboardUser(req, res, idUser);
 
         }
 

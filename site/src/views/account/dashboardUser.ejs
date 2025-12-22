@@ -34,19 +34,29 @@
                                         <div class="lineTitle"></div>
                                     </div>
                                     <div class="flexCardsMission">
-                                        <% //for (let i = 0; i < 3; i++) { %>      
+                                        <% for (let m of missionByRegion) { %>                                          
+                                        
+                                            <div class="cardMission">
+                                                <p class="strong"><%= m.mission_title  %></p>
+                                                <p><%= m.city_name  %></p>
+                                                <p><span><%= m.mission_available_place %></span> places disponible</p>
+                                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
+                                            </div>
+                                                                             
+                                        
+                                        <% } %>  
+                                    </div>
+                                    <div class="flexCardsMissionResponsiv" >                                                                                   
                                         <div class="rowArrow">
                                             <img class="arrowResponsiv arrowLeft" src="pictures/arrow.png" alt="">
-                                            <div class="cardMission">
-                                                <p class="strong">Distributions de repas</p>
-                                                <p>Place de l'eglise</p>
-                                                <p><span>6</span> places disponible</p>
+                                            <div class="cardMission carrouselStyle">
+                                                <p class="strong mission_title"></p>
+                                                <p class="city_name"></p>
+                                                <p><span class="mission_available_place"></span> places disponible</p>
                                                 <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
                                             </div>
                                             <img class="arrowResponsiv arrowRight" src="pictures/arrow.png" alt="">
-                                        </div>                                      
-                                        
-                                        <% //} %>  
+                                        </div>    
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +80,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="fixMax">
-                                        <% for (let i=0; i < missionsUser.length; i++) { %>
+                                        <% for (let i= 0; i < missionsUser.length; i++) { %>
                                             <tr>
                                                 <td>
                                                     <p>
