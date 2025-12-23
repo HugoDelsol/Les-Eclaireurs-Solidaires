@@ -18,3 +18,5 @@
 -- btn remonter en haut quand mobil user
 -- favicon
 -- Title de chaque page valeur dynamique
+-- Organistation du modele de class
+-- Organisation du css (Optimisation)

@@ -34,7 +34,22 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
         const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);        
 
-        res.json(getMissionByRegion)
+        res.json(getMissionByRegion);
+
+    } catch (error) {
+        
+    }
+}
+
+exports.fetchMissionByRegistrationDashboardUser = async (req, res) => {
+
+    try {
+        
+       const idUser = req.session.userExist.id
+
+       const getAllMissionsByUser = await missionModel.getAllMissionsByUser(idUser);
+
+       res.json(getAllMissionsByUser)
 
     } catch (error) {
         
@@ -42,7 +57,7 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 }
 
 //---
-//--- AFFICHER A L'ADMIN LES STATS ET MISSIONS SUR LES 30 PROCHAIN JOURS
+//--- AFFICHER A L'ADMIN LES STATS ET MISSIONS SUR LES 30 PROCHAIN JOURS (DASHBOARD)
 //---
 
 exports.getStatsMissions = async (req, res) => {
@@ -86,7 +101,6 @@ exports.getStatsMissions = async (req, res) => {
 
         console.log(error)
     }
-
 }
 
 //---

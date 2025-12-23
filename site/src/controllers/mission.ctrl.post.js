@@ -28,7 +28,7 @@ exports.searchByCategories = async (req, res) => {
 
         missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
 
-        if (req.session.userExist.isAdmin === false) {
+        if (req.session.userExist.isVolunteer) {
 
             res.render('account/listMissionUser', {
                 missionSelected: missionsSelected,

@@ -1,18 +1,9 @@
-const arrowRight = document.querySelector(".arrowRight");
-const arrowLeft = document.querySelector(".arrowLeft");
-
-const loadingMission = document.querySelector(".rowArrow");
-const carrouselStyle = document.querySelector(".carrouselStyle");
-
-const missionTitle = document.querySelector(".mission_title");
-const cityName = document.querySelector(".city_name");
-const missionAvailablePlace = document.querySelector(".mission_available_place");
-
 let isBelow1300 = window.innerWidth < 1300;
 let currentWidth = window.innerWidth;
 
 if (currentWidth < 1300) {
-    carrouselMissionByRegion()
+    carrouselMissionByRegion();
+    carrouselMissionByRegistration();
 }
 
 window.addEventListener('resize', () => {
@@ -25,9 +16,21 @@ window.addEventListener('resize', () => {
 
     if (currentWidth < 1300 && !isBelow1300) {
         isBelow1300 = true;
-        carrouselMissionByRegion(isBelow1300);
+        carrouselMissionByRegion();
+        carrouselMissionByRegistration();
     }
 })
+
+const ifNoData = document.querySelector(".rowArrow");
+
+/* --- CAROUSSEL BY REGIONS --- */
+
+const arrowRight = document.querySelector(".arrowRight");
+const arrowLeft = document.querySelector(".arrowLeft");
+
+const missionTitle = document.querySelector(".mission-title");
+const cityName = document.querySelector(".city-name");
+const missionAvailablePlace = document.querySelector(".mission-available-place");
 
 async function carrouselMissionByRegion() {
 
@@ -47,9 +50,9 @@ async function carrouselMissionByRegion() {
 
         let index = 0;
 
-        if (data.length < 0 ) {
+        if (data.length < 0) {
 
-            loadingMission.style.display = "none"
+            ifNoData.style.display = "none"
             return;
 
         } else {
@@ -65,20 +68,16 @@ async function carrouselMissionByRegion() {
                 index += 1;
 
                 if (index == data.length) index = 0
-                
-                //carrouselStyle.classList.toggle('carrouselStyleToogleRight')
-                
-                updateCarrousel();                
-                
+
+                updateCarrousel();
             })
-            
+
             arrowLeft.addEventListener('click', () => {
-                
+
                 index -= 1;
-                
+
                 if (index == -1) index = data.length - 1
-                
-                //carrouselStyle.classList.toggle('carrouselStyleToogleLeft')
+
                 updateCarrousel();
             })
 
@@ -87,7 +86,75 @@ async function carrouselMissionByRegion() {
 
     } catch (error) {
 
-        console.error(error);
+        console.log(error);
     }
+}
 
+/* --- CAROUSSEL BY REGISTRATION --- */
+
+const arrowLeftRegistration = document.querySelector(".arrowLeftRegistration");
+const arrowRightRegistration = document.querySelector(".arrowRightRegistration");
+
+const titleMissionRegister = document.querySelector(".title-mission-register");
+const placeMissionRegister = document.querySelector(".place-mission-register");
+const dateMissionRegister = document.querySelector(".date-mission-register");
+
+async function carrouselMissionByRegistration() {
+
+    try {
+
+        const response = await fetch('/fetchMissionByRegistrationDashboardUser', {
+            method: "GET",
+        })
+
+        if (!response.ok) {
+            window.location.href = "/";
+            console.log(data.message);
+            return;
+        }
+
+        const data = await response.json();
+
+        console.log(data);
+
+        let index = 0
+
+        function updateCarrousel() {
+            titleMissionRegister.textContent = data[index].mission_title;
+            placeMissionRegister.textContent = data[index].city_name;
+            dateMissionRegister.textContent = data[index].mission_date;
+        }
+
+        arrowLeftRegistration.addEventListener('click', () => {
+
+            console.log(index)
+
+            index -= 1
+
+             if (index == -1) {
+                index = data.length - 1
+            }            
+            updateCarrousel()
+            
+        })
+
+        arrowRightRegistration.addEventListener('click', () => {
+
+            console.log(index)
+
+            index += 1
+
+            if (index == data.length) {
+                index = 0
+            }
+            
+            updateCarrousel()
+        })
+
+        updateCarrousel()
+
+    } catch (error) {
+
+        console.log(error);
+    }
 }

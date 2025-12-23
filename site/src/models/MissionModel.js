@@ -124,7 +124,8 @@ exports.searchByCategories = async (regionSelected, categorySelected, tripStart,
                                 ON id_region = _id_region
                             LEFT JOIN mission_category
                             ON id_mission_category = _id_mission_category
-                            ${where};`
+                            ${where}
+                            AND mission_date >= CURRENT_DATE();`
 
             const [result] = await db.query(request, params);
             return result;

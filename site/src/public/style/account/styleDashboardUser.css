@@ -38,7 +38,7 @@ body {
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.11);
     background-color: #F8F5EE;
-    padding: 0.6em 1em;
+    padding: 0.4em 0.6em;
     border-radius: 2em;
     font-weight: 400;
 
@@ -48,6 +48,7 @@ body {
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
+    margin: 0.4em 0 0 0;
 }
 
 .dashboardContainer .btnHover:hover {
@@ -109,6 +110,7 @@ h3 {
 
 .myStats {
     width: 30%;
+    margin-right: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -144,30 +146,29 @@ h3 {
     align-items: center;
     background-color: rgba(255, 255, 255, 0.479);
     margin-top: 8px;
-    padding: 10px 20px;
+    padding: 10px;
     border-radius: 10px;
-    width: 26%;
+    width: 28%;
+}
+
+.cardMission p {
+    font-size: 18px;
+    margin: 4px 0;
+    text-align: center;
+}
+
+.cardMission a {
+    width: 74%;
 }
 
 .strong {
     font-weight: 900;
 }
 
-.cardMission p {
-    font-size: 18px;
-    margin: 12px 0;
-    text-align: center;
-}
-
 .flexCardsMission {
     display: flex;
     justify-content: space-between;
 }
-
-.cardMission a {
-    width: 60%;
-}
-
 
 span {
     font-weight: 900;
@@ -255,8 +256,6 @@ tr input {
     border-radius: 0 0 10px 10px;
 }
 
-
-
 .endDashboard th,
 .endDashboard td {
     width: calc(100% / 4);
@@ -281,45 +280,11 @@ td a {
 }
 
 
-@media all and (max-width : 1300px) {
+@media all and (max-width : 1300px) {  
 
- /*    @keyframes scrollRight {
-        50% {
-            transform: translateX(-150%);
-        }        
-
-        100% {
-            transform: translateX(-150%);
-        }
-
+    .fixMax, table {
+        display: none;
     }
-
-    @keyframes scrollLeft {
-        33% {
-            transform: translateX(150%);
-        }
-
-        66% {
-            opacity: 0.5;
-        }
-
-        100% {
-            transform: translateX(150%);
-        }
-    }
-
-    .flexCardsMissionResponsiv {
-        overflow: hidden;
-    }
-
-    .carrouselStyleToogleRight {
-        animation: scrollRight 1s;
-    }
-
-     .carrouselStyleToogleLeft {
-        animation: scrollLeft 1s;
-    }
- */
 
     .flexCardsMission {
         display: none;
@@ -327,14 +292,11 @@ td a {
 
     .flexCardsMissionResponsiv {
         display: block;
+        width: 100%;
     }
 
     .dashboardContainer .btnSecondary {
         width: 30%;
-    }
-
-    .flexCardsMissionResponsiv {
-        width: 100%;
     }
 
     .responsivMob {
@@ -355,6 +317,7 @@ td a {
     .myStats,
     .nearMission {
         width: auto;
+        padding: 20px;
     }
 
     .sideNav,
@@ -376,11 +339,13 @@ td a {
         justify-content: center;
     }
 
-    .arrowLeft {
+    .arrowLeft,
+    .arrowLeftRegistration {
         rotate: 90deg;
     }
 
-    .arrowRight {
+    .arrowRight,
+    .arrowRightRegistration {
         rotate: -90deg;
     }
 
@@ -403,6 +368,10 @@ td a {
         flex-direction: column;
         align-items: center;
         width: 80%;
+    }
+
+    .cardMission a {
+        width: auto;
     }
 
 }
