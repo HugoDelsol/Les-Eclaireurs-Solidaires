@@ -18,5 +18,9 @@
 -- btn remonter en haut quand mobil user
 -- favicon
 -- Title de chaque page valeur dynamique
+-- Orga des fichiers et dossiers
 -- Organistation du modele de class
 -- Organisation du css (Optimisation)
+-- Protection des formulaire contre xss etc ...
+-- 150 plus grande ville de france
+-- Gerer les pages d'erreurs (404 etc ...)

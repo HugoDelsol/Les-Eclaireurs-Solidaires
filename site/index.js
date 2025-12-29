@@ -8,8 +8,6 @@ const path = require('path');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 
-console.log("DB_HOST:", process.env.DB_HOST);
-console.log("DB_PORT:", process.env.DB_PORT);
 // ------------------------------------
 // ⚙️ INITIALISATION DE L'APPLICATION
 // ------------------------------------

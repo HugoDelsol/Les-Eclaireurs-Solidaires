@@ -18,13 +18,13 @@ const centralizedVar = (req, res, next) => {
     res.locals.email = null;
     res.locals.password = null;
     res.locals.passwordConfirm = null;
-    res.locals.token = null
-
-    // --- ADMIN TOKEN --- //
+    
+    // --- TOKEN --- //
+    res.locals.token = null;
     res.locals.tokenAdmin = null;
     res.locals.tokenSuper = null;
-    res.locals.superAdmins = [];
-    res.locals.admins = [];
+    res.locals.superAdmins = null;
+    res.locals.admins = null;
 
     next();
 }

@@ -115,8 +115,6 @@ async function carrouselMissionByRegistration() {
 
         const data = await response.json();
 
-        console.log(data);
-
         let index = 0
 
         function updateCarrousel() {
@@ -126,8 +124,6 @@ async function carrouselMissionByRegistration() {
         }
 
         arrowLeftRegistration.addEventListener('click', () => {
-
-            console.log(index)
 
             index -= 1
 
@@ -139,8 +135,6 @@ async function carrouselMissionByRegistration() {
         })
 
         arrowRightRegistration.addEventListener('click', () => {
-
-            console.log(index)
 
             index += 1
 

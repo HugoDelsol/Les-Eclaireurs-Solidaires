@@ -93,6 +93,10 @@ h1 {
     background-color: #f9cf8028;
 }
 
+.displayNone {
+    display: none;
+}
+
 @media all and (max-width: 810px) {
 
     .register,
@@ -176,12 +180,12 @@ h1 {
         height: 1.2em;
     }
 
-     h1{       
+    h1 {
         font-size: 1.6em;
     }
 
     .container {
-            padding: 4em 0 4em 0;
+        padding: 4em 0 4em 0;
     }
 
     h2 a {

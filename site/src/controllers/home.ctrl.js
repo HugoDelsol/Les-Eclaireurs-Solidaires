@@ -24,8 +24,6 @@ exports.submitForm = async (req, res) => {
 
         const result = await homeModel.addMessageForm(nameForm, emailForm, txtArea);
 
-        //console.log('---->', result[0].insertId)
-
     } catch (error) {
         
         res.render('home/homePage', {

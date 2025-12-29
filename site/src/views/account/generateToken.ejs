@@ -9,18 +9,19 @@
 
             <div class="container">
                 <%- include('../partials/_sideNavAdmin') %>
-
                     <div class="tokenContainer">
                         <div class="headTitle">
                             <h1>Gestion des jetons d'authentification</h1>
                             <form action="/admin/superAdmin/generateToken" method="post">
-                                <label for=""><input type="text" placeholder="Email" name="emailTokenAdmin"
-                                        id="emailTokenAdmin"></label>
+                                <label for="emailTokenAdmin">
+                                    <input type="text" placeholder="Email" name="emailTokenAdmin" id="emailTokenAdmin">
+                                </label>
                                 <button class="btnSecondary btnHover" type="submit">Administrateur</button>
                             </form>
                             <form action="/admin/superAdmin/generateToken" method="post">
-                                <label for=""><input type="text" placeholder="Email" id="emailTokenSuper"
-                                        name="emailTokenSuper"></label>
+                                <label for="emailTokenSuper">
+                                    <input type="text" placeholder="Email" id="emailTokenSuper" name="emailTokenSuper">
+                                </label>
                                 <button class="btnSecondary btnHover" type="submit">Super Administrateur </button>
                             </form>
                             <div class="token">
@@ -42,26 +43,30 @@
                                         </tr>
                                     </thead>
                                     <tbody class="fixMax">
-                                        <% for (let a of superAdmins) { %>
-                                            <tr>
-                                                <td>
-                                                    <p>
-                                                        <%= a.admin_first_name %>
-                                                    </p>
-                                                </td>
-                                                <td class="">
-                                                    <%= a.admin_last_name %>                                                    
-                                                </td>
-                                                <td>
-                                                    <%= a.admin_created_at %>
-                                                </td>
-                                                <td>
-                                                    <p>
-                                                        changer role ou sup
-                                                    </p>
-                                                </td>
-                                            </tr>
+                                        <div>
+                                            <% for (let a of superAdmins) { %>
+                                        </div>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <%= a.admin_first_name %>
+                                                </p>
+                                            </td>
+                                            <td class="">
+                                                <%= a.admin_last_name %>
+                                            </td>
+                                            <td>
+                                                <%= a.admin_created_at %>
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    changer role ou sup
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <div>
                                             <% } %>
+                                        </div>
                                     </tbody>
                                 </table>
                             </div>
@@ -77,41 +82,38 @@
                                         </tr>
                                     </thead>
                                     <tbody class="fixMax">
-                                       <% for (let a of admins) { %>
-                                            <tr>
-                                                <td>
-                                                    <p>
-                                                        <%= a.admin_first_name %>
-                                                    </p>
-                                                </td>
-                                                <td class="">
-                                                    <%= a.admin_last_name %>                                                    
-                                                </td>
-                                                <td>
-                                                    <%= a.admin_created_at %>
-                                                </td>
-                                                <td>
-                                                    <p>
-                                                        changer role ou sup
-                                                    </p>
-                                                </td>
-                                            </tr>
+                                        <div>
+                                            <% for (let a of admins) { %>
+                                        </div>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <%= a.admin_first_name %>
+                                                </p>
+                                            </td>
+                                            <td class="">
+                                                <%= a.admin_last_name %>
+                                            </td>
+                                            <td>
+                                                <%= a.admin_created_at %>
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    changer role ou sup
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <div>
                                             <% } %>
+                                        </div>
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
-
-
-
-
             </div>
         </main>
-
-
         </body>
 
         </html>

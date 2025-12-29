@@ -1,5 +1,26 @@
 const db = require('../config/database');
 
+exports.addUserHistoryMission = async (idUser) => {
+
+    try {
+
+        console.log("coucou")
+        
+        const request = `SELECT * FROM registration_mission
+                        LEFT JOIN mission 
+                        ON id_mission = _id_mission
+                        WHERE _id_user = ?
+                        AND CURRENT_DATE > mission_date;` 
+
+        const [result] = await db.query(request, [idUser]);
+
+        console.log(result)
+
+    } catch (error) {
+        
+    }
+}
+
 exports.getMissionByRegion = async (idRegion) => {
 
     try {

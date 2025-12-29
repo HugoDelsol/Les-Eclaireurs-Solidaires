@@ -5,13 +5,13 @@ const userCtrl = require('../controllers/user.ctrl');
 const missionCtrlGet = require('../controllers/mission.ctrl.get');
 const missionCtrlPost = require('../controllers/mission.ctrl.post');
 const sessionMdw = require('../middleware/session.middleware');
-const globalVarsMdw = require('../middleware/globalVars.middleware');
+const inputProtection = require('../middleware/inputProtection.middleware');
 
 // --- GENERAL ROUTE ---
-router.post('/auth', userCtrl.auth); 
+router.post('/auth', inputProtection.signInFormProtection, userCtrl.auth); 
 router.get('/logout', sessionMdw.logout);
 
-// --- HOME ---
+// --- HOME --- 
 router.get('/', homeCtrl.homePage);
 router.get('/becomeVolunteer', homeCtrl.becomeVolunteer);
 router.post('/homeForm', homeCtrl.submitForm);
@@ -19,7 +19,7 @@ router.post('/homeForm', homeCtrl.submitForm);
 // --- SIGN ---
 router.get('/signIn', userCtrl.signIn);
 router.get('/signUp', userCtrl.signUp);
-router.post('/saveUser', userCtrl.saveUser);
+router.post('/saveUser', inputProtection.signUpFormProtection, userCtrl.saveUser);
 
 // --- DASHBOARD ---
 router.get('/dashboardUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.dashboardUser);

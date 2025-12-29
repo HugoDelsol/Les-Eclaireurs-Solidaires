@@ -296,6 +296,8 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
 
+        const historyMissionUser = await missionModel.addUserHistoryMission(idUser);
+
         res.render('account/dashboardUser', {
 
             pseudoUser: req.session.userExist.firstName,

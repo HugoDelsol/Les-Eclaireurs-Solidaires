@@ -1,6 +1,7 @@
 const userModel = require('../models/UserModel');
 const bcrypt = require('bcrypt');
 const service = require('../service/generateToken');
+const { body, validationResult } = require('express-validator');
 const { getAllMissionsByUser } = require('./mission.ctrl.get');
 const { getStatsMissions } = require('./mission.ctrl.get');
 const { dashboardAllStats } = require('./mission.ctrl.get')
@@ -50,7 +51,6 @@ exports.listOfVolunteers = async (req,res) => {
 }
 
 // --- --- ---
-
 
 exports.generateToken = async (req, res) => {
 
@@ -188,6 +188,10 @@ exports.saveUser = async (req, res) => {
 
             throw new Error('Merci de compléter tous les champs');
         }
+
+        /* if (firstName.length > 30 || lastName.length > 30) {
+            throw new Error('Prénom ou nom trop long');
+        } */
 
         if (password !== passwordConfirm) {
             throw new Error('Les mots de passe ne sont pas identiques')

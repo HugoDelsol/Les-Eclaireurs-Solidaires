@@ -1,6 +1,9 @@
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 
+
+
+
 //---
 //--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
 //---
@@ -23,14 +26,37 @@ exports.searchByCategories = async (req, res) => {
         !tripEnd ? tripEnd = false : tripEnd;
 
         if (tripStart && !tripEnd || !tripStart && tripEnd) {
-            throw new Error("Veuillez saisir une date de début et une date de fin.")
+
+            if (req.session.userExist.isVolunteer) {
+
+                return res.render('account/listMissionUser', {
+                    categoriesMission: req.session.categoriesMission,
+                    regions: req.session.regions,
+                    missions: req.session.getAllMissions,
+                    categorySelected: categorySelected,
+                    regionSelected: regionSelected,
+                    alertMsg: "Veuilliez saisir une date de début et une date de fin."
+                });
+            }            
+
+            if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
+
+                return res.render('account/listMissionsAdmin', {
+                    categoriesMission: req.session.categoriesMission,
+                    regions: req.session.regions,
+                    missions: req.session.getAllMissions,
+                    categorySelected: categorySelected,
+                    regionSelected: regionSelected,                    
+                    alertMsg: "Veuilliez saisir une date de début et une date de fin."
+                });
+            }
         }
 
         missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
 
         if (req.session.userExist.isVolunteer) {
 
-            res.render('account/listMissionUser', {
+            return res.render('account/listMissionUser', {
                 missionSelected: missionsSelected,
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
@@ -41,7 +67,7 @@ exports.searchByCategories = async (req, res) => {
 
         } else {
 
-            res.render('account/listMissionsAdmin', {
+            return res.render('account/listMissionsAdmin', {
                 missionSelected: missionsSelected,
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
@@ -54,14 +80,7 @@ exports.searchByCategories = async (req, res) => {
     } catch (error) {
 
         console.log(error);
-        
-        res.render('account/listMissionsAdmin', {
-            alertMsg: error.message,
-            missionSelected: missionsSelected,
-            categoriesMission: req.session.categoriesMission,
-            regions: req.session.regions,
-            missions: req.session.getAllMissions,
-        });
+        res.render('home/404');
     }
 }
 

@@ -30,7 +30,7 @@ span {
 .btnPrimary {
     display: flex;
     justify-content: center;
-    box-shadow: 0px 0px 6px #00000079;
+    box-shadow: 0px 0px 6px #00000038;
     background-color: #F9CF80;
     border: none;
     padding: 0.6em 2em;
@@ -41,8 +41,8 @@ span {
 .btnSecondary {
     display: flex;
     justify-content: center;
-    border: 0.1px solid rgba(0, 0, 0, 0.11);
-    box-shadow: 0px 0px 6px #F9CF80;
+    border: 0.1px solid rgba(0, 0, 0, 0.150);
+    box-shadow: 0px 0px 6px #f9cf807a;
     background-color: #F8F5EE;
     padding: 0.6em 2em;
     border-radius: 2em;
