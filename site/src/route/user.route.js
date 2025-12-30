@@ -25,6 +25,7 @@ router.post('/saveUser', inputProtection.signUpFormProtection, userCtrl.saveUser
 router.get('/dashboardUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.dashboardUser);
 router.get('/fetchMissionByRegionDashboardUser', sessionMdw.requireAuth, missionCtrlGet.fetchMissionByRegionDashboardUser);
 router.get('/fetchMissionByRegistrationDashboardUser', sessionMdw.requireAuth, missionCtrlGet.fetchMissionByRegistrationDashboardUser);
+router.get('/fetchMissionAccomplishedDashboardUser', sessionMdw.requireAuth, missionCtrlGet.fetchMissionAccomplishedDashboardUser)
 
 // --- MISSION ---
 router.get('/missionUserShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionCtrlGet.missionUserShow);

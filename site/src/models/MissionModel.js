@@ -4,19 +4,21 @@ exports.addUserHistoryMission = async (idUser) => {
 
     try {
 
-        console.log("coucou")
-        
-        const request = `SELECT * FROM registration_mission
-                        LEFT JOIN mission 
-                        ON id_mission = _id_mission
-                        WHERE _id_user = ?
-                        AND CURRENT_DATE > mission_date;` 
+        const requestSelect =   `SELECT *, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date
+                                FROM registration_mission
+                                LEFT JOIN mission 
+                                ON id_mission = _id_mission
+                                WHERE _id_user = ?
+                                AND CURRENT_DATE > mission_date;` 
 
-        const [result] = await db.query(request, [idUser]);
-
-        console.log(result)
+        const [result] = await db.query(requestSelect, [idUser]);
+    
+        return result
 
     } catch (error) {
+                
+        console.error("Erreur SQL addUserHistoryMission :", error);
+        throw error;
         
     }
 }
@@ -327,7 +329,7 @@ exports.getAllMissionsByUser = async (IdUser) => {
 
     try {
 
-        const request = `SELECT mission_title, DATE_FORMAT(mission_date, '%e/%m/%Y') AS mission_date, city_name 
+        const request = `SELECT mission_title, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, city_name 
                         FROM registration_mission 
                         LEFT JOIN mission
                         ON id_mission = _id_mission

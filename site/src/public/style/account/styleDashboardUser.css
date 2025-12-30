@@ -340,12 +340,14 @@ td a {
     }
 
     .arrowLeft,
-    .arrowLeftRegistration {
+    .arrowLeftRegistration,
+    .arrowLeftAccomplished {
         rotate: 90deg;
     }
 
     .arrowRight,
-    .arrowRightRegistration {
+    .arrowRightRegistration,
+    .arrowRightAccomplished  {
         rotate: -90deg;
     }
 

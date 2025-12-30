@@ -1,7 +1,7 @@
 -- Ajouter petit plus photo profil pour aller a profil et ajouter une photo 
 //-- logique aprés responsiv list mission user
 //-- Critere de selection mission list
--- Responsiv header footer dashboard user
+/-- Responsiv header footer dashboard user
 -- Vue details missions
 -- Quelle maniere inserrer les images pour missions
 -- Quelle maniere inserer image pour profil
@@ -13,8 +13,9 @@
 -- ALT de toutes les images
 -- Bouton Date sur list mission dois pouvoir filtrr de la plus recente a plus anciennes et inversement
 -- Avant de pouvoir sinscrire a une mision il faut avoir completer son profil 
+-- Avant de pouvoir visualiser les mission de ta region il faut completer son profil aussi
 -- dashboard admin afficher des icons suivant les stats 
-/-- proteger les admin des user connecter et inversement (url fragile)
+//-- proteger les admin des user connecter et inversement (url fragile)
 -- btn remonter en haut quand mobil user
 -- favicon
 -- Title de chaque page valeur dynamique
@@ -24,3 +25,7 @@
 -- Protection des formulaire contre xss etc ...
 -- 150 plus grande ville de france
 -- Gerer les pages d'erreurs (404 etc ...)
+-- home page stat dynamique
+-- rappel automatisé
+-- en responsiv la liste des mission doit recharger aprés une inscription
+-- Supprimer son profil ²

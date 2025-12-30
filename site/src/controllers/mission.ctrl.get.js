@@ -45,11 +45,26 @@ exports.fetchMissionByRegistrationDashboardUser = async (req, res) => {
 
     try {
         
-       const idUser = req.session.userExist.id
+       const idUser = req.session.userExist.id;
 
        const getAllMissionsByUser = await missionModel.getAllMissionsByUser(idUser);
 
-       res.json(getAllMissionsByUser)
+       res.json(getAllMissionsByUser);
+
+    } catch (error) {
+        
+    }
+}
+
+exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
+
+    try {
+        
+        const idUser = req.session.userExist.id; 
+
+        const getMissionAccomplishedByUser = await missionModel.addUserHistoryMission(idUser)
+
+        res.json(getMissionAccomplishedByUser);
 
     } catch (error) {
         
@@ -302,7 +317,8 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
             pseudoUser: req.session.userExist.firstName,
             missionsUser: allMissionByUser.length ? allMissionByUser : false,
-            missionByRegion: getMissionByRegion
+            missionByRegion: getMissionByRegion.length ? getMissionByRegion : false,
+            historyMissionUser: historyMissionUser,
         })
 
     } catch (error) {

@@ -1,206 +1,188 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleDashboardUser.css">
 <script src="/javaScript/carrouselDashboard.js" defer></script>
-<%- include('../partials/_head') %>
-    <%- include('../partials/_alert') %>
 
-        <main>
-            <div class="container" style='display: flex;'>
-                <%- include('../partials/_sideNavUser') %>
-                    <%- include('../partials/_mobileHeader') %>
-                        <div class="dashboardContainer">
-                            <div class="headerDashboard ">
-                                <div class="myStats background">
-                                    <div class="titleCard">
-                                        <h1>Vos statistiques</h1>
-                                        <div class="lineTitle"></div>
-                                    </div>
-                                    <div class="statAlign">
-                                        <p>Mission complétées :</p>
-                                        <p><span>16</span></p>
-                                    </div>
-                                    <div class="statAlign">
-                                        <p>Heures de bénévolat :</p>
-                                        <p><span>22h</span></p>
-                                    </div>
-                                    <div class="statAlign">
-                                        <p>Rang :</p>
-                                        <p><span>Gardien de Flamme 🔥</span></p>
-                                    </div>
-                                </div>
-                                <div class="nearMission background">
-                                    <div class="titleCard">
-                                        <h1>Missions proche de chez vous</h1>
-                                        <div class="lineTitle"></div>
-                                    </div>
-                                    <div class="flexCardsMission">
-                                        <% for (let m of missionByRegion) { %>
-                                            <div class="cardMission">
-                                                <p class="strong">
-                                                    <%= m.mission_title %>
-                                                </p>
-                                                <p>
-                                                    <%= m.city_name %>
-                                                </p>
-                                                <p><span>
-                                                        <%= m.mission_available_place %>
-                                                    </span> places disponible</p>
-                                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                            </div>
-                                            <% } %>
-                                    </div>
-                                    <!------------------------------->
-                                    <!-- RESPONSIV - MISSION - REGION-->
-                                    <!------------------------------->
-                                    <div class="flexCardsMissionResponsiv">
-                                        <div class="rowArrow">
-                                            <img class="arrowResponsiv arrowLeft" src="pictures/arrow.png" alt="">
-                                            <div class="cardMission">
-                                                <p class="strong mission-title"></p>
-                                                <p class="city-name"></p>
-                                                <p><span class="mission-available-place"></span> places disponible</p>
-                                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                            </div>
-                                            <img class="arrowResponsiv arrowRight" src="pictures/arrow.png" alt="">
-                                        </div>
-                                    </div>
-                                    <!------------------------------->
-                                    <!------------------------------->
-                                </div>
+<%- include('../partials/_head') %>
+<%- include('../partials/_alert') %>
+
+<main>
+    <div class="container" style="display: flex;">
+        <%- include('../partials/_sideNavUser') %>
+        <%- include('../partials/_mobileHeader') %>
+
+        <div class="dashboardContainer">
+
+            <!-- ================= HEADER ================= -->
+            <div class="headerDashboard">
+
+                <div class="myStats background">
+                    <div class="titleCard">
+                        <h1>Vos statistiques</h1>
+                        <div class="lineTitle"></div>
+                    </div>
+
+                    <div class="statAlign">
+                        <p>Mission complétées :</p>
+                        <p><span>16</span></p>
+                    </div>
+
+                    <div class="statAlign">
+                        <p>Heures de bénévolat :</p>
+                        <p><span>22h</span></p>
+                    </div>
+
+                    <div class="statAlign">
+                        <p>Rang :</p>
+                        <p><span>Gardien de Flamme 🔥</span></p>
+                    </div>
+                </div>
+
+                <div class="nearMission background">
+                    <div class="titleCard">
+                        <% if (missionByRegion.length == 0) { %>
+                            <h1>Aucune missions proche de chez vous</h1>
+                        <% } else { %>
+                            <h1>Missions proche de chez vous</h1>
+                        <% } %>
+                        <div class="lineTitle"></div>
+                    </div>
+
+                    <div class="flexCardsMission">
+                        <% for (let m of missionByRegion) { %>
+                            <div class="cardMission">
+                                <p class="strong"><%= m.mission_title %></p>
+                                <p><%= m.city_name %></p>
+                                <p>
+                                    <span><%= m.mission_available_place %></span> places disponible
+                                </p>
+                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
                             </div>
-                            <div class="middleDashboard">
-                                <div class="titleCard">
-                                    <% if (!missionsUser) { %>
-                                        <h1>Vos missions seront visibles ici</h1>
-                                        <% } else { %>
-                                            <h1>Votre engagement</h1>
-                                            <% } %>
-                                                <div class="lineTitle"></div>
-                                </div>
-                                <table>
-                                    <thead>
-                                        <tr class="colorBack">
-                                            <th>MISSION</th>
-                                            <th>DATE</th>
-                                            <th>LIEUX</th>
-                                            <th>DETAILS</th>
-                                            <th>SE DÉSINSCRIRE</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="fixMax">
-                                        <% for (let i=0; i < missionsUser.length; i++) { %>
-                                            <tr>
-                                                <td>
-                                                    <p>
-                                                        <%= missionsUser[i].mission_title %>
-                                                    </p>
-                                                </td>
-                                                <td class="color">
-                                                    <%= missionsUser[i].mission_date %>
-                                                </td>
-                                                <td class="color">
-                                                    <%= missionsUser[i].city_name %>
-                                                </td>
-                                                <td><a href="#">Voir davantage</a></td>
-                                                <td>Désinscription<input type="checkbox"></td>
-                                            </tr>
-                                            <% } %>
-                                    </tbody>
-                                </table>
-                                <!------------------------------->
-                                <!-- RESPONSIV - MISSION - REGISTER -->
-                                <!------------------------------->
-                                <div class="flexCardsMissionResponsiv">
-                                    <div class="rowArrow">
-                                        <img class="arrowResponsiv arrowLeftRegistration" src="pictures/arrow.png" alt="">
-                                        <div class="cardMission">
-                                            <p class="strong title-mission-register"> title</p>
-                                            <p class="place-mission-register"> lieux</p>
-                                            <p class="date-mission-register"> date</p>
-                                            <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                            <a class="btnPrimary btnHover" href="">Se désinscrire</a>
-                                        </div>
-                                        <img class="arrowResponsiv arrowRightRegistration" src="pictures/arrow.png" alt="">
-                                    </div>
-                                </div>
-                                <!------------------------------->
-                                <!------------------------------->
+                        <% } %>
+                    </div>
+
+                    <!-- RESPONSIVE REGION -->
+                    <div class="flexCardsMissionResponsiv">
+                        <div class="rowArrow ifNoDataRegion">
+                            <img class="arrowResponsiv arrowLeft" src="pictures/arrow.png" alt="">
+
+                            <div class="cardMission">
+                                <p class="strong mission-title"></p>
+                                <p class="city-name"></p>
+                                <p>
+                                    <span class="mission-available-place"></span> places disponible
+                                </p>
+                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
                             </div>
-                            <div class="endDashboard">
-                                <div class="titleCard">
-                                    <h1>Missions accomplies</h1>
-                                    <div class="lineTitle"></div>
-                                </div>
-                                <table class="completed">
-                                    <thead>
-                                        <tr class="colorBack">
-                                            <th>MISSION</th>
-                                            <th>DATE</th>
-                                            <th>STATUT</th>
-                                            <th>AVIS</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="fixMax">
-                                        <tr>
-                                            <td>
-                                                <p>Distribution alimentaire</p>
-                                            </td>
-                                            <td class="color">2025-11-15</td>
-                                            <td class="color">Terminé</td>
-                                            <td><a href="#">Laisser un avis</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>Distribution alimentaire</p>
-                                            </td>
-                                            <td class="color">2025-11-15</td>
-                                            <td class="color">Terminé</td>
-                                            <td><a href="#">Laisser un avis</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>Distribution alimentaire</p>
-                                            </td>
-                                            <td class="color">2025-11-15</td>
-                                            <td class="color">Terminé</td>
-                                            <td><a href="#">Laisser un avis</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>Distribution alimentaire</p>
-                                            </td>
-                                            <td class="color">2025-11-15</td>
-                                            <td class="color">Terminé</td>
-                                            <td><a href="#">Laisser un avis</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>Distribution alimentaire</p>
-                                            </td>
-                                            <td class="color">2025-11-15</td>
-                                            <td class="color">Terminé</td>
-                                            <td><a href="#">Laisser un avis</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>Distribution alimentaire</p>
-                                            </td>
-                                            <td class="color">2025-11-15</td>
-                                            <td class="color">Terminé</td>
-                                            <td><a href="#">Laisser un avis</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>Distribution alimentaire</p>
-                                            </td>
-                                            <td class="color">2025-11-15</td>
-                                            <td class="color">Terminé</td>
-                                            <td><a href="#">Laisser un avis</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+
+                            <img class="arrowResponsiv arrowRight" src="pictures/arrow.png" alt="">
                         </div>
+                    </div>
+                </div>
             </div>
-        </main>
-        <%- include('../partials/_mobileFooter') %>
+
+            <!-- ================= MIDDLE ================= -->
+            <div class="middleDashboard">
+                <div class="titleCard">
+                    <% if (!missionsUser) { %>
+                        <h1>Vos missions à effectuer seront visibles ici</h1>
+                    <% } else { %>
+                        <h1>Votre engagement</h1>
+                    <% } %>
+                    <div class="lineTitle"></div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr class="colorBack">
+                            <th>MISSION</th>
+                            <th>DATE</th>
+                            <th>LIEUX</th>
+                            <th>DETAILS</th>
+                            <th>SE DÉSINSCRIRE</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fixMax">
+                        <% for (let i = 0; i < missionsUser.length; i++) { %>
+                            <tr>
+                                <td><p><%= missionsUser[i].mission_title %></p></td>
+                                <td class="color"><%= missionsUser[i].mission_date %></td>
+                                <td class="color"><%= missionsUser[i].city_name %></td>
+                                <td><a href="#">Voir davantage</a></td>
+                                <td>Désinscription <input type="checkbox"></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <!-- RESPONSIVE REGISTER -->
+                <div class="flexCardsMissionResponsiv">
+                    <div class="rowArrow ifNoDataRegister">
+                        <img class="arrowResponsiv arrowLeftRegistration" src="pictures/arrow.png" alt="">
+
+                        <div class="cardMission">
+                            <p class="strong title-mission-register">title</p>
+                            <p class="place-mission-register">lieux</p>
+                            <p class="date-mission-register">date</p>
+                            <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
+                            <a class="btnPrimary btnHover" href="">Se désinscrire</a>
+                        </div>
+
+                        <img class="arrowResponsiv arrowRightRegistration" src="pictures/arrow.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= END ================= -->
+            <div class="endDashboard">
+                <div class="titleCard">
+                    <% if (historyMissionUser.length == 0) { %>
+                        <h1>Vos missions accomplies seront visibles ici</h1>
+                    <% } else { %>
+                        <h1>Missions accomplies</h1>
+                    <% } %>
+                    <div class="lineTitle"></div>
+                </div>
+
+                <table class="completed">
+                    <thead>
+                        <tr class="colorBack">
+                            <th>MISSION</th>
+                            <th>DATE</th>
+                            <th>STATUT</th>
+                            <th>AVIS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fixMax">
+                        <% for (let h of historyMissionUser) { %>
+                            <tr>
+                                <td><p><%= h.mission_title %></p></td>
+                                <td class="color"><%= h.mission_date %></td>
+                                <td class="color">Terminé</td>
+                                <td><a href="#">Laisser un avis</a></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <!-- RESPONSIVE ACCOMPLISHED -->
+                <div class="flexCardsMissionResponsiv">
+                    <div class="rowArrow ifNoDataAccomplished">
+                        <img class="arrowResponsiv arrowLeftAccomplished" src="pictures/arrow.png" alt="">
+
+                        <div class="cardMission">
+                            <p class="strong title-mission-accomplished">title</p>
+                            <p class="date-mission-accomplished">date</p>
+                            <p class="place-mission-accomplished">statut</p>
+                            <a href="#" class="btnSecondary btnHover">Laisser un avis</a>
+                        </div>
+
+                        <img class="arrowResponsiv arrowRightAccomplished" src="pictures/arrow.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/_mobileFooter') %>
