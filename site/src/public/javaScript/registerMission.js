@@ -85,7 +85,10 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 modal.classList.toggle('toggleNone');
                 modalToggle.classList.toggle('toggleBlock');
 
-                setTimeout(()=>{
+                setTimeout(() => {
+                    if (window.innerWidth < 1300) {
+                        location.reload();
+                    }
                     document.querySelector('.modalContain').innerHTML = "";
                     c.disabled = true                 
                 }, 3000);                

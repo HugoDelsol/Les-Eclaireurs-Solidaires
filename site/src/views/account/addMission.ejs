@@ -3,62 +3,89 @@
 <script src="/javaScript/inputCityAuto.js" defer></script>
 
 <%- include("../partials/_head") %>
-    <%- include('../partials/_alert') %>
+<%- include('../partials/_alert') %>
 
+<main>
+    <div class="container" style="display: flex;">
+        <%- include('../partials/_sideNavAdmin') %>
 
-        <main>
-            <div class="container" style='display: flex;'>
-                <%- include('../partials/_sideNavAdmin') %>
-                    <section class="blocAddMission background">
-                        <div class="row">
-                            <div class="col">
-                                <h1>Publier une mission :</h1>
-                                <div class="line"></div>
-                            </div>
-                            <a href="/admin/missionAdminShow"><img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt=""></a>
-                        </div>
-                        <form lang="fr" action="/admin/addMission" method="post">
-                            <div class="titleCategory">
-                                <label id="title">Titre de la mission :<input type="text" name="title" id="title"
-                                        value="" /></label>
-                                <select name="category" id="category">
-                                    <% for (let category of categoriesMission) { %>
-                                        <option value="<%= category.id_mission_category %>">
-                                            <%= category.mission_category_name %>
-                                        </option>
-                                        <% } %>
-                                </select>
-                            </div>
-                            <label id="description">Description :<textarea type="text" name="description"
-                                    value=""></textarea></label>
-                            <div class="timeDate">
-                                <label id="date">Date :<input type="date" name="date" value="" /></label>
-                                <label id="startTime">Heure de début :<input type="time" name="startTime"
-                                        value="" /></label>
-                                <label id="endTime">Heure de fin :<input type="time" name="endTime" value="" /></label>
-                            </div>
-                            <div class="cityPlace">
-                                <label id="city">Ville :<input class="city" type="text" name="city" value="" /> <input
-                                        type="hidden" name="cityId" class="cityId">
-                                    <ul class="displayListCity"></ul>
-                                </label>
-                                <label id="placeName">Lieu :<input type="text" name="placeName" value="" /></label>
-                            </div>
-                            <div class="places">
-                                <label id="spaceAvailable" class="column">Nombre de place :
-                                    <input type="number" name="spaceAvailable" value="" />
-                                </label>
-                                <label id="uploadImg" for="fileUpload" class="customFileUpload">Choisir une image :
-                                    <input id="fileUpload" type="file" class="paddingTypeFile" name="uploadImg"
-                                        value="" />
-                                </label>
-                            </div>
-                            <button type="submit" class="btnSecondary btnHover">PUBLIER</button>
-                        </form>
-                    </section>
+        <section class="blocAddMission background">
+            <div class="row">
+                <div class="col">
+                    <h1>Publier une mission :</h1>
+                    <div class="line"></div>
+                </div>
+                <a href="/admin/missionAdminShow">
+                    <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                </a>
             </div>
-        </main>
 
-        </body>
+            <form lang="fr" action="/admin/addMission" method="post">
+                <div class="titleCategory">
+                    <label id="title">
+                        Titre de la mission :
+                        <input type="text" name="title" id="title" value="" />
+                    </label>
 
-        </html>
+                    <select name="category" id="category">
+                        <% for (let category of categoriesMission) { %>
+                            <option value="<%= category.id_mission_category %>">
+                                <%= category.mission_category_name %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <label id="description">
+                    Description :
+                    <textarea type="text" name="description" value=""></textarea>
+                </label>
+
+                <div class="timeDate">
+                    <label id="date">
+                        Date :
+                        <input type="date" name="date" value="" />
+                    </label>
+
+                    <label id="startTime">
+                        Heure de début :
+                        <input type="time" name="startTime" value="" />
+                    </label>
+
+                    <label id="endTime">
+                        Heure de fin :
+                        <input type="time" name="endTime" value="" />
+                    </label>
+                </div>
+
+                <div class="cityPlace">
+                    <label id="city">
+                        Ville :
+                        <input class="city" type="text" name="city" value="" />
+                        <input type="hidden" name="cityId" class="cityId">
+                        <ul class="displayListCity"></ul>
+                    </label>
+
+                    <label id="placeName">
+                        Lieu :
+                        <input type="text" name="placeName" value="" />
+                    </label>
+                </div>
+
+                <div class="places">
+                    <label id="spaceAvailable" class="column">
+                        Nombre de place :
+                        <input type="number" name="spaceAvailable" value="" />
+                    </label>
+
+                    <label id="uploadImg" for="fileUpload" class="customFileUpload">
+                        Choisir une image :
+                        <input id="fileUpload" type="file" class="paddingTypeFile" name="uploadImg" value="" />
+                    </label>
+                </div>
+
+                <button type="submit" class="btnSecondary btnHover">PUBLIER</button>
+            </form>
+        </section>
+    </div>
+</main>

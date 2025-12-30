@@ -28,4 +28,6 @@
 -- home page stat dynamique
 -- rappel automatisé
 -- en responsiv la liste des mission doit recharger aprés une inscription
--- Supprimer son profil ²
+-- Supprimer son profil 
+-- Récupération de mot de passse via email ?
+-- Rajouter un icon pour afficher mot de passe ou non 

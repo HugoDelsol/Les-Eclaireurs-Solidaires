@@ -1,9 +1,6 @@
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 
-
-
-
 //---
 //--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
 //---
@@ -28,7 +25,7 @@ exports.searchByCategories = async (req, res) => {
         if (tripStart && !tripEnd || !tripStart && tripEnd) {
 
             if (req.session.userExist.isVolunteer) {
-
+                
                 return res.render('account/listMissionUser', {
                     categoriesMission: req.session.categoriesMission,
                     regions: req.session.regions,
@@ -38,7 +35,7 @@ exports.searchByCategories = async (req, res) => {
                     alertMsg: "Veuilliez saisir une date de début et une date de fin."
                 });
             }            
-
+            
             if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
 
                 return res.render('account/listMissionsAdmin', {

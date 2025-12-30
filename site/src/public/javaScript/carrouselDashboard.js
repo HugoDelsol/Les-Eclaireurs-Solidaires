@@ -51,8 +51,6 @@ async function carrouselMissionByRegion() {
 
         const data = await response.json();
 
-        console.log(data.length)
-
         let index = 0;
 
         if (data.length == 0) {
@@ -121,8 +119,6 @@ async function carrouselMissionByRegistration() {
         }
 
         const data = await response.json();
-
-        console.log(data.length)
 
         let index = 0
 

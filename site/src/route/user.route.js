@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const homeCtrl = require('../controllers/home.ctrl');
 const userCtrl = require('../controllers/user.ctrl');
+const userVolunteerController = require('../controllers/user/userVolunteerController');
 const missionCtrlGet = require('../controllers/mission.ctrl.get');
 const missionCtrlPost = require('../controllers/mission.ctrl.post');
 const sessionMdw = require('../middleware/session.middleware');
@@ -33,5 +34,9 @@ router.post('/searchByCategories', sessionMdw.requireAuth, sessionMdw.volunteerA
 router.get('/dataMission/:idMission', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionCtrlGet.getDataMission);
 router.get('/modalRegisterMission', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionCtrlGet.modalRegisterMission);
 router.post('/addRegisterMissionUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionCtrlGet.addRegisterMissionUser);
+
+// --- PROFILE ---
+router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.userProfilSettingsShow);
+router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerController.editUserProfile);
 
 module.exports = router;

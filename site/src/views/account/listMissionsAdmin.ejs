@@ -1,135 +1,124 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleListMission.css">
-<%- include('../partials/_head') %>
-    <%- include('../partials/_alert') %>
 
-        <main>
-            <div class="modalContain"></div>
-            <div class="container">
-                <%- include('../partials/_sideNavAdmin') %>
-                    <%- include('../partials/_mobileHeader') %>
-                        <section class="blocListMission">
-                            <div class="titleAndCategorySearch">
-                                <div class="rowResponsiv ">
-                                    <div class="line responsiv"></div>
-                                    <h1>Mission disponible</h1>
-                                    <div class="line"></div>
-                                </div>
-                                <form action="/admin/searchByCategories" method="post">
-                                    <div class="rowResponsiv rowDesktop">
-                                        <div>
-                                            <p class="responsivMob">Lieu</p>
-                                            <select name="regionSelected" id="regionSelected">
-                                                <option value="">Régions</option>
-                                                <% for (let region of regions) { %>
-                                                    <option value="<%= region.id_region %>"
-                                                        <%= region.id_region == regionSelected ? "selected" : "" %>>
-                                                        <%= region.region_name %>
-                                                    </option>
-                                                    <% } %>
-                                            </select>
-                                            <p class="responsivMob">Categorie</p>
-                                            <select name="categorySelected" id="categorySelected">
-                                                <option value="">Catégories</option>
-                                                <% for (let category of categoriesMission) { %>
-                                                    <option value="<%= category.id_mission_category %>"
-                                                        <%= category.id_mission_category == categorySelected ? "selected" : "" %>>
-                                                        <%= category.mission_category_name %>
-                                                    </option>
-                                                    <% } %>
-                                            </select>
-                                        </div>
-                                        <div class="filterDate">
-                                            <div>
-                                                <p>Du :</p>
-                                                <input type="date" id="tripStart" name="tripStart">
-                                            </div>
-                                            <div>
-                                                <p>Au :</p>
-                                                <input type="date" id="tripEnd" name="tripEnd">
-                                            </div>
-                                        </div>
-                                        <button class="btnSecondary btnHover" type="submit">Rechercher</button>
-                                        <a href="/admin/missionAdminShow"><img class="btnReset" src="/pictures/recycler.png" alt=""></a>
-                                    </div>
-                                </form>
-                            </div>
-                            <table class="desktop">
-                                <thead>
-                                    <tr>
-                                        <th>MISSION</th>
-                                        <th>DATE</th>
-                                        <th>CATEGORIES</th>
-                                        <th>LIEUX</th>
-                                        <th>DETAILS</th>
-                                        <th>MODIFIER</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fixMax">
-                                    <% if (missionSelected) { %>
-                                        <% for (let i=0; i < missionSelected.length; i++) { %>
-                                            <tr>
-                                                <td>
-                                                    <p>
-                                                        <%= missionSelected[i].mission_title %>
-                                                    </p>
-                                                </td>
-                                                <td class="color">
-                                                    <%= missionSelected[i].mission_date %>
-                                                </td>
-                                                <td>
-                                                    <%= missionSelected[i].mission_category_name %>
-                                                </td>
-                                                <td class="color">
-                                                    <%= missionSelected[i].city_name %>
-                                                </td>
-                                                <td>
-                                                    <a href="/dataMission/<%= missionSelected[i].id_mission %>">
-                                                        Voir d’avantage
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="/dataMission/<%= missionSelected[i].id_mission %>">
-                                                        <img src="/pictures/editer.png" alt="Settings">
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <% } %>
-                                                <% } else { %>
-                                                    <% for (let i=0; i < missions.length; i++) { %>
-                                                        <tr>
-                                                            <td>
-                                                                <p>
-                                                                    <%= missions[i].mission_title %>
-                                                                </p>
-                                                            </td>
-                                                            <td class="color">
-                                                                <%= missions[i].mission_date %>
-                                                            </td>
-                                                            <td>
-                                                                <%= missions[i].mission_category_name %>
-                                                            </td>
-                                                            <td class="color">
-                                                                <%= missions[i].city_name %>
-                                                            </td>
-                                                            <td>
-                                                                <a href="/dataMission/<%= missions[i].id_mission %>">
-                                                                    Voir d’avantage
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <a href="/dataMission/<%= missions[i].id_mission %>">
-                                                                    <img src="/pictures/editer.png" alt="Settings">
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <% } %>
-                                                            <% } %>
-                                </tbody>
-                            </table>
+<%- include('../partials/_head') %>
+<%- include('../partials/_alert') %>
+
+<main>
+    <div class="modalContain"></div>
+
+    <div class="container">
+        <%- include('../partials/_sideNavAdmin') %>
+        <%- include('../partials/_mobileHeader') %>
+
+        <section class="blocListMission">
+            <div class="titleAndCategorySearch">
+                <div class="rowResponsiv">
+                    <div class="line responsiv"></div>
+                    <h1>Mission disponible</h1>
+                    <div class="line"></div>
+                </div>
+
+                <form action="/admin/searchByCategories" method="post">
+                    <div class="rowResponsiv rowDesktop">
+                        <div>
+                            <p class="responsivMob">Lieu</p>
+                            <select name="regionSelected" id="regionSelected">
+                                <option value="">Régions</option>
+                                <% for (let region of regions) { %>
+                                    <option
+                                        value="<%= region.id_region %>"
+                                        <%= region.id_region == regionSelected ? "selected" : "" %>
+                                    >
+                                        <%= region.region_name %>
+                                    </option>
+                                <% } %>
+                            </select>
+
+                            <p class="responsivMob">Categorie</p>
+                            <select name="categorySelected" id="categorySelected">
+                                <option value="">Catégories</option>
+                                <% for (let category of categoriesMission) { %>
+                                    <option
+                                        value="<%= category.id_mission_category %>"
+                                        <%= category.id_mission_category == categorySelected ? "selected" : "" %>
+                                    >
+                                        <%= category.mission_category_name %>
+                                    </option>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div class="filterDate">
                             <div>
-                                <a class="btnSecondary btnHover" href="/admin/addMissionShow">Publier une mission</a>
+                                <p>Du :</p>
+                                <input type="date" id="tripStart" name="tripStart">
                             </div>
-                        </section>
+                            <div>
+                                <p>Au :</p>
+                                <input type="date" id="tripEnd" name="tripEnd">
+                            </div>
+                        </div>
+
+                        <button class="btnSecondary btnHover" type="submit">
+                            Rechercher
+                        </button>
+
+                        <a href="/admin/missionAdminShow">
+                            <img class="btnReset" src="/pictures/recycler.png" alt="">
+                        </a>
+                    </div>
+                </form>
             </div>
-        </main>
+
+            <table class="desktop">
+                <thead>
+                    <tr>
+                        <th>MISSION</th>
+                        <th>DATE</th>
+                        <th>CATEGORIES</th>
+                        <th>LIEUX</th>
+                        <th>DETAILS</th>
+                        <th>MODIFIER</th>
+                    </tr>
+                </thead>
+
+                <tbody class="fixMax">
+                    <% const missionList = missionSelected || missions; %>
+                    <% for (let i = 0; i < missionList.length; i++) { %>
+                        <tr>
+                            <td>
+                                <p><%= missionList[i].mission_title %></p>
+                            </td>
+                            <td class="color">
+                                <%= missionList[i].mission_date %>
+                            </td>
+                            <td>
+                                <%= missionList[i].mission_category_name %>
+                            </td>
+                            <td class="color">
+                                <%= missionList[i].city_name %>
+                            </td>
+                            <td>
+                                <a href="/dataMission/<%= missionList[i].id_mission %>">
+                                    Voir d’avantage
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/dataMission/<%= missionList[i].id_mission %>">
+                                    <img src="/pictures/editer.png" alt="Settings">
+                                </a>
+                            </td>
+                        </tr>
+                    <% } %>                    
+                </tbody>
+            </table>
+
+            <div>
+                <a class="btnSecondary btnHover" href="/admin/addMissionShow">
+                    Publier une mission
+                </a>
+            </div>
+        </section>
+    </div>
+</main>

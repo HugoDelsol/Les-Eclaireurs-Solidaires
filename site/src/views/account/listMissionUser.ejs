@@ -81,53 +81,29 @@
                     </tr>
                 </thead>
                 <tbody class="fixMax">
-                    <% if (missionSelected) { %>
-                        <% for (let i = 0; i < missionSelected.length; i++) { %>
-                            <tr>
-                                <td><p><%= missionSelected[i].mission_title %></p></td>
-                                <td class="color"><%= missionSelected[i].mission_date %></td>
-                                <td><%= missionSelected[i].mission_category_name %></td>
-                                <td class="color"><%= missionSelected[i].city_name %></td>
-                                <td>
-                                    <a href="/dataMission/<%= missionSelected[i].id_mission %>">
-                                        Voir d’avantage
-                                    </a>
-                                </td>
-                                <td>
-                                    Je participe
-                                    <input
-                                        type="checkbox"
-                                        class="checkbox"
-                                        name="missionRegistration"
-                                        value="0"
-                                        data-id="<%= JSON.stringify({ id: missionSelected[i].id_mission, title: missionSelected[i].mission_title }) %>">
-                                </td>
-                            </tr>
-                        <% } %>
-                    <% } else { %>
-                        <% for (let i = 0; i < missions.length; i++) { %>
-                            <tr>
-                                <td><p><%= missions[i].mission_title %></p></td>
-                                <td class="color"><%= missions[i].mission_date %></td>
-                                <td><%= missions[i].mission_category_name %></td>
-                                <td class="color"><%= missions[i].city_name %></td>
-                                <td>
-                                    <a href="/dataMission/<%= missions[i].id_mission %>">
-                                        Voir d’avantage
-                                    </a>
-                                </td>
-                                <td>
-                                    Je participe
-                                    <input
-                                        type="checkbox"
-                                        class="checkbox"
-                                        name="missionRegistration"
-                                        value="0"
-                                        data-id="<%= JSON.stringify({ id: missions[i].id_mission, title: missions[i].mission_title }) %>">
-                                </td>
-                            </tr>
-                        <% } %>
-                    <% } %>
+                    <% const missionList = missionSelected || missions; %>
+                    <% for (let i = 0; i < missionList.length; i++) { %>
+                        <tr>
+                            <td><p><%= missionList[i].mission_title %></p></td>
+                            <td class="color"><%= missionList[i].mission_date %></td>
+                            <td><%= missionList[i].mission_category_name %></td>
+                            <td class="color"><%= missionList[i].city_name %></td>
+                            <td>
+                                <a href="/dataMission/<%= missionList[i].id_mission %>">
+                                    Voir d’avantage
+                                </a>
+                            </td>
+                            <td>
+                                Je participe
+                                <input
+                                    type="checkbox"
+                                    class="checkbox"
+                                    name="missionRegistration"
+                                    value="0"
+                                    data-id="<%= JSON.stringify({ id: missionList[i].id_mission, title: missionList[i].mission_title }) %>">
+                            </td>
+                        </tr>
+                    <% } %>                    
                 </tbody>
             </table>
         </section>

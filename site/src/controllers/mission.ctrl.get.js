@@ -138,13 +138,13 @@ exports.missionAdminShow = async (req, res) => {
 
         getAllMissions = await missionModel.getAllMission();
 
-        req.session.getAllMissions = getAllMissions
+        req.session.getAllMissions = getAllMissions;
 
         res.render('account/listMissionsAdmin', {
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
-            missions: getAllMissions
+            missions: req.session.getAllMissions
         });
 
     } catch (error) {
@@ -156,7 +156,7 @@ exports.missionAdminShow = async (req, res) => {
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
-            missions: getAllMissions
+            missions: req.session.getAllMissions
         });
     }
 }
@@ -180,6 +180,7 @@ exports.missionUserShow = async (req, res) => {
         req.session.categoriesMission = dataTab;
 
         getAllMissions = await missionModel.getAllMission();
+        req.session.getAllMissions = getAllMissions;
 
         const idUser = req.session.userExist.id
 
@@ -199,7 +200,7 @@ exports.missionUserShow = async (req, res) => {
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
-            missions: getAllMissions,
+            missions: req.session.getAllMissions,
         });
 
     } catch (error) {
@@ -211,7 +212,7 @@ exports.missionUserShow = async (req, res) => {
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
-            missions: getAllMissions,
+            missions: req.session.getAllMissions,
         });
     }
 }
@@ -317,7 +318,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
             pseudoUser: req.session.userExist.firstName,
             missionsUser: allMissionByUser.length ? allMissionByUser : false,
-            missionByRegion: getMissionByRegion.length ? getMissionByRegion : false,
+            missionByRegion: getMissionByRegion,
             historyMissionUser: historyMissionUser,
         })
 

@@ -30,6 +30,10 @@ exports.dashboardUser = async (req, res) => {
     dashboardAllStats(req, res, idUser);    
 }
 
+exports.userProfilSettingsShow = async (req, res) => {
+    res.render('account/userProfileSettings');
+}
+
 exports.tokenView = async (req, res) => {
 
     const admins = await userModel.getAllAdmins();

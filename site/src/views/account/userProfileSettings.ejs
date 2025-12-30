@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="/style/account/styleSideNav.css">
+<link rel="stylesheet" href="/style/account/user-profile-settings.css">
+
+<%- include('../partials/_head') %>
+<%- include('../partials/_alert') %>
+
+<main>
+
+    <div class="container">
+    <%- include('../partials/_sideNavUser') %>
+
+        <section class="blocUserProfileSettings">
+
+            <div class="rowLine">
+                <h1>Gestion du profil</h1>
+                <div class="line"></div>
+            </div>           
+
+            <form action="/editUserProfile" method="post">
+
+                <fieldset>
+                    <legend>Informations personnelles</legend>
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="lastname">Nom</label>
+                            <input type="text" id="lastname" name="lastname" placeholder="Votre nom">
+                        </div>
+                        
+                        <div class="col">
+                            <label for="firstname">Prénom</label>
+                            <input type="text" id="firstname" name="firstname" placeholder="Votre prénom">                    
+                        </div>
+                        
+                        <div class="col">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone">
+                        </div>                        
+                    </div>
+
+                    <div class="row">                        
+                        <div class="col">                                
+                            <label for="address">Adresse</label>
+                            <input type="text" id="address" name="address" placeholder="Votre adresse">
+                        </div>
+
+                        <div class="col">                                
+                            <label for="city">Ville</label>
+                            <input type="text" id="city" name="city" placeholder="Votre ville">
+                        </div>
+                    
+                        <div class="col">
+                            <label for="category">Type de mission recherché</label>
+                            <input type="text" id="category" name="category" placeholder="Sélectionner une catégorie">
+                        </div>
+                        
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Sécurité</legend>
+
+                    <div>
+                        <label for="currentPassword">Mot de passe actuel</label>
+                        <input type="password" id="currentPassword" name="currentPassword" class="inputSecurity">
+                    </div>
+
+                    <div>
+                        <label for="newPassword">Nouveau mot de passe</label>
+                        <input type="password" id="newPassword" name="newPassword" class="inputSecurity">
+                    </div>
+                </fieldset>
+
+                <div class="rowBtn">
+                    <button type="submit" class="btnSecondary btnHover">Enregistrer les modifications</button>
+                    <a href=""  class="btnPrimary btnHover">Supprimer mon compte</a>
+                </div>
+                
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>

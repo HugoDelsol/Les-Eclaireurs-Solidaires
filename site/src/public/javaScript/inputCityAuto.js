@@ -15,6 +15,7 @@ cityInput.addEventListener('input', async (e) => {
         }
 
         const result = await response.json();
+        
 
         displayListCity.innerHTML = '';
 
@@ -34,19 +35,11 @@ cityInput.addEventListener('input', async (e) => {
 
                     cityInput.value = li.textContent;
 
-                    console.log(cityInput.value)
-
                     const selectedIdCity = li.dataset.idCity;
                     displayListCity.classList.remove('show');
 
-                    console.log('---selectedIdCity--->', selectedIdCity);
-
                     document.querySelector('.cityId').value = selectedIdCity;
-
-                    console.log(document.querySelector('.cityId').value)
-
                 });
-
             }
 
         } else {
@@ -59,7 +52,6 @@ cityInput.addEventListener('input', async (e) => {
 
         console.log('--->>>', error);
     }
-
 })
 
 
