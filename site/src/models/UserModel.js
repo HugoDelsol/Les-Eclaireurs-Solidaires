@@ -127,3 +127,24 @@ exports.addAdmin = async (
         throw error;
     }
 }
+
+exports.getUserAddress = async (idUser) => {
+
+    try {
+        
+        const getDatas = `
+            SELECT * FROM user AS u
+            LEFT JOIN city
+            ON id_city = _id_city
+            LEFT JOIN region 
+            ON id_region = _id_region            
+            WHERE id_user = ?
+        `;
+
+        const [result] = await db.query(getDatas, idUser);
+        return result;
+
+    } catch (error) {
+        
+    }
+}

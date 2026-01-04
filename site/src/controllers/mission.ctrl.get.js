@@ -1,5 +1,6 @@
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
+const userModel = require('../models/UserModel');
 const service = require('../service/getGlobalData');
 const missionCtrlPost = require('./mission.ctrl.post');
 
@@ -7,9 +8,9 @@ const missionCtrlPost = require('./mission.ctrl.post');
 //--- RECUPERER LES 3 PROCHAINES MISSIONS DANS LA REGION DU BENEVOLE
 //---
 
-exports.getMissionByRegion = async (req, res) => {
+/* exports.getMissionByRegion = async (req, res) => {
 
-    try { 
+    try {        
 
         const idRegion = 1;
 
@@ -20,7 +21,7 @@ exports.getMissionByRegion = async (req, res) => {
     } catch (error) {
         
     }
-}
+} */
 
 //---
 //--- AFFICHER EN RESPONSIV LES MISSIONS PAR REGIONS DU BENEVOLE VIA JAVASCRIPT
@@ -259,6 +260,8 @@ exports.searchCity = async (req, res) => {
 
         const valueInput = req.query.q;
 
+        console.log(valueInput)
+
         const searchCity = await missionModel.searchCityInSql(valueInput);
 
         let allCitys = [];
@@ -307,8 +310,13 @@ exports.searchCity = async (req, res) => {
 exports.dashboardAllStats = async (req, res, idUser) => {
 
     try {
+        const getUserAddress = await userModel.getUserAddress(idUser);
 
-        const getMissionByRegion = await this.getMissionByRegion()
+        const idRegionByUser = getUserAddress[0].id_region;
+
+        const getMissionByRegion = await missionModel.getMissionByRegion(idRegionByUser);
+
+        console.log(getMissionByRegion)
 
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
 

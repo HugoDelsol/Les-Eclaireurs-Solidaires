@@ -1,10 +1,10 @@
 const userModel = require('../models/UserModel');
+const missionModel = require('../models/MissionModel');
 const bcrypt = require('bcrypt');
 const service = require('../service/generateToken');
-const { body, validationResult } = require('express-validator');
-const { getAllMissionsByUser } = require('./mission.ctrl.get');
 const { getStatsMissions } = require('./mission.ctrl.get');
-const { dashboardAllStats } = require('./mission.ctrl.get')
+const { dashboardAllStats } = require('./mission.ctrl.get');
+const { categories } = require('../service/getGlobalData');
 
 // --- VIEWS ---
 exports.signIn = async (req, res) => {
@@ -31,7 +31,11 @@ exports.dashboardUser = async (req, res) => {
 }
 
 exports.userProfilSettingsShow = async (req, res) => {
-    res.render('account/userProfileSettings');
+    const getAllCategories = await missionModel.getAllCategories();
+    req.session.categoriesMission = getAllCategories
+    res.render('account/userProfileSettings', {
+        categoriesMission: req.session.categoriesMission 
+    });
 }
 
 exports.tokenView = async (req, res) => {

@@ -38,5 +38,7 @@ router.post('/addRegisterMissionUser', sessionMdw.requireAuth, sessionMdw.volunt
 // --- PROFILE ---
 router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.userProfilSettingsShow);
 router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerController.editUserProfile);
+router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
+
 
 module.exports = router;

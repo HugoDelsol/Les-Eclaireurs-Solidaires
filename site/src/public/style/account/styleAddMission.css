@@ -188,7 +188,7 @@ input[type="number"] {
 }
 
 .displayListCity.show {
-    position: relative;
+    position: absolute;
     z-index: 10;
     border-radius: 5px;
     background-color: #ffffff;
@@ -202,7 +202,6 @@ input[type="number"] {
 .displayListCity li {
     list-style: none;
     cursor: pointer;
-
 }
 
 .displayListCity li:hover {

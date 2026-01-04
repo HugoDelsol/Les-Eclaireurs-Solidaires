@@ -1,24 +1,85 @@
 const db = require('../config/database');
 
+exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, cityId, category) => {
+
+    try {
+
+        let query = [];
+        let params = [];
+
+        if (lastName) {
+            query.push("user_last_name = ?");
+            params.push(lastName);
+        }
+        if (firstName) {
+            query.push("user_first_name = ?");
+            params.push(firstName)
+        }
+        if (phone) {
+            query.push("user_phone_number = ?");
+            params.push(phone)
+        }
+        if (address) {
+            query.push("user_adress = ?");
+            params.push(address)
+        }
+        if (cityId) {
+            query.push("_id_city = ?");
+            params.push(cityId)
+        }
+        if (category) {
+            query.push("_id_category = ?");
+            params.push(category)
+        }
+
+        if (query.length > 0) {
+
+            params.push(idUser);
+
+            const updateUserProfile = `
+                UPDATE user                                    
+                SET ${query.join(", ")}
+                WHERE id_user = ?
+            `;
+
+            const [result] = await db.query(updateUserProfile, params);
+            return result;
+
+        } else {
+
+            console.log("Aucune donnée à mettre à jour")
+        }
+
+    } catch (error) {
+
+        console.error("Erreur SQL updateUserProfile :", error);
+        throw error;
+    }
+
+}
+
 exports.addUserHistoryMission = async (idUser) => {
 
     try {
 
-        const requestSelect =   `SELECT *, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date
-                                FROM registration_mission
-                                LEFT JOIN mission 
-                                ON id_mission = _id_mission
-                                WHERE _id_user = ?
-                                AND CURRENT_DATE > mission_date;` 
+        const requestSelect = `
+            SELECT *, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date
+            FROM registration_mission
+            LEFT JOIN mission 
+            ON id_mission = _id_mission
+            WHERE _id_user = ?
+            AND CURRENT_DATE > mission_date
+            ORDER BY mission.mission_date DESC
+        `;
 
         const [result] = await db.query(requestSelect, [idUser]);
-    
+
         return result
 
     } catch (error) {
-                
+
         console.error("Erreur SQL addUserHistoryMission :", error);
-        throw error;        
+        throw error;
     }
 }
 
@@ -26,14 +87,16 @@ exports.getMissionByRegion = async (idRegion) => {
 
     try {
 
-        const request = `SELECT * FROM mission
-                        LEFT JOIN  city
-                            ON id_city = _id_city
-                        LEFT JOIN region
-                            ON id_region = _id_region
-                        WHERE id_region = ?
-                            AND mission_date >= CURRENT_DATE()                        
-                        LIMIT 3`
+        const request = `
+            SELECT * FROM mission
+            LEFT JOIN  city
+                ON id_city = _id_city
+            LEFT JOIN region
+                ON id_region = _id_region
+            WHERE id_region = ?
+                AND mission_date >= CURRENT_DATE()                        
+            LIMIT 3
+        `;
 
         const [result] = await db.query(request, [idRegion])
         return result;
@@ -49,50 +112,56 @@ exports.getStatsMissions = async () => {
 
     try {
 
-        const requestList = `SELECT  
-                                m.id_mission,
-                                m.mission_title,
-                                DATE_FORMAT(m.mission_date, '%d/%m/%Y') AS mission_date,
-                                m.mission_start_time,
-                                m.mission_end_time,
-                                m.mission_description,
-                                m.mission_place_name,
-                                m.mission_available_place, 
-                                m.mission_img,
-                                m._id_mission_category,
-                                COUNT(DISTINCT r._id_user) AS nb_volunteers
-                            FROM mission AS m
-                            LEFT JOIN registration_mission AS r
-                                ON r._id_mission = m.id_mission
-                            WHERE m.mission_date >= CURRENT_DATE()
-                                AND m.mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)                        
-                            GROUP BY 
-                                m.id_mission,
-                                m.mission_title,
-                                m.mission_date,
-                                m.mission_start_time,
-                                m.mission_end_time,
-                                m.mission_description,
-                                m.mission_place_name,
-                                m.mission_available_place, 
-                                m.mission_img,
-                                m._id_mission_category                        
-                            ORDER BY m.mission_date ASC;`
+        const requestList = `
+            SELECT  
+                m.id_mission,
+                m.mission_title,
+                DATE_FORMAT(m.mission_date, '%d/%m/%Y') AS mission_date,
+                m.mission_start_time,
+                m.mission_end_time,
+                m.mission_description,
+                m.mission_place_name,
+                m.mission_available_place, 
+                m.mission_img,
+                m._id_mission_category,
+                COUNT(DISTINCT r._id_user) AS nb_volunteers
+            FROM mission AS m
+            LEFT JOIN registration_mission AS r
+                ON r._id_mission = m.id_mission
+            WHERE m.mission_date >= CURRENT_DATE()
+                AND m.mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)                        
+            GROUP BY 
+                m.id_mission,
+                m.mission_title,
+                m.mission_date,
+                m.mission_start_time,
+                m.mission_end_time,
+                m.mission_description,
+                m.mission_place_name,
+                m.mission_available_place, 
+                m.mission_img,
+                m._id_mission_category                        
+            ORDER BY m.mission_date ASC
+        `;
 
         const [resultList] = await db.query(requestList);
 
-        const requestSumVolunteers = `SELECT COUNT(DISTINCT _id_user) AS total_next_30_days
-                                        FROM registration_mission
-                                        LEFT JOIN mission
-                                        ON id_mission = _id_mission
-                                        WHERE mission_date >= CURRENT_DATE()
-                                        AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
+        const requestSumVolunteers = `
+            SELECT COUNT(DISTINCT _id_user) AS total_next_30_days
+            FROM registration_mission
+            LEFT JOIN mission
+            ON id_mission = _id_mission
+            WHERE mission_date >= CURRENT_DATE()
+            AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)
+        `;  
 
         const [resultSumVolunteers] = await db.query(requestSumVolunteers);
 
-        const requestTotalMissions = `SELECT COUNT(*) AS nbr_missions FROM mission
-                                        WHERE mission_date >= CURRENT_DATE
-                                        AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);`
+        const requestTotalMissions = `
+            SELECT COUNT(*) AS nbr_missions FROM mission
+            WHERE mission_date >= CURRENT_DATE
+            AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)
+        `;
 
         const [resultTotalMissions] = await db.query(requestTotalMissions);
 
@@ -136,18 +205,20 @@ exports.searchByCategories = async (regionSelected, categorySelected, tripStart,
 
             const where = "WHERE " + values.join(" AND ");
 
-            const request = `SELECT 
-                                *, 
-                                DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date 
-                            FROM mission
-                            LEFT JOIN city
-                                ON id_city = _id_city
-                            LEFT JOIN region
-                                ON id_region = _id_region
-                            LEFT JOIN mission_category
-                            ON id_mission_category = _id_mission_category
-                            ${where}
-                            AND mission_date >= CURRENT_DATE();`
+            const request = `
+                SELECT 
+                    *, 
+                    DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date 
+                FROM mission
+                LEFT JOIN city
+                    ON id_city = _id_city
+                LEFT JOIN region
+                    ON id_region = _id_region
+                LEFT JOIN mission_category
+                ON id_mission_category = _id_mission_category
+                ${where}
+                AND mission_date >= CURRENT_DATE()
+            `;
 
             const [result] = await db.query(request, params);
             return result;
@@ -192,18 +263,20 @@ exports.insertMission = async (
 
     try {
 
-        const request = `INSERT INTO mission (
-                        mission_title,
-                        _id_mission_category,
-                        mission_description,
-                        mission_date,
-                        mission_start_time,
-                        mission_end_time,
-                        _id_city,
-                        mission_place_name,
-                        mission_available_place,
-                        mission_img) VALUES 
-                        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
+        const request = `
+            INSERT INTO mission (
+            mission_title,
+            _id_mission_category,
+            mission_description,
+            mission_date,
+            mission_start_time,
+            mission_end_time,
+            _id_city,
+            mission_place_name,
+            mission_available_place,
+            mission_img) VALUES 
+            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
 
         const [result] = await db.query(request, [
             title,
@@ -235,8 +308,6 @@ exports.searchCityInSql = async (q) => {
 
         const [result] = await db.query(query, [`${q}%`]);
 
-        console.log(result)
-
         return result;
 
     } catch (error) {
@@ -265,20 +336,22 @@ exports.getAllMission = async () => {
 
     try {
 
-        const request = `SELECT 
-                            id_mission, 
-                            mission_title, 
-                            DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, 
-                            mission_category_name,  
-                            city_name, 
-                            mission_description                 
-                        FROM mission AS m
-                        LEFT JOIN city
-                            ON id_city = _id_city
-                        LEFT JOIN mission_category
-                            ON id_mission_category = _id_mission_category
-                        WHERE mission_date >= CURRENT_DATE
-                        ORDER BY m.mission_date ASC;`
+        const request = `
+            SELECT 
+                id_mission, 
+                mission_title, 
+                DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, 
+                mission_category_name,  
+                city_name, 
+                mission_description                 
+            FROM mission AS m
+            LEFT JOIN city
+                ON id_city = _id_city
+            LEFT JOIN mission_category
+                ON id_mission_category = _id_mission_category
+            WHERE mission_date >= CURRENT_DATE
+            ORDER BY m.mission_date ASC
+        `;
 
         const [result] = await db.query(request);
 
@@ -330,19 +403,25 @@ exports.getAllMissionsByUser = async (IdUser) => {
 
     try {
 
-        const request = `SELECT mission_title, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, city_name 
-                        FROM registration_mission 
-                        LEFT JOIN mission
-                        ON id_mission = _id_mission
-                        LEFT JOIN city
-                        ON id_city = _id_city
-                        WHERE _id_user = ?`;
+        const request = `
+            SELECT mission_title, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, city_name 
+            FROM registration_mission 
+            LEFT JOIN mission
+            ON id_mission = _id_mission
+            LEFT JOIN city
+            ON id_city = _id_city
+            WHERE _id_user = ?
+            AND CURRENT_DATE() < mission_date
+            ORDER BY mission.mission_date ASC
+        `;
+
         const [result] = await db.query(request, [IdUser]);
 
         return result;
 
     } catch (error) {
 
+        console.error("Erreur SQL getAllMissionsByUser :", error);
         throw error;
     }
 }

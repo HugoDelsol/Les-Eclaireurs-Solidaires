@@ -22,12 +22,13 @@
 -- Orga des fichiers et dossiers
 -- Organistation du modele de class
 -- Organisation du css (Optimisation)
--- Protection des formulaire contre xss etc ...
+/-- Protection des formulaire contre xss etc ... / Protection des input profil user
 -- 150 plus grande ville de france
 -- Gerer les pages d'erreurs (404 etc ...)
 -- home page stat dynamique
 -- rappel automatisé
--- en responsiv la liste des mission doit recharger aprés une inscription
+//-- en responsiv la liste des mission doit recharger aprés une inscription
 -- Supprimer son profil 
 -- Récupération de mot de passse via email ?
 -- Rajouter un icon pour afficher mot de passe ou non 
+-- Récuperer le service (getglobal data) inutile

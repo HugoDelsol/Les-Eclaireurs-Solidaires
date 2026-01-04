@@ -158,7 +158,6 @@ exports.registerMissionUser = async (idUser, idMission) => {
 
         await missionModel.registerMissionUser(idUser, idMission);
 
-
     } catch (error) {
 
         console.log(error);

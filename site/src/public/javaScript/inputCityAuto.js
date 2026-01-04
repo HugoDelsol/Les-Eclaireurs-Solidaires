@@ -1,5 +1,4 @@
 const cityInput = document.querySelector('.city');
-
 const displayListCity = document.querySelector('.displayListCity');
 
 cityInput.addEventListener('input', async (e) => {
@@ -7,6 +6,7 @@ cityInput.addEventListener('input', async (e) => {
     try {
 
         let inputValue = e.target.value;
+        console.log(inputValue)
 
         const response = await fetch(`searchCity?q=${inputValue}`);
 
@@ -14,8 +14,7 @@ cityInput.addEventListener('input', async (e) => {
             throw new Error('--->>>', response.status);
         }
 
-        const result = await response.json();
-        
+        const result = await response.json();        
 
         displayListCity.innerHTML = '';
 
@@ -36,9 +35,9 @@ cityInput.addEventListener('input', async (e) => {
                     cityInput.value = li.textContent;
 
                     const selectedIdCity = li.dataset.idCity;
-                    displayListCity.classList.remove('show');
-
                     document.querySelector('.cityId').value = selectedIdCity;
+
+                    displayListCity.classList.remove('show');
                 });
             }
 

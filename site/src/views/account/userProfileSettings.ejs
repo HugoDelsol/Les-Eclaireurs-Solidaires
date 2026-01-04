@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/user-profile-settings.css">
+<script src="/javaScript/inputCityAuto.js" defer></script>
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
@@ -44,14 +45,23 @@
                             <input type="text" id="address" name="address" placeholder="Votre adresse">
                         </div>
 
-                        <div class="col">                                
+                        <div class="col relativePosition">                                
                             <label for="city">Ville</label>
-                            <input type="text" id="city" name="city" placeholder="Votre ville">
+                            <input type="text" class="city" name="city" placeholder="Votre ville">
+                            <input type="hidden" class="cityId" name="cityId">
+                            <ul class="displayListCity"></ul>
                         </div>
                     
                         <div class="col">
                             <label for="category">Type de mission recherché</label>
-                            <input type="text" id="category" name="category" placeholder="Sélectionner une catégorie">
+                            <select name="category" id="category">
+                                <option value="">Sélectionner une catégorie</option>
+                                <% for (let c of categoriesMission) { %>
+                                    <option value="<%= c.id_mission_category %>">
+                                        <%= c.mission_category_name %>
+                                    </option>
+                                <% } %>
+                            </select>
                         </div>
                         
                     </div>
