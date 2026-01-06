@@ -93,7 +93,7 @@ h3 {
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .headerDashboard {
@@ -279,10 +279,17 @@ td a {
     border-radius: 10px 10px 0 0;
 }
 
+@media all and (max-height : 768px) {
+    
+    .dashboardContainer {
+        min-height: 98vh;
+    }
+}
 
-@media all and (max-width : 1300px) {  
+@media all and (max-width : 1300px) {
 
-    .fixMax, table {
+    .fixMax,
+    table {
         display: none;
     }
 
@@ -347,7 +354,7 @@ td a {
 
     .arrowRight,
     .arrowRightRegistration,
-    .arrowRightAccomplished  {
+    .arrowRightAccomplished {
         rotate: -90deg;
     }
 
