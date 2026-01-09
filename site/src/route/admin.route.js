@@ -1,16 +1,15 @@
-
 const express = require('express');
 const router = express.Router();
-const homeCtrl = require('../controllers/home.ctrl');
 const userCtrl = require('../controllers/user.ctrl');
 const missionCtrlGet = require('../controllers/mission.ctrl.get');
 const missionCtrlPost = require('../controllers/mission.ctrl.post');
 const sessionMdw = require('../middleware/session.middleware');
-const globalVarsMdw = require('../middleware/globalVars.middleware');
+const inputProtection = require('../middleware/inputProtection.middleware');
+
 
 // --- SIGN ---
 router.get('/signUpAdminForm', userCtrl.signUpAdminForm);
-router.post('/saveAdmin', userCtrl.saveAdmin);
+router.post('/saveAdmin', inputProtection.adminSignFormProtection, userCtrl.saveAdmin);
 
 // --- DAHBOARD ---
 router.get('/dashboardAdmin', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userCtrl.dashboardAdmin);

@@ -1,4 +1,5 @@
 const missionModel = require('../../models/MissionModel');
+const { matchedData } = require('express-validator');
 
 exports.editUserProfile = async (req, res) => {
 
@@ -12,29 +13,22 @@ exports.editUserProfile = async (req, res) => {
 
         const idUser = req.session.userExist.id;
 
-        const lastName = req.body.lastname;
-        const firstName = req.body.firstname;
-        const phone = req.body.phone;
-        const address = req.body.address;
-        const cityId = req.body.cityId;
-        const category = req.body.category;
-
-        const currentPassword = req.body.currentPassword;
-        const newPassword = req.body.newPassword;
+        const safeData = matchedData(req)
+        const { lastname, firstname, phone, address, cityId, category, } = safeData;
 
         await missionModel.updateUserProfile(
             idUser,
-            lastName,
-            firstName,
+            lastname,
+            firstname,
             phone,
             address,
             cityId,
             category
         );
 
-        if (firstName.trim().length > 0) {
-            req.session.userExist.firstName = firstName;
-            renderData.pseudoUser = req.session.userExist.firstName;
+        if (firstname && firstname.trim().length > 0) {
+            req.session.userExist.firstname = firstname;
+            renderData.pseudoUser = req.session.userExist.firstname;
         }
 
         renderData.alertMsg = "Profil mis à jour avec succès !";

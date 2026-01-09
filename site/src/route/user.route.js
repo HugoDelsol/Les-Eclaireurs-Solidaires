@@ -9,7 +9,7 @@ const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 
 // --- GENERAL ROUTE ---
-router.post('/auth', inputProtection.signInFormProtection, userCtrl.auth); 
+/* router.post('/auth', inputProtection.signInFormProtection, userCtrl.auth);  */
 router.get('/logout', sessionMdw.logout);
 
 // --- HOME --- 
@@ -18,8 +18,8 @@ router.get('/becomeVolunteer', homeCtrl.becomeVolunteer);
 router.post('/homeForm', homeCtrl.submitForm);
 
 // --- SIGN ---
-router.get('/signIn', userCtrl.signIn);
-router.get('/signUp', userCtrl.signUp);
+/* router.get('/signIn', userCtrl.signIn);
+router.get('/signUp', userCtrl.signUp); */
 router.post('/saveUser', inputProtection.signUpFormProtection, userCtrl.saveUser);
 
 // --- DASHBOARD ---
@@ -37,7 +37,7 @@ router.post('/addRegisterMissionUser', sessionMdw.requireAuth, sessionMdw.volunt
 
 // --- PROFILE ---
 router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.userProfilSettingsShow);
-router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerController.editUserProfile);
+router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, inputProtection.updateUserProfile, userVolunteerController.editUserProfile);
 router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
 
 

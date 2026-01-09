@@ -83,6 +83,24 @@ exports.addUserHistoryMission = async (idUser) => {
     }
 }
 
+exports.obtainStatsOnVolunteer = async (idUser) => {
+
+    try {
+        
+        const obtainStatsOnVolunteer = `
+            SELECT SUM(mision_start_time - mission_end_time) FROM registration_mission
+            LEFT JOIN mission 
+            ON id_mission = _id_mission
+            WHERE _id_user = 49
+
+        ` 
+    } catch (error) {
+
+        console.error("Erreur SQL obtainStatsOnVolunteer :", error);
+        throw error;        
+    }
+}
+
 exports.getMissionByRegion = async (idRegion) => {
 
     try {

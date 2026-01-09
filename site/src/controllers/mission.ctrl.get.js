@@ -316,11 +316,11 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const getMissionByRegion = await missionModel.getMissionByRegion(idRegionByUser);
 
-        console.log(getMissionByRegion)
-
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
 
-        const historyMissionUser = await missionModel.addUserHistoryMission(idUser);
+        const historyMissionUser = await missionModel.addUserHistoryMission(idUser); 
+        
+        const obtainStatsOnVolunteer = await missionModel.obtainStatsOnVolunteer(idUser);
 
         res.render('account/dashboardUser', {
 

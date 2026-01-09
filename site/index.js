@@ -60,11 +60,15 @@ app.use(express.static(path.join(__dirname, '/src/public')));
 // ------------------------------------
 // 🚦 ROUTES DE L’APPLICATION
 // ------------------------------------
+const generalRoute = require('./src/route/general.route');
 const userRoute = require('./src/route/user.route');
 const adminRoute = require('./src/route/admin.route');
 
 app.use(middleware.centralizedVar);
 app.use(middleware.userData);
+
+// Routes générales (pages communes)
+app.use('/', generalRoute);
 
 // Routes publiques (site utilisateur)
 app.use('/', userRoute);

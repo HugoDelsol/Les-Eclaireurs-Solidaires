@@ -1,3 +1,72 @@
+/src
+  /controllers  (Logique des routes)
+  /models       (Classes et Schémas Data)
+  /services     (Logique métier réutilisable - ex: envoi de mail)
+  /middlewares  (Sécurité, auth, uploads)
+  /public       (CSS, JS client, Images)
+  /views        (Templates EJS/Pug/HBS)
+  /utils        (Fonctions utilitaires, listes de villes)
+
+🛡️ Sécurité & Authentification
+
+    [ ] Validation Inscriptions : Vérification de la similarité des mots de passe + Mise en place d'une règle "Mot de passe robuste" (Regex/Library).
+
+    [ ] Protection Routes : Finaliser l'étanchéité entre les rôles Admin et User (Middlewares de session/JWT).
+
+    [ ] Sécurité Inputs : Protection contre les failles XSS (Nettoyage des entrées) et injections sur tous les formulaires (Profil/Missions).
+
+    [ ] Accessibilité : Ajouter un bouton "œil" pour afficher/masquer le mot de passe.
+
+    [ ] Mot de passe oublié : Mise en place d'un flux de récupération via email (Nodemailer/SendGrid).
+
+🏗️ Architecture & Clean Code
+
+    [ ] Modularité : Créer des fonctions pour segmenter le code (Services/Utils) et alléger les contrôleurs.
+
+    [ ] Refacto Modèles : Réorganisation du modèle de classes pour une meilleure gestion de la donnée.
+
+    [ ] Gestion d'Erreurs : Centraliser la gestion des erreurs (Middleware d'erreur) et créer des vues dédiées (404, 500).
+
+    [ ] SEO & Metadata : Rendre les balises <title> dynamiques selon la page et ajouter un Favicon.
+
+    [ ] Optimisation CSS : Regrouper les variables, nettoyer les doublons et organiser les fichiers (SASS ou structure par composants).
+
+👤 Expérience Utilisateur (UX/UI)
+
+    [ ] Profil Complet requis : Bloquer l'accès aux missions (visuel et inscription) tant que le profil n'est pas rempli à 100%.
+
+    [ ] Gestion des Images : * Mise en place de l'upload pour la photo de profil.
+
+        Système d'insertion d'images pour les missions (Cloudinary, AWS S3 ou dossier local sécurisé).
+
+        Ajout systématique des balises ALT pour l'accessibilité.
+
+    [ ] Navigation Mobile : Finaliser le responsive (Header/Footer/Dashboard) et ajouter un bouton "Retour en haut".
+
+📋 Gestion des Missions (Features)
+
+    [ ] Filtres & Tris : * Système de tri par date (croissant/décroissant) sur la liste.
+
+        Critères de sélection avancés.
+
+    [ ] Affichage : * Vue détails d'une mission.
+
+        Toggle pour switcher l'affichage de la liste entre "Lignes" et "Cards".
+
+    [ ] Données : Intégrer la liste des 150 plus grandes villes de France pour la localisation.
+
+📊 Dashboard & Automatisation
+
+    [ ] Stats Admin : Intégrer des icônes dynamiques basées sur les statistiques réelles de la base de données.
+
+    [ ] Home Page : Dynamiser les chiffres clés (Ex: "X missions déjà réalisées").
+
+    [ ] Rappels : Mettre en place un système de rappels automatisés (Cron jobs ou vérification au login).
+
+    [ ] Destruction : Fonctionnalité de suppression définitive de compte (RGPD).
+
+
+
 -- Ajouter petit plus photo profil pour aller a profil et ajouter une photo 
 //-- logique aprés responsiv list mission user
 //-- Critere de selection mission list
@@ -32,3 +101,9 @@
 -- Récupération de mot de passse via email ?
 -- Rajouter un icon pour afficher mot de passe ou non 
 -- Récuperer le service (getglobal data) inutile
+-- Appuyer sur un btn pour avoir list mission en card 
+
+
+1. Entrée	            express-validator	        Filtre : "Est-ce que c'est bien un nom ? Est-ce trop long ?"
+2. Logique	            Destructuring	            Sélection : "Je ne prends que lastname et firstname, j'ignore le reste."
+3. Sortie vers BDD	    Requête préparée	        Protection : "J'envoie les données sans risque d'injection SQL."
