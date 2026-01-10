@@ -455,5 +455,4 @@ exports.alreadyRegistered = async (idUser) => {
 
         throw error;
     }
-
 }

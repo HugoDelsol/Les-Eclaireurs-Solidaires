@@ -1,5 +1,86 @@
-const missionModel = require('../../models/MissionModel');
+// ==============================
+// IMPORTS & DEPENDENCIES
+// ==============================
+
+// Libraries
 const { matchedData } = require('express-validator');
+
+// Models
+const userModel = require('../../models/UserModel');
+const missionModel = require('../../models/MissionModel');
+
+//Services
+const { dashboardAllStats } = require('../mission.ctrl.get');
+
+// ==============================
+// DISPLAY VIEWS
+// ==============================
+
+exports.dashboardUser = async (req, res) => {
+    const idUser = req.session.userExist.id;
+    dashboardAllStats(req, res, idUser);
+}
+
+exports.userProfilSettingsShow = async (req, res) => {
+    const getAllCategories = await missionModel.getAllCategories();
+    req.session.categoriesMission = getAllCategories
+    res.render('account/userProfileSettings', {
+        categoriesMission: req.session.categoriesMission
+    });
+}
+
+// ==============================
+// SAVE NEW VOLUNTEER
+// ==============================
+
+exports.saveUser = async (req, res) => {
+
+    try {
+
+        const safeData = matchedData(req);
+        const { firstName, lastName, email, password, passwordConfirm } = safeData;
+
+        if (!req.body.firstName ||
+            !req.body.lastName ||
+            !req.body.email ||
+            !req.body.password ||
+            !req.body.passwordConfirm) {
+
+            throw new Error('Merci de compléter tous les champs');
+        }
+
+        let userExist = await userModel.getOneUserByEmail(email);
+        if (userExist) throw new Error("Un utilisateur utilise deja cette email");
+
+        const saveUser = await userModel.addUser(
+            firstName,
+            lastName,
+            email,
+            password,
+        )
+
+        if (saveUser) {
+            res.render('connection/signIn', {
+                alertMsg: "Veuillez vous connecter pour accéder à votre compte."
+            });
+        }
+
+    } catch (error) {
+
+        res.render('connection/signUp', {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
+            passwordConfirm: req.body.passwordConfirm,
+            alertMsg: error.message
+        });
+    }
+}
+
+// ==============================
+// EDIT VOLUNTEER PROFILE
+// ==============================
 
 exports.editUserProfile = async (req, res) => {
 
