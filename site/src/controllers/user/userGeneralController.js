@@ -4,6 +4,7 @@
 
 // Libraries
 const bcrypt = require('bcrypt');
+const { matchedData } = require('express-validator');
 
 // Models
 const userGeneralMdl = require('../../models/UserModel');
@@ -34,19 +35,13 @@ exports.auth = async (req, res) => {
 
     try {
 
-        let email = req.body.email;
-        let password = req.body.password;
+        const safeData = matchedData(req)
 
-        if (!req.body.email || !req.body.password) {
-
-            throw new Error('Merci de compléter tous les champs');
-        }
+        const {email, password} = safeData;
 
         const userExist = await exports.verifyAccountExist(email, password);
 
-        if (!userExist) {
-            throw new Error("Email ou mot de passe incorrect.");
-        }
+        if (!userExist) throw new Error("Email ou mot de passe incorrect.");
 
         const rolesMaps = {
 
@@ -77,67 +72,26 @@ exports.auth = async (req, res) => {
 
                 action: userVolunteerCtrl.dashboardUser
             }
-        };
+        };   
 
-        let roleKey = null
+        let roleKey = null;
 
         if (userExist.role === "user"){
-            roleKey = "user"
+            roleKey = "user";
+        } else if (userExist.role === "admin") {
+            roleKey = `admin_${userExist._id_admin_role}`;
         }
 
-        const roles = rolesMaps[roleKey]
+        const session = rolesMaps[roleKey].session(userExist);
 
-        console.log(roles.session(userExist))
-
-
-    /*     let roleKey = null
-
-        if (userExist.role === 'admin'){
-            roleKey = `admin_${userExist[rolesMaps.]}`
-        } else if (userExist._id_admin_role === 2){
-            roleKey = "admin_2"
-        } else {
-            roleKey = "user"
-        } */
-
-        if (userExist.role === 'admin') {
-
-            if (userExist._id_admin_role === 1) {
-
-                req.session.userExist = {
-                    id: userExist.id_admin,
-                    firstName: userExist.admin_first_name,
-                    isSuperAdmin: true
-                }
-
-                getStatsMissions(req, res);
-
-            } else if (userExist._id_admin_role === 2) {
-
-                req.session.userExist = {
-                    id: userExist.id_admin,
-                    firstName: userExist.admin_first_name,
-                    isAdmin: true
-                }
-
-                getStatsMissions(req, res);
-            }
-
-        } else if (userExist.role === 'user') {
-
-            req.session.userExist = {
-                id: userExist.id_user,
-                firstName: userExist.user_first_name,
-                isVolunteer: true
-            }
-
-            const idUser = req.session.userExist.id;
-            userVolunteerCtrl.dashboardUser(req, res, idUser)
-        }
+        // REDEFINIR USER EXIST EN USER !!!!!!!
+        req.session.userExist = session;
+        
+        rolesMaps[roleKey].action(req, res);
 
     } catch (error) {
 
-        console.error(error)
+        console.error(error);
 
         res.render('connection/signIn', {
             alertMsg: error.message

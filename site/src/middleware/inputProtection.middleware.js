@@ -1,4 +1,12 @@
+// ==============================
+// IMPORTS & DEPENDENCIES
+// ==============================
+
 const { body, validationResult } = require('express-validator');
+
+// ==============================
+// REGISTRATION FORM PROTECTION
+// ==============================
 
 const signUpFormProtection = [
 
@@ -53,6 +61,10 @@ const signUpFormProtection = [
     }
 ];
 
+// ==============================
+// LOGIN FORM PROTECTION
+// ==============================
+
 const signInFormProtection = [
 
     body('email')
@@ -60,6 +72,9 @@ const signInFormProtection = [
         .isEmail()
         .withMessage("L'email renseigné n'est pas valide")
         .normalizeEmail(),
+    
+    body('password')
+        .notEmpty().withMessage("Veuillez saisir votre mot de passe"),
 
     (req, res, next) => {
 
@@ -70,13 +85,17 @@ const signInFormProtection = [
             const message = error.array()[0].msg
 
             return res.render('connection/signIn', {
-                alertMsg: message
+                alertMsg: message                
             })
         }
 
         next();
     }
 ]
+
+// ==============================
+// PROTECTION REGISTRATION ADMIN FORM 
+// ==============================
 
 const adminSignFormProtection = [
 
@@ -99,6 +118,10 @@ const adminSignFormProtection = [
         next();
     }
 ]
+
+// ==============================
+// PROTECTION INPUT IN THE PROFILE EDIT FORM
+// ==============================
 
 const updateUserProfile = [
 
