@@ -1,3 +1,7 @@
+// ==============================
+// IMPORTS & DEPENDENCIES
+// ==============================
+
 // Libraries
 const bcrypt = require('bcrypt');
 
@@ -5,12 +9,13 @@ const bcrypt = require('bcrypt');
 const userGeneralMdl = require('../../models/UserModel');
 
 // Controllers
-const userCtrl = require('../user.ctrl');
+const userVolunteerCtrl = require('../user/userVolunteerController');
 
 // Get Functions
+const { getStatsMissions } = require('../mission.ctrl.get')
 
 // ==============================
-// USER - GENERAL.CTRL - VIEWS
+// DISPLAY VIEWS
 // ==============================
 
 exports.signIn = async (req, res) => {
@@ -22,7 +27,7 @@ exports.signUp = async (req, res) => {
 }
 
 // ==============================
-// USER - GENERAL.CTRL - AUTHENTICATION
+// AUTHENTICATION
 // ==============================
 
 exports.auth = async (req, res) => {
@@ -43,7 +48,7 @@ exports.auth = async (req, res) => {
             throw new Error("Email ou mot de passe incorrect.");
         }
 
-        /* const rolesMaps = {
+        const rolesMaps = {
 
             admin_1: {
                 session: (u) => ({
@@ -51,7 +56,7 @@ exports.auth = async (req, res) => {
                     firstName: u.admin_first_name,
                     isSuperAdmin: true
                 }),
-                action: getStatsMissions(req, res)
+                action: getStatsMissions
             },
 
             admin_2: {
@@ -60,9 +65,40 @@ exports.auth = async (req, res) => {
                     firstName: u.admin_first_name,
                     isAdmin: true
                 }),
-                action: getStatsMissions(req, res)
+                action: getStatsMissions
             },
-        }; */
+
+            user: {
+                session: (u) => ({
+                    id: u.id_user,
+                    firstName: u.user_first_name,
+                    isVolunteer: true
+                }),
+
+                action: userVolunteerCtrl.dashboardUser
+            }
+        };
+
+        let roleKey = null
+
+        if (userExist.role === "user"){
+            roleKey = "user"
+        }
+
+        const roles = rolesMaps[roleKey]
+
+        console.log(roles.session(userExist))
+
+
+    /*     let roleKey = null
+
+        if (userExist.role === 'admin'){
+            roleKey = `admin_${userExist[rolesMaps.]}`
+        } else if (userExist._id_admin_role === 2){
+            roleKey = "admin_2"
+        } else {
+            roleKey = "user"
+        } */
 
         if (userExist.role === 'admin') {
 
@@ -96,7 +132,7 @@ exports.auth = async (req, res) => {
             }
 
             const idUser = req.session.userExist.id;
-            userCtrl.dashboardUser(req, res, idUser)
+            userVolunteerCtrl.dashboardUser(req, res, idUser)
         }
 
     } catch (error) {
@@ -110,7 +146,7 @@ exports.auth = async (req, res) => {
 }
 
 // ==============================
-// USER - GENERAL.CTRL - VERIFICATION
+// VERIFICATION
 // ==============================
 
 exports.verifyAccountExist = async (email, password) => {
@@ -140,6 +176,5 @@ exports.verifyAccountExist = async (email, password) => {
     } catch (e) {
 
         console.error(e);
-
     }
 }

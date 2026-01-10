@@ -41,7 +41,6 @@ app.use(session({
 // ------------------------------------
 // 🧠 MIDDLEWARES GLOBAUX
 // ------------------------------------
-
 // Permet d'utiliser req.body en JSON
 app.use(express.json());
 
@@ -61,17 +60,19 @@ app.use(express.static(path.join(__dirname, '/src/public')));
 // 🚦 ROUTES DE L’APPLICATION
 // ------------------------------------
 const generalRoute = require('./src/route/general.route');
-const userRoute = require('./src/route/user.route');
+const volunteerRoute = require('./src/route/volunteer.route');
 const adminRoute = require('./src/route/admin.route');
 
+// Injecte des variables globales accessibles dans toutes les vues
 app.use(middleware.centralizedVar);
+// Récupère et attache les informations de l'utilisateur 
 app.use(middleware.userData);
 
 // Routes générales (pages communes)
 app.use('/', generalRoute);
 
 // Routes publiques (site utilisateur)
-app.use('/', userRoute);
+app.use('/', volunteerRoute);
 
 // Routes administrateur (interface d'administration)
 app.use('/admin', adminRoute);

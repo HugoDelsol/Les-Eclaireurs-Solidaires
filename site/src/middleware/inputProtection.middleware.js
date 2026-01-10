@@ -55,15 +55,22 @@ const signUpFormProtection = [
 
 const signInFormProtection = [
 
-    body('email').trim().isEmail().normalizeEmail(),
+    body('email')
+        .trim()
+        .isEmail()
+        .withMessage("L'email renseigné n'est pas valide")
+        .normalizeEmail(),
 
     (req, res, next) => {
 
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
+
+            const message = error.array()[0].msg
+
             return res.render('connection/signIn', {
-                alertMsg: 'Données invalides. Veuillez vérifier les champs.'
+                alertMsg: message
             })
         }
 

@@ -13,6 +13,5 @@ exports.addMessageForm = async (nameForm, emailForm, txtArea) => {
     } catch (error) {
 
         throw error;
-
     }
 }

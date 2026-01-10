@@ -1,29 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const homeCtrl = require('../controllers/home.ctrl');
-const userCtrl = require('../controllers/user.ctrl');
-const userVolunteerController = require('../controllers/user/userVolunteerController');
+const userVolunteerCtrl = require('../controllers/user/userVolunteerController');
 const missionCtrlGet = require('../controllers/mission.ctrl.get');
 const missionCtrlPost = require('../controllers/mission.ctrl.post');
 const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 
-// --- GENERAL ROUTE ---
-/* router.post('/auth', inputProtection.signInFormProtection, userCtrl.auth);  */
-router.get('/logout', sessionMdw.logout);
-
-// --- HOME --- 
-router.get('/', homeCtrl.homePage);
-router.get('/becomeVolunteer', homeCtrl.becomeVolunteer);
-router.post('/homeForm', homeCtrl.submitForm);
-
 // --- SIGN ---
-/* router.get('/signIn', userCtrl.signIn);
-router.get('/signUp', userCtrl.signUp); */
-router.post('/saveUser', inputProtection.signUpFormProtection, userCtrl.saveUser);
+router.post('/saveUser', inputProtection.signUpFormProtection, userVolunteerCtrl.saveUser);
 
 // --- DASHBOARD ---
-router.get('/dashboardUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.dashboardUser);
+router.get('/dashboardUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerCtrl.dashboardUser);
 router.get('/fetchMissionByRegionDashboardUser', sessionMdw.requireAuth, missionCtrlGet.fetchMissionByRegionDashboardUser);
 router.get('/fetchMissionByRegistrationDashboardUser', sessionMdw.requireAuth, missionCtrlGet.fetchMissionByRegistrationDashboardUser);
 router.get('/fetchMissionAccomplishedDashboardUser', sessionMdw.requireAuth, missionCtrlGet.fetchMissionAccomplishedDashboardUser)
@@ -36,8 +23,8 @@ router.get('/modalRegisterMission', sessionMdw.requireAuth, sessionMdw.volunteer
 router.post('/addRegisterMissionUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionCtrlGet.addRegisterMissionUser);
 
 // --- PROFILE ---
-router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userCtrl.userProfilSettingsShow);
-router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, inputProtection.updateUserProfile, userVolunteerController.editUserProfile);
+router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerCtrl.userProfilSettingsShow);
+router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, inputProtection.updateUserProfile, userVolunteerCtrl.editUserProfile);
 router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
 
 

@@ -15,15 +15,15 @@ exports.signUp = async (req, res) => {
     res.render('connection/signUp');
 } */
 
-exports.signUpAdminForm = async (req, res) => {
+/* exports.signUpAdminForm = async (req, res) => {
     res.render('connection/signUpAdmin');
 }
 
 exports.dashboardAdmin = async (req, res) => {
     getStatsMissions(req, res);
-}
+} */
 
-exports.dashboardUser = async (req, res) => {
+/* exports.dashboardUser = async (req, res) => {
     const idUser = req.session.userExist.id;
     dashboardAllStats(req, res, idUser);
 }
@@ -34,9 +34,9 @@ exports.userProfilSettingsShow = async (req, res) => {
     res.render('account/userProfileSettings', {
         categoriesMission: req.session.categoriesMission
     });
-}
+} */
 
-exports.tokenView = async (req, res) => {
+/* exports.tokenView = async (req, res) => {
 
     const admins = await userModel.getAllAdmins();
 
@@ -50,14 +50,11 @@ exports.tokenView = async (req, res) => {
 }
 
 exports.listOfVolunteers = async (req, res) => {
-
-    console.log("coucou")
-
     res.render('account/listOfVolunteers');
-}
+} */
 
 // --- --- ---
-
+/* 
 exports.generateToken = async (req, res) => {
 
     let generateTokenSuper;
@@ -88,8 +85,8 @@ exports.generateToken = async (req, res) => {
 
         console.log(error)
     }
-}
-
+} */
+/* 
 exports.saveAdmin = async (req, res) => {
 
     try {
@@ -141,8 +138,8 @@ exports.saveAdmin = async (req, res) => {
             alertMsg: error.message
         });
     }
-}
-
+} */
+/* 
 exports.saveUser = async (req, res) => {
 
     try {
@@ -186,7 +183,7 @@ exports.saveUser = async (req, res) => {
             alertMsg: error.message
         });
     }
-}
+} */
 /* 
 exports.auth = async (req, res) => {
 
