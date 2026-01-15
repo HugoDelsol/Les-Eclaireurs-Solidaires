@@ -53,58 +53,21 @@
             <!--  -->
             <section class="currentMission" id="scrolleMission">
                 <h2 class="txtModH2">Nos besoins actuels</h2>
-                <div class="pictureMissionAndTxt">
-                    <img src="/pictures/Bénévolat.jpg" a>
-                    <div>
-                        <h3>Nettoyage des berges - Samedi 03 juillet</h3>
-                        <div class="line lineMissions"></div>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quam hic reprehenderit obcaecati accusantium repellendus
-                            consectetur, quo eos tempore ea molestiae quibusdam porro!
-                            Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
-                        </p>
-                        <div class="row">
-                            <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
-                            <a href="" class="link">voir plus</a>
+                <% for (let d of displayMission) { %>                    
+                    <div class="pictureMissionAndTxt">
+                        <img src="/pictures/Bénévolat.jpg" a>
+                        <div>
+                            <h3><%= d.mission_title + " - " + d.mission_date %> </h3>
+                            <div class="line lineMissions"></div>
+                            <p><%= d.mission_description %></p>
+                            <div class="row">
+                                <a href="<% d.id_mission %>" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
+                                <a href="<% d.id_mission %>" class="link">voir plus</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pictureMissionAndTxt">
-                    <img src="/pictures/Bénévolat6.jpg" alt="">
-                    <div>
-                        <h3>Nettoyage des berges - Samedi 03 juillet</h3>
-                        <div class="line lineMissions"></div>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quam hic reprehenderit obcaecati accusantium repellendus
-                            consectetur, quo eos tempore ea molestiae quibusdam porro!
-                            Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
-                        </p>
-                        <div class="row">
-                            <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
-                            <a href="" class="link">voir plus</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="pictureMissionAndTxt">
-                    <img src="/pictures/Bénévolat2.jpg" alt="">
-                    <div>
-                        <h3>Nettoyage des berges - Samedi 03 juillet</h3>
-                        <div class="line lineMissions"></div>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Quam hic reprehenderit obcaecati accusantium repellendus
-                            consectetur, quo eos tempore ea molestiae quibusdam porro!
-                            Sequi necessitatibus eligendi aut laudantium. Aspernatur, et ipsa.
-                        </p>
-                        <div class="row">
-                            <a href="" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
-                            <a href="" class="link">voir plus</a>
-                        </div>
-                    </div>
-                </div>
-                <div id="scrolleAboutSection"></div>
+                <% } %>
+                <div id="scrolleAboutSection"></div> 
             </section>
             <!--  -->
             <section class="about">

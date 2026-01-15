@@ -335,6 +335,7 @@ exports.searchCityInSql = async (q) => {
 }
 
 exports.getAllRegions = async () => {
+
     try {
 
         const request = `SELECT * FROM region`;
@@ -350,7 +351,15 @@ exports.getAllRegions = async () => {
 
 }
 
-exports.getAllMission = async () => {
+exports.getAllMission = async (sqlLimit) => {
+
+    // SQL LIMIT
+
+    let limitCondition = "";
+
+    if (sqlLimit){
+        limitCondition = ` LIMIT ${sqlLimit}`;
+    }
 
     try {
 
@@ -369,6 +378,7 @@ exports.getAllMission = async () => {
                 ON id_mission_category = _id_mission_category
             WHERE mission_date >= CURRENT_DATE
             ORDER BY m.mission_date ASC
+            ${limitCondition}
         `;
 
         const [result] = await db.query(request);
@@ -378,7 +388,6 @@ exports.getAllMission = async () => {
     } catch (error) {
 
         console.error("Erreur SQL getAllMission :", error);
-
         throw error;
     }
 }
@@ -445,6 +454,7 @@ exports.getAllMissionsByUser = async (IdUser) => {
 }
 
 exports.alreadyRegistered = async (idUser) => {
+
     try {
 
         const request = `SELECT _id_mission FROM registration_mission WHERE _id_user = ?`;

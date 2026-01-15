@@ -30,7 +30,6 @@ span {
 .btnPrimary {
     display: flex;
     justify-content: center;
-    box-shadow: 0px 0px 6px #00000038;
     background-color: #F9CF80;
     border: none;
     padding: 0.6em 2em;
@@ -42,8 +41,6 @@ span {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.150);
-    box-shadow: 0px 0px 6px #f9cf807a;
-    background-color: #F8F5EE;
     padding: 0.6em 2em;
     border-radius: 2em;
     font-weight: 400;
@@ -60,7 +57,8 @@ span {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
-    border-color: #0000007e;
+    border-color: #0000007e;    
+    box-shadow: 0px 0px 6px #00000025;
 }
 
 .txtModH2 {
@@ -213,7 +211,7 @@ span {
 }
 
 .currentMission h3 {
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .pictureMissionAndTxt {
