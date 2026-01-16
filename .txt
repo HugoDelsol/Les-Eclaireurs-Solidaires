@@ -66,6 +66,8 @@
     [ ] Destruction : Fonctionnalité de suppression définitive de compte (RGPD).
 
 
+garder les données meme si erreur a lajourt dune mission experience admin
+
 
 -- Ajouter petit plus photo profil pour aller a profil et ajouter une photo 
 //-- logique aprés responsiv list mission user

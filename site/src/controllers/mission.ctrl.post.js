@@ -1,5 +1,6 @@
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
+const utils = require('../utils/utils');
 
 //---
 //--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
@@ -25,7 +26,7 @@ exports.searchByCategories = async (req, res) => {
         if (tripStart && !tripEnd || !tripStart && tripEnd) {
 
             if (req.session.userExist.isVolunteer) {
-                
+
                 return res.render('account/listMissionUser', {
                     categoriesMission: req.session.categoriesMission,
                     regions: req.session.regions,
@@ -34,8 +35,8 @@ exports.searchByCategories = async (req, res) => {
                     regionSelected: regionSelected,
                     alertMsg: "Veuilliez saisir une date de début et une date de fin."
                 });
-            }            
-            
+            }
+
             if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
 
                 return res.render('account/listMissionsAdmin', {
@@ -43,7 +44,7 @@ exports.searchByCategories = async (req, res) => {
                     regions: req.session.regions,
                     missions: req.session.getAllMissions,
                     categorySelected: categorySelected,
-                    regionSelected: regionSelected,                    
+                    regionSelected: regionSelected,
                     alertMsg: "Veuilliez saisir une date de début et une date de fin."
                 });
             }
@@ -85,33 +86,47 @@ exports.addMission = async (req, res) => {
 
     try {
 
-        const title = req.body.title;
-        const category = req.body.category;
-        const description = req.body.description;
-        const date = req.body.date;
-        const startTime = req.body.startTime;
-        const endTime = req.body.endTime;
-        const cityId = req.body.cityId;
-        const placeName = req.body.placeName;
-        const spaceAvailable = req.body.spaceAvailable;
-        const uploadImg = req.body.uploadImg;
+        let imageUrl = null;
+
+        const category = req.body.category;        
+        
+        if (!req.body.uploadImg) {                        
+
+            const fetchGroupImages = await missionModel.fetchImgByCategory(category);
+
+            const randomImage = utils.randomImage(fetchGroupImages);
+
+            imageUrl = randomImage;
+
+        } else {
+            
+            imageUrl = req.body.uploadImg;
+        }
+
+        const {
+            title,
+            description,
+            date,
+            startTime,
+            endTime,
+            cityId,
+            placeName,
+            spaceAvailable,
+        } = req.body;
 
         if (
-            !req.body.title ||
-            !req.body.category ||
-            !req.body.description ||
-            !req.body.date ||
-            !req.body.startTime ||
-            !req.body.endTime ||
-            !req.body.cityId ||
-            !req.body.placeName ||
-            !req.body.spaceAvailable ||
-            !req.body.uploadImg) {
+            !title ||
+            !category ||
+            !description ||
+            !date ||
+            !startTime ||
+            !endTime ||
+            !cityId ||
+            !placeName ||
+            !spaceAvailable) {
 
             throw new Error("Veuillez remplir tous les champs.");
         }
-
-        console.log("***", req.body.cityId);
 
         const insertMission = await missionModel.insertMission
             (
@@ -124,13 +139,14 @@ exports.addMission = async (req, res) => {
                 cityId,
                 placeName,
                 spaceAvailable,
-                uploadImg
+                imageUrl
             );
 
         if (insertMission) {
 
-            res.render('account/dashboardAdmin', {
+            res.render('account/addMission', {
                 pseudoUser: req.session.userExist.firstName,
+                categoriesMission: req.session.categoriesMission,
                 alertMsg: 'Missions ajoutée',
 
             })

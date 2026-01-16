@@ -113,7 +113,7 @@
             <% if (missionSelected) { %>
                 <% for (let i = 0; i < missionSelected.length; i++) { %>
                     <div class="pictureMissionAndTxt">
-                        <img src="/pictures/Bénévolat.jpg" alt="">
+                        <img src="<%= missionSelected[i].mission_img %>" alt="">
                         <div>
                             <h3>
                                 <%= missionSelected[i].mission_title %> -
@@ -136,7 +136,7 @@
             <% } else { %>
                 <% for (let i = 0; i < missions.length; i++) { %>
                     <div class="pictureMissionAndTxt">
-                        <img src="/pictures/Bénévolat.jpg" alt="">
+                        <img src="<%= missions[i].mission_img %>" alt="">
                         <div>
                             <h3>
                                 <%= missions[i].mission_title %> -

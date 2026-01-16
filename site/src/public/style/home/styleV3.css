@@ -119,16 +119,17 @@ span {
 /*------------------*/
 
 .aboutCard {
-    position: absolute;
-    background-image: url("../../pictures/backGroundCards/Group48.png");
-    top: 122em;
-    left: 84em;
-    background-size: 200px;
-    background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
-    transform-origin: right;
-    opacity: 0.75;
+	position: absolute;
+	background-image: url("../../pictures/backGroundCards/Group48.png");
+	top: 2em;
+	left: 76%;
+	background-size: 200px;
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 200px;
+	transform-origin: right;
+	opacity: 0.75;
+	z-index: -10;
 }
 
 
@@ -207,15 +208,17 @@ span {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5em;
+    margin-bottom: 2em;
 }
 
 .currentMission h3 {
     font-weight: 600;
+    font-size: 24px;
 }
 
 .pictureMissionAndTxt {
-    background-color: #F8F5EE;
+    background-color: #F8F5EE;    
+    box-shadow: 0px 0px 12px rgba(26, 30, 66, 0.1);
     display: flex;
     flex-direction: row;
     border: solid 0.16em #F9D082;
@@ -225,7 +228,19 @@ span {
     width: 70%;
 }
 
-.pictureMissionAndTxt div {
+.pictureMissionAndTxt .expose{
+    width: fit-content;
+    padding: 4px 12px;
+    background-color: #f9cf8249;
+    border-radius: 4px;
+    margin: 14px 0;
+}
+
+.pictureMissionAndTxt .bold{
+    font-weight: 600;
+}
+
+.pictureMissionAndTxt .div {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -236,7 +251,6 @@ span {
     width: 350px;
     border-radius: 0.5em;
     object-fit: cover;
-    box-shadow: 0px 0px 12px rgba(26, 30, 66, 0.473);
 }
 
 .widthBtnMission {
@@ -250,7 +264,7 @@ span {
 
 .lineMissions {
     margin: 1em 0;
-    width: 10%;
+    width: 10vw;
     left: -1em;
 }
 
@@ -258,7 +272,7 @@ span {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 1.4em;
+    margin-top: 0.4em;
     justify-content: flex-start;
 }
 
@@ -714,8 +728,7 @@ footer h4 {
     }
 
     .currentMission h3 {
-        font-weight: 400;
-        margin-top: 1.6em;
+        margin-top: 0.6em;
     }
 
     .currentMission img {
@@ -874,7 +887,7 @@ footer h4 {
     /***********************************************/
 
     .heroSection {
-        padding-top: 4em;
+        padding-top: 3em;
         margin: 1.4em;
     }
 
@@ -894,7 +907,7 @@ footer h4 {
 
     .heroSection .title h3 {
         margin-top: 1em;
-        font-size: 1.2em;
+        font-size: 16px;
         font-weight: 100;
         width: 90%;
     }

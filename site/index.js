@@ -59,9 +59,9 @@ app.use(express.static(path.join(__dirname, '/src/public')));
 // ------------------------------------
 // 🚦 ROUTES DE L’APPLICATION
 // ------------------------------------
-const generalRoute = require('./src/route/general.route');
-const volunteerRoute = require('./src/route/volunteer.route');
-const adminRoute = require('./src/route/admin.route');
+const generalRoute = require('./src/routes/general.route');
+const volunteerRoute = require('./src/routes/volunteer.route');
+const adminRoute = require('./src/routes/admin.route');
 
 // Injecte des variables globales accessibles dans toutes les vues
 app.use(middleware.centralizedVar);
