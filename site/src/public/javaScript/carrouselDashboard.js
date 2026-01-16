@@ -34,6 +34,7 @@ const arrowLeft = document.querySelector(".arrowLeft");
 const missionTitle = document.querySelector(".mission-title");
 const cityName = document.querySelector(".city-name");
 const missionAvailablePlace = document.querySelector(".mission-available-place");
+const backgroundImage = document.querySelector(".imgRegion");
 
 async function carrouselMissionByRegion() {
 
@@ -51,19 +52,24 @@ async function carrouselMissionByRegion() {
 
         const data = await response.json();
 
+        data.forEach( (m) => {
+            const img = new Image();
+            img.src = m.mission_img;
+        });
+
         let index = 0;
 
         if (data.length == 0) {
 
             ifNoData.style.display = "none";
             return;
-
         }
-        
+
         function updateCarrousel() {
             missionTitle.textContent = data[index].mission_title;
             cityName.textContent = data[index].city_name;
             missionAvailablePlace.textContent = data[index].mission_available_place;
+            backgroundImage.style.backgroundImage = `url('${data[index].mission_img}')`;
         }
 
         arrowRight.addEventListener('click', () => {
@@ -103,6 +109,7 @@ const arrowRightRegistration = document.querySelector(".arrowRightRegistration")
 const titleMissionRegister = document.querySelector(".title-mission-register");
 const placeMissionRegister = document.querySelector(".place-mission-register");
 const dateMissionRegister = document.querySelector(".date-mission-register");
+const backgroundImageRegister = document.querySelector(".imgRegister");
 
 async function carrouselMissionByRegistration() {
 
@@ -120,6 +127,11 @@ async function carrouselMissionByRegistration() {
 
         const data = await response.json();
 
+        data.forEach( (m) => {
+            const img = new Image();
+            img.src = m.mission_img;
+        });
+
         let index = 0
 
         if (data.length == 0) {
@@ -130,9 +142,13 @@ async function carrouselMissionByRegistration() {
 
         function updateCarrousel() {
             titleMissionRegister.textContent = data[index].mission_title;
-            placeMissionRegister.textContent = data[index].city_name;
-            dateMissionRegister.textContent = data[index].mission_date;
+            dateMissionRegister.textContent = `Lieu : ${data[index].city_name}`;
+            placeMissionRegister.textContent = data[index].mission_date;
+            backgroundImageRegister.style.backgroundImage = `url('${data[index].mission_img}')`
         }
+
+        
+        console.log(data[index].mission_img)
 
         arrowRightRegistration.addEventListener('click', () => {
 
@@ -174,6 +190,7 @@ const arrowRightAccomplished = document.querySelector('.arrowRightAccomplished')
 
 const titleMissionAccomplished = document.querySelector(".title-mission-accomplished");
 const dateMissionAccomplished = document.querySelector(".date-mission-accomplished");
+const imgAccomplished = document.querySelector(".imgAccomplished");
 
 async function carrouselMissionAccomplished() {
 
@@ -191,6 +208,11 @@ async function carrouselMissionAccomplished() {
 
         const data = await response.json();
 
+        data.forEach( (m) => {
+            const img = new Image();
+            img.src = m.mission_img;
+        });
+
         let index = 0
 
         if (data.length == 0) {
@@ -202,6 +224,7 @@ async function carrouselMissionAccomplished() {
         function updateCarrousel() {
             titleMissionAccomplished.textContent = data[index].mission_title;
             dateMissionAccomplished.textContent = data[index].mission_date;
+            imgAccomplished.style.backgroundImage = `url('${data[index].mission_img}')`
         }
 
         arrowRightAccomplished.addEventListener('click', () => {

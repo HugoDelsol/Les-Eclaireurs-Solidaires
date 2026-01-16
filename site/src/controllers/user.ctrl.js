@@ -1,7 +1,7 @@
 const userModel = require('../models/UserModel');
 const missionModel = require('../models/MissionModel');
 const bcrypt = require('bcrypt');
-const service = require('../service/generateToken');
+const service = require('../services/services');
 const { getStatsMissions } = require('./mission.ctrl.get');
 const { dashboardAllStats } = require('./mission.ctrl.get');
 const { matchedData } = require('express-validator');

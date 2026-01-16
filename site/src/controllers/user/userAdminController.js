@@ -9,7 +9,7 @@ const { matchedData } = require('express-validator');
 const userModel = require('../../models/UserModel');
 
 //Services
-const service = require('../../service/generateToken');
+const service = require('../../services/services');
 
 // Get Functions
 const { getStatsMissions } = require('../mission.ctrl.get');

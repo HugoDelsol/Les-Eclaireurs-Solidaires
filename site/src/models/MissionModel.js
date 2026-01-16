@@ -370,14 +370,16 @@ exports.getAllMission = async (sqlLimit) => {
                 DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, 
                 mission_category_name,  
                 city_name, 
-                mission_description                 
+                mission_description,
+                mission_img,
+                mission_available_place                
             FROM mission AS m
             LEFT JOIN city
                 ON id_city = _id_city
             LEFT JOIN mission_category
                 ON id_mission_category = _id_mission_category
             WHERE mission_date >= CURRENT_DATE
-            ORDER BY m.mission_date ASC
+            ORDER BY m.mission_date DESC
             ${limitCondition}
         `;
 
@@ -431,7 +433,7 @@ exports.getAllMissionsByUser = async (IdUser) => {
     try {
 
         const request = `
-            SELECT mission_title, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, city_name 
+            SELECT *, DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, city_name 
             FROM registration_mission 
             LEFT JOIN mission
             ON id_mission = _id_mission
@@ -463,6 +465,23 @@ exports.alreadyRegistered = async (idUser) => {
 
     } catch (error) {
 
+        console.error("Erreur SQL alreadyRegistered :", error);
+        throw error;
+    }
+}
+
+exports.fetchImgByCategory = async (category) => {
+
+    try {
+        
+        const fetchImg = `SELECT id_mission_image, mission_image_url FROM mission_image WHERE _id_mission_category = ?`;
+        const [result] = await db.query(fetchImg, [category]);
+        return result;
+    } catch (error) {
+
+        
+        console.error("Erreur SQL fetchImgByCategory :", error);
+        
         throw error;
     }
 }

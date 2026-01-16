@@ -46,34 +46,40 @@
                     </div>
                     <div class="justifyContent">
                         <a class="btnSecondary btnHover btnReserch" href="/signIn"><img src="/pictures/loupe3.png"
-                                alt="">Rechercher une mission</a>
-                    </div>
-                </div>
-            </section>
-            <!--  -->
-            <section class="currentMission" id="scrolleMission">
-                <h2 class="txtModH2">Nos besoins actuels</h2>
-                <% for (let d of displayMission) { %>                    
-                    <div class="pictureMissionAndTxt">
-                        <img src="/pictures/Bénévolat.jpg" a>
-                        <div>
-                            <h3><%= d.mission_title + " - " + d.mission_date %> </h3>
-                            <div class="line lineMissions"></div>
-                            <p><%= d.mission_description %></p>
-                            <div class="row">
-                                <a href="<% d.id_mission %>" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
-                                <a href="<% d.id_mission %>" class="link">voir plus</a>
-                            </div>
+                            alt="">Rechercher une mission</a>
                         </div>
                     </div>
-                <% } %>
-                <div id="scrolleAboutSection"></div> 
-            </section>
-            <!--  -->
-            <section class="about">
-                <div class="aboutTxt">
-                    <h2 class="txtModH2">Qui sommes nous ?</h2>
-                    <div class="aboutTxtWidth">
+                </section>
+                
+                <!--  -->
+                <section class="currentMission" id="scrolleMission">
+                    <h2 class="txtModH2">Nos besoins actuels</h2>
+                    <% for (let d of displayMission) { %>
+                        <%let str = null; d.places > 1 ? str = "s" : str = "";%>                    
+                        <div class="pictureMissionAndTxt">
+                            <img src=" <%= d.img %>">
+                            <div class="div">
+                                <h3><%= d.title + " - " + d.date %> </h3>
+                                <div class="line lineMissions div"></div>
+                                <p class="expose bold"><%= d.category %></p>
+                                <p><%= d.description + " ..." %></p>
+                                <p class="expose"><%= d.places + ` bénévole recherché${str}`  %></p>
+                                <div class="row">
+                                    <a href="<% d.id %>" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>
+                                    <a href="<% d.id %>" class="link">plus de missions</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <div id="scrolleAboutSection"></div> 
+                    </section>
+                    
+                    <!--  -->
+                    <section class="about">
+                        <div class="aboutTxt" style="position: relative;">                            
+                            <div class="aboutCard"></div>
+                            <h2 class="txtModH2">Qui sommes nous ?</h2>
+                            <div class="aboutTxtWidth">
                         <p>
                             Fondée en 2020, Les Éclaireurs Solidaires proposent des missions
                             bénévoles pour venir en aide aux personnes en situation de précarité,
@@ -84,10 +90,10 @@
                             d’origine ou d’expérience. Chacun peut s'engager selon ses envies et ses disponibilités.
                         </p>
                     </div>
-
+                    
                     <div class="line aboutLine"></div>
                 </div>
-
+                
                 <div class="aboutPictures">
                     <div class="aboutPictureAndName">
                         <img src="/pictures/ClaraD.png" alt="">

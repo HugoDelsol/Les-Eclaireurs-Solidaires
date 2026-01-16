@@ -1,7 +1,6 @@
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const userModel = require('../models/UserModel');
-const service = require('../service/getGlobalData');
 const missionCtrlPost = require('./mission.ctrl.post');
 
 //---
@@ -129,11 +128,11 @@ exports.missionAdminShow = async (req, res) => {
 
     try {
 
-        const regionsServ = await service.region();
+        const regions = await missionModel.getAllRegions();
 
-        req.session.regions = regionsServ;
+        req.session.regions = regions;
 
-        const dataTab = await service.categories();
+        const dataTab = await missionModel.getAllCategories();
 
         req.session.categoriesMission = dataTab;
 
@@ -172,11 +171,11 @@ exports.missionUserShow = async (req, res) => {
 
     try {
 
-        const regionsServ = await service.region();
+        const regions = await missionModel.getAllRegions();
 
-        req.session.regions = regionsServ;
+        req.session.regions = regions;
 
-        const dataTab = await service.categories();
+        const dataTab = await missionModel.getAllCategories();
 
         req.session.categoriesMission = dataTab;
 
@@ -226,11 +225,9 @@ exports.addMissionShow = async (req, res) => {
 
     try {
 
-        const dataTab = await service.categories();
+        const dataTab = await missionModel.getAllCategories();
 
         req.session.categoriesMission = dataTab;
-
-        //throw new Error("Essai du catch");
 
         res.render('account/addMission', {
             alertMsg: null,

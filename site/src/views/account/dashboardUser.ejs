@@ -50,13 +50,15 @@
 
                     <div class="flexCardsMission">
                         <% for (let m of missionByRegion) { %>
-                            <div class="cardMission">
-                                <p class="strong"><%= m.mission_title %></p>
-                                <p><%= m.city_name %></p>
-                                <p>
-                                    <span><%= m.mission_available_place %></span> places disponible
-                                </p>
-                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
+                            <div class="cardMission" style="background-image: url('<%= m.mission_img %>');">
+                                <div class="alignItemInCard" >
+                                    <p class="strong"><%= m.mission_title %></p>
+                                    <p><%= m.city_name %></p>
+                                    <p>
+                                        <span><%= m.mission_available_place %></span> places disponible
+                                    </p>
+                                    <a style="text-align: center;" class="btnSecondary btnHover" href="">Voir d'avantage</a>                           
+                                </div>
                             </div>
                         <% } %>
                     </div>
@@ -66,13 +68,15 @@
                         <div class="rowArrow ifNoDataRegion">
                             <img class="arrowResponsiv arrowLeft" src="pictures/arrow.png" alt="">
 
-                            <div class="cardMission">
-                                <p class="strong mission-title"></p>
-                                <p class="city-name"></p>
-                                <p>
-                                    <span class="mission-available-place"></span> places disponible
-                                </p>
-                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
+                            <div class="cardMission imgRegion " style="background-image: url('');">
+                                <div class="alignItemInCard">
+                                    <p class="strong mission-title"></p>
+                                    <p class="city-name"></p>
+                                    <p>
+                                        <span class="mission-available-place"></span> places disponible
+                                    </p>
+                                    <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
+                                </div>
                             </div>
 
                             <img class="arrowResponsiv arrowRight" src="pictures/arrow.png" alt="">
@@ -120,12 +124,14 @@
                     <div class="rowArrow ifNoDataRegister">
                         <img class="arrowResponsiv arrowLeftRegistration" src="pictures/arrow.png" alt="">
 
-                        <div class="cardMission">
-                            <p class="strong title-mission-register">title</p>
-                            <p class="place-mission-register">lieux</p>
-                            <p class="date-mission-register">date</p>
-                            <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                            <a class="btnPrimary btnHover" href="">Se désinscrire</a>
+                        <div class="cardMission imgRegister " style="background-image: url('');">
+                            <div class="alignItemInCard">
+                                <p class="strong title-mission-register">title</p>
+                                <p class="place-mission-register">lieux</p>
+                                <p class="date-mission-register">date</p>
+                                <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
+                                <a class="btnPrimary btnHover" href="">Se désinscrire</a>
+                            </div>
                         </div>
 
                         <img class="arrowResponsiv arrowRightRegistration" src="pictures/arrow.png" alt="">
@@ -170,11 +176,13 @@
                     <div class="rowArrow ifNoDataAccomplished">
                         <img class="arrowResponsiv arrowLeftAccomplished" src="pictures/arrow.png" alt="">
 
-                        <div class="cardMission">
-                            <p class="strong title-mission-accomplished">title</p>
-                            <p class="date-mission-accomplished">date</p>
-                            <p class="place-mission-accomplished">statut</p>
-                            <a href="#" class="btnSecondary btnHover">Laisser un avis</a>
+                        <div class="cardMission imgAccomplished " style="background-image: url('');">
+                            <div class="alignItemInCard">                                
+                                <p class="strong title-mission-accomplished">title</p>
+                                <p class="date-mission-accomplished">date</p>
+                                <p class="place-mission-accomplished">statut</p>
+                                <a href="#" class="btnSecondary btnHover">Laisser un avis</a>
+                            </div>
                         </div>
 
                         <img class="arrowResponsiv arrowRightAccomplished" src="pictures/arrow.png" alt="">
