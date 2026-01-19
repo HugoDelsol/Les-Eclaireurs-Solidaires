@@ -1,3 +1,4 @@
+const session = require('express-session');
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const utils = require('../utils/utils');
@@ -23,26 +24,29 @@ exports.searchByCategories = async (req, res) => {
         !tripStart ? tripStart = false : tripStart;
         !tripEnd ? tripEnd = false : tripEnd;
 
+        missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
+        const clearData = utils.clearData(missionsSelected);
+
+        res.locals.renderData.missionSelected = clearData
+        
+
         if (tripStart && !tripEnd || !tripStart && tripEnd) {
 
             if (req.session.userExist.isVolunteer) {
-
+                
                 return res.render('account/listMissionUser', {
-                    categoriesMission: req.session.categoriesMission,
-                    regions: req.session.regions,
-                    missions: req.session.getAllMissions,
-                    categorySelected: categorySelected,
-                    regionSelected: regionSelected,
+                    data: res.locals.renderData,
                     alertMsg: "Veuilliez saisir une date de début et une date de fin."
                 });
             }
-
+            
             if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
-
+                
                 return res.render('account/listMissionsAdmin', {
+                    missionSelected: clearData,
                     categoriesMission: req.session.categoriesMission,
                     regions: req.session.regions,
-                    missions: req.session.getAllMissions,
+                    missions: clearData,
                     categorySelected: categorySelected,
                     regionSelected: regionSelected,
                     alertMsg: "Veuilliez saisir une date de début et une date de fin."
@@ -50,12 +54,10 @@ exports.searchByCategories = async (req, res) => {
             }
         }
 
-        missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
-
         if (req.session.userExist.isVolunteer) {
 
             return res.render('account/listMissionUser', {
-                missionSelected: missionsSelected,
+                missionSelected: clearData,
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
                 missions: req.session.getAllMissions,
@@ -66,7 +68,7 @@ exports.searchByCategories = async (req, res) => {
         } else {
 
             return res.render('account/listMissionsAdmin', {
-                missionSelected: missionsSelected,
+                missionSelected: clearData,
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
                 missions: req.session.getAllMissions,
@@ -88,9 +90,9 @@ exports.addMission = async (req, res) => {
 
         let imageUrl = null;
 
-        const category = req.body.category;        
-        
-        if (!req.body.uploadImg) {                        
+        const category = req.body.category;
+
+        if (!req.body.uploadImg) {
 
             const fetchGroupImages = await missionModel.fetchImgByCategory(category);
 
@@ -99,7 +101,7 @@ exports.addMission = async (req, res) => {
             imageUrl = randomImage;
 
         } else {
-            
+
             imageUrl = req.body.uploadImg;
         }
 

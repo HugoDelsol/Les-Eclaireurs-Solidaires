@@ -27,19 +27,25 @@ exports.dashboardAdmin = async (req, res) => {
 }
 
 exports.listOfVolunteers = async (req, res) => {
-    res.render('account/listOfVolunteers');
+    res.render('account/listOfVolunteers', {
+        pseudoUser : req.session.userExist.firstName,
+        isSuperAdmin : req.session.userExist.isSuperAdmin,
+        isAdmin : req.session.userExist.isAdmin,
+    });
 }
 
 exports.tokenView = async (req, res) => {
 
     const admins = await userModel.getAllAdmins();
 
-    req.session.userExist.admins = admins.resultAdmins;
-    req.session.userExist.superAdmins = admins.resultSuperAdmins;
+    const listOfAdmin = admins.resultAdmins;
+    const listOfSuperAdmin = admins.resultSuperAdmins;
 
     res.render('account/generateToken', {
-        admins: admins.resultAdmins,
-        superAdmins: admins.resultSuperAdmins,
+        pseudoUser: req.session.userExist.firstName,
+        isSuperAdmin: req.session.userExist.isSuperAdmin,
+        admins: listOfAdmin,
+        superAdmins: listOfSuperAdmin,
     });
 }
 

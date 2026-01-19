@@ -72,16 +72,16 @@ exports.auth = async (req, res) => {
 
                 action: userVolunteerCtrl.dashboardUser
             }
-        };   
-
+        };
+        
         let roleKey = null;
-
+        
         if (userExist.role === "user"){
             roleKey = "user";
         } else if (userExist.role === "admin") {
             roleKey = `admin_${userExist._id_admin_role}`;
         }
-
+        
         const session = rolesMaps[roleKey].session(userExist);
 
         // REDEFINIR USER EXIST EN USER !!!!!!!
