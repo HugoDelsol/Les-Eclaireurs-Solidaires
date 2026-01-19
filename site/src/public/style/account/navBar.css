@@ -11,7 +11,7 @@
         justify-content: space-around;
         padding: 20px 0;
         position: fixed;
-        z-index: 10;
+        z-index: 2000;
         align-items: center;
         background: linear-gradient(to right, rgba(249, 207, 128, 0.8), rgba(249, 207, 128, 0.2));
         backdrop-filter: blur(4px);

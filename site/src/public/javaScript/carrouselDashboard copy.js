@@ -1,8 +1,8 @@
 let isBelow1300 = window.innerWidth < 1300;
 let currentWidth = window.innerWidth;
 
-let indexRegion = 0;
-let dataRegion = [];
+const indexRegion = 0;
+const dataRegion = [];
 
 const indexRegistration = 0;
 const dataRegistration = [];
@@ -111,6 +111,43 @@ arrowLeft.addEventListener('click', () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* --- */
 /* --- CAROUSSEL BY REGISTRATION --- */
 /* --- */
@@ -140,7 +177,7 @@ async function carrouselMissionByRegistration() {
 
         const data = await response.json();
 
-        data.forEach( (m) => {
+        data.forEach((m) => {
             const img = new Image();
             img.src = m.mission_img;
         });
@@ -160,7 +197,7 @@ async function carrouselMissionByRegistration() {
             backgroundImageRegister.style.backgroundImage = `url('${data[index].mission_img}')`
         }
 
-        
+
         console.log(data[index].mission_img)
 
         arrowRightRegistration.addEventListener('click', () => {
@@ -221,7 +258,7 @@ async function carrouselMissionAccomplished() {
 
         const data = await response.json();
 
-        data.forEach( (m) => {
+        data.forEach((m) => {
             const img = new Image();
             img.src = m.mission_img;
         });
