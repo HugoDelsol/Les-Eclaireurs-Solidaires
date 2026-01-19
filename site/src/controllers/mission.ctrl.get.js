@@ -29,46 +29,46 @@ const utils = require('../utils/utils')
 
 exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
-    try { 
+    try {
 
         const idRegion = 1;
 
-        const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);        
+        const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);
 
         res.json(getMissionByRegion);
 
     } catch (error) {
-        
+
     }
 }
 
 exports.fetchMissionByRegistrationDashboardUser = async (req, res) => {
 
     try {
-        
-       const idUser = req.session.userExist.id;
 
-       const getAllMissionsByUser = await missionModel.getAllMissionsByUser(idUser);
+        const idUser = req.session.userExist.id;
 
-       res.json(getAllMissionsByUser);
+        const getAllMissionsByUser = await missionModel.getAllMissionsByUser(idUser);
+
+        res.json(getAllMissionsByUser);
 
     } catch (error) {
-        
+
     }
 }
 
 exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
 
     try {
-        
-        const idUser = req.session.userExist.id; 
+
+        const idUser = req.session.userExist.id;
 
         const getMissionAccomplishedByUser = await missionModel.addUserHistoryMission(idUser)
 
         res.json(getMissionAccomplishedByUser);
 
     } catch (error) {
-        
+
     }
 }
 
@@ -94,7 +94,7 @@ exports.getStatsMissions = async (req, res) => {
 
             const spaceAvailable = g.mission_available_place - g.nb_volunteers;
             const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
-            
+
             const fillRateToString = fillRate.toFixed(0) + "%";
 
             tabStats.push({
@@ -160,7 +160,7 @@ exports.missionAdminShow = async (req, res) => {
 
         console.error(error);
 
-        res.render('account/listMissionsAdmin', {            
+        res.render('account/listMissionsAdmin', {
             alertMsg: "Impossible d'afficher la liste des missions.",
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
@@ -182,14 +182,9 @@ exports.missionUserShow = async (req, res) => {
 
         const regions = await missionModel.getAllRegions();
 
-        req.session.regions = regions;
-
-        const dataTab = await missionModel.getAllCategories();
-
-        req.session.categoriesMission = dataTab;
+        const categoriesMission = await missionModel.getAllCategories();
 
         getAllMissions = await missionModel.getAllMission();
-        req.session.getAllMissions = getAllMissions;
 
         const idUser = req.session.userExist.id
 
@@ -206,23 +201,21 @@ exports.missionUserShow = async (req, res) => {
         }
 
         const clearData = utils.clearData(getAllMissions);
-        res.locals.renderData.missionsClear = clearData;
+        res.locals.missionsClear = clearData;
+        
+        req.session.regions = regions;
+        req.session.categoriesMission = categoriesMission;
 
-        res.render('account/listMissionUser', {
-            data: res.locals.renderData,
-        });
+        res.render('account/listMissionUser');
 
     } catch (error) {
 
+        res.locals.alertMsg = "Impossible d'afficher la liste des missions.";
+        res.locals.missions = getAllMissions;
+
         console.error(error);
 
-        res.render('account/listMissionUser', {
-            alertMsg: "Impossible d'afficher la liste des missions.",
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-            regions: req.session.regions,
-            missions: req.session.getAllMissions,
-        });
+        res.render('account/listMissionUser');
     }
 }
 
@@ -234,27 +227,19 @@ exports.addMissionShow = async (req, res) => {
 
     try {
 
-        const dataTab = await missionModel.getAllCategories();
+        const categoriesMission = await missionModel.getAllCategories();
 
-        req.session.categoriesMission = dataTab;
+        req.session.categoriesMission = categoriesMission;
 
-        res.render('account/addMission', {
-            alertMsg: null,
-            isSuperAdmin: req.session.userExist.isSuperAdmin,
-            isAdmin: req.session.userExist.isAdmin,
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-        });
+        res.render('account/addMission');
 
     } catch (error) {
 
         console.error(error);
 
-        res.render('account/addMission', {
-            alertMsg: "Impossible d'afficher le formulaire",
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-        });
+        res.locals.alertMsg = "Impossible d'afficher le formulaire";
+
+        res.render('account/addMission');
     }
 }
 
@@ -325,8 +310,8 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
 
-        const historyMissionUser = await missionModel.addUserHistoryMission(idUser); 
-        
+        const historyMissionUser = await missionModel.addUserHistoryMission(idUser);
+
         const obtainStatsOnVolunteer = await missionModel.obtainStatsOnVolunteer(idUser);
 
         res.render('account/dashboardUser', {
