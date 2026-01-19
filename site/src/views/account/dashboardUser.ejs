@@ -41,7 +41,6 @@
                     <div class="titleCard">
                         <% if (missionByRegion.length == 0) { %>
                             <h1>Aucune missions proche de chez vous</h1>
-                            <% console.log(missionByRegion) %>
                         <% } else { %>
                             <h1>Missions proche de chez vous</h1>
                         <% } %>
@@ -53,7 +52,6 @@
                             <div class="cardMission" style="background-image: url('<%= m.mission_img %>');">
                                 <div class="alignItemInCard" >
                                     <p class="strong"><%= m.mission_title %></p>
-                                    <p><%= m.city_name %></p>
                                     <p>
                                         <span><%= m.mission_available_place %></span> places disponible
                                     </p>
@@ -71,7 +69,6 @@
                             <div class="cardMission imgRegion " style="background-image: url('');">
                                 <div class="alignItemInCard">
                                     <p class="strong mission-title"></p>
-                                    <p class="city-name"></p>
                                     <p>
                                         <span class="mission-available-place"></span> places disponible
                                     </p>

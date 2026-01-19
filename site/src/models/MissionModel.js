@@ -379,7 +379,7 @@ exports.getAllMission = async (sqlLimit) => {
             LEFT JOIN mission_category
                 ON id_mission_category = _id_mission_category
             WHERE mission_date >= CURRENT_DATE
-            ORDER BY m.mission_date DESC
+            ORDER BY m.mission_date ASC
             ${limitCondition}
         `;
 
@@ -414,10 +414,6 @@ exports.getRegistrationByUserId = async (idMission, idUser) => {
 
         const request = "SELECT _id_mission FROM registration_mission WHERE _id_mission = ? AND _id_user = ?";
         const [result] = await db.query(request, [idMission, idUser]);
-
-        console.log("=======", result);
-
-        console.log(idMission, idUser);
 
         return result.length ? true : false;
 

@@ -41,7 +41,6 @@ const arrowRight = document.querySelector(".arrowRight");
 const arrowLeft = document.querySelector(".arrowLeft");
 
 const missionTitle = document.querySelector(".mission-title");
-const cityName = document.querySelector(".city-name");
 const missionAvailablePlace = document.querySelector(".mission-available-place");
 const backgroundImage = document.querySelector(".imgRegion");
 
@@ -84,7 +83,6 @@ async function carrouselMissionByRegion() {
 
 function updateCarrousel() {
     missionTitle.textContent = dataRegion[indexRegion].mission_title;
-    cityName.textContent = dataRegion[indexRegion].city_name;
     missionAvailablePlace.textContent = dataRegion[indexRegion].mission_available_place;
     backgroundImage.style.backgroundImage = `url('${dataRegion[indexRegion].mission_img}')`;
 }
@@ -100,16 +98,12 @@ arrowRight.addEventListener('click', () => {
 
 arrowLeft.addEventListener('click', () => {
 
-    console.log(indexRegion)
-
     indexRegion -= 1;
 
     if (indexRegion == -1) indexRegion = dataRegion.length - 1
 
     updateCarrousel();
 });
-
-
 
 /* --- */
 /* --- CAROUSSEL BY REGISTRATION --- */
@@ -120,7 +114,6 @@ const arrowLeftRegistration = document.querySelector(".arrowLeftRegistration");
 const arrowRightRegistration = document.querySelector(".arrowRightRegistration");
 
 const titleMissionRegister = document.querySelector(".title-mission-register");
-const placeMissionRegister = document.querySelector(".place-mission-register");
 const dateMissionRegister = document.querySelector(".date-mission-register");
 const backgroundImageRegister = document.querySelector(".imgRegister");
 
@@ -156,12 +149,8 @@ async function carrouselMissionByRegistration() {
         function updateCarrousel() {
             titleMissionRegister.textContent = data[index].mission_title;
             dateMissionRegister.textContent = `Lieu : ${data[index].city_name}`;
-            placeMissionRegister.textContent = data[index].mission_date;
             backgroundImageRegister.style.backgroundImage = `url('${data[index].mission_img}')`
         }
-
-        
-        console.log(data[index].mission_img)
 
         arrowRightRegistration.addEventListener('click', () => {
 

@@ -6,7 +6,6 @@ cityInput.addEventListener('input', async (e) => {
     try {
 
         let inputValue = e.target.value;
-        console.log(inputValue)
 
         const response = await fetch(`searchCity?q=${inputValue}`);
 

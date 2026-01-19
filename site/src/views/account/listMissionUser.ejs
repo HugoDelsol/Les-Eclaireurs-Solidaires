@@ -27,7 +27,7 @@
                             <p class="responsivMob">Lieu</p>
                             <select name="regionSelected" id="regionSelected">
                                 <option value="">Régions</option>
-                                <% for (let region of regions) { %>
+                                <% for (let region of data.regions) { %>
                                     <option
                                         value="<%= region.id_region %>"
                                         <%= region.id_region == regionSelected ? "selected" : "" %>>
@@ -39,7 +39,7 @@
                             <p class="responsivMob">Categorie</p>
                             <select name="categorySelected" id="categorySelected">
                                 <option value="">Catégories</option>
-                                <% for (let category of categoriesMission) { %>
+                                <% for (let category of data.categoriesMission) { %>
                                     <option
                                         value="<%= category.id_mission_category %>"
                                         <%= category.id_mission_category == categorySelected ? "selected" : "" %>>
@@ -81,15 +81,15 @@
                     </tr>
                 </thead>
                 <tbody class="fixMax">
-                    <% const missionList = missionSelected || missions; %>
+                    <% const missionList = data.missionSelected || data.missionsClear; %>
                     <% for (let i = 0; i < missionList.length; i++) { %>
                         <tr>
-                            <td><p><%= missionList[i].mission_title %></p></td>
-                            <td class="color"><%= missionList[i].mission_date %></td>
-                            <td><%= missionList[i].mission_category_name %></td>
-                            <td class="color"><%= missionList[i].city_name %></td>
+                            <td><p><%= missionList[i].title %></p></td>
+                            <td class="color"><%= missionList[i].date %></td>
+                            <td><%= missionList[i].category %></td>
+                            <td class="color"><%= missionList[i].city %></td>
                             <td>
-                                <a href="/dataMission/<%= missionList[i].id_mission %>">
+                                <a href="/dataMission/<%= missionList[i].id %>">
                                     Voir d’avantage
                                 </a>
                             </td>
@@ -100,7 +100,7 @@
                                     class="checkbox"
                                     name="missionRegistration"
                                     value="0"
-                                    data-id="<%= JSON.stringify({ id: missionList[i].id_mission, title: missionList[i].mission_title }) %>">
+                                    data-id="<%= JSON.stringify({ id: missionList[i].id, title: missionList[i].title }) %>">
                             </td>
                         </tr>
                     <% } %>                    
@@ -110,22 +110,22 @@
 
         <!-- RESPONSIVE MOBILE CARD -->
         <div class="responsiv cardFlexMission">
-            <% if (missionSelected) { %>
-                <% for (let i = 0; i < missionSelected.length; i++) { %>
+            <% if (data.missionSelected) { %>
+                <% for (let i = 0; i < data.missionSelected.length; i++) { %>
                     <div class="pictureMissionAndTxt">
-                        <img src="<%= missionSelected[i].mission_img %>" alt="">
+                        <img src="<%= data.missionSelected[i].img %>" alt="">
                         <div>
                             <h3>
-                                <%= missionSelected[i].mission_title %> -
-                                <%= missionSelected[i].mission_date %>
+                                <%= data.missionSelected[i].title %> -
+                                <%= data.missionSelected[i].date %>
                             </h3>
                             <div class="line lineMissions"></div>
-                            <p><%= missionSelected[i].mission_description %></p>
+                            <p><%= data.missionSelected[i].description + " ..." %></p>
                             <div class="row flex">
                                 <a
                                     href=""
                                     class="btnSecondary btnHover widthBtnMission btnRegistration"
-                                    data-id="<%= JSON.stringify({ id: missionSelected[i].id_mission, title: missionSelected[i].mission_title }) %>">
+                                    data-id="<%= JSON.stringify({ id: data.missionSelected[i].id, title: data.missionSelected[i].title }) %>">
                                     Rejoindre
                                 </a>
                                 <a href="" class="btnPrimary btnHover">Détail</a>
@@ -134,21 +134,21 @@
                     </div>
                 <% } %>
             <% } else { %>
-                <% for (let i = 0; i < missions.length; i++) { %>
+                <% for (let i = 0; i < data.missionsClear.length; i++) { %>
                     <div class="pictureMissionAndTxt">
-                        <img src="<%= missions[i].mission_img %>" alt="">
+                        <img src="<%= data.missionsClear[i].img %>" alt="">
                         <div>
                             <h3>
-                                <%= missions[i].mission_title %> -
-                                <%= missions[i].mission_date %>
+                                <%= data.missionsClear[i].id %> -
+                                <%= data.missionsClear[i].date %>
                             </h3>
                             <div class="line lineMissions"></div>
-                            <p><%= missions[i].mission_description %></p>
+                            <p><%= data.missionsClear[i].description + " ..."%></p>
                             <div class="row flex">
                                 <a
                                     href=""
                                     class="btnSecondary btnHover widthBtnMission btnRegistration"
-                                    data-id="<%= JSON.stringify({ id: missions[i].id_mission, title: missions[i].mission_title }) %>">
+                                    data-id="<%= JSON.stringify({ id: data.missionsClear[i].id, title: data.missionsClear[i].title }) %>">
                                     Rejoindre
                                 </a>
                                 <a href="" class="btnPrimary btnHover">Détail</a>
