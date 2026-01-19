@@ -41,12 +41,10 @@ exports.tokenView = async (req, res) => {
     const listOfAdmin = admins.resultAdmins;
     const listOfSuperAdmin = admins.resultSuperAdmins;
 
-    res.render('account/generateToken', {
-        pseudoUser: req.session.userExist.firstName,
-        isSuperAdmin: req.session.userExist.isSuperAdmin,
-        admins: listOfAdmin,
-        superAdmins: listOfSuperAdmin,
-    });
+    req.session.admins = listOfAdmin
+    req.session.superAdmins = listOfSuperAdmin
+
+    res.render('account/generateToken');
 }
 
 // ==============================
@@ -72,11 +70,11 @@ exports.generateToken = async (req, res) => {
             generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
         }
 
+        console.log(generateTokenAdmin, generateTokenSuper)
+
         res.render('account/generateToken', {
             tokenAdmin: generateTokenAdmin,
             tokenSuper: generateTokenSuper,
-            admins: req.session.userExist.admins,
-            superAdmins: req.session.userExist.superAdmins,
         })
 
     } catch (error) {
@@ -122,11 +120,10 @@ exports.saveAdmin = async (req, res) => {
             password,
             idAdminRole,
         )
-
+        
         if (saveAdmin) {
-            res.render('connection/signIn', {
-                alertMsg: "Veuillez vous connecter pour accéder à votre compte."
-            });
+            res.locals.alertMsg = "Veuillez vous connecter pour accéder à votre compte.";
+            res.render('connection/signIn');
         }
 
     } catch (error) {

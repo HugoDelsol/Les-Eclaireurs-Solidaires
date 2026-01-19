@@ -67,8 +67,6 @@ const adminRoute = require('./src/routes/admin.route');
 app.use(middleware.centralizedVar);
 // Récupère et attache les informations de l'utilisateur 
 app.use(middleware.userData);
-// Récupère et attache les informations global de la vue 
-app.use(middleware.renderData);
 
 // Routes générales (pages communes)
 app.use('/', generalRoute);

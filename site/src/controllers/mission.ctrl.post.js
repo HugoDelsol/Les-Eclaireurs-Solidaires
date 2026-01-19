@@ -27,7 +27,7 @@ exports.searchByCategories = async (req, res) => {
         missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
         const clearData = utils.clearData(missionsSelected);
 
-        res.locals.renderData.missionSelected = clearData
+        res.locals.renderData.missionSelected = clearData;
         
 
         if (tripStart && !tripEnd || !tripStart && tripEnd) {
@@ -35,10 +35,10 @@ exports.searchByCategories = async (req, res) => {
             if (req.session.userExist.isVolunteer) {
                 
                 return res.render('account/listMissionUser', {
-                    data: res.locals.renderData,
                     alertMsg: "Veuilliez saisir une date de début et une date de fin."
                 });
             }
+
             
             if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
                 
@@ -56,14 +56,9 @@ exports.searchByCategories = async (req, res) => {
 
         if (req.session.userExist.isVolunteer) {
 
-            return res.render('account/listMissionUser', {
-                missionSelected: clearData,
-                categoriesMission: req.session.categoriesMission,
-                regions: req.session.regions,
-                missions: req.session.getAllMissions,
-                categorySelected: categorySelected,
-                regionSelected: regionSelected,
-            });
+            
+
+            return res.render('account/listMissionUser');
 
         } else {
 
