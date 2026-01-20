@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le : dim. 16 nov. 2025 à 17:20
+-- Généré le : lun. 19 jan. 2026 à 08:43
 -- Version du serveur : 8.0.43
 -- Version de PHP : 8.2.27
 
@@ -32,13 +32,28 @@ CREATE TABLE `admin` (
   `admin_first_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `admin_last_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `admin_created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `admin_adress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `admin_phone_number` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `admin_birthday` date NOT NULL,
+  `admin_adress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `admin_phone_number` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `admin_birthday` date DEFAULT NULL,
   `_id_admin_role` int DEFAULT NULL,
   `_id_city` int DEFAULT NULL,
   `_id_identifier` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `admin_first_name`, `admin_last_name`, `admin_created_at`, `admin_adress`, `admin_phone_number`, `admin_birthday`, `_id_admin_role`, `_id_city`, `_id_identifier`) VALUES
+(13, 'Admin01', 'ad', '2025-12-09 12:43:36', NULL, NULL, NULL, 1, NULL, 70),
+(14, 'PasSuper', 'passuper', '2025-12-09 12:45:44', NULL, NULL, NULL, 2, NULL, 71),
+(15, 'SuperAdmin', 'AD', '2025-12-09 14:00:06', NULL, NULL, NULL, 1, NULL, 72),
+(16, 'Admin2', 'ad', '2025-12-09 15:13:36', NULL, NULL, NULL, 1, NULL, 73),
+(17, 'super02', 'super02', '2025-12-12 14:29:05', NULL, NULL, NULL, 1, NULL, 76),
+(18, 'Hugo', 'Delsol', '2025-12-12 15:20:40', NULL, NULL, NULL, 2, NULL, 77),
+(19, 'SuperHugo', 'Le Del', '2025-12-30 13:52:38', NULL, NULL, NULL, 1, NULL, 94),
+(20, 'pouet', 'pouet', '2026-01-09 09:57:25', NULL, NULL, NULL, 1, NULL, 96),
+(21, 'game', 'game', '2026-01-09 10:11:56', NULL, NULL, NULL, 2, NULL, 97);
 
 -- --------------------------------------------------------
 
@@ -51,6 +66,14 @@ CREATE TABLE `admin_role` (
   `role_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `admin_role`
+--
+
+INSERT INTO `admin_role` (`id_admin_role`, `role_name`, `description`) VALUES
+(1, 'super_admin', 'Contrôle total sur le site, peut gérer tous les admins et modifier la configuration globale.'),
+(2, 'admin', 'Gère le contenu et les utilisateurs standard, mais ne peut pas toucher aux superadmins.');
 
 -- --------------------------------------------------------
 
@@ -39328,7 +39351,26 @@ CREATE TABLE `identifier` (
 --
 
 INSERT INTO `identifier` (`id_identifier`, `identifier_mail`, `identifier_password`) VALUES
-(64, 'lucas@gmail.com', '$2b$10$Sxt0ld/3n3bCn9F6/6QUZeRtVsVBYvX524gJG04vqRhtUG13Qdxmu');
+(64, 'lucas@gmail.com', '$2b$10$Sxt0ld/3n3bCn9F6/6QUZeRtVsVBYvX524gJG04vqRhtUG13Qdxmu'),
+(70, 'admin01@gmail.com', '$2b$10$zDGeatwQFS/.xs7UwDk.L.1zk57tuYWnwpnnzzD4mv0/3lf6Eb.YS'),
+(71, 'admin02@gmail.com', '$2b$10$dhgIEzuP1c3XYXlPFvjtAuhXqCJB6G6IKU3gDH6lc0jYS371BGGYW'),
+(72, 'super@gmail.com', '$2b$10$XgiFi6RTt9bqgo2GkS4QCuJOnjB8pgQfgYFbScYTjAOe6gnj56zZ6'),
+(73, 'Adm1ne@gmail.com', '$2b$10$qsN3ujCLervMLOoOKPfSSe4OClLz/A2vJHzDivbevMgFR8c2f6CoO'),
+(74, 'user@gmail.com', '$2b$10$2yizsGUYFk0qZhR5/G24eOfo978I4VGu11g.QJlF/u6.nPwY4SqaG'),
+(75, 'user01@gmail.com', '$2b$10$dZS9uHkNS3hCLsiBfr1inerNHaMkqXReLXCP223fX01WhP/64bD9G'),
+(76, 'super02@gmail.com', '$2b$10$/LXWXOQYX3MrnbbYka8vz.X0ax1mHMTTjS7Oz.WYfavn7JeTzk2M.'),
+(77, 'hugo@gmail.com', '$2b$10$CBzAp6SIRA9vtLbHGgEpWeHaEKsEvQcIHFd9dH3A.1b1EHb1b6dPS'),
+(87, 'g@gmail.com', '$2b$10$2sDtmh6hwc4n3LpM6LIq1um1lv1RN.etodpk/AfkOe4IN0fWo2rY6'),
+(88, 'ff@gmail.com', '$2b$10$15gskKXEP1cibSaolA6q3.09K/csgWvoCrIik.c2pMbe.Ohe6rDp2'),
+(89, 't@gmail.com', '$2b$10$sXmdjvNzmo2PoRcVvyxbD.dC3ecNyXSMr4T6xLJLfH5NMocog94CC'),
+(90, 'tgth@gmail.com', '$2b$10$vXNZSrgnGpjUkg.SkUUpXu4h.JV.kPBgNBGqZmmBXztvMfOZ.lvoO'),
+(91, 'dvdvdvt@gmail.com', '$2b$10$P5eSUKqaHtCq1G.zqGpqC.RQO0CTDuGvsGCpmCxF2HVt3spC4kZAe'),
+(92, 'dvdsvsvdvt@gmail.com', '$2b$10$T5ab3mT2jWWIKz2aP2pOZOJY5BZBio8X8CUeAE./h0rMeM7oVspNS'),
+(93, 'gou@gmail.com', '$2b$10$.4Buk3aqB9AMBIo3guqcs.jcJ7V5p6Bq3yDUct5p2C7cSFZAL2JSW'),
+(94, 'hugoSuper@gmail.com', '$2b$10$tLXjVterJYVoN/eAmNbBw.BSe7zcTwQ3JUKQnJamgjICy/BolA5Yy'),
+(95, 'mamie@gmail.com', '$2b$10$TDSQDRdcqRJ8hXUEdz209u1W1Dhtm/f9pRGxZpL2sSRIwyk7wkMhy'),
+(96, 'pouet@gmail.com', '$2b$10$tj7F3vi0XNvBIKDf6TAicuVU9F.wR2S6SeRhSslPgzw4K09nw/6Lm'),
+(97, 'game@gmail.com', '$2b$10$pWm7TMqUvbDzIJW9KUDTxeSlu9w3VK7Nyf96IeBaQGh1Exqsd8cn6');
 
 -- --------------------------------------------------------
 
@@ -39388,7 +39430,7 @@ CREATE TABLE `mission` (
   `mission_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `mission_place_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `mission_available_place` smallint NOT NULL,
-  `mission_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `mission_img` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `_id_mission_category` int NOT NULL,
   `_id_city` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -39398,23 +39440,72 @@ CREATE TABLE `mission` (
 --
 
 INSERT INTO `mission` (`id_mission`, `mission_title`, `mission_date`, `mission_start_time`, `mission_end_time`, `mission_description`, `mission_place_name`, `mission_available_place`, `mission_img`, `_id_mission_category`, `_id_city`) VALUES
-(41, 'Bénévolat', '2025-10-23', '13:30:00', '17:30:00', 'bla bla bla', 'Mairie de grenobe', 25, 'Capture d’écran 2025-09-04 110448.png', 4, 15701),
-(42, 'Bénévolat', '2025-10-23', '13:30:00', '17:30:00', 'bla bla bla', 'Mairie de grenobe', 25, 'Capture d’écran 2025-09-04 110448.png', 4, 15701),
-(43, 'dzdzz', '2025-10-16', '14:42:00', '23:24:00', 'dzdzzdz', 'effefe', 2, 'Capture d’écran 2025-10-03 100303.png', 5, 7018),
-(44, 'dzdzdzdz', '2025-10-17', '04:04:00', '04:04:00', 'ddzdz', 'jyjy', 1, 'Capture d’écran 2025-10-03 100303.png', 5, 2116),
-(45, 'dzdzdzdz', '2025-10-17', '04:04:00', '04:04:00', 'ddzdz', 'jyjy', 1, 'Capture d’écran 2025-10-03 100303.png', 5, 2116),
-(46, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(47, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(48, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(49, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(50, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(51, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(52, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(53, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(54, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(55, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(56, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116),
-(57, 'fefefef', '2025-10-15', '04:04:00', '00:04:00', 'effefefe', 'ffe', 3, 'Capture d’écran 2025-09-11 160809.png', 5, 2116);
+(60, 'Mission 1', '2025-12-16', '09:00:00', '17:00:00', 'description', 'Lieu 1', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 1, 101),
+(61, 'Mission 2', '2025-12-17', '09:00:00', '17:00:00', 'description', 'Lieu 2', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 2, 202),
+(62, 'Mission 3', '2025-12-18', '09:00:00', '17:00:00', 'description', 'Lieu 3', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 3, 303),
+(63, 'Mission 4', '2025-12-19', '09:00:00', '17:00:00', 'description', 'Lieu 4', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 4, 404),
+(64, 'Mission 5', '2025-12-20', '09:00:00', '17:00:00', 'description', 'Lieu 5', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 5, 505),
+(65, 'Mission 6', '2025-12-21', '09:00:00', '17:00:00', 'description', 'Lieu 6', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 6, 606),
+(66, 'Mission 7', '2025-12-22', '09:00:00', '17:00:00', 'description', 'Lieu 7', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 7, 707),
+(67, 'Mission 8', '2025-12-23', '09:00:00', '17:00:00', 'description', 'Lieu 8', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 8, 808),
+(68, 'Mission 9', '2025-12-24', '09:00:00', '17:00:00', 'description', 'Lieu 9', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 9, 909),
+(69, 'Mission 10', '2025-12-25', '09:00:00', '17:00:00', 'description', 'Lieu 10', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 10, 1010),
+(70, 'Mission 11', '2025-12-26', '09:00:00', '17:00:00', 'description', 'Lieu 11', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 1, 111),
+(71, 'Mission 12', '2025-12-27', '09:00:00', '17:00:00', 'description', 'Lieu 12', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 212),
+(72, 'Mission 13', '2025-12-28', '09:00:00', '17:00:00', 'description', 'Lieu 13', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 3, 313),
+(73, 'Mission 14', '2025-12-29', '09:00:00', '17:00:00', 'description', 'Lieu 14', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 4, 414),
+(74, 'Mission 15', '2025-12-30', '09:00:00', '17:00:00', 'description', 'Lieu 15', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 5, 515),
+(75, 'Mission 16', '2025-12-31', '09:00:00', '17:00:00', 'description', 'Lieu 16', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 6, 616),
+(76, 'Mission 17', '2026-01-01', '09:00:00', '17:00:00', 'description', 'Lieu 17', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 7, 717),
+(77, 'Mission 18', '2026-01-02', '09:00:00', '17:00:00', 'description', 'Lieu 18', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 8, 818),
+(78, 'Mission 19', '2026-01-03', '09:00:00', '17:00:00', 'description', 'Lieu 19', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 9, 919),
+(79, 'Mission 20', '2026-01-04', '09:00:00', '17:00:00', 'description', 'Lieu 20', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 1020),
+(80, 'Mission 21', '2026-01-05', '09:00:00', '17:00:00', 'description', 'Lieu 21', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 1, 121),
+(81, 'Mission 22', '2026-01-06', '09:00:00', '17:00:00', 'description', 'Lieu 22', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 222),
+(82, 'Mission 23', '2026-01-07', '09:00:00', '17:00:00', 'description', 'Lieu 23', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 3, 323),
+(83, 'Mission 24', '2026-01-08', '09:00:00', '17:00:00', 'description', 'Lieu 24', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 4, 424),
+(84, 'Mission 25', '2026-01-09', '09:00:00', '17:00:00', 'description', 'Lieu 25', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 5, 525),
+(85, 'Mission 26', '2026-01-10', '09:00:00', '17:00:00', 'description', 'Lieu 26', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 6, 626),
+(86, 'Mission 27', '2026-01-11', '09:00:00', '17:00:00', 'description', 'Lieu 27', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 7, 727),
+(87, 'Mission 28', '2026-01-12', '09:00:00', '17:00:00', 'description', 'Lieu 28', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 8, 828),
+(88, 'Mission 29', '2026-01-13', '09:00:00', '17:00:00', 'description', 'Lieu 29', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 9, 929),
+(89, 'Mission 30', '2026-01-14', '09:00:00', '17:00:00', 'description', 'Lieu 30', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 1030),
+(90, 'Mission 31', '2025-12-23', '09:00:00', '17:00:00', 'description', 'Lieu 31', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 1, 131),
+(91, 'Mission 32', '2025-12-24', '09:00:00', '17:00:00', 'description', 'Lieu 32', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 232),
+(92, 'Mission 33', '2025-12-25', '09:00:00', '17:00:00', 'description', 'Lieu 33', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 3, 333),
+(93, 'Mission 34', '2025-12-26', '09:00:00', '17:00:00', 'description', 'Lieu 34', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 4, 434),
+(94, 'Mission 35', '2025-12-27', '09:00:00', '17:00:00', 'description', 'Lieu 35', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 5, 535),
+(95, 'Mission 36', '2025-12-28', '09:00:00', '17:00:00', 'description', 'Lieu 36', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 6, 636),
+(96, 'Mission 37', '2025-12-29', '09:00:00', '17:00:00', 'description', 'Lieu 37', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 7, 737),
+(97, 'Mission 38', '2025-12-30', '09:00:00', '17:00:00', 'description', 'Lieu 38', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 8, 838),
+(98, 'Mission 39', '2025-12-31', '09:00:00', '17:00:00', 'description', 'Lieu 39', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 9, 939),
+(99, 'Mission 40', '2026-01-01', '09:00:00', '17:00:00', 'description', 'Lieu 40', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 1040),
+(100, 'Mission 41', '2026-01-02', '09:00:00', '17:00:00', 'description', 'Lieu 41', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 1, 141),
+(101, 'Mission 42', '2026-01-03', '09:00:00', '17:00:00', 'description', 'Lieu 42', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 242),
+(102, 'Mission 43', '2026-01-04', '09:00:00', '17:00:00', 'description', 'Lieu 43', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 3, 343),
+(103, 'Mission 44', '2026-01-05', '09:00:00', '17:00:00', 'description', 'Lieu 44', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 4, 444),
+(104, 'Mission 45', '2026-01-06', '09:00:00', '17:00:00', 'description', 'Lieu 45', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 5, 545),
+(105, 'Mission 46', '2026-01-07', '09:00:00', '17:00:00', 'description', 'Lieu 46', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 6, 646),
+(106, 'Mission 47', '2026-01-08', '09:00:00', '17:00:00', 'description', 'Lieu 47', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 7, 747),
+(107, 'Mission 48', '2026-01-09', '09:00:00', '17:00:00', 'description', 'Lieu 48', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 8, 848),
+(108, 'Mission 49', '2026-01-10', '09:00:00', '17:00:00', 'description', 'Lieu 49', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 9, 949),
+(109, 'Mission 50', '2026-01-11', '09:00:00', '17:00:00', 'description', 'Lieu 50', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 1050),
+(110, 'Mission 51', '2026-01-12', '09:00:00', '17:00:00', 'description', 'Lieu 51', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 1, 151),
+(111, 'Mission 52', '2026-01-13', '09:00:00', '17:00:00', 'description', 'Lieu 52', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 252),
+(112, 'Mission 53', '2026-01-14', '09:00:00', '17:00:00', 'description', 'Lieu 53', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 3, 353),
+(113, 'Mission 54', '2026-01-15', '09:00:00', '17:00:00', 'description', 'Lieu 54', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 4, 454),
+(114, 'Mission 55', '2026-01-16', '09:00:00', '17:00:00', 'description', 'Lieu 55', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 5, 555),
+(115, 'Mission 56', '2026-01-17', '09:00:00', '17:00:00', 'description', 'Lieu 56', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 6, 656),
+(116, 'Mission 57', '2026-01-18', '09:00:00', '17:00:00', 'description', 'Lieu 57', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 7, 757),
+(117, 'Mission 58', '2026-01-19', '09:00:00', '17:00:00', 'description', 'Lieu 58', 20, 'image.png', 8, 858),
+(118, 'Mission 59', '2026-01-20', '09:00:00', '17:00:00', 'description', 'Lieu 59', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 9, 959),
+(119, 'Mission 60', '2026-01-21', '09:00:00', '17:00:00', 'description', 'Lieu 60', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 10, 1060),
+(124, 'J\'accompagne des personnes déficientes visuelles', '2026-02-06', '08:00:00', '19:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.', 'Place du trib', 10, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 7, 15897),
+(125, 'Education ', '2026-02-05', '17:00:00', '18:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Chez le J', 10, 'https://plus.unsplash.com/premium_photo-1661964298925-b3ea464fc9b7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUMzJTg5ZHVjYXRpb24lMjAlMjYlMjBUdXRvcmF0fGVufDB8fDB8fHww', 1, 291),
+(126, 'dzdzzd', '2026-02-06', '02:00:00', '23:02:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.', 'dezdedede', 9, 'https://images.unsplash.com/photo-1758685733907-42e9651721f5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1, 31323),
+(127, 'Blalalalalalala', '2026-01-28', '01:00:00', '23:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'dddd', 9, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 30394),
+(128, 'Jestttttttt', '2026-01-27', '01:10:00', '20:02:00', 'JesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJestttttttt', 'fefefe', 12, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 32631),
+(129, 'Grenoble test', '2026-04-03', '02:00:00', '08:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.', 'place', 10, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 15700);
 
 -- --------------------------------------------------------
 
@@ -39442,6 +39533,55 @@ INSERT INTO `mission_category` (`id_mission_category`, `mission_category_name`) 
 (8, 'Technologie & Numérique'),
 (9, 'International & Humanitaire'),
 (10, 'Recherche & Innovation sociale');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `mission_image`
+--
+
+CREATE TABLE `mission_image` (
+  `id_mission_image` int NOT NULL,
+  `mission_image_url` varchar(500) NOT NULL,
+  `_id_mission_category` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `mission_image`
+--
+
+INSERT INTO `mission_image` (`id_mission_image`, `mission_image_url`, `_id_mission_category`) VALUES
+(2, 'https://images.unsplash.com/photo-1758525861568-ddaf9c5f7ee6?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1),
+(3, 'https://plus.unsplash.com/premium_photo-1661964298925-b3ea464fc9b7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUMzJTg5ZHVjYXRpb24lMjAlMjYlMjBUdXRvcmF0fGVufDB8fDB8fHww', 1),
+(4, 'https://images.unsplash.com/photo-1758685733907-42e9651721f5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1),
+(5, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12131/conversions/sante-pour-tous-9-small.jpg?v=1737022121', 2),
+(6, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12131/conversions/sante-pour-tous-9-small.jpg?v=1737022121', 2),
+(7, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/8491/conversions/YnorfN0Xqr7FlXc-small.jpg?v=1737369558', 2),
+(8, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/59852/conversions/CeGeyaxCt6QoAcV6l0WrhwJswQo1sK-small.jpg?v=1737022288', 3),
+(9, 'https://plus.unsplash.com/premium_photo-1664811569310-04a7c276df1c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 3),
+(10, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/83980/conversions/EMM2Cf3yaSc4KVRHdKG5rUbsuhBgae-small.jpg?v=1737022302', 3),
+(11, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12137/conversions/prevention-et-protection-6-small.jpg?v=1737022139', 4),
+(12, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/16512/conversions/T3Zcag5cuAbpxOysr6IlESeAEQtWNG-small.jpg?v=1750858530', 4),
+(13, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/59794/conversions/REC9eUAHMreGo0FdjWC7VViX7D62YJ-small.jpg?v=1737022273', 4),
+(14, 'https://images.unsplash.com/photo-1463592177119-bab2a00f3ccb?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 5),
+(15, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/59791/conversions/meGVwCCzxmwRfTmvWX3xv4Z23sXwjS-small.jpg?v=1737022262', 5),
+(16, 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 5),
+(17, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/59833/conversions/IwNqwbLlS145s4cv2OY83Loz3eOfQU-small.jpg?v=1737022134', 6),
+(18, 'https://images.unsplash.com/photo-1722974180453-305758503804?q=80&w=1101&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 6),
+(19, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12132/conversions/iq9zO1xVoKW7lDad6LxvI1qwjlDD0O-small.jpg?v=1746617755', 6),
+(20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 7),
+(21, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/8499/conversions/ksa0J6PYwh8hODt-small.jpg?v=1737369561', 7),
+(22, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/101352/conversions/29X3xhVeaRSe1oPMK5uZOUNpQkvHag-small.jpg?v=1747053589', 7),
+(23, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/8472/conversions/NWgtGWKGTNDkrGh-small.jpg?v=1737369548', 8),
+(24, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/83963/conversions/KDot4RBkNqSbKiKPk0EywJ0OqXn7HN-small.jpg?v=1737022156', 8),
+(25, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/16512/conversions/T3Zcag5cuAbpxOysr6IlESeAEQtWNG-small.jpg?v=1750858530', 8),
+(26, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/38567/conversions/4PAYs5Pbj3MtBMD8Ti9iO0GS443a1H-small.jpg?v=1737369630', 9),
+(27, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/73396/conversions/BpyfCWru61ng8kQIeB7r83ARBQNsPG-small.jpg?v=1737369680', 9),
+(28, 'https://www.jeveuxaider.gouv.fr/images/card-thumbnail-default.jpg', 9),
+(29, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/16695/conversions/s4oQeun6RPeBuFm0MygXVyBKp3kzMz-small.jpg?v=1737369602', 10),
+(30, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/8475/conversions/a26fP7ibvc7fB1r-small.jpg?v=1737369547', 10),
+(31, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/35545/conversions/N1eQNdmYjhYWFJt69XxtuHek9CoV2f-small.jpg?v=1737369626', 10),
+(32, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12150/conversions/sport-pour-tous-1-small.jpg?v=1737022185', 10);
 
 -- --------------------------------------------------------
 
@@ -39497,14 +39637,23 @@ CREATE TABLE `registration_mission` (
 --
 
 INSERT INTO `registration_mission` (`id_registration`, `registration_mission_date`, `_id_user`, `_id_mission`) VALUES
-(1, '2025-11-13 16:02:03', 49, 41),
-(2, '2025-11-13 16:02:06', 49, 43),
-(3, '2025-11-13 16:02:07', 49, 42),
-(4, '2025-11-13 16:02:08', 49, 44),
-(5, '2025-11-13 16:02:08', 49, 45),
-(6, '2025-11-13 16:02:09', 49, 46),
-(7, '2025-11-13 16:02:09', 49, 47),
-(8, '2025-11-13 16:02:10', 49, 48);
+(160, '2025-12-30 12:08:10', 49, 74),
+(161, '2025-12-30 12:08:16', 49, 76),
+(162, '2025-12-30 12:08:35', 49, 77),
+(163, '2025-12-30 13:03:28', 49, 97),
+(164, '2025-12-30 13:03:39', 49, 75),
+(165, '2025-12-30 13:03:52', 49, 98),
+(166, '2025-12-30 13:04:23', 49, 99),
+(167, '2025-12-30 13:08:08', 49, 102),
+(168, '2025-12-30 13:08:20', 49, 100),
+(169, '2026-01-02 10:41:11', 49, 87),
+(170, '2026-01-02 11:01:14', 49, 119),
+(171, '2026-01-04 11:00:58', 49, 79),
+(172, '2026-01-04 11:01:11', 49, 80),
+(173, '2026-01-04 11:01:17', 49, 103),
+(174, '2026-01-04 11:01:25', 49, 81),
+(175, '2026-01-04 11:01:45', 49, 106),
+(176, '2026-01-08 15:50:23', 62, 86);
 
 -- --------------------------------------------------------
 
@@ -39523,8 +39672,19 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
-('HHTBonkLGCcDgh3uGBPN2NJWU2Nuefkx', 1763110135, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2025-11-14T08:48:54.692Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('t_hYfZarHSFxLT4Nao_DShbb6bA9ctH2', 1763136122, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2025-11-14T14:45:48.257Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"},\"userExist\":{\"id\":49,\"firstName\":\"lucas\",\"isAdmin\":false},\"regions\":[{\"id_region\":1,\"region_name\":\"Auvergne-Rhône-Alpes\"},{\"id_region\":9,\"region_name\":\"Bourgogne-Franche-Comté\"},{\"id_region\":10,\"region_name\":\"Bretagne\"},{\"id_region\":8,\"region_name\":\"Centre-Val de Loire\"},{\"id_region\":11,\"region_name\":\"Corse\"},{\"id_region\":4,\"region_name\":\"Grand Est\"},{\"id_region\":14,\"region_name\":\"Guadeloupe\"},{\"id_region\":16,\"region_name\":\"Guyane\"},{\"id_region\":2,\"region_name\":\"Hauts-de-France\"},{\"id_region\":13,\"region_name\":\"Île-de-France\"},{\"id_region\":17,\"region_name\":\"La Réunion\"},{\"id_region\":15,\"region_name\":\"Martinique\"},{\"id_region\":19,\"region_name\":\"Mayotte\"},{\"id_region\":6,\"region_name\":\"Normandie\"},{\"id_region\":7,\"region_name\":\"Nouvelle-Aquitaine\"},{\"id_region\":18,\"region_name\":\"Nouvelle-Calédonie\"},{\"id_region\":5,\"region_name\":\"Occitanie\"},{\"id_region\":12,\"region_name\":\"Pays de la Loire\"},{\"id_region\":3,\"region_name\":\"Provence-Alpes-Côte d\'Azur\"}],\"categoriesMission\":[{\"categoryId\":1,\"categoryName\":\"Éducation & Tutorat\"},{\"categoryId\":2,\"categoryName\":\"Santé & Bien-être\"},{\"categoryId\":3,\"categoryName\":\"Environnement & Nature\"},{\"categoryId\":4,\"categoryName\":\"Solidarité & Action sociale\"},{\"categoryId\":5,\"categoryName\":\"Culture & Loisirs\"},{\"categoryId\":6,\"categoryName\":\"Urgence & Secours\"},{\"categoryId\":7,\"categoryName\":\"Sport & Loisirs\"},{\"categoryId\":8,\"categoryName\":\"Technologie & Numérique\"},{\"categoryId\":9,\"categoryName\":\"International & Humanitaire\"},{\"categoryId\":10,\"categoryName\":\"Recherche & Innovation sociale\"}]}');
+('8kcBMskR_Swysglx57V6UpLcLBQDosMi', 1768659323, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T14:15:23.403Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('9A0hXlzlNDWYB8omQLeUJe90T66nV8Zu', 1768898549, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-20T08:42:25.027Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('BFSeg1bXVGl2CApn1AVF9Q8pOqoZAqcq', 1768577893, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:38:13.265Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('G2U10tSAipKxLTFSqF5-D4Dwb3K1Qru5', 1768577893, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:38:13.256Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('Isi6d_jkrEFw5n5nChD9tO1v81xp6Txt', 1768576696, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:18:15.853Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('TCQRUCAO-i1xdkK3ZyfvLKphOnix9VkJ', 1768640237, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T08:57:17.387Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('U_gip7NmffXwS5w0XmLOlg-nbrK6GCOe', 1768574830, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T14:47:09.696Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('WtGu4_2mjfZFbzcYuhlFsOzhMS3p00pE', 1768646985, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T10:49:45.170Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('YYsfC9zl6V9oeV5IiBLW1WBGSn9FzBCe', 1768637670, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T08:14:29.944Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('hE9r85FyLYwuGUI2IYFwDsdZLohR2gas', 1768637740, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T08:15:40.127Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('mX3mX09OuxoQ7E9WOMnJRvN7AYUqWKr5', 1768659323, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T14:15:23.398Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('oKmXNP2wIdadrKWK0gRZCcFM0JlQ9ZUv', 1768666304, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T13:31:23.688Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"},\"userExist\":{\"id\":49,\"firstName\":\"Lucas\",\"isVolunteer\":true},\"regions\":[{\"id_region\":1,\"region_name\":\"Auvergne-Rhône-Alpes\"},{\"id_region\":9,\"region_name\":\"Bourgogne-Franche-Comté\"},{\"id_region\":10,\"region_name\":\"Bretagne\"},{\"id_region\":8,\"region_name\":\"Centre-Val de Loire\"},{\"id_region\":11,\"region_name\":\"Corse\"},{\"id_region\":4,\"region_name\":\"Grand Est\"},{\"id_region\":14,\"region_name\":\"Guadeloupe\"},{\"id_region\":16,\"region_name\":\"Guyane\"},{\"id_region\":2,\"region_name\":\"Hauts-de-France\"},{\"id_region\":13,\"region_name\":\"Île-de-France\"},{\"id_region\":17,\"region_name\":\"La Réunion\"},{\"id_region\":15,\"region_name\":\"Martinique\"},{\"id_region\":19,\"region_name\":\"Mayotte\"},{\"id_region\":6,\"region_name\":\"Normandie\"},{\"id_region\":7,\"region_name\":\"Nouvelle-Aquitaine\"},{\"id_region\":18,\"region_name\":\"Nouvelle-Calédonie\"},{\"id_region\":5,\"region_name\":\"Occitanie\"},{\"id_region\":12,\"region_name\":\"Pays de la Loire\"},{\"id_region\":3,\"region_name\":\"Provence-Alpes-Côte d\'Azur\"}],\"categoriesMission\":[{\"id_mission_category\":1,\"mission_category_name\":\"Éducation & Tutorat\"},{\"id_mission_category\":2,\"mission_category_name\":\"Santé & Bien-être\"},{\"id_mission_category\":3,\"mission_category_name\":\"Environnement & Nature\"},{\"id_mission_category\":4,\"mission_category_name\":\"Solidarité & Action sociale\"},{\"id_mission_category\":5,\"mission_category_name\":\"Culture & Loisirs\"},{\"id_mission_category\":6,\"mission_category_name\":\"Urgence & Secours\"},{\"id_mission_category\":7,\"mission_category_name\":\"Sport & Loisirs\"},{\"id_mission_category\":8,\"mission_category_name\":\"Technologie & Numérique\"},{\"id_mission_category\":9,\"mission_category_name\":\"International & Humanitaire\"},{\"id_mission_category\":10,\"mission_category_name\":\"Recherche & Innovation sociale\"}],\"getAllMissions\":[{\"id_mission\":129,\"mission_title\":\"Grenoble test\",\"mission_date\":\"03/04/2026\",\"mission_category_name\":\"Santé & Bien-être\",\"city_name\":\"Grenoble\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.\",\"mission_img\":\"https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg\",\"mission_available_place\":10},{\"id_mission\":124,\"mission_title\":\"Prout Test\",\"mission_date\":\"06/02/2026\",\"mission_category_name\":\"Sport & Loisirs\",\"city_name\":\"Saint-Égrève\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.\",\"mission_img\":\"https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182\",\"mission_available_place\":10},{\"id_mission\":126,\"mission_title\":\"dzdzzd\",\"mission_date\":\"06/02/2026\",\"mission_category_name\":\"Éducation & Tutorat\",\"city_name\":\"Paris-l\'Hôpital\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.\",\"mission_img\":\"https://images.unsplash.com/photo-1758685733907-42e9651721f5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"mission_available_place\":9},{\"id_mission\":125,\"mission_title\":\"Education \",\"mission_date\":\"05/02/2026\",\"mission_category_name\":\"Éducation & Tutorat\",\"city_name\":\"Parcieux\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\"mission_img\":\"https://plus.unsplash.com/premium_photo-1661964298925-b3ea464fc9b7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUMzJTg5ZHVjYXRpb24lMjAlMjYlMjBUdXRvcmF0fGVufDB8fDB8fHww\",\"mission_available_place\":10},{\"id_mission\":127,\"mission_title\":\"Blalalalalalala\",\"mission_date\":\"28/01/2026\",\"mission_category_name\":\"Recherche & Innovation sociale\",\"city_name\":\"Lyon 09\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\"mission_img\":\"https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Ffr.freepik.com%2Fphotos-premium%2Fmain-lampe-eclairage_1779212.htm&ved=0CBYQjRxqFwoTCMjUr_PljZIDFQAAAAAdAAAAABBY&opi=89978449\",\"mission_available_place\":9},{\"id_mission\":128,\"mission_title\":\"Jestttttttt\",\"mission_date\":\"27/01/2026\",\"mission_category_name\":\"Recherche & Innovation sociale\",\"city_name\":\"Paris 17\",\"mission_description\":\"JesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJestttttttt\",\"mission_img\":\"https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Ffr.freepik.com%2Fphotos-premium%2Fmain-lampe-eclairage_1779212.htm&ved=0CBYQjRxqFwoTCMjUr_PljZIDFQAAAAAdAAAAABBY&opi=89978449\",\"mission_available_place\":12},{\"id_mission\":118,\"mission_title\":\"Mission 59\",\"mission_date\":\"20/01/2026\",\"mission_category_name\":\"International & Humanitaire\",\"city_name\":\"Montcornet\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":117,\"mission_title\":\"Mission 58\",\"mission_date\":\"19/01/2026\",\"mission_category_name\":\"Technologie & Numérique\",\"city_name\":\"Laon\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":116,\"mission_title\":\"Mission 57\",\"mission_date\":\"18/01/2026\",\"mission_category_name\":\"Sport & Loisirs\",\"city_name\":\"La Fère\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":115,\"mission_title\":\"Mission 56\",\"mission_date\":\"17/01/2026\",\"mission_category_name\":\"Urgence & Secours\",\"city_name\":\"Clermont-les-Fermes\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":114,\"mission_title\":\"Mission 55\",\"mission_date\":\"16/01/2026\",\"mission_category_name\":\"Culture & Loisirs\",\"city_name\":\"Boncourt\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20}]}'),
+('tbLwbxTv7qxIMo1ao3KxbGRhMkCco8JA', 1768576696, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:18:15.846Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}');
 
 -- --------------------------------------------------------
 
@@ -78792,7 +78952,7 @@ CREATE TABLE `user` (
   `user_created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_adress` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `user_phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_birthday` date DEFAULT NULL,
+  `_id_category` int DEFAULT NULL,
   `_id_city` int DEFAULT NULL,
   `_id_identifier` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -78801,8 +78961,14 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `user_first_name`, `user_last_name`, `user_created_at`, `user_adress`, `user_phone_number`, `user_birthday`, `_id_city`, `_id_identifier`) VALUES
-(49, 'lucas', 'Shell', '2025-11-03 16:25:43', NULL, NULL, NULL, NULL, 64);
+INSERT INTO `user` (`id_user`, `user_first_name`, `user_last_name`, `user_created_at`, `user_adress`, `user_phone_number`, `_id_category`, `_id_city`, `_id_identifier`) VALUES
+(49, 'Lucas', 'fefef', '2025-11-03 16:25:43', '299 che des ver', '3393983398', 1, 15700, 64),
+(54, 'user', 'us', '2025-12-10 10:24:49', NULL, NULL, NULL, NULL, 75),
+(58, 'rgrgrgr', 'frfrff', '2025-12-29 14:54:25', NULL, NULL, NULL, NULL, 89),
+(59, 'rgrgrgr gfrgr', 'frfrff grgrgr', '2025-12-29 14:56:29', NULL, NULL, NULL, NULL, 90),
+(60, '&lt;script&gt;', '&lt;script&gt;', '2025-12-29 15:03:40', NULL, NULL, NULL, NULL, 91),
+(61, '&quot; &quot;', '&quot; &quot;', '2025-12-29 15:08:32', NULL, NULL, NULL, NULL, 93),
+(62, 'Mamie', 'Arnaud', '2026-01-08 15:48:33', NULL, '0647149259', NULL, 32626, 95);
 
 -- --------------------------------------------------------
 
@@ -78881,6 +79047,13 @@ ALTER TABLE `mission_category`
   ADD PRIMARY KEY (`id_mission_category`);
 
 --
+-- Index pour la table `mission_image`
+--
+ALTER TABLE `mission_image`
+  ADD PRIMARY KEY (`id_mission_image`),
+  ADD KEY `_id_mission_category` (`_id_mission_category`);
+
+--
 -- Index pour la table `region`
 --
 ALTER TABLE `region`
@@ -78907,7 +79080,8 @@ ALTER TABLE `sessions`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `_id_city` (`_id_city`),
-  ADD KEY `_id_identifier` (`_id_identifier`);
+  ADD KEY `_id_identifier` (`_id_identifier`),
+  ADD KEY `_id_category` (`_id_category`);
 
 --
 -- Index pour la table `user_opinion`
@@ -78924,13 +79098,13 @@ ALTER TABLE `user_opinion`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `admin_role`
 --
 ALTER TABLE `admin_role`
-  MODIFY `id_admin_role` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin_role` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `city`
@@ -78948,7 +79122,7 @@ ALTER TABLE `history_mission`
 -- AUTO_INCREMENT pour la table `identifier`
 --
 ALTER TABLE `identifier`
-  MODIFY `id_identifier` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_identifier` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT pour la table `message_form`
@@ -78966,13 +79140,19 @@ ALTER TABLE `message_recall_template`
 -- AUTO_INCREMENT pour la table `mission`
 --
 ALTER TABLE `mission`
-  MODIFY `id_mission` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_mission` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT pour la table `mission_category`
 --
 ALTER TABLE `mission_category`
   MODIFY `id_mission_category` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `mission_image`
+--
+ALTER TABLE `mission_image`
+  MODIFY `id_mission_image` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `region`
@@ -78984,13 +79164,13 @@ ALTER TABLE `region`
 -- AUTO_INCREMENT pour la table `registration_mission`
 --
 ALTER TABLE `registration_mission`
-  MODIFY `id_registration` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_registration` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT pour la table `user_opinion`
@@ -79021,6 +79201,12 @@ ALTER TABLE `history_mission`
   ADD CONSTRAINT `history_mission_ibfk_1` FOREIGN KEY (`_id_user`) REFERENCES `user` (`id_user`);
 
 --
+-- Contraintes pour la table `mission_image`
+--
+ALTER TABLE `mission_image`
+  ADD CONSTRAINT `mission_image_ibfk_1` FOREIGN KEY (`_id_mission_category`) REFERENCES `mission_category` (`id_mission_category`);
+
+--
 -- Contraintes pour la table `registration_mission`
 --
 ALTER TABLE `registration_mission`
@@ -79031,7 +79217,9 @@ ALTER TABLE `registration_mission`
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`_id_identifier`) REFERENCES `identifier` (`id_identifier`);
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`_id_identifier`) REFERENCES `identifier` (`id_identifier`),
+  ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`_id_category`) REFERENCES `mission_category` (`id_mission_category`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`_id_city`) REFERENCES `city` (`id_city`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `user_opinion`

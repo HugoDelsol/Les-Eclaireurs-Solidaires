@@ -82,6 +82,9 @@ exports.getStatsMissions = async (req, res) => {
     try {
 
         const getStatsMissions = await missionModel.getStatsMissions();
+        
+        console.log(getStatsMissions.resultSumVolunteers[0])
+        console.log(getStatsMissions.resultTotalMissions[0])
 
         let average = Math.round((getStatsMissions.resultSumVolunteers[0].total_next_30_days / getStatsMissions.resultTotalMissions[0].nbr_missions) * 100);
         const averageToFixed = average.toFixed(0);
