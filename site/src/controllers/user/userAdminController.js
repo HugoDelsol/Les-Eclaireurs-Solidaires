@@ -27,20 +27,24 @@ exports.dashboardAdmin = async (req, res) => {
 }
 
 exports.listOfVolunteers = async (req, res) => {
-    res.render('account/listOfVolunteers');
+    res.render('account/listOfVolunteers', {
+        pseudoUser : req.session.userExist.firstName,
+        isSuperAdmin : req.session.userExist.isSuperAdmin,
+        isAdmin : req.session.userExist.isAdmin,
+    });
 }
 
 exports.tokenView = async (req, res) => {
 
     const admins = await userModel.getAllAdmins();
 
-    req.session.userExist.admins = admins.resultAdmins;
-    req.session.userExist.superAdmins = admins.resultSuperAdmins;
+    const listOfAdmin = admins.resultAdmins;
+    const listOfSuperAdmin = admins.resultSuperAdmins;
 
-    res.render('account/generateToken', {
-        admins: admins.resultAdmins,
-        superAdmins: admins.resultSuperAdmins,
-    });
+    req.session.admins = listOfAdmin
+    req.session.superAdmins = listOfSuperAdmin
+
+    res.render('account/generateToken');
 }
 
 // ==============================
@@ -66,11 +70,11 @@ exports.generateToken = async (req, res) => {
             generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
         }
 
+        console.log(generateTokenAdmin, generateTokenSuper)
+
         res.render('account/generateToken', {
             tokenAdmin: generateTokenAdmin,
             tokenSuper: generateTokenSuper,
-            admins: req.session.userExist.admins,
-            superAdmins: req.session.userExist.superAdmins,
         })
 
     } catch (error) {
@@ -116,11 +120,10 @@ exports.saveAdmin = async (req, res) => {
             password,
             idAdminRole,
         )
-
+        
         if (saveAdmin) {
-            res.render('connection/signIn', {
-                alertMsg: "Veuillez vous connecter pour accéder à votre compte."
-            });
+            res.locals.alertMsg = "Veuillez vous connecter pour accéder à votre compte.";
+            res.render('connection/signIn');
         }
 
     } catch (error) {

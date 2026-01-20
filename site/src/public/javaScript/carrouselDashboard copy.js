@@ -100,8 +100,6 @@ arrowRight.addEventListener('click', () => {
 
 arrowLeft.addEventListener('click', () => {
 
-    console.log(indexRegion)
-
     indexRegion -= 1;
 
     if (indexRegion == -1) indexRegion = dataRegion.length - 1
@@ -196,9 +194,6 @@ async function carrouselMissionByRegistration() {
             placeMissionRegister.textContent = data[index].mission_date;
             backgroundImageRegister.style.backgroundImage = `url('${data[index].mission_img}')`
         }
-
-
-        console.log(data[index].mission_img)
 
         arrowRightRegistration.addEventListener('click', () => {
 

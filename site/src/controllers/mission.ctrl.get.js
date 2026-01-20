@@ -2,6 +2,7 @@ const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const userModel = require('../models/UserModel');
 const missionCtrlPost = require('./mission.ctrl.post');
+const utils = require('../utils/utils')
 
 //---
 //--- RECUPERER LES 3 PROCHAINES MISSIONS DANS LA REGION DU BENEVOLE
@@ -28,46 +29,46 @@ const missionCtrlPost = require('./mission.ctrl.post');
 
 exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
-    try { 
+    try {
 
         const idRegion = 1;
 
-        const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);        
+        const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);
 
         res.json(getMissionByRegion);
 
     } catch (error) {
-        
+
     }
 }
 
 exports.fetchMissionByRegistrationDashboardUser = async (req, res) => {
 
     try {
-        
-       const idUser = req.session.userExist.id;
 
-       const getAllMissionsByUser = await missionModel.getAllMissionsByUser(idUser);
+        const idUser = req.session.userExist.id;
 
-       res.json(getAllMissionsByUser);
+        const getAllMissionsByUser = await missionModel.getAllMissionsByUser(idUser);
+
+        res.json(getAllMissionsByUser);
 
     } catch (error) {
-        
+
     }
 }
 
 exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
 
     try {
-        
-        const idUser = req.session.userExist.id; 
+
+        const idUser = req.session.userExist.id;
 
         const getMissionAccomplishedByUser = await missionModel.addUserHistoryMission(idUser)
 
         res.json(getMissionAccomplishedByUser);
 
     } catch (error) {
-        
+
     }
 }
 
@@ -93,8 +94,8 @@ exports.getStatsMissions = async (req, res) => {
 
             const spaceAvailable = g.mission_available_place - g.nb_volunteers;
             const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
-            
-            const fillRateToString = fillRate + "%";
+
+            const fillRateToString = fillRate.toFixed(0) + "%";
 
             tabStats.push({
                 id: g.id_mission,
@@ -106,13 +107,16 @@ exports.getStatsMissions = async (req, res) => {
             })
         }
 
+        console.log(req.session.userExist.firstName)
+
         res.render("account/dashboardAdmin", {
             pseudoUser: req.session.userExist.firstName,
-            isSuperAdmin: req.session.userExist.isSuperAdmin,
             tabStats: tabStats,
             resultSum: getStatsMissions.resultSumVolunteers[0].total_next_30_days,
             average: averageToFixed,
-            isSuperAdmin: req.session.userExist.isSuperAdmin
+            isSuperAdmin: req.session.userExist.isSuperAdmin,
+            isAdmin: req.session.userExist.isAdmin,
+            totalMission: getStatsMissions.resultTotalMissions[0]
         });
 
     } catch (error) {
@@ -144,6 +148,8 @@ exports.missionAdminShow = async (req, res) => {
         req.session.getAllMissions = getAllMissions;
 
         res.render('account/listMissionsAdmin', {
+            isSuperAdmin: req.session.userExist.isSuperAdmin,
+            isAdmin: req.session.userExist.isAdmin,
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
             regions: req.session.regions,
@@ -176,14 +182,9 @@ exports.missionUserShow = async (req, res) => {
 
         const regions = await missionModel.getAllRegions();
 
-        req.session.regions = regions;
-
-        const dataTab = await missionModel.getAllCategories();
-
-        req.session.categoriesMission = dataTab;
+        const categoriesMission = await missionModel.getAllCategories();
 
         getAllMissions = await missionModel.getAllMission();
-        req.session.getAllMissions = getAllMissions;
 
         const idUser = req.session.userExist.id
 
@@ -199,24 +200,22 @@ exports.missionUserShow = async (req, res) => {
             }
         }
 
-        res.render('account/listMissionUser', {
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-            regions: req.session.regions,
-            missions: req.session.getAllMissions,
-        });
+        const clearData = utils.clearData(getAllMissions);
+        res.locals.missionsClear = clearData;
+        
+        req.session.regions = regions;
+        req.session.categoriesMission = categoriesMission;
+
+        res.render('account/listMissionUser');
 
     } catch (error) {
 
+        res.locals.alertMsg = "Impossible d'afficher la liste des missions.";
+        res.locals.missions = getAllMissions;
+
         console.error(error);
 
-        res.render('account/listMissionUser', {
-            alertMsg: "Impossible d'afficher la liste des missions.",
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-            regions: req.session.regions,
-            missions: req.session.getAllMissions,
-        });
+        res.render('account/listMissionUser');
     }
 }
 
@@ -228,25 +227,19 @@ exports.addMissionShow = async (req, res) => {
 
     try {
 
-        const dataTab = await missionModel.getAllCategories();
+        const categoriesMission = await missionModel.getAllCategories();
 
-        req.session.categoriesMission = dataTab;
+        req.session.categoriesMission = categoriesMission;
 
-        res.render('account/addMission', {
-            alertMsg: null,
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-        });
+        res.render('account/addMission');
 
     } catch (error) {
 
         console.error(error);
 
-        res.render('account/addMission', {
-            alertMsg: "Impossible d'afficher le formulaire",
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-        });
+        res.locals.alertMsg = "Impossible d'afficher le formulaire";
+
+        res.render('account/addMission');
     }
 }
 
@@ -259,8 +252,6 @@ exports.searchCity = async (req, res) => {
     try {
 
         const valueInput = req.query.q;
-
-        console.log(valueInput)
 
         const searchCity = await missionModel.searchCityInSql(valueInput);
 
@@ -310,6 +301,7 @@ exports.searchCity = async (req, res) => {
 exports.dashboardAllStats = async (req, res, idUser) => {
 
     try {
+
         const getUserAddress = await userModel.getUserAddress(idUser);
 
         const idRegionByUser = getUserAddress[0].id_region;
@@ -318,13 +310,11 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
 
-        const historyMissionUser = await missionModel.addUserHistoryMission(idUser); 
-        
+        const historyMissionUser = await missionModel.addUserHistoryMission(idUser);
+
         const obtainStatsOnVolunteer = await missionModel.obtainStatsOnVolunteer(idUser);
 
         res.render('account/dashboardUser', {
-
-            pseudoUser: req.session.userExist.firstName,
             missionsUser: allMissionByUser.length ? allMissionByUser : false,
             missionByRegion: getMissionByRegion,
             historyMissionUser: historyMissionUser,
@@ -363,7 +353,6 @@ exports.addRegisterMissionUser = async (req, res) => {
 
         const registrationByUser = await missionModel.getRegistrationByUserId(idMission, idUser);
 
-        console.log(idMission)
 
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
 
@@ -376,8 +365,6 @@ exports.addRegisterMissionUser = async (req, res) => {
             return res.json({ alreadyAdded: true });
 
         } else {
-
-            console.log(registrationByUser)
 
             await missionCtrlPost.registerMissionUser(idUser, idMission);
 

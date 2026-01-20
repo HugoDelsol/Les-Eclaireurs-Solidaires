@@ -2,7 +2,7 @@ const checkBox = document.querySelectorAll('.checkbox');
 const btnRegistration = document.querySelectorAll('.btnRegistration')
 const idUser = document.querySelector(".idUser");
 
-const idUserValue = parseInt(idUser.textContent)
+const idUserValue = parseInt(idUser.textContent);
 
 for (let c of checkBox) {
 
@@ -41,7 +41,6 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
         });
 
         if (!response.ok) {
-
             window.location.href = "/";
             console.log(data.message)
         }
@@ -76,9 +75,7 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 console.log(data.message)
             }
 
-            const data = await response.json();
-
-            console.log(c)                 
+            const data = await response.json();               
 
             if (!data.alreadyAdded) {
 

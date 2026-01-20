@@ -6,6 +6,7 @@ exports.clearData = (missions) => {
         title: m.mission_title,
         description: m.mission_description.split(" ").slice(0, 30).join(" "),
         category: m.mission_category_name,
+        city: m.city_name,
         places: m.mission_available_place,
         date: m.mission_date
     }))  
