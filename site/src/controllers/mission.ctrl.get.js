@@ -131,14 +131,12 @@ exports.missionAdminShow = async (req, res) => {
     let getAllMissions = [];
 
     try {
-        const regions = await missionModel.getAllRegions();
 
-        const dataTab = await missionModel.getAllCategories();
+        req.session.regions = await missionModel.getAllRegions();
+
+        req.session.categoriesMission = await missionModel.getAllCategories();
 
         getAllMissions = await missionModel.getAllMission();
-        
-        req.session.regions = regions;
-        req.session.categoriesMission = dataTab
 
         res.locals.regions = req.session.regions;
         res.locals.categoriesMission = req.session.categoriesMission;
@@ -297,7 +295,9 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const idRegionByUser = getUserAddress[0].id_region;
 
+        
         const getMissionByRegion = await missionModel.getMissionByRegion(idRegionByUser);
+        console.log(getMissionByRegion)
 
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
 

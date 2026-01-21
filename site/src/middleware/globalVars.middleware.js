@@ -15,6 +15,8 @@ const centralizedVar = (req, res, next) => {
         categorySelected : null
     }
 
+    res.locals.listUsers = null
+
     res.locals.missions = null
     res.locals.missionsClear = null;
 
@@ -41,7 +43,6 @@ const userData = (req, res, next) => {
 
     next();
 }
-
 
 module.exports = {
     centralizedVar,
