@@ -44,6 +44,9 @@ exports.tokenView = async (req, res) => {
     req.session.admins = listOfAdmin
     req.session.superAdmins = listOfSuperAdmin
 
+    res.locals.admins = req.session.admins
+    res.locals.superAdmins = req.session.superAdmins
+
     res.render('account/generateToken');
 }
 
