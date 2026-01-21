@@ -32,16 +32,50 @@ exports.getAllAdmins = async () => {
                                     ON _id_admin_role = id_admin_role
                                     WHERE id_admin_role = 2;`
 
-        const [resultAdmins] = await db.query(requestAdmins);        
-        
+        const [resultAdmins] = await db.query(requestAdmins);
+
         return {
             resultSuperAdmins,
             resultAdmins
         };
 
     } catch (error) {
-        
+
         throw new error;
+    }
+}
+
+exports.getAllVolunteers = async () => {
+
+    try {
+
+        const request = `
+            SELECT * FROM user 
+            LEFT JOIN identifier 
+            ON _id_identifier = id_identifier
+            LEFT JOIN registration_mission
+            ON _id_user = id_user
+
+// REQUEST FOR SELCTED 
+
+            SELECT user_first_name, user_created_at, COUNT(_id_mission) AS "nbr_registration" FROM user 
+            LEFT JOIN identifier 
+            ON _id_identifier = id_identifier
+            LEFT JOIN registration_mission
+            ON _id_user = id_user
+            WHERE user_created_at < CURRENT_DATE()
+            GROUP BY user_first_name, user_created_at              
+            ORDER BY nbr_registration ASC;
+            
+        `;
+        const [result] = await db.query(request);
+
+        //const 
+
+        return result;
+
+    } catch (error) {
+
     }
 }
 
@@ -107,23 +141,23 @@ exports.addAdmin = async (
 
 ) => {
 
-    try {       
-        
+    try {
+
         const saltRound = await bcrypt.genSalt(10);
         const passwordHash = await bcrypt.hash(password, saltRound);
-        
+
         const requestIdentifier = `INSERT INTO identifier (identifier_mail, identifier_password) VALUES (?, ?)`;
         const [resultIdentifier] = await db.query(requestIdentifier, [email, passwordHash]);
-        
+
         const lastInsertId = resultIdentifier.insertId
-        
+
         const requestAdmin = `INSERT INTO admin (admin_first_name, admin_last_name, _id_admin_role, _id_identifier) VALUES (?, ?, ?, ?)`;
         const [resultAdmin] = await db.query(requestAdmin, [firstName, lastName, idAdminRole, lastInsertId]);
-        
+
         return resultAdmin;
-        
+
     } catch (error) {
-        
+
         throw error;
     }
 }
@@ -131,7 +165,7 @@ exports.addAdmin = async (
 exports.getUserAddress = async (idUser) => {
 
     try {
-        
+
         const getDatas = `
             SELECT * FROM user AS u
             LEFT JOIN city
@@ -145,6 +179,6 @@ exports.getUserAddress = async (idUser) => {
         return result;
 
     } catch (error) {
-        
+
     }
 }

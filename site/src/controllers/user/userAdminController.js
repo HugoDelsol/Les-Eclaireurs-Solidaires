@@ -27,25 +27,32 @@ exports.dashboardAdmin = async (req, res) => {
 }
 
 exports.listOfVolunteers = async (req, res) => {
-    res.render('account/listOfVolunteers', {
-        pseudoUser : req.session.userExist.firstName,
-        isSuperAdmin : req.session.userExist.isSuperAdmin,
-        isAdmin : req.session.userExist.isAdmin,
-    });
+
+    try {
+
+        const listOfVolunteers = await userModel.getAllVolunteers();
+
+        res.locals.listUsers = listOfVolunteers
+
+        console.log(res.locals.listUsers)
+
+        res.locals.regions = req.session.regions;
+        res.locals.categoriesMission = req.session.categoriesMission;
+
+        res.render('account/listOfVolunteers');
+    } catch (error) {
+
+        console.log(error);
+    }
+
 }
 
 exports.tokenView = async (req, res) => {
 
     const admins = await userModel.getAllAdmins();
 
-    const listOfAdmin = admins.resultAdmins;
-    const listOfSuperAdmin = admins.resultSuperAdmins;
-
-    req.session.admins = listOfAdmin
-    req.session.superAdmins = listOfSuperAdmin
-
-    res.locals.admins = req.session.admins
-    res.locals.superAdmins = req.session.superAdmins
+    res.locals.admins = admins.resultAdmins;
+    res.locals.superAdmins = admins.resultSuperAdmins;
 
     res.render('account/generateToken');
 }
@@ -123,7 +130,7 @@ exports.saveAdmin = async (req, res) => {
             password,
             idAdminRole,
         )
-        
+
         if (saveAdmin) {
             res.locals.alertMsg = "Veuillez vous connecter pour accéder à votre compte.";
             res.render('connection/signIn');

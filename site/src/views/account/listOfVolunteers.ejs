@@ -14,17 +14,29 @@
                             </div>
                             <form action="" method="post">
                                 
-                                        <label for=""><input type="text" placeholder="Rechercher par nom"></label>
+                                        <label for="">
+                                            <input type="text" placeholder="Rechercher par nom">
+                                        </label>
                                         <select name="regionSelected" id="regionSelected">
                                             <option value="">Régions</option>
+                                            <% for (let r of regions) { %>
+                                                <option value="<% r.id_region %>" 
+                                                    <% r.id_region == searchFilters.regionSelected ? "selected" : "" %> >
+                                                    <%= r.region_name  %>
+                                                </option>
+                                            <% } %>
                                         </select>
                                         <select name="categorySelected" id="categorySelected">
                                             <option value="">Catégories</option>
+                                            <% for (let c of categoriesMission) { %>
+                                                <option value="<% c.id_mission_category %>" 
+                                                    <% c.id_mission_category == searchFilters.categorySelected ? "selected" : "" %> >
+                                                    <%= c.mission_category_name  %>
+                                                </option>
+                                            <% } %>
                                         </select>
                                         <button class="btnSecondary btnHover" type="submit">Rechercher</button>
                                     
-                                    <p class="">|</p>
-                                    <button class="btnSecondary btnHover" type="submit">Voir tout / Engagement</button>
                                 
                             </form>
                         </div>
@@ -35,26 +47,26 @@
                                     <th>Email</th>
                                     <th>Adress</th>
                                     <th>Contacter</th>
-                                    <th>Engagement</th>
+                                    <th>
+                                        <button class="btnPrimary btnHover">Engagement</button>
+                                    </th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody class="fixMax">
+                                <% for (let l of listUsers) {%>
                                 <tr>
                                     <td>
-                                        <p>Nom</p>
+                                        <p><%= l.user_last_name %></p>
                                     </td>
                                     <td class="color">
-                                        <p>Nom</p>
-
+                                        <p><%= l.identifier_mail %></p>
                                     </td>
                                     <td>
-
-                                        <p>Nom</p>
+                                        <p><%= l.user_address %></p>
                                     </td>
                                     <td class="color">
-
-                                        <p>Nom</p>
+                                        <p><%= l.user_phone_number %></p>
                                     </td>
                                     <td>
                                         <p>Nom</p>
@@ -65,7 +77,7 @@
 
                                     </td>
                                 </tr>
-
+                                <% } %>
                             </tbody>
                         </table>
                         <div>

@@ -235,7 +235,7 @@ exports.searchByCategories = async (regionSelected, categorySelected, tripStart,
                 LEFT JOIN mission_category
                 ON id_mission_category = _id_mission_category
                 ${where}
-                AND mission_date >= CURRENT_DATE()
+                AND mission_date > CURRENT_DATE()
             `;
 
             const [result] = await db.query(request, params);
@@ -378,7 +378,7 @@ exports.getAllMission = async (sqlLimit) => {
                 ON id_city = _id_city
             LEFT JOIN mission_category
                 ON id_mission_category = _id_mission_category
-            WHERE mission_date >= CURRENT_DATE
+            WHERE mission_date > CURRENT_DATE
             ORDER BY m.mission_date ASC
             ${limitCondition}
         `;

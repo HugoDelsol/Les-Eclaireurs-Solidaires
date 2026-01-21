@@ -70,7 +70,7 @@ input {
     margin-top: 1.4em;
 }
 
-.blocListMission .btnPrimary {
+.blocListVolunteers .btnPrimary {
     display: flex;
     justify-content: center;
     background-color: #f9cf807c;
@@ -80,7 +80,7 @@ input {
     font-weight: 400;
 }
 
-.blocListMission .btnSecondary {
+.blocListVolunteers .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.26);
@@ -91,14 +91,14 @@ input {
     margin-left: 10px;
 }
 
-.blocListMission .btnHover {
+.blocListVolunteers .btnHover {
     display: inline-block;
     font-size: 1em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.blocListMission .btnHover:hover {
+.blocListVolunteers .btnHover:hover {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
@@ -121,6 +121,11 @@ input {
     justify-content: space-around;
     align-items: center;
     width: 100%;
+}
+
+label,
+select {
+    margin: 0 4px;
 }
 
 table {
