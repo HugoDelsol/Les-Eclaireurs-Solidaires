@@ -7,7 +7,7 @@ const utils = require('../utils/utils');
 //--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
 //---
 
-exports.searchByCategories = async (req, res) => {
+/* exports.searchByCategories = async (req, res) => {
 
     let missionsSelected = [];
 
@@ -22,13 +22,16 @@ exports.searchByCategories = async (req, res) => {
         !categorySelected ? categorySelected = false : categorySelected;
 
         !tripStart ? tripStart = false : tripStart;
-        !tripEnd ? tripEnd = false : tripEnd;
-
-        missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
-        const clearData = utils.clearData(missionsSelected);
-
-        res.locals.renderData.missionSelected = clearData;
+        !tripEnd ? tripEnd = false : tripEnd; 
         
+        if (!regionSelected || !categorySelected) {
+            res.locals.alertMsg = "dzdzdz"
+            return res.render('account/listMissionUser', {
+                missionsClear: [],
+            })
+        }
+
+        missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);               
 
         if (tripStart && !tripEnd || !tripStart && tripEnd) {
 
@@ -54,19 +57,24 @@ exports.searchByCategories = async (req, res) => {
             }
         }
 
-        if (req.session.userExist.isVolunteer) {
+        const clearDataSelected = utils.clearData(missionsSelected);
+        res.locals.missionsClear = clearDataSelected; 
 
-            
+        if (req.session.userExist.isVolunteer) {           
 
-            return res.render('account/listMissionUser');
+            return res.render('account/listMissionUser', {
+                missionsClear: [],
+                categorySelected: categorySelected,
+                regionSelected: regionSelected,
+            });
 
         } else {
 
             return res.render('account/listMissionsAdmin', {
-                missionSelected: clearData,
+                
                 categoriesMission: req.session.categoriesMission,
                 regions: req.session.regions,
-                missions: req.session.getAllMissions,
+                missions: [],
                 categorySelected: categorySelected,
                 regionSelected: regionSelected,
             });
@@ -77,7 +85,42 @@ exports.searchByCategories = async (req, res) => {
         console.log(error);
         res.render('home/404');
     }
-}
+} */
+
+exports.searchByCategories = async (req, res) => {
+    try {
+
+        const { regionSelected, categorySelected, tripStart, tripEnd } = req.body;
+        const user = req.session.userExist;
+
+        const renderPathByRole = user.isVolunteer ? 'account/listMissionUser' : 'account/listMissionsAdmin';
+
+        const isDateIncomplete = (tripStart && !tripEnd) || (!tripStart && tripEnd);
+
+        if (!regionSelected && !categorySelected || isDateIncomplete) {
+
+            res.locals.alertMsg = isDateIncomplete
+                ? "Veuillez saisir une date de début ET une date de fin."
+                : "Veuillez sélectionner une région ou une catégorie.";
+
+                
+            user.isVolunteer ? res.locals.missionsClear = [] : res.locals.missions = [];
+            return res.render(renderPathByRole);
+        }
+
+        const missions = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
+
+        res.locals.missions = missions
+        res.locals.missionsClear = utils.clearData(missions);
+        res.locals.searchFilters = { regionSelected, categorySelected }; 
+        
+        res.render(renderPathByRole);
+
+    } catch (error) {
+        console.error(error);
+        res.render('home/404');
+    }
+};
 
 exports.addMission = async (req, res) => {
 

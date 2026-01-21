@@ -30,7 +30,7 @@
                                 <% for (let region of regions) { %>
                                     <option
                                         value="<%= region.id_region %>"
-                                        <%= region.id_region == regionSelected ? "selected" : "" %>>
+                                        <%= region.id_region == searchFilters.regionSelected ? "selected" : "" %>>
                                         <%= region.region_name %>
                                     </option>
                                 <% } %>
@@ -42,7 +42,7 @@
                                 <% for (let category of categoriesMission) { %>
                                     <option
                                         value="<%= category.id_mission_category %>"
-                                        <%= category.id_mission_category == categorySelected ? "selected" : "" %>>
+                                        <%= category.id_mission_category == searchFilters.categorySelected ? "selected" : "" %>>
                                         <%= category.mission_category_name %>
                                     </option>
                                 <% } %>

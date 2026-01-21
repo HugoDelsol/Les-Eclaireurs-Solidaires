@@ -83,9 +83,6 @@ exports.getStatsMissions = async (req, res) => {
     try {
 
         const getStatsMissions = await missionModel.getStatsMissions();
-        
-        console.log(getStatsMissions.resultSumVolunteers[0])
-        console.log(getStatsMissions.resultTotalMissions[0])
 
         let average = Math.round((getStatsMissions.resultSumVolunteers[0].total_next_30_days / getStatsMissions.resultTotalMissions[0].nbr_missions) * 100);
         const averageToFixed = average.toFixed(0);
@@ -105,17 +102,17 @@ exports.getStatsMissions = async (req, res) => {
                 spaceAvailable: spaceAvailable,
                 fillRate: fillRateToString,
             })
-        }
+        };
 
-        console.log(req.session.userExist.firstName)
+        console.log(req.session.userExist)
+
+        res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin
+        res.locals.isAdmin = req.session.userExist.isAdmin
 
         res.render("account/dashboardAdmin", {
-            pseudoUser: req.session.userExist.firstName,
             tabStats: tabStats,
             resultSum: getStatsMissions.resultSumVolunteers[0].total_next_30_days,
             average: averageToFixed,
-            isSuperAdmin: req.session.userExist.isSuperAdmin,
-            isAdmin: req.session.userExist.isAdmin,
             totalMission: getStatsMissions.resultTotalMissions[0]
         });
 
@@ -134,27 +131,20 @@ exports.missionAdminShow = async (req, res) => {
     let getAllMissions = [];
 
     try {
-
         const regions = await missionModel.getAllRegions();
-
-        req.session.regions = regions;
 
         const dataTab = await missionModel.getAllCategories();
 
-        req.session.categoriesMission = dataTab;
-
         getAllMissions = await missionModel.getAllMission();
+        
+        req.session.regions = regions;
+        req.session.categoriesMission = dataTab
 
-        req.session.getAllMissions = getAllMissions;
+        res.locals.regions = req.session.regions;
+        res.locals.categoriesMission = req.session.categoriesMission;
+        res.locals.missions = getAllMissions        
 
-        res.render('account/listMissionsAdmin', {
-            isSuperAdmin: req.session.userExist.isSuperAdmin,
-            isAdmin: req.session.userExist.isAdmin,
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-            regions: req.session.regions,
-            missions: req.session.getAllMissions
-        });
+        res.render('account/listMissionsAdmin');
 
     } catch (error) {
 
@@ -162,10 +152,9 @@ exports.missionAdminShow = async (req, res) => {
 
         res.render('account/listMissionsAdmin', {
             alertMsg: "Impossible d'afficher la liste des missions.",
-            pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-            regions: req.session.regions,
-            missions: req.session.getAllMissions
+            categoriesMission: req.session.categoriesMission || [],
+            regions: req.session.regions || [],
+            missions: req.session.getAllMissions || []
         });
     }
 }
@@ -200,20 +189,22 @@ exports.missionUserShow = async (req, res) => {
             }
         }
 
-        const clearData = utils.clearData(getAllMissions);
-        res.locals.missionsClear = clearData;
-        
         req.session.regions = regions;
         req.session.categoriesMission = categoriesMission;
+
+        const clearData = utils.clearData(getAllMissions);
+        res.locals.missionsClear = clearData;
+        res.locals.regions = req.session.regions;
+        res.locals.categoriesMission = req.session.categoriesMission;
 
         res.render('account/listMissionUser');
 
     } catch (error) {
 
-        res.locals.alertMsg = "Impossible d'afficher la liste des missions.";
-        res.locals.missions = getAllMissions;
-
         console.error(error);
+
+        res.locals.alertMsg = "Impossible d'afficher la liste des missions.";
+        res.locals.missionsClear = [];
 
         res.render('account/listMissionUser');
     }

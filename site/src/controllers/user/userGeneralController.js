@@ -82,10 +82,13 @@ exports.auth = async (req, res) => {
             roleKey = `admin_${userExist._id_admin_role}`;
         }
         
-        const session = rolesMaps[roleKey].session(userExist);
-
-        // REDEFINIR USER EXIST EN USER !!!!!!!
+        const session = rolesMaps[roleKey].session(userExist);        
         req.session.userExist = session;
+
+        res.locals.pseudoUser = req.session.userExist.firstName;
+        res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
+        res.locals.isAdmin = req.session.userExist.isAdmin;
+        
         
         rolesMaps[roleKey].action(req, res);
 
