@@ -75,7 +75,7 @@ input {
     justify-content: center;
     background-color: #f9cf807c;
     border: 0.1px solid #f9cf807c;
-    padding: 0.6em 1em;
+    padding: 0.4em 1em;
     border-radius: 2em;
     font-weight: 400;
 }
@@ -85,7 +85,7 @@ input {
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.26);
     background-color: #F8F5EE;
-    padding: 0.6em 2em;
+    padding: 0.4em 1em;
     border-radius: 2em;
     font-weight: 400;
     margin-left: 10px;
@@ -123,6 +123,17 @@ input {
     width: 100%;
 }
 
+.divBtnSelected {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 0 0;
+    justify-content: end;
+}
+
+.separator{
+    margin: 0px 10px;
+}
+
 label,
 select {
     margin: 0 4px;
@@ -144,6 +155,7 @@ thead {
 tbody {
     background-color: #f8f5ee31;
 }
+
 
 tr {
     width: 100%;
@@ -196,20 +208,18 @@ tr input {
 }
 
 th {
-    width: calc(100% / 6);
+    width: calc(100% / 5);
 }
 
 td {
-    width: calc(100% / 6);
+    width: calc(100% / 5);
 }
 
 .color {
     color: #378341;
 }
 
-td a {
-    text-decoration: underline;
-}
+
 
 .fixMax img {
     width: 28px;

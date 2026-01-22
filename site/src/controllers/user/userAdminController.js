@@ -30,11 +30,9 @@ exports.listOfVolunteers = async (req, res) => {
 
     try {
 
-        const listOfVolunteers = await userModel.getAllVolunteers();
+        const listOfVolunteers = await userModel.listOfVolunteers();
 
         res.locals.listUsers = listOfVolunteers
-
-        console.log(res.locals.listUsers)
 
         res.locals.regions = req.session.regions;
         res.locals.categoriesMission = req.session.categoriesMission;
@@ -45,6 +43,25 @@ exports.listOfVolunteers = async (req, res) => {
         console.log(error);
     }
 
+}
+
+exports.listVolunteersSorting = async (req, res) => {
+
+    try {
+
+        let test = "echoooooo"
+        
+        const listVolunteersSorting = await userModel.listOfVolunteers(test);
+
+        res.locals.listUsers = listOfVolunteers
+
+        res.locals.regions = req.session.regions;
+        res.locals.categoriesMission = req.session.categoriesMission;
+
+        res.render('account/listOfVolunteers');
+    } catch (error) {
+        
+    }
 }
 
 exports.tokenView = async (req, res) => {
