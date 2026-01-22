@@ -7,6 +7,7 @@ const { matchedData } = require('express-validator');
 
 // Models
 const userModel = require('../../models/UserModel');
+const missionMdl = require('../../models/MissionModel');
 
 //Services
 const service = require('../../services/services');
@@ -26,44 +27,6 @@ exports.dashboardAdmin = async (req, res) => {
     getStatsMissions(req, res);
 }
 
-exports.listOfVolunteers = async (req, res) => {
-
-    try {
-
-        const listOfVolunteers = await userModel.listOfVolunteers();
-
-        res.locals.listUsers = listOfVolunteers
-
-        res.locals.regions = req.session.regions;
-        res.locals.categoriesMission = req.session.categoriesMission;
-
-        res.render('account/listOfVolunteers');
-    } catch (error) {
-
-        console.log(error);
-    }
-
-}
-
-exports.listVolunteersSorting = async (req, res) => {
-
-    try {
-
-        let test = "echoooooo"
-        
-        const listVolunteersSorting = await userModel.listOfVolunteers(test);
-
-        res.locals.listUsers = listOfVolunteers
-
-        res.locals.regions = req.session.regions;
-        res.locals.categoriesMission = req.session.categoriesMission;
-
-        res.render('account/listOfVolunteers');
-    } catch (error) {
-        
-    }
-}
-
 exports.tokenView = async (req, res) => {
 
     const admins = await userModel.getAllAdmins();
@@ -72,6 +35,74 @@ exports.tokenView = async (req, res) => {
     res.locals.superAdmins = admins.resultSuperAdmins;
 
     res.render('account/generateToken');
+}
+
+// ==============================
+// LIST OF VOLUNTEERS
+// ==============================
+
+exports.listOfVolunteers = async (req, res) => {
+
+    try {
+
+        req.session.regions = await missionMdl.getAllRegions();
+        req.session.categoriesMission = await missionMdl.getAllCategories();
+        res.locals.regions = req.session.regions;
+        res.locals.categoriesMission = req.session.categoriesMission;
+
+        const allVolunteers = await userModel.listOfVolunteers();
+
+        res.locals.listUsers = allVolunteers.resultAllVolunteers;
+
+        res.render('account/listOfVolunteers');
+
+    } catch (error) {
+
+        console.log(error);
+        res.locals.listUsers = [];
+        res.locals.alertMsg = "Impossible d'afficher la liste des bénévoles";
+        res.render('account/listOfVolunteers');
+    }
+}
+
+// ==============================
+// LIST OF ACTIVE VOLUNTEERS
+// ==============================
+
+exports.activeVolunteer = async (req, res) => {
+
+    try {
+
+        const listOfVolunteers = await userModel.listOfVolunteers();
+
+        res.locals.listUsers = listOfVolunteers.resultActiveVolunteerCurrentDate
+
+        res.render('account/listOfVolunteers');
+        
+    } catch (error) {
+
+        console.log(error);
+        res.locals.listUsers = [];
+        res.locals.alertMsg = "Impossible d'afficher la liste des bénévoles actifs";
+        res.render('account/listOfVolunteers');
+    }
+}
+
+exports.findVolunteer = async (req, res) => {
+
+    try {
+
+        const inputValue = req.body.findVolunteer
+
+        
+        
+    } catch (error) {
+        
+        console.log(error);
+        res.locals.listUsers = [];
+        res.locals.alertMsg = "Impossible d'afficher la liste des bénévoles recherchés";
+        res.render('account/listOfVolunteers');
+    }
 }
 
 // ==============================

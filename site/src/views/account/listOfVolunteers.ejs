@@ -9,13 +9,18 @@
                     <section class="blocListVolunteers">
                         <div class="titleAndCategorySearch">
                             <div class="">
-                                <h1>Bénévoles</h1>
+                                <h1>Liste des bénévoles</h1>
                                 <div class="line"></div>
                             </div>
-                            <form action="" method="post">
+                            <form action="/admin/findVolunteer" method="post">
+                                <div class="divBtnSelected">
+                                    <a class="btnPrimary btnHover" href="activeVolunteer">Bénévoles actifs</a>
+                                    <p class="separator">|</p>
+                                    <a class="btnPrimary btnHover" href="listOfVolunteers">Tous les bénévoles</a>
+                                </div>
 
                                 <label for="">
-                                    <input type="text" placeholder="Rechercher par nom">
+                                    <input type="text" name="findVolunteer" placeholder="Rechercher par email">
                                 </label>
                                 <select name="regionSelected" id="regionSelected">
                                     <option value="">Régions</option>
@@ -35,23 +40,18 @@
                                         </option>
                                         <% } %>
                                 </select>
-                                <button class="btnSecondary btnHover" type="submit">Rechercher</button>
+                                <button class="btnSecondary btnHover" type="submit" >Rechercher</button>
 
 
                             </form>
-                        </div>
-                        <div class="divBtnSelected">
-                            <a class="btnPrimary btnHover" href="#">Bénévoles actifs</a>
-                            <p class="separator">|</p>
-                            <a class="btnPrimary btnHover" href="#">Tous les bénévoles</a>
                         </div>
                         <table class="desktop">
                             <thead>
                                 <tr>
                                     <th>Nom</th>
                                     <th>Prénom</th>
-                                    <th>Email</th>
-                                    <th>Engagement <a href="listVolunteersSorting">- test</a></th>
+                                    <th>Contact</th>
+                                    <th>Engagement <a href="">- test</a></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -69,8 +69,8 @@
                                             </p>
                                         </td>
                                         <td>
-                                            <p>
-                                                <%= l.identifier_mail %>
+                                            <p class="btnSecondary btnHover">
+                                                <a href=""><%= l.identifier_mail %></a>
                                             </p>
                                         </td>
                                         <td>
@@ -79,7 +79,7 @@
                                             </p>
                                         </td>
                                         <td>
-                                            <a href="" class="btnSecondary btnHover">Suspendre</a>
+                                            <a href="" class="btnPrimary btnHover">Suspendre</a>
                                         </td>
                                     </tr>
                                     <% } %>
