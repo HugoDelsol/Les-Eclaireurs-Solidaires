@@ -104,8 +104,6 @@ exports.getStatsMissions = async (req, res) => {
             })
         };
 
-        console.log(req.session.userExist)
-
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin
         res.locals.isAdmin = req.session.userExist.isAdmin
 

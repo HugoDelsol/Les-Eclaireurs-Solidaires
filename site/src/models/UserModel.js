@@ -49,28 +49,42 @@ exports.listOfVolunteers = async (test) => {
 
     try {
 
-        console.log("testtttttt", test)
+        if (test === undefined) {
 
-        const committedVolunteerCurrentDate = `
-            SELECT u.id_user, u.user_first_name, u.user_last_name, i.identifier_mail,
-            COUNT(m.id_mission) AS nbr_registration
-            FROM user AS u
-            LEFT JOIN registration_mission AS rm
-                ON rm._id_user = u.id_user
-            LEFT JOIN mission AS m
-                ON rm._id_mission = m.id_mission
-            LEFT JOIN identifier AS i
-                ON u._id_identifier = i.id_identifier
-            WHERE m.mission_date > CURRENT_DATE
-            GROUP BY u.id_user, u.user_first_name, u.user_last_name, i.identifier_mail
+            const allVolunteers = `
+                SELECT id_user, _id_category, user_first_name, user_last_name, identifier_mail, COUNT(_id_mission) AS "nbr_registration" FROM user
+                LEFT JOIN registration_mission
+                ON _id_user = id_user
+                LEFT JOIN identifier
+                ON _id_identifier = id_identifier
+                WHERE user_created_at < CURRENT_DATE
+                GROUP BY id_user, _id_category, user_first_name, user_last_name, identifier_mail;
         `;
 
-        const [resultCommittedVolunteerCurrentDate] = await db.query(committedVolunteerCurrentDate);
- 
-        if (test) {
+            const [resultAllVolunteers] = await db.query(allVolunteers);
 
-            return resultCommittedVolunteerCurrentDate
-            
+            const activVolunteerCurrentDate = `
+                SELECT u.id_user, u.user_first_name, u.user_last_name, i.identifier_mail,
+                COUNT(m.id_mission) AS nbr_registration
+                FROM user AS u
+                LEFT JOIN registration_mission AS rm
+                    ON rm._id_user = u.id_user
+                LEFT JOIN mission AS m
+                    ON rm._id_mission = m.id_mission
+                LEFT JOIN identifier AS i
+                    ON u._id_identifier = i.id_identifier
+                WHERE m.mission_date > CURRENT_DATE
+                GROUP BY u.id_user, u.user_first_name, u.user_last_name, i.identifier_mail
+        `;
+
+            const [resultActiveVolunteerCurrentDate] = await db.query(activVolunteerCurrentDate);
+
+
+            return result = {
+                resultAllVolunteers,
+                resultActiveVolunteerCurrentDate
+            }
+
         } else {
 
             const allVolunteersToSorting = `
@@ -85,7 +99,7 @@ exports.listOfVolunteers = async (test) => {
                 WHERE user_created_at < CURRENT_DATE()
                 GROUP BY id_user, _id_category, user_first_name, user_last_name, identifier_mail          
                 ORDER BY nbr_registration ASC; 
-            `; 
+            `;
 
             const [resultAllVolunteerToSorting] = await db.query(allVolunteersToSorting)
 
