@@ -25,6 +25,7 @@ router.post('/searchByCategories', sessionMdw.requireAuth, missionCtrlPost.searc
 // --- USER MANAGEMENT ---
 router.get('/superAdmin/tokenView', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userAdminCtrl.tokenView);
 router.post('/superAdmin/generateToken', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userAdminCtrl.generateToken);
-router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.listOfVolunteers)
+router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.listOfVolunteers);
+router.get('/listVolunteersSorting', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.listOfVolunteers )
 
 module.exports = router;

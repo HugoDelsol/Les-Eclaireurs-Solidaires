@@ -9,79 +9,83 @@
                     <section class="blocListVolunteers">
                         <div class="titleAndCategorySearch">
                             <div class="">
-                                <h1>Bénévoles engagés</h1>
+                                <h1>Bénévoles</h1>
                                 <div class="line"></div>
                             </div>
                             <form action="" method="post">
-                                
-                                        <label for="">
-                                            <input type="text" placeholder="Rechercher par nom">
-                                        </label>
-                                        <select name="regionSelected" id="regionSelected">
-                                            <option value="">Régions</option>
-                                            <% for (let r of regions) { %>
-                                                <option value="<% r.id_region %>" 
-                                                    <% r.id_region == searchFilters.regionSelected ? "selected" : "" %> >
-                                                    <%= r.region_name  %>
-                                                </option>
-                                            <% } %>
-                                        </select>
-                                        <select name="categorySelected" id="categorySelected">
-                                            <option value="">Catégories</option>
-                                            <% for (let c of categoriesMission) { %>
-                                                <option value="<% c.id_mission_category %>" 
-                                                    <% c.id_mission_category == searchFilters.categorySelected ? "selected" : "" %> >
-                                                    <%= c.mission_category_name  %>
-                                                </option>
-                                            <% } %>
-                                        </select>
-                                        <button class="btnSecondary btnHover" type="submit">Rechercher</button>
-                                    
-                                
+
+                                <label for="">
+                                    <input type="text" placeholder="Rechercher par nom">
+                                </label>
+                                <select name="regionSelected" id="regionSelected">
+                                    <option value="">Régions</option>
+                                    <% for (let r of regions) { %>
+                                        <option value="<% r.id_region %>" <% r.id_region==searchFilters.regionSelected
+                                            ? "selected" : "" %> >
+                                            <%= r.region_name %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                                <select name="categorySelected" id="categorySelected">
+                                    <option value="">Catégories</option>
+                                    <% for (let c of categoriesMission) { %>
+                                        <option value="<% c.id_mission_category %>" <%
+                                            c.id_mission_category==searchFilters.categorySelected ? "selected" : "" %> >
+                                            <%= c.mission_category_name %>
+                                        </option>
+                                        <% } %>
+                                </select>
+                                <button class="btnSecondary btnHover" type="submit">Rechercher</button>
+
+
                             </form>
+                        </div>
+                        <div class="divBtnSelected">
+                            <a class="btnPrimary btnHover" href="#">Bénévoles actifs</a>
+                            <p class="separator">|</p>
+                            <a class="btnPrimary btnHover" href="#">Tous les bénévoles</a>
                         </div>
                         <table class="desktop">
                             <thead>
                                 <tr>
                                     <th>Nom</th>
+                                    <th>Prénom</th>
                                     <th>Email</th>
-                                    <th>Adress</th>
-                                    <th>Contacter</th>
-                                    <th>
-                                        <button class="btnPrimary btnHover">Engagement</button>
-                                    </th>
+                                    <th>Engagement <a href="listVolunteersSorting">- test</a></th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody class="fixMax">
                                 <% for (let l of listUsers) {%>
-                                <tr>
-                                    <td>
-                                        <p><%= l.user_last_name %></p>
-                                    </td>
-                                    <td class="color">
-                                        <p><%= l.identifier_mail %></p>
-                                    </td>
-                                    <td>
-                                        <p><%= l.user_address %></p>
-                                    </td>
-                                    <td class="color">
-                                        <p><%= l.user_phone_number %></p>
-                                    </td>
-                                    <td>
-                                        <p>Nom</p>
-
-                                    </td>
-                                    <td>
-                                        <p>Nom</p>
-
-                                    </td>
-                                </tr>
-                                <% } %>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <%= l.user_last_name %>
+                                            </p>
+                                        </td>
+                                        <td class="color">
+                                            <p>
+                                                <%= l.user_first_name%>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <%= l.identifier_mail %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                <%= l.nbr_registration %>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <a href="" class="btnSecondary btnHover">Suspendre</a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
                             </tbody>
                         </table>
-                        <div>
-                        </div>
+
                     </section>
             </div>
         </main>
