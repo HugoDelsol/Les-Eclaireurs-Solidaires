@@ -2,7 +2,8 @@ const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const userModel = require('../models/UserModel');
 const missionCtrlPost = require('./mission.ctrl.post');
-const utils = require('../utils/utils')
+const utils = require('../utils/utils');
+const service = require('../services/services');
 
 //---
 //--- RECUPERER LES 3 PROCHAINES MISSIONS DANS LA REGION DU BENEVOLE
@@ -138,7 +139,7 @@ exports.missionAdminShow = async (req, res) => {
 
         res.locals.regions = req.session.regions;
         res.locals.categoriesMission = req.session.categoriesMission;
-        res.locals.missions = getAllMissions        
+        res.locals.missions = getAllMissions
 
         res.render('account/listMissionsAdmin');
 
@@ -161,7 +162,7 @@ exports.missionAdminShow = async (req, res) => {
 
 exports.missionUserShow = async (req, res) => {
 
-    let getAllMissions = [];
+
 
     try {
 
@@ -169,26 +170,24 @@ exports.missionUserShow = async (req, res) => {
 
         const categoriesMission = await missionModel.getAllCategories();
 
-        getAllMissions = await missionModel.getAllMission();
+        const filterOutRegisteredMissions = await service.filterOutRegisteredMissions(req);
 
-        const idUser = req.session.userExist.id
-
-        const alreadyRegisteredByUser = await missionModel.alreadyRegistered(idUser)
-
-        if (getAllMissions.length > 0 && alreadyRegisteredByUser.length > 0) {
-            for (let i = 0; i < alreadyRegisteredByUser.length; i++) {
-                for (let u = 0; u < getAllMissions.length; u++) {
-                    if (alreadyRegisteredByUser[i]._id_mission === getAllMissions[u].id_mission) {
-                        getAllMissions.splice([u], 1);
-                    }
-                }
-            }
-        }
+        /* const registeredMissionIds = new Set(
+            alreadyRegisteredByUser.map(m => m._id_mission)
+        );
+ 
+ 
+        const availableMissions = getAllMissions.filter(
+            mission => !registeredMissionIds.has(mission.id_mission)
+        );
+ 
+        console.log(availableMissions); */
 
         req.session.regions = regions;
         req.session.categoriesMission = categoriesMission;
 
-        const clearData = utils.clearData(getAllMissions);
+        const clearData = utils.clearData(filterOutRegisteredMissions);
+
         res.locals.missionsClear = clearData;
         res.locals.regions = req.session.regions;
         res.locals.categoriesMission = req.session.categoriesMission;
@@ -293,9 +292,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const idRegionByUser = getUserAddress[0].id_region;
 
-        
         const getMissionByRegion = await missionModel.getMissionByRegion(idRegionByUser);
-        console.log(getMissionByRegion)
 
         const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
 

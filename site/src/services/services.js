@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const missionModel = require('../models/MissionModel');
 
 const secretToken = process.env.TOKEN_SECRET;
 
@@ -37,6 +38,44 @@ exports.verifyToken = (token, email) => {
     } catch (error) {
 
         console.log("Generate Token Service :", error);
+        return null;
+    }
+}
+
+exports.filterOutRegisteredMissions = async (req, missionsSelected) => {
+
+    try {
+
+        let filteredMission = [];
+
+        if (!missionsSelected) {            
+            
+            filteredMission = await missionModel.getAllMission();
+            
+        } else {
+            
+            filteredMission = missionsSelected;
+        }
+
+        const idUser = req.session.userExist.id
+
+        const alreadyRegisteredByUser = await missionModel.alreadyRegistered(idUser)
+
+        if (filteredMission.length > 0 && alreadyRegisteredByUser.length > 0) {
+            for (let i = 0; i < alreadyRegisteredByUser.length; i++) {
+                for (let u = 0; u < filteredMission.length; u++) {
+                    if (alreadyRegisteredByUser[i]._id_mission === filteredMission[u].id_mission) {
+                        filteredMission.splice([u], 1);
+                    }
+                }
+            }
+        }
+
+        return filteredMission;
+
+    } catch (error) {
+
+        console.log("filterOutRegisteredMissions : ", error);
         return null;
     }
 }

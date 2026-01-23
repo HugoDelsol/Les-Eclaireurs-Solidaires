@@ -54,6 +54,8 @@ exports.listOfVolunteers = async (req, res) => {
 
         res.locals.listUsers = allVolunteers.resultAllVolunteers;
 
+        console.log(res.locals.listUsers)
+
         res.render('account/listOfVolunteers');
 
     } catch (error) {
@@ -92,9 +94,16 @@ exports.findVolunteer = async (req, res) => {
 
     try {
 
-        const inputValue = req.body.findVolunteer
+        const inputValue = req.body.findVolunteer;
 
+        res.locals.findVolunteerList = await userModel.findVolunteer(inputValue);
+
+        res.locals.findVolunteerList.length === 0 
+            ? res.locals.alertMsg = "Aucun résultat pour cette recherche."
+            : res.locals.alertMsg = ""
+        ;
         
+        res.render('account/listOfVolunteers');
         
     } catch (error) {
         

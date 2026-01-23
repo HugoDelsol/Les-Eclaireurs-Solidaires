@@ -57,8 +57,8 @@ exports.listOfVolunteers = async (test) => {
                 ON _id_user = id_user
                 LEFT JOIN identifier
                 ON _id_identifier = id_identifier
-                WHERE user_created_at < CURRENT_DATE
-                GROUP BY id_user, _id_category, user_first_name, user_last_name, identifier_mail;
+                GROUP BY id_user, _id_category, user_first_name, user_last_name, identifier_mail
+                ORDER BY user_created_at ASC;
         `;
 
             const [resultAllVolunteers] = await db.query(allVolunteers);
@@ -110,6 +110,31 @@ exports.listOfVolunteers = async (test) => {
     } catch (error) {
 
         console.log("error model listOfVolunteers : ")
+        throw error
+    }
+}
+
+exports.findVolunteer = async (inputValue) => {
+
+    try {
+
+        const query = "%" + inputValue + "%";
+
+        const request = ` 
+            SELECT user_first_name, user_last_name, identifier_mail, COUNT(_id_mission) AS "nbr_registration" FROM user 
+            LEFT JOIN identifier ON _id_identifier = id_identifier 
+            LEFT JOIN registration_mission ON _id_user = id_user
+            WHERE user_first_name LIKE ? OR user_last_name LIKE ? 
+            GROUP BY user_first_name, user_last_name, identifier_mail
+        `;     
+  
+        const [result] = await db.query(request, [query, query]);
+
+        return result;
+
+    } catch (error) {
+
+        console.log("error model findVolunteer : ")
         throw error
     }
 }

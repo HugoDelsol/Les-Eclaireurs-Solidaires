@@ -16,21 +16,26 @@
                             </div>
                             <div class="header">
                                 <div class="headerCards background">
-                                    <h2>Missions à venir</h2>
-                                    <div style="display: flex; align-items: center;">
-                                        <h3><%= totalMission.nbr_missions %></h3>
-                                    <div class="line"></div>
-                                    </div>
-                                    
+                                    <div class="designLine">
+                                        <h2>Missions à venir</h2>
+                                        <div class="line"></div> 
+                                    </div> 
+                                    <h3><%= totalMission.nbr_missions %></h3>  
                                     <p>Planifiées sur 30 jours</p>
                                 </div>
                                 <div class="headerCards background">
-                                    <h2>Bénévoles engagés</h2>
+                                    <div class="designLine">
+                                        <h2>Bénévoles engagés</h2>
+                                        <div class="line"></div> 
+                                    </div> 
                                     <h3><%= resultSum %></h3>
                                     <p>Sommes des inscrits</p>
                                 </div>
                                 <div class="headerCards background">
-                                    <h2>Taux moyen de remplissage</h2>
+                                    <div class="designLine">
+                                        <h2>Taux moyen de remplissage</h2>
+                                        <div class="line"></div> 
+                                    </div> 
                                     <h3><%= average + "%" %></h3>
                                     <p>Moyenne sur l'ensemble des missions</p>
                                 </div>
@@ -46,7 +51,7 @@
                                         <th>Besoins restants</th>
                                         <th>Taux de remplissage</th>
                                         <th>Statut</th>
-                                        <th>Modifier</th>
+                                        <th>Détails</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fixMax">
@@ -71,7 +76,7 @@
                                             </td>
                                             <td> <a class="btnSecondary btnHover" href="/dataMission/<%= t.id %>">À promouvoir</a></td>
                                             <td>
-                                                <a href="" class="btnPrimary btnHover">Mettre a jour</a>
+                                                <a href="" class="btnPrimary btnHover">Informations</a>
                                             </td>
                                         </tr>
                                         <% } %>
