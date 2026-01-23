@@ -2,6 +2,7 @@ const session = require('express-session');
 const { userData } = require('../middleware/globalVars.middleware');
 const missionModel = require('../models/MissionModel');
 const utils = require('../utils/utils');
+const service = require('../services/services')
 
 //---
 //--- FAIRE DES RECHERCHES DE MISSIONS PAR CATEGORIES
@@ -88,6 +89,7 @@ const utils = require('../utils/utils');
 } */
 
 exports.searchByCategories = async (req, res) => {
+
     try {
 
         const { regionSelected, categorySelected, tripStart, tripEnd } = req.body;
@@ -101,26 +103,30 @@ exports.searchByCategories = async (req, res) => {
 
             res.locals.alertMsg = isDateIncomplete
                 ? "Veuillez saisir une date de début ET une date de fin."
-                : "Veuillez sélectionner une région ou une catégorie.";
+                : "Veuillez sélectionner une région ou une catégorie."
+            ;
 
                 
             user.isVolunteer ? res.locals.missionsClear = [] : res.locals.missions = [];
             return res.render(renderPathByRole);
         }
 
-        const missions = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
+        const missionsSelected = await missionModel.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
 
-        res.locals.missions = missions
-        res.locals.missionsClear = utils.clearData(missions);
+        const filterOutRegisteredMissions = await service.filterOutRegisteredMissions(req, missionsSelected)
+
+        res.locals.missions = filterOutRegisteredMissions
+        res.locals.missionsClear = utils.clearData(filterOutRegisteredMissions);
         res.locals.searchFilters = { regionSelected, categorySelected }; 
         
         res.render(renderPathByRole);
 
     } catch (error) {
+        
         console.error(error);
         res.render('home/404');
     }
-};
+}
 
 exports.addMission = async (req, res) => {
 

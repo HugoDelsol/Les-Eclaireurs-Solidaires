@@ -15,7 +15,8 @@ const centralizedVar = (req, res, next) => {
         categorySelected : null
     }
 
-    res.locals.listUsers = null
+    res.locals.listUsers = null;
+    res.locals.findVolunteerList = null;
 
     res.locals.missions = null
     res.locals.missionsClear = null;

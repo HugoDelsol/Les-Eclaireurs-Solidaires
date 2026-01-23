@@ -19,9 +19,13 @@ body {
     border-bottom: 0.2em solid #F28B50;
     border-radius: 4em;
     width: 16%;
-    margin-top: 1.4em;
+    margin-left: 20px;
 }
 
+.designLine {
+    display: flex;
+    align-items: center;
+}
 
 .dashboardContainer {
     width: 80vw;

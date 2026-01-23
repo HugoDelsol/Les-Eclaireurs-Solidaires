@@ -56,7 +56,8 @@
                                 </tr>
                             </thead>
                             <tbody class="fixMax">
-                                <% for (let l of listUsers) {%>
+                                <% const list = listUsers || findVolunteerList %>
+                                <% for (let l of list) {%>
                                     <tr>
                                         <td>
                                             <p>

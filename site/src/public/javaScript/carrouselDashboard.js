@@ -4,11 +4,11 @@ let currentWidth = window.innerWidth;
 let indexRegion = 0;
 let dataRegion = [];
 
-const indexRegistration = 0;
-const dataRegistration = [];
+let indexRegistration = 0;
+let dataRegistration = [];
 
-const indexAccomplished = 0;
-const dataAccomplished = [];
+let indexAccomplished = 0;
+let dataAccomplished = [];
 
 if (currentWidth < 1300) {
     carrouselMissionByRegion();
