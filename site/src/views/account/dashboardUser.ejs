@@ -9,8 +9,9 @@
     <div class="container" style="display: flex;">
         <%- include('../partials/_sideNavUser') %>
         <%- include('../partials/_mobileHeader') %>
+        <div class="alertFront"></div>
 
-        <div class="dashboardContainer">
+        <div class="dashboardContainer">            
 
             <!-- ================= HEADER ================= -->
             <div class="headerDashboard">
@@ -85,7 +86,7 @@
             <!-- ================= MIDDLE ================= -->
             <div class="middleDashboard">
                 <div class="titleCard">
-                    <% if (!missionsUser) { %>
+                    <% if (!missionsUser.length) { %>
                         <h1>Vos missions à effectuer seront visibles ici</h1>
                     <% } else { %>
                         <h1>Votre engagement</h1>

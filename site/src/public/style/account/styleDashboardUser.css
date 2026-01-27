@@ -411,6 +411,10 @@ td a {
         width: auto;
     }
 
+    .alignItemInCard {
+        min-height: 220px;
+    }
+
 }
 
 @media all and (max-width : 1000px) {

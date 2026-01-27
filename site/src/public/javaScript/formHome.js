@@ -28,9 +28,7 @@ submitForm.addEventListener("submit", function (event) {
         txtArea.value == ""
     ) {
 
-        alertForm.innerHTML = "<p style='margin-top: 1em ; color: red; '>Veuillez compléter tous les champs.</p>";
-
-        console.log("ERROR");
+        alertForm.textContent = "Veuillez compléter tous les champs.";
 
     } else {
         
@@ -38,7 +36,7 @@ submitForm.addEventListener("submit", function (event) {
 
         btnSubmit.textContent = "Message envoyé ! ✅"
 
-        alertForm.innerHTML = "";        
+        alertForm.textContent = "";        
 
         console.log("SUCCESS");
 

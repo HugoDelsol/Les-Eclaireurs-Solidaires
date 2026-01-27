@@ -54,8 +54,6 @@ exports.listOfVolunteers = async (req, res) => {
 
         res.locals.listUsers = allVolunteers.resultAllVolunteers;
 
-        console.log(res.locals.listUsers)
-
         res.render('account/listOfVolunteers');
 
     } catch (error) {
