@@ -58,7 +58,7 @@ exports.listOfVolunteers = async (test) => {
                 LEFT JOIN identifier
                 ON _id_identifier = id_identifier
                 GROUP BY id_user, _id_category, user_first_name, user_last_name, identifier_mail
-                ORDER BY user_created_at ASC;
+                ORDER BY user_created_at DESC;
         `;
 
             const [resultAllVolunteers] = await db.query(allVolunteers);

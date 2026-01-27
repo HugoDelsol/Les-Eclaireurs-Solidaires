@@ -41,8 +41,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
         });
 
         if (!response.ok) {
+            console.log("Erreur lors de la récupération des données");
             window.location.href = "/";
-            console.log(data.message)
         }
 
         const htmlResponse = await response.text();
@@ -71,8 +71,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
             });
 
             if (!response.ok) {
+                console.log("Erreur lors de la récupération des données");
                 window.location.href = "/";
-                console.log(data.message)
             }
 
             const data = await response.json();               

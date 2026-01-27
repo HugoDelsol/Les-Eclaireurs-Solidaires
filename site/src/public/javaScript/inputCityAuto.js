@@ -10,7 +10,7 @@ cityInput.addEventListener('input', async (e) => {
         const response = await fetch(`searchCity?q=${inputValue}`);
 
         if (!response.ok) {
-            throw new Error('--->>>', response.status);
+            throw new Error('--cityInput.addEventListener-->>>', response.status);
         }
 
         const result = await response.json();        

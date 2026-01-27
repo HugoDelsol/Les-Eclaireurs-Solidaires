@@ -148,6 +148,8 @@ const updateUserProfile = [
     }
 ]
 
+const 
+
 module.exports = {
     signUpFormProtection,
     signInFormProtection,

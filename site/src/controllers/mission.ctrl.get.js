@@ -6,25 +6,6 @@ const utils = require('../utils/utils');
 const service = require('../services/services');
 
 //---
-//--- RECUPERER LES 3 PROCHAINES MISSIONS DANS LA REGION DU BENEVOLE
-//---
-
-/* exports.getMissionByRegion = async (req, res) => {
-
-    try {        
-
-        const idRegion = 1;
-
-        const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);
-
-        return getMissionByRegion
-
-    } catch (error) {
-        
-    }
-} */
-
-//---
 //--- AFFICHER EN RESPONSIV LES MISSIONS PAR REGIONS DU BENEVOLE VIA JAVASCRIPT
 //---
 
@@ -32,14 +13,16 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
     try {
 
-        const idRegion = 1;
+        const getUserAddress = await userModel.getUserAddress(req.session.userExist.id);
+
+       const idRegion = getUserAddress[0].id_region;
 
         const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);
 
         res.json(getMissionByRegion);
 
     } catch (error) {
-
+        
     }
 }
 
@@ -290,25 +273,28 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const getUserAddress = await userModel.getUserAddress(idUser);
 
-        const idRegionByUser = getUserAddress[0].id_region;
+        const idRegionByUser = getUserAddress[0].id_region  
 
-        const getMissionByRegion = await missionModel.getMissionByRegion(idRegionByUser);
+        res.locals.missionByRegion = await missionModel.getMissionByRegion(idRegionByUser);
 
-        const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
+        res.locals.missionsUser = await missionModel.getAllMissionsByUser(idUser);
 
-        const historyMissionUser = await missionModel.addUserHistoryMission(idUser);
+        res.locals.historyMissionUser = await missionModel.addUserHistoryMission(idUser);
 
         const obtainStatsOnVolunteer = await missionModel.obtainStatsOnVolunteer(idUser);
 
-        res.render('account/dashboardUser', {
-            missionsUser: allMissionByUser.length ? allMissionByUser : false,
-            missionByRegion: getMissionByRegion,
-            historyMissionUser: historyMissionUser,
-        })
+        res.render('account/dashboardUser')
 
     } catch (error) {
 
-        console.log("Controler getAllMissionsByUser: ", error)
+        console.log("Controler getAllMissionsByUser: ", error);
+        res.locals.alertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
+
+        res.render('account/dashboardUser', {
+            missionByRegion: [],
+            missionsUser: [],
+            historyMissionUser: [],
+        })
     }
 }
 
