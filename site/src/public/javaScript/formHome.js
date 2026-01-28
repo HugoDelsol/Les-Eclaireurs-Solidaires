@@ -7,7 +7,7 @@ const emailForm = document.querySelector("#email");
 const nameForm = document.querySelector("#firstName");
 const txtArea = document.querySelector("#txtArea");
 
-const alertForm = document.querySelector(".alert")
+const alertForm = document.querySelector(".alertForm")
 
 const btnSubmit = document.querySelector(".btnSubmit");
 
@@ -31,12 +31,10 @@ submitForm.addEventListener("submit", function (event) {
         alertForm.textContent = "Veuillez compléter tous les champs.";
 
     } else {
-        
+
         apiDataForm();
 
-        btnSubmit.textContent = "Message envoyé ! ✅"
-
-        alertForm.textContent = "";        
+        alertForm.textContent = "";
 
         console.log("SUCCESS");
 
@@ -57,13 +55,17 @@ async function apiDataForm() {
             "txtArea": txtArea.value
         }
 
-        console.log(dataForm);
-
         const response = await fetch("/homeForm", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataForm)
         })
+
+        const jsonResult = await response.json();
+
+        //console.log(jsonResult.message)
+
+        alertForm.textContent = jsonResult.message;
 
         if (!response.ok) {
             throw new Error('Erreur');

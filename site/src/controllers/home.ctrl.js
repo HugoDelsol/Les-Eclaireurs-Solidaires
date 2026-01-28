@@ -44,15 +44,18 @@ exports.submitForm = async (req, res) => {
 
     try {
 
+        console.log(req.body)
+
+
         const {nameForm, emailForm, txtArea} = req.body;
         await homeMdl.addMessageForm(nameForm, emailForm, txtArea);
+
+        return res.status(200).json({ message : "Message envoyé ! ✅"});
 
     } catch (error) {
 
         console.log(error);
 
-        res.render('home/homePage', {
-           alertMsg: "Le formulaire n'a pas pu être soumis",
-        })
+        return res.status(200).json({ message : "Le formulaire n'a pas pu être soumis"});
     }
 }

@@ -52,7 +52,7 @@ const signUpFormProtection = [
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
-                password:"",
+                password: "",
                 passwordConfirm: "",
             })
         }
@@ -72,7 +72,7 @@ const signInFormProtection = [
         .isEmail()
         .withMessage("L'email renseigné n'est pas valide")
         .normalizeEmail(),
-    
+
     body('password')
         .notEmpty().withMessage("Veuillez saisir votre mot de passe"),
 
@@ -85,7 +85,7 @@ const signInFormProtection = [
             const message = error.array()[0].msg
 
             return res.render('connection/signIn', {
-                alertMsg: message                
+                alertMsg: message
             })
         }
 
@@ -148,11 +148,30 @@ const updateUserProfile = [
     }
 ]
 
-const 
+const homeFormProtection = [
+
+    body('firstName').trim().escape(),
+    body('email').trim().isEmail().normalizeEmail(),
+    body('txtArea').trim().escape(),
+
+    (req, res, next) => {
+
+        const error = validationResult(req);
+
+        if (!error.isEmpty()) {
+            return res.render('home/homePage', {
+                alertMsg: 'Données invalides. Veuillez vérifier les champs.'
+            })
+        }
+
+        next()
+    }
+]
 
 module.exports = {
     signUpFormProtection,
     signInFormProtection,
     updateUserProfile,
     adminSignFormProtection,
+    homeFormProtection,
 };

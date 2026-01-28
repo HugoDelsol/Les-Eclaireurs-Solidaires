@@ -7,7 +7,7 @@ const sessionMdw = require('../middleware/session.middleware');
 
 router.get('/', homeCtrl.homePage);
 router.get('/becomeVolunteer', homeCtrl.becomeVolunteer);
-router.post('/homeForm', homeCtrl.submitForm);
+router.post('/homeForm', /* inputProtection.homeFormProtection, */ homeCtrl.submitForm);
 
 router.get('/signUp', userGeneralCtrl.signUp);
 router.get('/signIn', userGeneralCtrl.signIn);

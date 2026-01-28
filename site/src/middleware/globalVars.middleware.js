@@ -24,6 +24,7 @@ const centralizedVar = (req, res, next) => {
     /* --- MISSIONS --- */
     res.locals.missions = null;
     res.locals.missionsClear = null;
+    res.locals.displayMission = [];
 
     /* --- INFOS DE CONNEXION / PROFIL --- */
     res.locals.firstName = null;
