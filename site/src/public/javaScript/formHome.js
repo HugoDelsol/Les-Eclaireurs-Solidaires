@@ -20,7 +20,9 @@ for (let i = 0; i < input.length; i++) {
 
 submitForm.addEventListener("submit", function (event) {
 
-    event.preventDefault();
+    //event.preventDefault();
+
+    console.log('test')
 
     if (
         nameForm.value == "" ||
