@@ -1,10 +1,68 @@
-<div class="alert">
-    <%= alertMsg %>
-</div>
+<!-- <div class="alert">
+    <%=// alertMsg %>
+</div> -->
+
+<style>
+
+    body {
+        overflow: none;
+    }
+
+    .alertSuccess,
+    .alertError {
+        position: absolute;
+        z-index: 100;
+        padding: 20px 0;
+        width: 100vw;
+        bottom: -60px;
+        left: 0px;
+        text-align: center; 
+        transition: transform 0.6s ; 
+        color: white;  
+            
+    }
+
+    .alertSuccess {        
+        background-color: #27AE60;
+    }
+
+    .alertError {
+        background-color: #E74C3C;             
+    }    
+
+</style>
+
+<% if (successAlertMsg.length > 0) { %>
+
+    <div class="alertSuccess alert">
+        <%= successAlertMsg %>
+    </div>
+
+<% } else if (errorAlertMsg.length > 0){ %>
+
+    <div class="alertError alert">
+        <%= errorAlertMsg %>
+    </div>
+
+<% } else { %>
+
+    <div class="alert">
+    </div>
+
+<% }  %>
 
 <script>
-    const alert = document.querySelector('.alert');
+
+    const alertMsg = document.querySelector(".alert");
+    const body = document.querySelector("body")
+
+    console.log(body)
+
+    alertMsg.style.transform = "translateY(-60px)"
+
     setTimeout(() => {
-        alert.style.display = 'none';
+        alertMsg.style.transform = "translateY(60px)";
+        body.style.overflow = "none"
     }, 3000); 
+   
 </script>

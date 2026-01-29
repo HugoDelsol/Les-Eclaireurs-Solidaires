@@ -148,10 +148,14 @@ const updateUserProfile = [
     }
 ]
 
+// ==============================
+// PROTECTION INPUT IN THE HOME PAGE
+// ==============================
+
 const homeFormProtection = [
 
-    body('firstName').trim().escape(),
-    body('email').trim().isEmail().normalizeEmail(),
+    body('nameForm').toLowerCase().trim().escape(),
+    body('emailForm').trim().isEmail().normalizeEmail(),
     body('txtArea').trim().escape(),
 
     (req, res, next) => {
@@ -159,12 +163,10 @@ const homeFormProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.render('home/homePage', {
-                alertMsg: 'Données invalides. Veuillez vérifier les champs.'
-            })
+            return res.status(400).json({ message: "Données invalides. Veuillez vérifier les champs." });
         }
 
-        next()
+        next();
     }
 ]
 
