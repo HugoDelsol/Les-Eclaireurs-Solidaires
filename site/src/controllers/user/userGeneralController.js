@@ -33,10 +33,10 @@ exports.signUp = async (req, res) => {
 
 exports.auth = async (req, res) => {
 
-    try {
-
+    try {  
+        
         const safeData = matchedData(req);
-
+        
         const {email, password} = safeData;
 
         const userExist = await exports.verifyAccountExist(email, password);

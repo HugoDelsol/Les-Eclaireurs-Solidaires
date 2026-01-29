@@ -249,7 +249,7 @@ td a {
     }
 
     .blocListMission .btnSecondary {
-        margin-top: 20px;
+        margin-left: 20px;
     }
 
     .cardFlexMission {
@@ -271,12 +271,6 @@ td a {
         display: flex;
     }
 
-    .rowResponsiv a {
-        text-align: center;
-        width: 25%;
-        font-size: small;
-    }
-
     .rowResponsiv select {
         justify-content: space-between;
         width: 46%;
@@ -284,7 +278,7 @@ td a {
 
     .blocListMission {
         margin-top: 6em;
-        width: 70vw;
+        width: 80vw;
     }
 
     .rowResponsiv .line {
@@ -387,6 +381,10 @@ td a {
         width: 50%;
         padding: 14px;
         font-size: 14px;
+    }
+
+    .blocListMission .btnSecondary {
+        margin-top: 20px;
     }
 
     .pictureMissionAndTxt div {

@@ -372,14 +372,14 @@ td a {
     .arrowLeftRegistration,
     .arrowLeftAccomplished {
         rotate: 90deg;
-        left: 0;
+        left: -36px;
     }
 
     .arrowRight,
     .arrowRightRegistration,
     .arrowRightAccomplished {
         rotate: -90deg;
-        right: 0;
+        right: -36px;
     }
 
     .arrowResponsiv {
@@ -404,7 +404,8 @@ td a {
     }
 
     .cardMission {
-        width: 100%;
+        width: 90%;
+        margin: auto;
     }
 
     .cardMission a {

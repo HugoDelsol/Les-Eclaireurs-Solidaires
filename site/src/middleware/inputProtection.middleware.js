@@ -25,7 +25,8 @@ const signUpFormProtection = [
     body('email')
         .trim()
         .notEmpty().withMessage('Lemail est requis')
-        .isEmail(),
+        .isEmail().withMessage('Veuillez saisir une adresse email valide.')
+        .normalizeEmail(),
 
 
     // AMELIORATION PASSWORD REQUISE AVANT DEPLOIEMENT
@@ -47,8 +48,10 @@ const signUpFormProtection = [
 
             const message = errors.array()[0].msg
 
+            console.log(message)
+
             return res.render('connection/signUp', {
-                alertMsg: message,
+                errorAlertMsg: message,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
@@ -76,7 +79,7 @@ const signInFormProtection = [
     body('password')
         .notEmpty().withMessage("Veuillez saisir votre mot de passe"),
 
-    (req, res, next) => {
+    (req, res, next) => {        
 
         const error = validationResult(req);
 
@@ -85,7 +88,7 @@ const signInFormProtection = [
             const message = error.array()[0].msg
 
             return res.render('connection/signIn', {
-                alertMsg: message
+                errorAlertMsg: message
             })
         }
 

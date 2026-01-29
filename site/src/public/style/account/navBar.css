@@ -9,7 +9,7 @@
         width: 100vw;
         display: flex;
         justify-content: space-around;
-        padding: 20px 0;
+        padding: 12px 0;
         position: fixed;
         z-index: 2000;
         align-items: center;
@@ -43,5 +43,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    header p,
+    footer p {
+        font-weight: 900;
+        color: black;
+        margin-top: 4px;
     }
 }

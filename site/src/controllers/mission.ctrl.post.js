@@ -101,12 +101,11 @@ exports.searchByCategories = async (req, res) => {
 
         if (!regionSelected && !categorySelected || isDateIncomplete) {
 
-            res.locals.alertMsg = isDateIncomplete
+            res.locals.errorAlertMsg = isDateIncomplete
                 ? "Veuillez saisir une date de début ET une date de fin."
                 : "Veuillez sélectionner une région ou une catégorie."
             ;
-
-                
+                            
             user.isVolunteer ? res.locals.missionsClear = [] : res.locals.missions = [];
             return res.render(renderPathByRole);
         }
