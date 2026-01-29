@@ -16,6 +16,8 @@ const centralizedVar = (req, res, next) => {
 
     /* --- ALERTES / MESSAGES --- */
     res.locals.alertMsg = null;
+    res.locals.successAlertMsg = [];
+    res.locals.errorAlertMsg = [];
 
     /* --- LISTES D'UTILISATEURS --- */
     res.locals.listUsers = null;

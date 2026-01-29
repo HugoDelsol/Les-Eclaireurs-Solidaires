@@ -35,7 +35,7 @@ exports.auth = async (req, res) => {
 
     try {
 
-        const safeData = matchedData(req)
+        const safeData = matchedData(req);
 
         const {email, password} = safeData;
 
@@ -97,7 +97,7 @@ exports.auth = async (req, res) => {
         console.error(error);
 
         res.render('connection/signIn', {
-            alertMsg: error.message
+           errorAlertMsg : error.message
         });
     }
 }

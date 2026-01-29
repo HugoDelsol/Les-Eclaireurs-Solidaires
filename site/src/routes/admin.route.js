@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const userCtrl = require('../controllers/user.ctrl');
 const missionCtrlGet = require('../controllers/mission.ctrl.get');
 const missionCtrlPost = require('../controllers/mission.ctrl.post');
 const sessionMdw = require('../middleware/session.middleware');

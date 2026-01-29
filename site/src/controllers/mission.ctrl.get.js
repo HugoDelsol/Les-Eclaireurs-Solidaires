@@ -15,14 +15,14 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
         const getUserAddress = await userModel.getUserAddress(req.session.userExist.id);
 
-       const idRegion = getUserAddress[0].id_region;
+        const idRegion = getUserAddress[0].id_region;
 
         const getMissionByRegion = await missionModel.getMissionByRegion(idRegion);
 
         res.json(getMissionByRegion);
 
     } catch (error) {
-        
+
     }
 }
 
@@ -271,9 +271,12 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
     try {
 
+        throw new Error;
+        
+
         const getUserAddress = await userModel.getUserAddress(idUser);
 
-        const idRegionByUser = getUserAddress[0].id_region  
+        const idRegionByUser = getUserAddress[0].id_region
 
         res.locals.missionByRegion = await missionModel.getMissionByRegion(idRegionByUser);
 
@@ -288,7 +291,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
     } catch (error) {
 
         console.log("Controler getAllMissionsByUser: ", error);
-        res.locals.alertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
+        res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
 
         res.render('account/dashboardUser', {
             missionByRegion: [],
@@ -303,13 +306,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 //---
 
 exports.modalRegisterMission = async (req, res) => {
-    try {
-
-        return res.render('modals/subscribe');
-
-    } catch (error) {
-
-    }
+    return res.render('modals/subscribe');
 }
 
 //---
