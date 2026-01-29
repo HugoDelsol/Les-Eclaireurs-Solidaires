@@ -61,7 +61,7 @@ exports.saveUser = async (req, res) => {
 
         if (saveUser) {
             res.render('connection/signIn', {
-                alertMsg: "Veuillez vous connecter pour accéder à votre compte."
+                successAlertMsg: "Veuillez vous connecter pour accéder à votre compte."
             });
         }
 
@@ -73,7 +73,7 @@ exports.saveUser = async (req, res) => {
             email: req.body.email,
             password: req.body.password,
             passwordConfirm: req.body.passwordConfirm,
-            alertMsg: error.message
+            errorAlertMsg: error.message
         });
     }
 }

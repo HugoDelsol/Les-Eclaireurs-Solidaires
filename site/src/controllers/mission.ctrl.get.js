@@ -269,10 +269,7 @@ exports.searchCity = async (req, res) => {
 
 exports.dashboardAllStats = async (req, res, idUser) => {
 
-    try {
-
-        throw new Error;
-        
+    try {  
 
         const getUserAddress = await userModel.getUserAddress(idUser);
 
