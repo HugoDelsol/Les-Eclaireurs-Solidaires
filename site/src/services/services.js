@@ -48,12 +48,12 @@ exports.filterOutRegisteredMissions = async (req, missionsSelected) => {
 
         let filteredMission = [];
 
-        if (!missionsSelected) {            
-            
+        if (!missionsSelected) {
+
             filteredMission = await missionModel.getAllMission();
-            
+
         } else {
-            
+
             filteredMission = missionsSelected;
         }
 
@@ -77,6 +77,52 @@ exports.filterOutRegisteredMissions = async (req, missionsSelected) => {
 
         console.log("filterOutRegisteredMissions : ", error);
         return null;
+    }
+}
+
+exports.remainingSpace = async (value) => {
+
+    const tabResult = [];
+
+    for (let v of value) {
+
+        const nbrRegistration = await missionModel.getNbrRegistrationByMission(v.id_mission);
+
+        if (nbrRegistration) {
+            tabResult.push(nbrRegistration.nbr_registration)
+        }
+    }
+
+    return tabResult;
+}
+
+exports.formatMissionStats = async (data) => {
+
+    let tabStats = [];
+
+    let average = Math.round((data.resultSumVolunteers[0].total_next_30_days / data.resultSumPlaces[0].nbr_places) * 100);
+    const averageToFixed = average.toFixed(0);
+
+    for (let g of data.resultList) {
+
+        const spaceAvailable = g.mission_available_place - g.nb_volunteers;
+        const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
+
+        const fillRateToString = fillRate.toFixed(0) + "%";
+
+        tabStats.push({
+            id: g.id_mission,
+            mission: g.mission_title,
+            date: g.mission_date,
+            nbVolunteers: g.nb_volunteers,
+            spaceAvailable: spaceAvailable,
+            fillRate: fillRateToString,
+        })
+    };
+
+    return data = {
+        tabStats,
+        averageToFixed,
     }
 }
 

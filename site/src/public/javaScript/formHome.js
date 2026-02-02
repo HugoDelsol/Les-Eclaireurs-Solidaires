@@ -65,8 +65,6 @@ async function apiDataForm() {
 
         const jsonResult = await response.json();
 
-        //console.log(jsonResult.message)
-
         alertForm.textContent = jsonResult.message;
 
         if (!response.ok) {

@@ -15,7 +15,7 @@ for (let c of checkBox) {
 
         modalRegisterMission(c, "", idMission, titleMission);
     })
-}
+} 
 
 for (let b of btnRegistration) {
 

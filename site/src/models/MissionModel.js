@@ -86,18 +86,18 @@ exports.addUserHistoryMission = async (idUser) => {
 exports.obtainStatsOnVolunteer = async (idUser) => {
 
     try {
-        
+
         const obtainStatsOnVolunteer = `
             SELECT SUM(mision_start_time - mission_end_time) FROM registration_mission
             LEFT JOIN mission 
             ON id_mission = _id_mission
             WHERE _id_user = 49
 
-        ` 
+        `
     } catch (error) {
 
         console.error("Erreur SQL obtainStatsOnVolunteer :", error);
-        throw error;        
+        throw error;
     }
 }
 
@@ -122,6 +122,35 @@ exports.getMissionByRegion = async (idRegion) => {
     } catch (error) {
 
         console.error("Erreur SQL getMissionByRegion :", error);
+        throw error;
+    }
+}
+
+exports.getNbrRegistrationByMission = async (idMission) => {
+
+    try {
+
+        const request = `
+            SELECT _id_mission, 
+            COUNT(_id_user) as nbr_registration 
+            FROM registration_mission 
+            LEFT JOIN mission
+            ON _id_mission = id_mission
+            WHERE _id_mission = ?
+            GROUP BY _id_mission; 
+        `
+
+        const [result] = await db.query(request, [idMission]);
+
+        if (result.length > 0){
+            return result[0];
+        }
+
+        return false;
+
+    } catch (error) {
+
+        console.error("Erreur SQL getNbrRegistrationByMission :", error);
         throw error;
     }
 }
@@ -171,7 +200,7 @@ exports.getStatsMissions = async () => {
             ON id_mission = _id_mission
             WHERE mission_date >= CURRENT_DATE()
             AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY)
-        `;  
+        `;
 
         const [resultSumVolunteers] = await db.query(requestSumVolunteers);
 
@@ -183,10 +212,20 @@ exports.getStatsMissions = async () => {
 
         const [resultTotalMissions] = await db.query(requestTotalMissions);
 
+        const requestSumPlaces  = `
+            SELECT sum(mission_available_place) AS nbr_places 
+            FROM mission 
+            WHERE mission_date >= CURRENT_DATE 
+            AND mission_date <= DATE_ADD(CURRENT_DATE(), INTERVAL 30 DAY);  
+        `;
+
+        const [resultSumPlaces] = await db.query(requestSumPlaces)
+
         return {
             resultList,
             resultSumVolunteers,
-            resultTotalMissions
+            resultTotalMissions,
+            resultSumPlaces
         }
 
     } catch (error) {
@@ -355,11 +394,9 @@ exports.getAllRegions = async () => {
 
 exports.getAllMission = async (sqlLimit) => {
 
-    // SQL LIMIT
-
     let limitCondition = "";
 
-    if (sqlLimit){
+    if (sqlLimit) {
         limitCondition = ` LIMIT ${sqlLimit}`;
     }
 
@@ -471,15 +508,15 @@ exports.alreadyRegistered = async (idUser) => {
 exports.fetchImgByCategory = async (category) => {
 
     try {
-        
+
         const fetchImg = `SELECT id_mission_image, mission_image_url FROM mission_image WHERE _id_mission_category = ?`;
         const [result] = await db.query(fetchImg, [category]);
         return result;
     } catch (error) {
 
-        
+
         console.error("Erreur SQL fetchImgByCategory :", error);
-        
+
         throw error;
     }
 }

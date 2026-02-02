@@ -11,6 +11,7 @@ const missionMdl = require('../models/MissionModel');
 
 // Utils - Services
 const utils = require('../utils/utils.js');
+const service = require('../services/services.js');
 
 // ==============================
 // DISPLAY VIEWS
@@ -26,7 +27,9 @@ exports.homePage = async (req, res) => {
 
         const getDisplayHomeMissions = await missionMdl.getAllMission("3");
 
-        const clearData = utils.clearData(getDisplayHomeMissions);
+        const remainingSpace = await service.remainingSpace(getDisplayHomeMissions);
+
+        const clearData = utils.clearData(getDisplayHomeMissions, remainingSpace);
 
         res.render('home/homePage', {
             displayMission: clearData,

@@ -41,7 +41,6 @@
 .sideNav .btnHover:hover {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
-    /*border-inline-start-width: 5px;*/
     border-color: #00000075;
 }
 
