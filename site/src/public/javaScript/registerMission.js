@@ -75,9 +75,9 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 window.location.href = "/";
             }
 
-            const data = await response.json();               
-
-            if (!data.alreadyAdded) {
+            const data = await response.json();             
+            
+            if (!data.alreadyAdded && !data.message) {
 
                 modal.classList.toggle('toggleNone');
                 modalToggle.classList.toggle('toggleBlock');
@@ -88,7 +88,11 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                     }
                     document.querySelector('.modalContain').innerHTML = "";
                     c.disabled = true                 
-                }, 3000);                
+                }, 3000);
+
+            } else {
+                document.querySelector('.alertFrontOfficeError').textContent = data.message
+                c.checked = false
             }
         });
     }

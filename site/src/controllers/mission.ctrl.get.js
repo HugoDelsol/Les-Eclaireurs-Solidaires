@@ -256,7 +256,9 @@ exports.modalRegisterMission = async (req, res) => {
 
 exports.addRegisterMissionUser = async (req, res) => {
 
-    try {           
+    try {     
+        
+        throw new Error
 
         const idUser = parseInt(req.query.idUser);
         const idMission = parseInt(req.query.idMission);
@@ -283,12 +285,13 @@ exports.addRegisterMissionUser = async (req, res) => {
             }
 
             console.log("alreadyAdded: false");
-            return res.json({ alreadyAdded: false });
+            return res.json({ alreadyAdded: false});
         }
 
     } catch (error) {
 
         console.error("Erreur registerMissionUser :", error);
+        return res.json({message: "Une erreur est survenu, veuillez réessayer dans un instant."})
     }
 }
 
