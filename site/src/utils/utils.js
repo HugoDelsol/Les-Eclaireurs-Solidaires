@@ -1,16 +1,47 @@
-exports.clearData = (missions) => {
+exports.clearData = (missions, valueSpace) => {
 
-    return missions.map(m => ({
-        id: m.id_mission,
-        img: m.mission_img,
-        title: m.mission_title,
-        description: m.mission_description.split(" ").slice(0, 30).join(" "),
-        category: m.mission_category_name,
-        city: m.city_name,
-        places: m.mission_available_place,
-        date: m.mission_date
-    }))  
+    let tabResult = [];
+
+    for (let i = 0; i < missions.length; i++) {
+
+        if (valueSpace !== undefined && valueSpace[i]) {
+
+            let data = {
+
+                id: missions[i].id_mission,
+                img: missions[i].mission_img,
+                title: missions[i].mission_title,
+                description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
+                category: missions[i].mission_category_name,
+                city: missions[i].city_name,
+                places: missions[i].mission_available_place - valueSpace[i],
+                date: missions[i].mission_date,
+            }
+
+            tabResult.push(data);
+
+        } else {
+
+             let data = {
+
+                id: missions[i].id_mission,
+                img: missions[i].mission_img,
+                title: missions[i].mission_title,
+                description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
+                category: missions[i].mission_category_name,
+                city: missions[i].city_name,
+                places: missions[i].mission_available_place,
+                date: missions[i].mission_date,
+            }
+
+            tabResult.push(data);
+        }
+    }
+
+    return tabResult;
 }
+
+
 
 exports.randomImage = (fetchGroupImages) => {
 
@@ -28,3 +59,4 @@ exports.randomImage = (fetchGroupImages) => {
 
     return resultImgUrl;
 }
+

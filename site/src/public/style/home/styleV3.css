@@ -62,7 +62,7 @@ span {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
-    border-color: #0000007e;    
+    border-color: #0000007e;
     box-shadow: 0px 0px 6px #00000025;
 }
 
@@ -124,17 +124,17 @@ span {
 /*------------------*/
 
 .aboutCard {
-	position: absolute;
-	background-image: url("../../pictures/backGroundCards/Group48.png");
-	top: 2em;
-	left: 76%;
-	background-size: 200px;
-	background-repeat: no-repeat;
-	width: 200px;
-	height: 200px;
-	transform-origin: right;
-	opacity: 0.75;
-	z-index: -10;
+    position: absolute;
+    background-image: url("../../pictures/backGroundCards/Group48.png");
+    top: 2em;
+    left: 76%;
+    background-size: 200px;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    transform-origin: right;
+    opacity: 0.75;
+    z-index: -10;
 }
 
 
@@ -222,7 +222,7 @@ span {
 }
 
 .pictureMissionAndTxt {
-    background-color: #F8F5EE;    
+    background-color: #F8F5EE;
     box-shadow: 0px 0px 12px rgba(26, 30, 66, 0.1);
     display: flex;
     flex-direction: row;
@@ -233,7 +233,7 @@ span {
     width: 70%;
 }
 
-.pictureMissionAndTxt .expose{
+.pictureMissionAndTxt .expose {
     width: fit-content;
     padding: 4px 12px;
     background-color: #f9cf8249;
@@ -241,7 +241,7 @@ span {
     margin: 14px 0;
 }
 
-.pictureMissionAndTxt .bold{
+.pictureMissionAndTxt .bold {
     font-weight: 600;
 }
 
@@ -270,7 +270,6 @@ span {
 .lineMissions {
     margin: 1em 0;
     width: 10vw;
-    left: -1em;
 }
 
 .pictureMissionAndTxt .row {
@@ -506,7 +505,7 @@ footer h4 {
     }
 }
 
-@media (min-width: 511px) and  (max-width: 1600px) {
+@media (min-width: 511px) and (max-width: 1600px) {
 
     .backGroundPicture {
         background-position: top 14em right -2em;
@@ -723,6 +722,10 @@ footer h4 {
 }
 
 @media (min-width: 511px) and (max-width: 835px) {
+
+    .pictureMissionAndTxt .div {
+        margin-left: 0em;
+    }
 
     .backGroundPicture {
         opacity: 0.75;
@@ -975,6 +978,10 @@ footer h4 {
         flex-direction: column;
     }
 
+    .pictureMissionAndTxt .div {
+        margin-left: 0em;
+    }
+
     .currentMission img {
         width: 100%;
         height: 160px;
@@ -1008,12 +1015,16 @@ footer h4 {
 
     .aboutTxt {
         margin: auto;
-        width: 80%;
+        width: 82%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .aboutTxt p {
         margin: 0.6em 0;
-        font-size: 1.14em;
+        font-size: 1em;
     }
 
     .aboutLine {

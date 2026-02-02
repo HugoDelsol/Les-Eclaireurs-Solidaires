@@ -1,3 +1,6 @@
+const { header } = require('express-validator');
+const url = require('url')
+
 const checkAuth = (req, res, next) => {
 
     return req.session && req.session.userExist && req.session.userExist.id;
@@ -43,13 +46,12 @@ const allAdministratorAuthorization = (req, res, next) => {
     next();
 }
 
-
-
 const logout = (req, res, next) => {
 
-    req.session.destroy((err) => {
+    
 
-        res.redirect('/');
+    req.session.destroy((err) => {        
+        res.redirect('/')
     })
 }
 

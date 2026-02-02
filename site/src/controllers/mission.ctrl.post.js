@@ -89,13 +89,15 @@ const service = require('../services/services')
 } */
 
 exports.searchByCategories = async (req, res) => {
+    
+    let renderPathByRole = "home/404"
 
     try {
 
         const { regionSelected, categorySelected, tripStart, tripEnd } = req.body;
         const user = req.session.userExist;
 
-        const renderPathByRole = user.isVolunteer ? 'account/listMissionUser' : 'account/listMissionsAdmin';
+        renderPathByRole = user.isVolunteer ? 'account/listMissionUser' : 'account/listMissionsAdmin';
 
         const isDateIncomplete = (tripStart && !tripEnd) || (!tripStart && tripEnd);
 
@@ -123,7 +125,13 @@ exports.searchByCategories = async (req, res) => {
     } catch (error) {
         
         console.error(error);
-        res.render('home/404');
+
+        res.locals.missions = [],
+        res.locals.missionsClear = [];
+        res.locals.searchFilters = [];
+        res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants."
+
+        res.render(renderPathByRole);
     }
 }
 
@@ -192,24 +200,20 @@ exports.addMission = async (req, res) => {
             res.render('account/addMission', {
                 pseudoUser: req.session.userExist.firstName,
                 categoriesMission: req.session.categoriesMission,
-                alertMsg: 'Missions ajoutée',
+                successAlertMsg: 'Missions ajoutée',
 
             })
-
-            console.log("Insertion MISSION BDD OK");
         }
 
     } catch (error) {
 
-        res.render('account/addMission', {
+        console.log(error);
 
+        res.render('account/addMission', {
             pseudoUser: req.session.userExist.firstName,
             categoriesMission: req.session.categoriesMission,
-            alertMsg: 'Veuillez remplir tous les champs.',
-
+            errorAlertMsg: 'Veuillez remplir tous les champs.',
         })
-
-        console.log(error);
     }
 }
 
@@ -217,11 +221,12 @@ exports.registerMissionUser = async (idUser, idMission) => {
 
     try {
 
-        await missionModel.registerMissionUser(idUser, idMission);
+        await missionModel.registerMissionUser(idUser, idMission);        
 
     } catch (error) {
 
-        console.log(error);
+        console.log(error); 
+        return false      
     }
 
 }

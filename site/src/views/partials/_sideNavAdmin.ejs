@@ -1,3 +1,5 @@
+<script type="module" src="/javaScript/sideNav.js" defer></script>
+
 <nav class="sideNav">
     <div class="center">
         <img src="/pictures/securite-personnelle.png" alt="">
@@ -5,13 +7,13 @@
         <div class="linesideNav"></div>
     </div>
     <div class="linkStyle">
-        <a href="/admin/dashboardAdmin" class="btnPrimary btnHover">📊 Tableau de bord</a>
-        <a href="/admin/missionAdminShow" class="btnPrimary btnHover">🎯 Missions</a>
-        <a href="/admin/listOfVolunteers" class="btnPrimary btnHover">🐝 Bénévoles</a>
+        <a href="/admin/dashboardAdmin" class="btnPrimary btnHover btnNav">📊 Tableau de bord</a>
+        <a href="/admin/missionAdminShow" class="btnPrimary btnHover btnNav">🎯 Missions</a>
+        <a href="/admin/listOfVolunteers" class="btnPrimary btnHover btnNav">🐝 Bénévoles</a>
         <a href="" class="btnPrimary btnHover">💬 Messagerie</a>
         <a href="" class="btnPrimary btnHover">⏰ Rappel</a>
         <% if (isSuperAdmin) { %>
-        <a href="/admin/superAdmin/tokenView" class="btnPrimary btnHover">👤 Admin</a>
+        <a href="/admin/superAdmin/tokenView" class="btnPrimary btnHover btnNav">👤 Admin</a>
         <% } %>
     </div>
     <a href="/logout" class="btnSecondary btnHover">Deconnexion</a>

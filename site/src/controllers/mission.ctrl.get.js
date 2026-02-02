@@ -62,45 +62,32 @@ exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
 
 exports.getStatsMissions = async (req, res) => {
 
-    let tabStats = [];
-
     try {
 
         const getStatsMissions = await missionModel.getStatsMissions();
 
-        let average = Math.round((getStatsMissions.resultSumVolunteers[0].total_next_30_days / getStatsMissions.resultTotalMissions[0].nbr_missions) * 100);
-        const averageToFixed = average.toFixed(0);
+        const resultService = await service.formatMissionStats(getStatsMissions)
 
-        for (let g of getStatsMissions.resultList) {
-
-            const spaceAvailable = g.mission_available_place - g.nb_volunteers;
-            const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
-
-            const fillRateToString = fillRate.toFixed(0) + "%";
-
-            tabStats.push({
-                id: g.id_mission,
-                mission: g.mission_title,
-                date: g.mission_date,
-                nbVolunteers: g.nb_volunteers,
-                spaceAvailable: spaceAvailable,
-                fillRate: fillRateToString,
-            })
-        };
-
-        res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin
-        res.locals.isAdmin = req.session.userExist.isAdmin
+        res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
+        res.locals.isAdmin = req.session.userExist.isAdmin;
 
         res.render("account/dashboardAdmin", {
-            tabStats: tabStats,
+            tabStats: resultService.tabStats,
             resultSum: getStatsMissions.resultSumVolunteers[0].total_next_30_days,
-            average: averageToFixed,
+            average: resultService.averageToFixed,
             totalMission: getStatsMissions.resultTotalMissions[0]
         });
 
     } catch (error) {
 
         console.log(error)
+        res.render("account/dashboardAdmin", {
+            errorAlertMsg: "Échec de la récupération des statistiques utilisateurs.",
+            tabStats: [],
+            resultSum: [],
+            average: [],
+            totalMission: [],
+        })
     }
 }
 
@@ -155,17 +142,6 @@ exports.missionUserShow = async (req, res) => {
 
         const filterOutRegisteredMissions = await service.filterOutRegisteredMissions(req);
 
-        /* const registeredMissionIds = new Set(
-            alreadyRegisteredByUser.map(m => m._id_mission)
-        );
- 
- 
-        const availableMissions = getAllMissions.filter(
-            mission => !registeredMissionIds.has(mission.id_mission)
-        );
- 
-        console.log(availableMissions); */
-
         req.session.regions = regions;
         req.session.categoriesMission = categoriesMission;
 
@@ -194,22 +170,11 @@ exports.missionUserShow = async (req, res) => {
 
 exports.addMissionShow = async (req, res) => {
 
-    try {
+    const categoriesMission = await missionModel.getAllCategories();
 
-        const categoriesMission = await missionModel.getAllCategories();
+    req.session.categoriesMission = categoriesMission;
 
-        req.session.categoriesMission = categoriesMission;
-
-        res.render('account/addMission');
-
-    } catch (error) {
-
-        console.error(error);
-
-        res.locals.alertMsg = "Impossible d'afficher le formulaire";
-
-        res.render('account/addMission');
-    }
+    res.render('account/addMission');
 }
 
 //---
@@ -245,31 +210,10 @@ exports.searchCity = async (req, res) => {
     }
 }
 
-//---
-//--- RECUPERER TOUTE LES MISSIONS DU BENEVOLE
-//---
-
-/* exports.getAllMissionsByUser = async (req, res, idUser) => {
-
-    try {
-
-        const allMissionByUser = await missionModel.getAllMissionsByUser(idUser);
-
-        res.render('account/dashboardUser', {
-
-            pseudoUser: req.session.userExist.firstName,
-            missionsUser: allMissionByUser.length ? allMissionByUser : false
-        })
-
-    } catch (error) {
-
-        console.log("Controler getAllMissionsByUser: ", error)
-    }
-} */
 
 exports.dashboardAllStats = async (req, res, idUser) => {
 
-    try {  
+    try {
 
         const getUserAddress = await userModel.getUserAddress(idUser);
 
@@ -312,7 +256,7 @@ exports.modalRegisterMission = async (req, res) => {
 
 exports.addRegisterMissionUser = async (req, res) => {
 
-    try {
+    try {           
 
         const idUser = parseInt(req.query.idUser);
         const idMission = parseInt(req.query.idMission);
@@ -327,21 +271,24 @@ exports.addRegisterMissionUser = async (req, res) => {
 
         if (registrationByUser) {
 
-            console.log("mission deja ajoutée");
+            console.log("alreadyAdded: true");
             return res.json({ alreadyAdded: true });
 
         } else {
 
-            await missionCtrlPost.registerMissionUser(idUser, idMission);
+            const result = await missionCtrlPost.registerMissionUser(idUser, idMission);
 
-            console.log("ajouter");
+            if (result === false) {
+                throw new Error;
+            }
+
+            console.log("alreadyAdded: false");
             return res.json({ alreadyAdded: false });
         }
 
     } catch (error) {
 
         console.error("Erreur registerMissionUser :", error);
-
     }
 }
 
