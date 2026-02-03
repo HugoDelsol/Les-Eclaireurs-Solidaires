@@ -13,7 +13,7 @@ const userGeneralMdl = require('../../models/UserModel');
 const userVolunteerCtrl = require('../user/userVolunteerController');
 
 // Get Functions
-const { getStatsMissions } = require('../mission.ctrl.get')
+const { getStatsMissions } = require('../mission/missionAdminController')
 
 // ==============================
 // DISPLAY VIEWS
