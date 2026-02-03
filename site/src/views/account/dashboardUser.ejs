@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleDashboardUser.css">
 <script src="/javaScript/carrouselDashboard.js" defer></script>
+<link rel="stylesheet" href="/style/modal/alert.css">
+<script src="/javaScript/alert.js" defer></script>
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
@@ -24,12 +26,12 @@
 
                     <div class="statAlign">
                         <p>Mission complétées :</p>
-                        <p><span>16</span></p>
+                        <p><span><%= statsOnVolunteer.resultNbrMissionAccomplished.length ? statsOnVolunteer.resultNbrMissionAccomplished : "0" %></span></p>
                     </div>
 
                     <div class="statAlign">
                         <p>Heures de bénévolat :</p>
-                        <p><span>22h</span></p>
+                        <p><span><%= nbrTimeAccomplished%></span></p>
                     </div>
 
                     <div class="statAlign">
@@ -41,7 +43,7 @@
                 <div class="nearMission background">
                     <div class="titleCard">
                         <% if (missionByRegion.length == 0) { %>
-                            <h1>Aucune missions proche de chez vous</h1>
+                            <h1>Sélections pour vous</h1>
                         <% } else { %>
                             <h1>Missions proche de chez vous</h1>
                         <% } %>

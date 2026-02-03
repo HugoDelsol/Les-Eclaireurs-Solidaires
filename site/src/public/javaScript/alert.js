@@ -8,32 +8,38 @@ if (window.innerWidth < 1300) {
     alertFrontOfficeError.style.bottom = "100px"
 }
 
-console.log(alertMsgBack)
+if (alertMsgBack.innerText.length > 0) {
 
-alertMsgBack.style.transform = "translateX(102vw)";
+    console.log("test")
 
-setTimeout(() => {
-    alertMsgBack.style.transform = "translateX(-100vw)";
-}, 5000);
+    alertMsgBack.style.transform = "translateX(102vw)";
+
+    setTimeout(() => {
+        alertMsgBack.style.transform = "translateX(-100vw)";
+    }, 5000);
+}
 
 const observer = new MutationObserver(m => {
 
+    let value = null
+
     if (m[0].target.classList[0] === "alertFrontOfficeError") {
 
-        alertFrontOfficeError.style.transform = "translateX(102vw)";
-
-        setTimeout(() => {
-            alertFrontOfficeError.style.transform = "translateX(-100vw)";
-        }, 5000);
+        value = alertFrontOfficeError;
 
     } else if (m[0].target.classList[0] === "alertFrontOfficeSuccess") {
 
-        alertFrontOfficeSuccess.style.transform = "translateX(102vw)";
+        value = alertFrontOfficeSuccess;
 
-        setTimeout(() => {
-            alertFrontOfficeSuccess.style.transform = "translateX(-100vw)";
-        }, 5000);
     }
+
+    value.style.transform = "translateX(102vw)";
+
+    setTimeout(() => {
+
+        value.style.transform = "translateX(-100vw)";
+
+    }, 5000);
 })
 
 observer.observe(alertFrontOfficeError, {

@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const missionCtrlGet = require('../controllers/mission.ctrl.get');
-const missionCtrlPost = require('../controllers/mission.ctrl.post');
 const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 const userAdminCtrl = require('../controllers/user/userAdminController');
+
+
+const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
+const missionAdminCtrl = require('../controllers/mission/missionAdminController');
 
 
 // --- SIGN ---
@@ -15,11 +17,11 @@ router.post('/saveAdmin', inputProtection.adminSignFormProtection, userAdminCtrl
 router.get('/dashboardAdmin', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.dashboardAdmin);
 
 // --- MISSION ---
-router.get('/missionAdminShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.missionAdminShow);
-router.get('/addMissionShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlGet.addMissionShow);
-router.post('/addMission', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionCtrlPost.addMission);
-router.get('/searchCity', sessionMdw.requireAuth, missionCtrlGet.searchCity);
-router.post('/searchByCategories', sessionMdw.requireAuth, missionCtrlPost.searchByCategories);
+router.get('/missionAdminShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionAdminCtrl.missionAdminShow);
+router.get('/addMissionShow', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionAdminCtrl.addMissionShow);
+router.post('/addMission', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, missionAdminCtrl.addMission);
+router.get('/searchCity', sessionMdw.requireAuth, missionGeneralCtrl.searchCity);
+router.post('/searchByCategories', sessionMdw.requireAuth, missionGeneralCtrl.searchByCategories);
 
 // --- USER MANAGEMENT ---
 router.get('/superAdmin/tokenView', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userAdminCtrl.tokenView);

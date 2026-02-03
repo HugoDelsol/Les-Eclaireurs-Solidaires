@@ -10,7 +10,7 @@ const userModel = require('../../models/UserModel');
 const missionModel = require('../../models/MissionModel');
 
 //Services
-const { dashboardAllStats } = require('../mission.ctrl.get');
+const { dashboardAllStats } = require('../mission/missionVolunteerController');
 
 // ==============================
 // DISPLAY VIEWS
@@ -87,7 +87,6 @@ exports.editUserProfile = async (req, res) => {
     const renderData = {
         pseudoUser: req.session.userExist.firstName,
         categoriesMission: req.session.categoriesMission,
-        alertMsg: null,
     }
 
     try {
@@ -97,7 +96,7 @@ exports.editUserProfile = async (req, res) => {
         const safeData = matchedData(req)
         const { lastname, firstname, phone, address, cityId, category, } = safeData;
 
-        await missionModel.updateUserProfile(
+        const request = await missionModel.updateUserProfile(
             idUser,
             lastname,
             firstname,
@@ -107,19 +106,25 @@ exports.editUserProfile = async (req, res) => {
             category
         );
 
+        if (!request) {
+           res.locals.errorAlertMsg = "Aucune donnée à mettre à jour";
+           return res.render('account/userProfileSettings', renderData);
+        }
+
         if (firstname && firstname.trim().length > 0) {
             req.session.userExist.firstname = firstname;
             renderData.pseudoUser = req.session.userExist.firstname;
         }
 
-        renderData.alertMsg = "Profil mis à jour avec succès !";
+        res.locals.successAlertMsg = "Profil mis à jour avec succès !";
+
         return res.render('account/userProfileSettings', renderData);
 
     } catch (error) {
 
         console.error("editUserProfile() --> ", error);
 
-        renderData.alertMsg = "Impossible de modifier les informations de profil";
+        res.locals.errorAlertMsg = "Impossible de modifier les informations de profil";
         return res.render('account/userProfileSettings', renderData);
     }
 }

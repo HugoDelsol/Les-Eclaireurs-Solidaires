@@ -13,7 +13,7 @@ const missionMdl = require('../../models/MissionModel');
 const service = require('../../services/services');
 
 // Get Functions
-const { getStatsMissions } = require('../mission.ctrl.get');
+const { getStatsMissions } = require('../../controllers/mission/missionAdminController');
 
 // ==============================
 // DISPLAY VIEWS

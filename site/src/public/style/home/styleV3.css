@@ -1,5 +1,5 @@
 /***STYLE-GENERAL***/
-
+/* 
 * {
     margin: 0;
     color: rgb(15, 28, 63);
@@ -10,7 +10,18 @@
     text-decoration: none;
     font-weight: 300;
     scroll-behavior: smooth;
-}
+} */
+
+* {
+    margin: 0;
+    color: rgb(9, 17, 39);
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    scroll-behavior: smooth;
+} 
 
 .alert {
     color: red;

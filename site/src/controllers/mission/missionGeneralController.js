@@ -1,0 +1,104 @@
+// ==============================
+// IMPORTS & DEPENDENCIES
+// ==============================
+
+// Libraries
+
+// Models
+const missionMdl = require('../../models/MissionModel');
+
+// Controllers
+
+// Utils - Services
+const utils = require('../../utils/utils.js');
+const service = require('../../services/services.js');
+
+// Get Functions
+
+exports.searchByCategories = async (req, res) => {
+    
+    let renderPathByRole = "home/404"
+
+    try {
+
+        const { regionSelected, categorySelected, tripStart, tripEnd } = req.body;
+        const user = req.session.userExist;
+
+        renderPathByRole = user.isVolunteer ? 'account/listMissionUser' : 'account/listMissionsAdmin';
+
+        const isDateIncomplete = (tripStart && !tripEnd) || (!tripStart && tripEnd);
+
+        if (!regionSelected && !categorySelected || isDateIncomplete) {
+
+            res.locals.errorAlertMsg = isDateIncomplete
+                ? "Veuillez saisir une date de début ET une date de fin."
+                : "Veuillez sélectionner une région ou une catégorie."
+            ;
+                            
+            user.isVolunteer ? res.locals.missionsClear = [] : res.locals.missions = [];
+            return res.render(renderPathByRole);
+        }
+
+        const missionsSelected = await missionMdl.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
+
+        const filterOutRegisteredMissions = await service.filterOutRegisteredMissions(req, missionsSelected)
+
+        res.locals.missions = filterOutRegisteredMissions
+        res.locals.missionsClear = utils.clearData(filterOutRegisteredMissions);
+        res.locals.searchFilters = { regionSelected, categorySelected }; 
+        
+        res.render(renderPathByRole);
+
+    } catch (error) {
+        
+        console.error(error);
+
+        res.locals.missions = [],
+        res.locals.missionsClear = [];
+        res.locals.searchFilters = [];
+        res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants."
+
+        res.render(renderPathByRole);
+    }
+}
+
+//---
+//--- SYSTEME D'AUTOCOMPLETION
+//---
+
+exports.searchCity = async (req, res) => {
+
+    try {
+
+        const valueInput = req.query.q;
+
+        const searchCity = await missionMdl.searchCityInSql(valueInput);
+
+        let allCitys = [];
+
+        for (c of searchCity) {
+
+            const data = {
+                idCity: c.id_city,
+                cityName: c.city_name,
+                idRegion: c._id_region,
+            }
+
+            allCitys.push(data);
+        }
+
+        res.json(allCitys);
+
+    } catch (error) {
+
+        console.error('Erreur:', error);
+    }
+}
+
+//---
+//--- AFFICHER LES DONNEES D'UNE MISSION
+//---
+
+exports.getDataMission = async (req, res) => {
+    console.log(req.params.idMission);
+}

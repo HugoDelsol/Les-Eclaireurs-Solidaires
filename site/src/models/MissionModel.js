@@ -47,7 +47,7 @@ exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, 
 
         } else {
 
-            console.log("Aucune donnée à mettre à jour")
+            return false
         }
 
     } catch (error) {
@@ -87,13 +87,29 @@ exports.obtainStatsOnVolunteer = async (idUser) => {
 
     try {
 
-        const obtainStatsOnVolunteer = `
-            SELECT SUM(mision_start_time - mission_end_time) FROM registration_mission
+        const timeDiff = `
+            SELECT TIMEDIFF(mission_end_time, mission_start_time) as timeDiff FROM registration_mission
             LEFT JOIN mission 
             ON id_mission = _id_mission
-            WHERE _id_user = 49
+            WHERE _id_user = ? AND mission_date < CURRENT_DATE;
+        `;
 
+        const [resultTimeDiff] = await db.query(timeDiff, [idUser])
+        
+        const nbrMissionAccomplished = `
+            SELECT mission_date, COUNT(_id_user) 
+            FROM registration_mission 
+            LEFT JOIN mission ON id_mission = _id_mission 
+            WHERE _id_user = ? AND mission_date < CURRENT_DATE
+            GROUP BY _id_user, mission_date;
         `
+        const [resultNbrMissionAccomplished] = await db.query(nbrMissionAccomplished, [idUser])
+
+        return data = {
+            resultTimeDiff,
+            resultNbrMissionAccomplished
+        }
+
     } catch (error) {
 
         console.error("Erreur SQL obtainStatsOnVolunteer :", error);
@@ -142,7 +158,7 @@ exports.getNbrRegistrationByMission = async (idMission) => {
 
         const [result] = await db.query(request, [idMission]);
 
-        if (result.length > 0){
+        if (result.length > 0) {
             return result[0];
         }
 
@@ -212,7 +228,7 @@ exports.getStatsMissions = async () => {
 
         const [resultTotalMissions] = await db.query(requestTotalMissions);
 
-        const requestSumPlaces  = `
+        const requestSumPlaces = `
             SELECT sum(mission_available_place) AS nbr_places 
             FROM mission 
             WHERE mission_date >= CURRENT_DATE 

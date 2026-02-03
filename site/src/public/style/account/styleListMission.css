@@ -408,4 +408,12 @@ td a {
     }
 
 
+    .row.flex {
+        flex-direction: column;
+    }
+
+    .row.flex .btnPrimary {
+        margin: 0;
+    }
+
 }
