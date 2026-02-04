@@ -7,8 +7,6 @@ const emailForm = document.querySelector("#email");
 const nameForm = document.querySelector("#firstName");
 const txtArea = document.querySelector("#txtArea");
 
-const alertForm = document.querySelector(".alertForm")
-
 const btnSubmit = document.querySelector(".btnSubmit");
 
 for (let i = 0; i < input.length; i++) {
@@ -22,23 +20,17 @@ btnSubmit.addEventListener("click", function (event) {
 
     event.preventDefault();
 
-    console.log('test')
-
     if (
         nameForm.value == "" ||
         emailForm.value == "" ||
         txtArea.value == ""
     ) {
 
-        alertForm.textContent = "Veuillez compléter tous les champs.";
+        alertFrontOfficeError.textContent = "Veuillez compléter tous les champs.";
 
     } else {
 
         apiDataForm();
-
-        alertForm.textContent = "";
-
-        console.log("SUCCESS");
 
         input[0].value = "";
         input[1].value = "";
@@ -62,18 +54,34 @@ async function apiDataForm() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataForm)
         })
-
-        const jsonResult = await response.json();
-
-        alertForm.textContent = jsonResult.message;
-
+        
         if (!response.ok) {
             throw new Error('Erreur');
         }
 
+        const jsonResult = await response.json();
+
+        let valueClass;
+        let valueMsg;
+
+        if (jsonResult.mdlError) {
+            valueClass = alertFrontOfficeError;
+            valueMsg = jsonResult.mdlError
+        }
+        if (jsonResult.messageSuccessIsTrue) {
+            valueClass = alertFrontOfficeSuccess;
+            valueMsg = jsonResult.messageSuccesss
+        }
+        if (jsonResult.messageErrorIsTrue) {
+            valueClass = alertFrontOfficeError;
+            valueMsg = jsonResult.messageError
+        }        
+
+        valueClass.textContent = valueMsg;        
+
     } catch (error) {
 
-        console.log("Erreur :", error);
+        console.log("Erreur apiDataForm : ", error);
     }
 }
 

@@ -114,7 +114,7 @@ const adminSignFormProtection = [
 
         if (!error.isEmpty()) {
             return res.render('connection/signUpAdmin', {
-                alertMsg: 'Données invalides. Veuillez vérifier les champs.'
+                errorAlertMsg: 'Données invalides. Veuillez vérifier les champs.'
             })
         }
 
@@ -143,7 +143,7 @@ const updateUserProfile = [
             return res.render('account/userProfileSettings', {
                 pseudoUser: req.session.userExist.firstName,
                 categoriesMission: req.session.categoriesMission,
-                alertMsg: 'Données invalides. Veuillez vérifier les champs.'
+                errorAlertMsg: 'Données invalides. Veuillez vérifier les champs.'
             })
         }
 
@@ -166,7 +166,7 @@ const homeFormProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.status(400).json({ message: "Données invalides. Veuillez vérifier les champs." });
+            return res.json({ mdlError: "Données invalides. Veuillez vérifier les champs." , mdlErrorIsTrue: true});
         }
 
         next();

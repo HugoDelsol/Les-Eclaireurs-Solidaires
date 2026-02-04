@@ -1,0 +1,23 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Mon API",
+    "version": "1.0.0",
+    "description": "Documentation de mon API Node.js"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Récupère toutes les missions",
+        "responses": {
+          "200": {
+            "description": "Liste des missions"
+          },
+          "400": {
+            "description": "Impossible d'afficher les missions"
+          }
+        }
+      }
+    }
+  }
+}

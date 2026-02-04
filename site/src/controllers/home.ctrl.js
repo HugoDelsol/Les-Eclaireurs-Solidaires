@@ -38,7 +38,8 @@ exports.homePage = async (req, res) => {
     } catch (error) {
 
         console.log("Erreur homePage : ", error);
-        res.status(500).send("Erreur Serveur");
+        res.locals.errorAlertMsg = "Impossible d’afficher la liste des missions disponibles dans la section « Nos besoins actuels ».";
+        res.render('home/homePage')
     }
 }
 
@@ -55,11 +56,11 @@ exports.submitForm = async (req, res) => {
         const { nameForm, emailForm, txtArea } = safeData;
         await homeMdl.addMessageForm(nameForm, emailForm, txtArea);
 
-        return res.status(200).json({ message: "Message envoyé ! ✅" });
+        return res.json({ messageSuccesss: "Message envoyé !", messageSuccessIsTrue: true });
 
     } catch (error) {
 
         console.log(error);
-        return res.status(200).json({ message: "Le formulaire n'a pas pu être soumis" });
+        return res.json({ messageError: "Le formulaire n'a pas pu être soumis", messageErrorIsTrue: true });
     }
 }

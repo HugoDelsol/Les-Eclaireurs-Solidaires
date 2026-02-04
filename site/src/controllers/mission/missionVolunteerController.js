@@ -16,17 +16,17 @@ const service = require('../../services/services.js');
 
 // Get Functions
 
-//---
-//--- AFFICHER UN MODAL POUR VALIDER L'INSCRIPTIONN A UNE MISSION
-//---
+// ==============================
+// DISPLAY MODAL REGISTER MISSION
+// ==============================
 
 exports.modalRegisterMission = async (req, res) => {
     return res.render('modals/subscribe');
 }
 
-//---
-//--- AFFICHER EN RESPONSIV LES MISSIONS PAR REGIONS DU BENEVOLE VIA JAVASCRIPT
-//---
+// ==============================
+// RESPONSIV MISSION DASHBOARD VOLUNTEER
+// ==============================
 
 exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
@@ -42,6 +42,7 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
     } catch (error) {
 
+        res.status(400).json({errorMsg : "Impossible d'afficher la liste des missions sélectionnées pour vous."});
     }
 }
 
@@ -57,6 +58,7 @@ exports.fetchMissionByRegistrationDashboardUser = async (req, res) => {
 
     } catch (error) {
 
+        res.status(400).json({errorMsg : "Impossible d'afficher la liste des missions liées aux inscriptions."});
     }
 }
 
@@ -72,12 +74,13 @@ exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
 
     } catch (error) {
 
+        res.status(400).json({errorMsg : "Impossible d'afficher la liste des missions accomplies."});
     }
 }
 
-//---
-//--- AFICHER LA LISTE DES MISSIONS A L'UTILISATEUR
-//---
+// ==============================
+// LIST OF MISSION FOR VOLUNTEER
+// ==============================
 
 exports.missionUserShow = async (req, res) => {
 
@@ -104,12 +107,16 @@ exports.missionUserShow = async (req, res) => {
 
         console.error(error);
 
-        res.locals.alertMsg = "Impossible d'afficher la liste des missions.";
+        res.locals.errorAlertMsg = "Impossible d'afficher la liste des missions.";
         res.locals.missionsClear = [];
 
         res.render('account/listMissionUser');
     }
 }
+
+// ==============================
+// DISPLAY DASHBOARD VOLUNTEER 
+// ==============================
 
 exports.dashboardAllStats = async (req, res, idUser) => {
 
@@ -155,9 +162,9 @@ exports.dashboardAllStats = async (req, res, idUser) => {
     }
 }
 
-//---
-//--- ENREGISTRER L'INSCRIPTION D'UN BENEVOLE DANS UNE MISSION
-//---
+// ==============================
+// SAVE VOLUNTEER REGISTRATION
+// ==============================
 
 exports.addRegisterMissionUser = async (req, res) => {
 
@@ -197,16 +204,3 @@ exports.addRegisterMissionUser = async (req, res) => {
         return res.json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
     }
 }
-
-/* exports.registerMissionUser = async (idUser, idMission) => {
-
-    try {
-
-        await missionMdl.registerMissionUser(idUser, idMission);
-
-    } catch (error) {
-
-        console.log(error);
-        return false
-    }
-} */

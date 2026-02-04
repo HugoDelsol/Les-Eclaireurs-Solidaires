@@ -15,6 +15,10 @@ const service = require('../../services/services.js');
 
 // Get Functions
 
+// ==============================
+// POST A VOLUNTEER OPPORTUNITY
+// ==============================
+
 exports.addMission = async (req, res) => {
 
     try {
@@ -80,8 +84,7 @@ exports.addMission = async (req, res) => {
             res.render('account/addMission', {
                 pseudoUser: req.session.userExist.firstName,
                 categoriesMission: req.session.categoriesMission,
-                successAlertMsg: 'Missions ajoutée',
-
+                successAlertMsg: 'Missions ajoutée !',
             })
         }
 
@@ -97,9 +100,9 @@ exports.addMission = async (req, res) => {
     }
 }
 
-//---
-//--- AFFICHER A L'ADMIN LES STATS ET MISSIONS SUR LES 30 PROCHAIN JOURS (DASHBOARD)
-//---
+// ==============================
+// DISPLAY STATS NEXT DAYS
+// ==============================
 
 exports.getStatsMissions = async (req, res) => {
 
@@ -132,9 +135,9 @@ exports.getStatsMissions = async (req, res) => {
     }
 }
 
-//---
-//--- RECUPERER LES MISSIONS A VENIR
-//---
+// ==============================
+// GET UPCOMING MISSIONS
+// ==============================
 
 exports.missionAdminShow = async (req, res) => {
 
@@ -159,7 +162,7 @@ exports.missionAdminShow = async (req, res) => {
         console.error(error);
 
         res.render('account/listMissionsAdmin', {
-            alertMsg: "Impossible d'afficher la liste des missions.",
+            errorAlertMsg: "Impossible d'afficher la liste des missions.",
             categoriesMission: req.session.categoriesMission || [],
             regions: req.session.regions || [],
             missions: req.session.getAllMissions || []
@@ -167,16 +170,13 @@ exports.missionAdminShow = async (req, res) => {
     }
 }
 
-//---
-//--- AFICHER LE FORMULAIRE D'AJOUT DE MISSION
-//---
+// ==============================
+// DISPLAY FORM ADD MISSION
+// ==============================
 
 exports.addMissionShow = async (req, res) => {
-
     const categoriesMission = await missionMdl.getAllCategories();
-
     req.session.categoriesMission = categoriesMission;
-
     res.render('account/addMission');
 }
 

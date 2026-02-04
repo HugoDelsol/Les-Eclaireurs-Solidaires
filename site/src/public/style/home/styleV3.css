@@ -23,11 +23,6 @@
     scroll-behavior: smooth;
 } 
 
-.alert {
-    color: red;
-    margin-top: 20px;
-}
-
 .container {
     max-width: 1900px;
     margin: auto;
@@ -462,6 +457,7 @@ form textarea {
 
 .reviewPictureAndName img {
     margin-right: 2em;
+    width: 60px;
 }
 
 /***FOOTER***/
