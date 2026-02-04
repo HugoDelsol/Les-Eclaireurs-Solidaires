@@ -3,6 +3,7 @@ const router = express.Router();
 const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 const userAdminCtrl = require('../controllers/user/userAdminController');
+const messageRecallCtrl = require('../controllers/messageRecall.ctrl');
 
 
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
@@ -29,5 +30,7 @@ router.post('/superAdmin/generateToken', sessionMdw.requireAuth, sessionMdw.supe
 router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.listOfVolunteers);
 router.get('/activeVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.activeVolunteer);
 router.post('/findVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization , userAdminCtrl.findVolunteer);
+
+router.get('/reminder', messageRecallCtrl.reminderShow)
 
 module.exports = router;
