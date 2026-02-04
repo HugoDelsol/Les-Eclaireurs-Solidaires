@@ -140,7 +140,7 @@ const updateUserProfile = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.render('account/userProfileSettings', {
+            return res.render('account/volunteer/userProfileSettings', {
                 pseudoUser: req.session.userExist.firstName,
                 categoriesMission: req.session.categoriesMission,
                 errorAlertMsg: 'Données invalides. Veuillez vérifier les champs.'

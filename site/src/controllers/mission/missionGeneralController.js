@@ -28,7 +28,7 @@ exports.searchByCategories = async (req, res) => {
         const { regionSelected, categorySelected, tripStart, tripEnd } = req.body;
         const user = req.session.userExist;
 
-        renderPathByRole = user.isVolunteer ? 'account/listMissionUser' : 'account/listMissionsAdmin';
+        renderPathByRole = user.isVolunteer ? 'account/volunteer/listMissionUser' : 'account/admin/listMissionsAdmin';
 
         const isDateIncomplete = (tripStart && !tripEnd) || (!tripStart && tripEnd);
 

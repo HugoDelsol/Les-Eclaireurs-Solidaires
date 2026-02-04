@@ -24,7 +24,7 @@ exports.dashboardUser = async (req, res) => {
 exports.userProfilSettingsShow = async (req, res) => {
     const getAllCategories = await missionModel.getAllCategories();
     req.session.categoriesMission = getAllCategories
-    res.render('account/userProfileSettings', {
+    res.render('account/volunteer/userProfileSettings', {
         categoriesMission: req.session.categoriesMission
     });
 }
@@ -108,7 +108,7 @@ exports.editUserProfile = async (req, res) => {
 
         if (!request) {
            res.locals.errorAlertMsg = "Aucune donnée à mettre à jour";
-           return res.render('account/userProfileSettings', renderData);
+           return res.render('account/volunteer/userProfileSettings', renderData);
         }
 
         if (firstname && firstname.trim().length > 0) {
@@ -118,13 +118,13 @@ exports.editUserProfile = async (req, res) => {
 
         res.locals.successAlertMsg = "Profil mis à jour avec succès !";
 
-        return res.render('account/userProfileSettings', renderData);
+        return res.render('account/volunteer/userProfileSettings', renderData);
 
     } catch (error) {
 
         console.error("editUserProfile() --> ", error);
 
         res.locals.errorAlertMsg = "Impossible de modifier les informations de profil";
-        return res.render('account/userProfileSettings', renderData);
+        return res.render('account/volunteer/userProfileSettings', renderData);
     }
 }
