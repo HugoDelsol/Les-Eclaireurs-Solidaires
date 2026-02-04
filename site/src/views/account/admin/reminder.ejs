@@ -1,0 +1,115 @@
+<%- include('../../partials/_head') %>
+<%- include('../../partials/_alert') %>
+
+
+<main>
+    <div>
+        <section>
+            <h1>Gestion des rappels</h1>
+            
+            <form>
+
+                <fieldset>
+                    <legend>Planification</legend>
+                    <label>
+                        <input type="checkbox"> Activer les rappels
+                    </label><br>
+
+                    <label>
+                        Moment d’envoi :
+                        <select>
+                            <option>J-7</option>
+                            <option>J-1</option>
+                            <option>Jour J</option>
+                        </select>
+                    </label><br>
+
+                    <label>
+                        Nombre de rappels :
+                        <input type="number" min="1" max="5">
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Ciblage</legend>
+                    <label>
+                        Bénévoles concernés :
+                        <select>
+                            <option>Tous</option>
+                            <option>Confirmés</option>
+                            <option>Non confirmés</option>
+                        </select>
+                    </label><br>
+
+                    <label>
+                        Exclure certains profils
+                        <input type="checkbox">
+                    </label><br>
+
+                    <label>
+                        Gestion des remplaçants
+                        <input type="checkbox">
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Canal</legend>
+                    <label><input type="checkbox"> Email</label><br>
+                    <label><input type="checkbox"> SMS</label><br>
+                    <label><input type="checkbox"> Notification</label><br>
+
+                    <label>
+                        Ordre d’envoi :
+                        <select>
+                            <option>Email → SMS</option>
+                            <option>SMS → Email</option>
+                        </select>
+                    </label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Suivi</legend>
+                    <label><input type="checkbox" checked disabled> Voir les réceptions</label><br>
+                    <label><input type="checkbox" checked disabled> Voir confirmations</label><br>
+                    <label><input type="checkbox" checked disabled> Historique des envois</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Exceptions</legend>
+                    <button type="button">Annuler le rappel</button>
+                    <button type="button">Relancer non-répondants</button>
+                    <button type="button">Rappel d’urgence</button>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contenu indirect</legend>
+                    <label>
+                        Template :
+                        <select>
+                            <option>Standard</option>
+                            <option>Court</option>
+                            <option>Urgent</option>
+                        </select>
+                    </label><br>
+
+                    <label>
+                        Langue :
+                        <select>
+                            <option>Français</option>
+                            <option>Anglais</option>
+                        </select>
+                    </label><br>
+
+                    <label>
+                        Format :
+                        <select>
+                            <option>Message court</option>
+                            <option>Message long</option>
+                        </select>
+                    </label>
+                </fieldset>
+
+            </form>
+        </section>
+    </div>
+</main>

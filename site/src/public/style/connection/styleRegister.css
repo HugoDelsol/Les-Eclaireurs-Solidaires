@@ -13,9 +13,9 @@
 }
 
 body {
+    min-height: 100vh;
     background: #F8F5EE;
-    position: relative;
-    height: 100vh;
+    position: relative;    
     display: flex;
     align-items: center;
 }
@@ -297,10 +297,6 @@ footer {
     .menuBurger,
     .menuBurgerCross {
         height: 1.2em;
-    }
-
-    body{
-        height: 100%;
     }
 
 }

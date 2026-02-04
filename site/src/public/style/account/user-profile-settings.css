@@ -15,6 +15,10 @@ body {
     position: relative;
 }
 
+.responsiv {
+    display: none;
+}
+
 .btnPrimary {
     display: flex;
     justify-content: center;
@@ -155,5 +159,61 @@ fieldset {
 .relativePosition {
  position: relative;
 }
+
+@media all and (max-width : 1300px) {
+
+    .sideNav {
+        display: none;
+    }
+
+    .container {
+        padding: 100px 0;
+    }
+
+    .line {
+        width: 26%;
+        margin-left: 0;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    .col {
+        width: 100%;
+    }
+
+    .rowLine {
+        flex-direction: column;
+    }
+
+    .rowBtn {
+        flex-direction: column;
+        text-align: center;
+        width: 70%;
+        margin: auto;
+    }
+
+    .btnPrimary {
+        margin-top: 20px;
+    }
+}
+
+@media all and (max-width: 600px) {
+
+    .container {
+        padding: 0;
+    }
+
+    .blocUserProfileSettings {
+        padding: 6em 0;
+        width: 100vw;
+    }
+
+    fieldset {
+        margin: 20px;
+    }
+}
+
 
 

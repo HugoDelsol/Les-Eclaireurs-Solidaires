@@ -1,3 +1,7 @@
+SEPARATION IDENTIFIER ET USER ET ADMIN
+
+
+
 /src
   /controllers  (Logique des routes)
   /models       (Classes et Schémas Data)
