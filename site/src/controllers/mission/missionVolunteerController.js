@@ -101,7 +101,7 @@ exports.missionUserShow = async (req, res) => {
         res.locals.regions = req.session.regions;
         res.locals.categoriesMission = req.session.categoriesMission;
 
-        res.render('account/listMissionUser');
+        res.render('account/volunteer/listMissionUser');
 
     } catch (error) {
 
@@ -110,7 +110,7 @@ exports.missionUserShow = async (req, res) => {
         res.locals.errorAlertMsg = "Impossible d'afficher la liste des missions.";
         res.locals.missionsClear = [];
 
-        res.render('account/listMissionUser');
+        res.render('account/volunteer/listMissionUser');
     }
 }
 
@@ -147,14 +147,14 @@ exports.dashboardAllStats = async (req, res, idUser) => {
         res.locals.statsOnVolunteer = obtainStatsOnVolunteer
         res.locals.nbrTimeAccomplished = count
 
-        res.render('account/dashboardUser')
+        res.render('account/volunteer/dashboardUser')
 
     } catch (error) {
 
         console.log("Controler getAllMissionsByUser: ", error);
         res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
 
-        res.render('account/dashboardUser', {
+        res.render('account/volunteer/dashboardUser', {
             missionByRegion: [],
             missionsUser: [],
             historyMissionUser: [],

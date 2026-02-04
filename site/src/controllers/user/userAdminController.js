@@ -34,7 +34,7 @@ exports.tokenView = async (req, res) => {
     res.locals.admins = admins.resultAdmins;
     res.locals.superAdmins = admins.resultSuperAdmins;
 
-    res.render('account/generateToken');
+    res.render('account/admin/generateToken');
 }
 
 // ==============================
@@ -54,14 +54,14 @@ exports.listOfVolunteers = async (req, res) => {
 
         res.locals.listUsers = allVolunteers.resultAllVolunteers;
 
-        res.render('account/listOfVolunteers');
+        res.render('account/admin/listOfVolunteers');
 
     } catch (error) {
 
         console.log(error);
         res.locals.listUsers = [];
         res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles";
-        res.render('account/listOfVolunteers');
+        res.render('account/admin/listOfVolunteers');
     }
 }
 
@@ -77,14 +77,14 @@ exports.activeVolunteer = async (req, res) => {
 
         res.locals.listUsers = listOfVolunteers.resultActiveVolunteerCurrentDate
 
-        res.render('account/listOfVolunteers');
+        res.render('account/admin/listOfVolunteers');
         
     } catch (error) {
 
         console.log(error);
         res.locals.listUsers = [];
         res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles actifs";
-        res.render('account/listOfVolunteers');
+        res.render('account/admin/listOfVolunteers');
     }
 }
 
@@ -101,14 +101,14 @@ exports.findVolunteer = async (req, res) => {
             : res.locals.errorAlertMsg = ""
         ;
         
-        res.render('account/listOfVolunteers');
+        res.render('account/admin/listOfVolunteers');
         
     } catch (error) {
         
         console.log(error);
         res.locals.listUsers = [];
         res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles recherchés";
-        res.render('account/listOfVolunteers');
+        res.render('account/admin/listOfVolunteers');
     }
 }
 
@@ -135,7 +135,7 @@ exports.generateToken = async (req, res) => {
             generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
         }
 
-        res.render('account/generateToken', {
+        res.render('account/admin/generateToken', {
             tokenAdmin: generateTokenAdmin,
             tokenSuper: generateTokenSuper,
         })
@@ -144,7 +144,7 @@ exports.generateToken = async (req, res) => {
 
         console.log(error);
         res.locals.errorAlertMsg = "Problème lors de la génération du token.";
-        res.render('account/generateToken', {
+        res.render('account/admin/generateToken', {
             tokenAdmin: [],
             tokenSuper: [],
         })
