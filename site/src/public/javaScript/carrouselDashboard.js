@@ -49,14 +49,13 @@ async function carrouselMissionByRegion() {
         }) 
 
         if (!response.ok) {
-            console.log("Erreur lors de la récupération des données");
-            alertFront.textContent = "Une erreur est survenue. Merci de réessayer dans quelques instants."
+            const error = await response.json();
+            alertFrontOfficeError.textContent = error.errorMsg            
+            ifNoDataRegion.style.display = "none";
             return;
         }
 
         dataRegion = await response.json();
-
-        console.log(dataRegion)
 
         dataRegion.forEach((m) => {
             const img = new Image();
@@ -73,7 +72,7 @@ async function carrouselMissionByRegion() {
 
     } catch (error) {
 
-        console.log(error);
+        console.log("test",error);
     }
 }
 
@@ -126,23 +125,23 @@ async function carrouselMissionByRegistration() {
         })
 
         if (!response.ok) {
-            console.log("Erreur lors de la récupération des données");
-            alertFront.textContent = "Une erreur est survenue. Merci de réessayer dans quelques instants."
+            const error = await response.json()
+            alertFrontOfficeError.textContent = error.errorMsg
+            ifNoDataRegister.style.display = "none";
             return;
         }
 
         dataRegistration = await response.json();
 
-        dataRegistration.forEach((m) => {
-            const img = new Image();
-            img.src = m.mission_img;
-        });
-
         if (dataRegistration.length == 0) {
-
             ifNoDataRegister.style.display = "none";
             return;
         }
+
+        dataRegistration.forEach((m) => {
+            const img = new Image();
+            img.src = m.mission_img;
+        });        
 
         updateCarrouselRegistration()
 
@@ -203,8 +202,9 @@ async function carrouselMissionAccomplished() {
         })
 
         if (!response.ok) {
-            console.log("Erreur lors de la récupération des données");
-            alertFront.textContent = "Une erreur est survenue. Merci de réessayer dans quelques instants."
+            const error = await response.json()
+            alertFrontOfficeError.textContent = error.errorMsg;            
+            ifNoDataAccomplished.style.display = "none";
             return;
         }
 
@@ -216,7 +216,6 @@ async function carrouselMissionAccomplished() {
         });
 
         if (dataAccomplished.length == 0) {
-
             ifNoDataAccomplished.style.display = "none";
             return;
         }

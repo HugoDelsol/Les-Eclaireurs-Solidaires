@@ -63,7 +63,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: center;
     background: linear-gradient(to right, rgba(249, 207, 128, 0.8), rgba(249, 207, 128, 0.2));
     backdrop-filter: blur(4px);
@@ -76,6 +76,12 @@
     width: 112px;
     opacity: 0.8;
     margin-bottom: 1em;
+}
+
+.sideNav .logoImg{
+    width: 40px;
+    height: auto;
+    margin: 0 auto;
 }
 
 .sideNav h2 {

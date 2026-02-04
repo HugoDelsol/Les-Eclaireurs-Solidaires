@@ -60,7 +60,7 @@ exports.listOfVolunteers = async (req, res) => {
 
         console.log(error);
         res.locals.listUsers = [];
-        res.locals.alertMsg = "Impossible d'afficher la liste des bénévoles";
+        res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles";
         res.render('account/listOfVolunteers');
     }
 }
@@ -83,7 +83,7 @@ exports.activeVolunteer = async (req, res) => {
 
         console.log(error);
         res.locals.listUsers = [];
-        res.locals.alertMsg = "Impossible d'afficher la liste des bénévoles actifs";
+        res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles actifs";
         res.render('account/listOfVolunteers');
     }
 }
@@ -97,8 +97,8 @@ exports.findVolunteer = async (req, res) => {
         res.locals.findVolunteerList = await userModel.findVolunteer(inputValue);
 
         res.locals.findVolunteerList.length === 0 
-            ? res.locals.alertMsg = "Aucun résultat pour cette recherche."
-            : res.locals.alertMsg = ""
+            ? res.locals.errorAlertMsg = "Aucun résultat pour cette recherche."
+            : res.locals.errorAlertMsg = ""
         ;
         
         res.render('account/listOfVolunteers');
@@ -107,7 +107,7 @@ exports.findVolunteer = async (req, res) => {
         
         console.log(error);
         res.locals.listUsers = [];
-        res.locals.alertMsg = "Impossible d'afficher la liste des bénévoles recherchés";
+        res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles recherchés";
         res.render('account/listOfVolunteers');
     }
 }
@@ -135,8 +135,6 @@ exports.generateToken = async (req, res) => {
             generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
         }
 
-        console.log(generateTokenAdmin, generateTokenSuper)
-
         res.render('account/generateToken', {
             tokenAdmin: generateTokenAdmin,
             tokenSuper: generateTokenSuper,
@@ -144,7 +142,12 @@ exports.generateToken = async (req, res) => {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        res.locals.errorAlertMsg = "Problème lors de la génération du token.";
+        res.render('account/generateToken', {
+            tokenAdmin: [],
+            tokenSuper: [],
+        })
     }
 }
 
@@ -187,7 +190,7 @@ exports.saveAdmin = async (req, res) => {
         )
 
         if (saveAdmin) {
-            res.locals.alertMsg = "Veuillez vous connecter pour accéder à votre compte.";
+            res.locals.successAlertMsg = "Veuillez vous connecter pour accéder à votre compte.";
             res.render('connection/signIn');
         }
 
@@ -199,7 +202,7 @@ exports.saveAdmin = async (req, res) => {
             email: req.body.email,
             password: "",
             passwordConfirm: "",
-            alertMsg: error.message
+            errorAlertMsg: error.message
         });
     }
 }

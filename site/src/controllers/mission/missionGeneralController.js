@@ -15,6 +15,10 @@ const service = require('../../services/services.js');
 
 // Get Functions
 
+// ==============================
+// SEARCH BY CATEGORY, REGION AND DATE
+// ==============================
+
 exports.searchByCategories = async (req, res) => {
     
     let renderPathByRole = "home/404"
@@ -62,9 +66,9 @@ exports.searchByCategories = async (req, res) => {
     }
 }
 
-//---
-//--- SYSTEME D'AUTOCOMPLETION
-//---
+// ==============================
+// AUTO COMPLETION SYSTEM FOR INSERTING CITY IN FORM
+// ==============================
 
 exports.searchCity = async (req, res) => {
 
@@ -91,13 +95,13 @@ exports.searchCity = async (req, res) => {
 
     } catch (error) {
 
-        console.error('Erreur:', error);
+        console.error('Erreur searchCity :', error);
     }
 }
 
-//---
-//--- AFFICHER LES DONNEES D'UNE MISSION
-//---
+// ==============================
+// GET DATA MISSION SHOW
+// ==============================
 
 exports.getDataMission = async (req, res) => {
     console.log(req.params.idMission);
