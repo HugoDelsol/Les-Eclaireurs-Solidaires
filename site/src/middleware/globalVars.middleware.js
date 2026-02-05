@@ -40,6 +40,8 @@ const centralizedVar = (req, res, next) => {
     res.locals.tokenSuper = null;
     res.locals.token = null;
 
+
+    res.locals.recallIsChecked  = null;
     next();
 }
 
