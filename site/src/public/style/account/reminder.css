@@ -1,0 +1,111 @@
+
+* {
+    margin: 0;
+    color: rgb(9, 17, 39);
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
+.managementSection .btnSecondary {
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid rgba(0, 0, 0, 0.11);
+    background-color: #F8F5EE;
+    padding: 0.6em 2em;
+    border-radius: 2em;
+    font-weight: 400;
+}
+
+.managementSection .btnHover {
+    display: inline-block;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.managementSection .btnHover:hover {
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /*border-inline-start-width: 5px;*/
+    border-color: #00000075;
+}
+
+.container {
+    display: flex;
+}
+
+h1 {
+    font-weight: 600;
+}
+
+select {
+    padding: 4px 20px;
+    border-radius: 6px;
+    border: 1px solid rgba(128, 128, 128, 0.288);
+    background-color: white;
+}
+
+.marginLeft {
+    margin-left: 21px ;
+}
+
+legend {
+    font-weight: 600;
+}
+
+label {
+    display: inline-block;
+    margin: 2px 0;
+}
+
+form .jutify {
+    margin-bottom: 14px;
+    display: flex;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+form .lineTitle {
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+
+.line {
+    border-bottom: 0.2em solid #F28B50;
+    border-radius: 4em;
+    width: 16%;
+    margin-left: 20px;
+}
+
+.managementSection {
+	width: 74vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+fieldset {
+    margin: 8px 0;
+    padding: 10px ;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.452);
+}
+
+.bloc{
+    background: linear-gradient(to top, #f5c09f, #ffffff00);
+    box-shadow: 0px 0px 12px rgba(30, 28, 165, 0.15);
+    border-radius: 1em;
+    padding: 20px 40px;
+    margin: 10px 0;
+}
+
+input {
+    margin-right: 6px;
+}

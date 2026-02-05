@@ -25,7 +25,7 @@
                                 <select name="regionSelected" id="regionSelected">
                                     <option value="">Régions</option>
                                     <% for (let r of regions) { %>
-                                        <option value="<% r.id_region %>" <% r.id_region==searchFilters.regionSelected
+                                        <option value="<% r.id_region %>" <% r.id_region == searchFilters.regionSelected
                                             ? "selected" : "" %> >
                                             <%= r.region_name %>
                                         </option>
@@ -35,7 +35,7 @@
                                     <option value="">Catégories</option>
                                     <% for (let c of categoriesMission) { %>
                                         <option value="<% c.id_mission_category %>" <%
-                                            c.id_mission_category==searchFilters.categorySelected ? "selected" : "" %> >
+                                            c.id_mission_category == searchFilters.categorySelected ? "selected" : "" %> >
                                             <%= c.mission_category_name %>
                                         </option>
                                         <% } %>

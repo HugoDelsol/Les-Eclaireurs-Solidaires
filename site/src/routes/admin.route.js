@@ -31,6 +31,7 @@ router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministra
 router.get('/activeVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.activeVolunteer);
 router.post('/findVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization , userAdminCtrl.findVolunteer);
 
-router.get('/reminder', messageRecallCtrl.reminderShow)
+router.get('/reminder', messageRecallCtrl.reminderShow);
+router.post('/recallManagement', messageRecallCtrl.recallManagement);
 
 module.exports = router;
