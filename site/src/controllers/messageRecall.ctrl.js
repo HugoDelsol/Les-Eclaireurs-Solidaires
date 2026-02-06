@@ -1,73 +1,40 @@
-const jsonData = require('../config/checkBoxData.json')
+const service = require('../services/recallService');
+const fs = require('fs');
 
 exports.reminderShow = async (req, res) => {
 
-    console.log(jsonData)
-    res.render('account/admin/reminder')
+    try {
+
+        const rServ = new service.RecallService();
+      
+        res.render('account/admin/reminder', {
+            stringVal: rServ.parseReadFile()
+        })
+
+    } catch (error) {
+
+    }
 }
 
 exports.recallManagement = async (req, res) => {
 
     try {
 
-        /* function removeValue(cible) {
+        const rServ = new service.RecallService;
 
-            return function (value, index, arr) { 
-                
-                if (value.name === cible) {
-                    arr.splice(index, 1);
-                    return true;
-                }
-                return false;
-            }
-        } */
+        const checkBoxData = req.body
 
-        let data = req.body
-
-        //console.log("efef", data)
-
-        for (let d in data) {
-
-            //console.log("json ----",jsonData[d])
-            console.log("keydata ---", data[d])
-
-            if (data[d] == "true") {
-                jsonData[d] = true
-            } else {
-
-            }
-            jsonData[d] = true
-            const jsonString = JSON.stringify(jsonData, null, 2)
-
-            console.log(jsonString)
-
-
-
-            /* if (d) {
-
-                let string = d
-                
-                jsonData[d] = true
-                recallIsCheckeds = true
-                
-                //console.log(jsonData.string)
-            } else {
-                jsonData.recallIsChecked = false
-                recallIsCheckeds = false
-            } */
-        }
-        console.log(jsonData)
-
-
-        //console.log(jsonData)
+        let jsonData = JSON.stringify(checkBoxData);
+        
+        rServ.writeFile(jsonData);
 
         res.render('account/admin/reminder', {
-            //recallIsChecked: recallIsCheckeds
+            stringVal: rServ.parseReadFile(),
+            successAlertMsg: "Vos modifications ont bien été prises en compte."
         })
 
     } catch (error) {
 
         console.log(error)
-
     }
 }

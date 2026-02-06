@@ -1,0 +1,193 @@
+Le script cherche ici : /mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/config/checkBoxData.json
+test
+{
+  recallIsCheckeds: 'true',
+  selectedDelay: 'J-7',
+  mail: 'true',
+  sms: 'true',
+  push: 'true'
+}
+{
+  recallIsCheckeds: 'true',
+  selectedDelay: 'J-7',
+  mail: 'true',
+  sms: 'true',
+  push: 'true'
+}
+test
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25
+            for ()
+                 ^
+
+SyntaxError: Unexpected token ')'
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
+    at Module._compile (node:internal/modules/cjs/loader:1320:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:1:17)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+
+Node.js v18.19.1
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25
+            const result = await module.dedeef(str)
+                                               ^
+
+ReferenceError: str is not defined
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25:48)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '../models'
+Require stack:
+- /mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js
+- /mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Module.require (node:internal/modules/cjs/loader:1225:19)
+    at require (node:internal/modules/helpers:177:18)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:4:22)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Module.require (node:internal/modules/cjs/loader:1225:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js',
+    '/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js'
+  ]
+}
+
+Node.js v18.19.1
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25
+            const result = await module.managementRecall(str)
+                                                         ^
+
+ReferenceError: str is not defined
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25:58)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
+{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
+dsdsds { selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
+                s.push(tabCheck)
+                  ^
+
+TypeError: s.push is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:19)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
+                stringVal[s].push(tabCheck)
+                             ^
+
+TypeError: stringVal[s].push is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:30)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
+                stringVal[s].push(tabCheck)
+                             ^
+
+TypeError: stringVal[s].push is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:30)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
+                stringVal[s].push(tabCheck)
+                             ^
+
+TypeError: stringVal[s].push is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:30)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:30
+                stringVal[s].push(tabCheck)
+                             ^
+
+TypeError: stringVal[s].push is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:30:30)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
+J-7
+true
+true
+true
+[]
+{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
+selectedDelay
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:31
+                s.push(tabCheck)
+                  ^
+
+TypeError: s.push is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:31:19)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v18.19.1
+[ 'selectedDelay', 'mail', 'sms', 'push' ]
