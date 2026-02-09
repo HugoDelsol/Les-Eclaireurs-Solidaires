@@ -25,6 +25,8 @@ exports.recallManagement = async (req, res) => {
         const checkBoxData = req.body
 
         let jsonData = JSON.stringify(checkBoxData);
+
+        console.log(checkBoxData)
         
         rServ.writeFile(jsonData);
 

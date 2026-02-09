@@ -9,18 +9,18 @@
         <%- include('../../partials/_sideNavAdmin') %>
         <section class="managementSection">
             <form class="recallManagement bloc" method="post" action="/admin/recallManagement" >
-                <div class="jutify">                    
+                <div class="justify">                    
                     <div class="lineTitle">                    
                         <h1>Gestion des rappels</h1>  
                         <div class="line"></div>
                     </div> 
-                    <button type="submit" class="btnSecondary btnHover">Enregistrer les modifications</button> 
+                    <button type="submit" class="btnSecondary btnHover">Enregistrer</button> 
                 </div>   
                 <fieldset>
                     <legend>Paramètres d'envoi</legend>
-                    <label for="img" class="rowReverse">
-                    <input <%= stringVal.recallIsCheckeds ? "checked" : "" %> type="checkbox" value="true" name="recallIsCheckeds" id="img">- Activer les rappels automatiques
-                       <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    <label for="imgActivated" class="rowReverse">
+                        <input <%= stringVal.recallIsCheckeds ? "checked" : "" %> type="checkbox" value="true" name="recallIsCheckeds" id="imgActivated">- Activer les rappels automatiques
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
                     </label><br>
 
                     <label class="marginLeft">
@@ -47,32 +47,51 @@
 
                 <fieldset>
                     <legend>Canaux prioritaires</legend>
-                    <label><input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="mail">- Email (Détails complets)</label><br>
-                    <label><input <%= stringVal.sms ? "checked" : "" %> type="checkbox" value="true" name="sms" id="sms">- SMS (Urgent / Rappel jour J)</label><br>
-                    <label><input <%= stringVal.push ? "checked" : "" %> type="checkbox" value="true" name="push" id="push">- Notification Push (Alerte mobile)</label><br>
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail">- Email (Détails complets)
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    </label><br>
+                    <label for="imgSms" class="rowReverse">
+                        <input <%= stringVal.sms ? "checked" : "" %> type="checkbox" value="true" name="sms" id="imgSms">- SMS (Urgent / Rappel jour J)
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div>                         
+                    </label><br>
+                    <label for="imgPush" class="rowReverse">
+                        <input <%= stringVal.push ? "checked" : "" %> type="checkbox" value="true" name="push" id="imgPush">- Notification Push (Alerte mobile)
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div>                         
+                    </label><br>
                 </fieldset>
-
+                
                 <fieldset>
                     <legend>Pilotage et Engagement</legend>
-                    <label><input type="checkbox"> - Alerte de vigilance : Me prévenir si le taux d'annulation dépasse 50%</label><br>
-                    <label><input type="checkbox"> - Relance intelligente : Relancer uniquement ceux qui n'ont pas confirmé</label><br>
-                    <label><input type="checkbox"> - Clôture de mission : Envoyer un message de remerciement automatique</label>
+                    <label for="imgAlert" class="rowReverse">
+                        <input <%= stringVal.alert ? "checked" : "" %> type="checkbox" value="true" name="alert" id="imgAlert"> - Alerte de vigilance : Me prévenir si le taux d'annulation dépasse 50%
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div>
+                    </label><br>
+                    <label for="imgRestart" class="rowReverse">
+                        <input <%= stringVal.restart ? "checked" : "" %> type="checkbox" value="true" name="restart" id="imgRestart"> - Relance intelligente : Relancer uniquement ceux qui n'ont pas confirmé
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div>
+                    </label><br>
+                    <label for="imgThank" class="rowReverse">
+                        <input <%= stringVal.thank ? "checked" : "" %> type="checkbox" value="true" name="thank" id="imgThank">  - Clôture de mission : Envoyer un message de remerciement automatique
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div>
+                    </label>
                 </fieldset>
                
 
             </form>
             <form class="opportunitieManagement bloc">
-                <div class="jutify">                    
+                <div class="justify">                    
                     <div class="lineTitle">                    
                         <h1>Promotion des Opportunités</h1>  
                         <div class="line"></div>
                     </div>      
-                    <button type="submit" class="btnSecondary btnHover">Enregistrer les modifications</button> 
+                    <button type="submit" class="btnSecondary btnHover">Enregistrer</button> 
                 </div>
                 <fieldset>
                     <legend>Planification</legend>
-                    <label>
-                        <input type="checkbox">- Activer la diffusion automatique
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail">- Activer la diffusion automatique
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
                     </label><br>
 
                     <label  class="marginLeft">
@@ -95,16 +114,34 @@
 
                 <fieldset>
                     <legend>Canal</legend>
-                    <label><input type="checkbox">- Email</label><br>
-                    <label><input type="checkbox">- SMS</label><br>
-                    <label><input type="checkbox">- Notification</label><br>
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail">- Email
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    </label><br>
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail">- SMS
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    </label><br>
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail">- Notification
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    </label><br>
                 </fieldset>
                 
                 <fieldset>
                     <legend>Ciblage des volontaires</legend>                    
-                    <label><input type="checkbox" name="preferences">- Par affinité : Selon les préférences et types de missions favoris</label><br>                  
-                    <label><input type="checkbox" name="tous_volontaires">- Par fidélité : Cibler les volontaires les plus actifs</label><br>                   
-                    <label><input type="checkbox" name="moins_engages">- Campagne de réactivation : Cibler les profils inactifs (longue période sans mission)</label> 
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail"> - Par affinité : Selon les préférences et types de missions favoris
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    </label><br>                  
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail"> - Par fidélité : Cibler les volontaires les plus actifs
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    </label><br>             
+                    <label for="imgEmail" class="rowReverse">
+                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail"> - Campagne de réactivation : Cibler les profils inactifs (longue période sans mission) 
+                        <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
+                    </label><br>
                 </fieldset>
 
             </form>
