@@ -78,7 +78,7 @@ exports.activeVolunteer = async (req, res) => {
         res.locals.listUsers = listOfVolunteers.resultActiveVolunteerCurrentDate
 
         res.render('account/admin/listOfVolunteers');
-        
+
     } catch (error) {
 
         console.log(error);
@@ -96,15 +96,15 @@ exports.findVolunteer = async (req, res) => {
 
         res.locals.findVolunteerList = await userModel.findVolunteer(inputValue);
 
-        res.locals.findVolunteerList.length === 0 
+        res.locals.findVolunteerList.length === 0
             ? res.locals.errorAlertMsg = "Aucun résultat pour cette recherche."
             : res.locals.errorAlertMsg = ""
-        ;
-        
+            ;
+
         res.render('account/admin/listOfVolunteers');
-        
+
     } catch (error) {
-        
+
         console.log(error);
         res.locals.listUsers = [];
         res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles recherchés";
@@ -133,7 +133,16 @@ exports.generateToken = async (req, res) => {
         } else if (req.body.emailTokenAdmin) {
 
             generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
+
+        } else {
+
+            res.locals.errorAlertMsg = "Aucune adresse e-mail n’a été renseignée."
         }
+
+        const admins = await userModel.getAllAdmins();
+
+        res.locals.admins = admins.resultAdmins;
+        res.locals.superAdmins = admins.resultSuperAdmins;
 
         res.render('account/admin/generateToken', {
             tokenAdmin: generateTokenAdmin,
