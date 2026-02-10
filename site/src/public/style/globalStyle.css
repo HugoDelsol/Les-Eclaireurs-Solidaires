@@ -8,3 +8,7 @@
     text-decoration: none;
     scroll-behavior: smooth;
 }
+
+body {
+    opacity: 0;
+}
