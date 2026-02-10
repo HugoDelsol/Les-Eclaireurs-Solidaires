@@ -18,9 +18,12 @@ class RecallService {
         return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     }
 
-    sendEmail(templateModel, users) {
+    async sendEmail(templateModel, users) {
 
         for (const u of users) {
+
+            this.updateTemplate(templateModel, u)
+            break;
 
             let transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -42,10 +45,11 @@ class RecallService {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log('Email sent: ' + info.response);
+                    console.log('Email sent: ', info.response);
                 }
             });
 
+            await messageMdl.updateValueSend(u.id_registration);
         }
     }
 
@@ -65,6 +69,18 @@ class RecallService {
             const getUsersWithMissionInNextValue = await messageMdl.getUsersWithMissionInNextValue(7);
             return getUsersWithMissionInNextValue;
         }
+    }
+
+    updateTemplate(recallModel, u) {
+
+        let content = recallModel.message_content;
+
+        content = content.replace("{{mission}}", u.mission_title);
+        content = content.replace("{{date}}", 7777);
+
+
+
+        console.log(content)
 
     }
 
@@ -78,17 +94,19 @@ class RecallService {
 
                 const selectUsersRecallsByDelay = await this.selectMissionRecallsByDelay(stringVal.selectedDelay);
 
+                console.log(selectUsersRecallsByDelay)
+
                 if (stringVal.emailMessage) {
                     this.sendEmail(recallModel[0], selectUsersRecallsByDelay);
                 }
-                
-               /*  if (stringVal.smsMessage) {
-                    this.sendSms(recallModel[1], selectUsersRecallsByDelay);
-                } */
 
-               /*  if (stringVal.pushMessage) {
-                    this.sendPush(recallModel[2], selectUsersRecallsByDelay);
-                }  */  
+                /*  if (stringVal.smsMessage) {
+                     this.sendSms(recallModel[1], selectUsersRecallsByDelay);
+                 } */
+
+                /*  if (stringVal.pushMessage) {
+                     this.sendPush(recallModel[2], selectUsersRecallsByDelay);
+                 }  */
 
             } else {
 

@@ -14,7 +14,6 @@ exports.recallModel = async () => {
 
         console.log(error)
     }
-
 }
 
 exports.getUsersWithMissionInNextValue = async (value) => {
@@ -22,19 +21,40 @@ exports.getUsersWithMissionInNextValue = async (value) => {
     try {
 
         const request = `
-            SELECT identifier_mail FROM registration_mission
+            SELECT id_registration, identifier_mail, mission_title, mission_date, mission_start_time, mission_place_name FROM registration_mission
             LEFT JOIN mission ON _id_mission = id_mission 
             LEFT JOIN user ON _id_user = id_user
             LEFT JOIN identifier ON _id_identifier = id_identifier
             WHERE mission_date >= NOW() AND mission_date <= DATE_ADD(NOW(), INTERVAL ${value} DAY) 
-            GROUP BY identifier_mail;
+            AND registration_mission_recall_send = 1
+            GROUP BY id_registration, identifier_mail, mission_title, mission_date, mission_start_time, mission_place_name;
         `
         const [result] = await db.query(request);
+
+        console.log(result)
 
         return result;
 
     } catch (error) {
 
+        console.log(error)
+    }
+}
+
+exports.updateValueSend = async (idRegistration) => {
+
+    try {
+        
+        const update = `
+            UPDATE registration_mission
+            SET registration_mission_recall_send = 1
+            WHERE id_registration = ?
+        `
+
+        await db.query(update,[idRegistration]);
+
+    } catch (error) {
+        
         console.log(error)
     }
 }
