@@ -1,25 +1,124 @@
-Le script cherche ici : /mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/config/checkBoxData.json
-test
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832097d8dbsm186173865e9.4 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832097d8dbsm186173865e9.4 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e1a8esm56590095e9.5 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e1a8esm56590095e9.5 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
 {
   recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  mail: 'true',
-  sms: 'true',
-  push: 'true'
+  selectedDelay: 'J-3',
+  emailMessage: 'true',
+  smsMessage: 'true',
+  pushMessage: 'true',
+  alert: 'true',
+  restart: 'true',
+  thank: 'true'
 }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209af8e0sm198887035e9.5 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209af8e0sm198887035e9.5 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
 {
   recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  mail: 'true',
-  sms: 'true',
-  push: 'true'
+  selectedDelay: 'J-3',
+  emailMessage: 'true',
+  smsMessage: 'true',
+  pushMessage: 'true',
+  alert: 'true',
+  restart: 'true',
+  thank: 'true'
 }
-test
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25
-            for ()
-                 ^
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362974b230sm37987664f8f.36 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362974b230sm37987664f8f.36 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832039d238sm195742975e9.0 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832039d238sm195742975e9.0 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53
+        const delayOneDay = await messageMdl.delayOneDay()
+        ^^^^^
 
-SyntaxError: Unexpected token ')'
+SyntaxError: Unexpected token 'const'
     at internalCompileFunction (node:internal/vm:73:18)
     at wrapSafe (node:internal/modules/cjs/loader:1274:20)
     at Module._compile (node:internal/modules/cjs/loader:1320:27)
@@ -28,434 +127,1092 @@ SyntaxError: Unexpected token ')'
     at Module._load (node:internal/modules/cjs/loader:1013:12)
     at Module.require (node:internal/modules/cjs/loader:1225:19)
     at require (node:internal/modules/helpers:177:18)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:1:17)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:2:17)
     at Module._compile (node:internal/modules/cjs/loader:1356:14)
 
 Node.js v18.19.1
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25
-            const result = await module.dedeef(str)
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:60
+        const delaySevenDay = await messageMdl.delaySevenDay()
                                                ^
 
-ReferenceError: str is not defined
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25:48)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
+TypeError: messageMdl.delaySevenDay is not a function
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:60:48)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-node:internal/modules/cjs/loader:1137
-  throw err;
-  ^
-
-Error: Cannot find module '../models'
-Require stack:
-- /mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js
-- /mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js
-    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
-    at Module._load (node:internal/modules/cjs/loader:975:27)
-    at Module.require (node:internal/modules/cjs/loader:1225:19)
-    at require (node:internal/modules/helpers:177:18)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:4:22)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Module.require (node:internal/modules/cjs/loader:1225:19) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [
-    '/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js',
-    '/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js'
-  ]
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e31a3sm62591705e9.6 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e31a3sm62591705e9.6 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
 }
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7d55c9sm58944715e9.8 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7d55c9sm58944715e9.8 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48320983f18sm166460985e9.8 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48320983f18sm166460985e9.8 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7e64b0sm74461325e9.11 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7e64b0sm74461325e9.11 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc26sm32214787f8f.22 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc26sm32214787f8f.22 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-43629756bc3sm31736323f8f.39 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-43629756bc3sm31736323f8f.39 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc1bsm36654708f8f.28 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc1bsm36654708f8f.28 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436297450b4sm35092735f8f.34 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436297450b4sm35092735f8f.34 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b25casm35350413f8f.4 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b25casm35350413f8f.4 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
+
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25
-            const result = await module.managementRecall(str)
-                                                         ^
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
 
-ReferenceError: str is not defined
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:25:58)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
-{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
-dsdsds { selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
-                s.push(tabCheck)
-                  ^
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
 
-TypeError: s.push is not a function
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:19)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
-                stringVal[s].push(tabCheck)
-                             ^
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
 
-TypeError: stringVal[s].push is not a function
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:30)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
-                stringVal[s].push(tabCheck)
-                             ^
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
 
-TypeError: stringVal[s].push is not a function
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:30)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28
-                stringVal[s].push(tabCheck)
-                             ^
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
 
-TypeError: stringVal[s].push is not a function
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:28:30)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:30
-                stringVal[s].push(tabCheck)
-                             ^
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
 
-TypeError: stringVal[s].push is not a function
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:30:30)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
+
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
-J-7
-true
-true
-true
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35
+            subject: templateModel.message_object,
+                                   ^
+
+TypeError: Cannot read properties of undefined (reading 'message_object')
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:35:36)
+    at RecallService.delayMission (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+Node.js v18.19.1
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436297455eesm34570831f8f.29 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436297455eesm34570831f8f.29 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209c1a64sm115250075e9.12 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209c1a64sm115250075e9.12 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296bd4desm34443226f8f.18 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296bd4desm34443226f8f.18 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b2110sm34641836f8f.3 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b2110sm34641836f8f.3 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
 []
-{ selectedDelay: 'J-7', mail: 'true', sms: 'true', push: 'true' }
-selectedDelay
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:31
-                s.push(tabCheck)
-                  ^
-
-TypeError: s.push is not a function
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:31:19)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:7:7)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
-    at node:internal/main/run_main_module:28:49
-
-Node.js v18.19.1
-[ 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push', 'alert' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push', 'alert' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push', 'alert' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push', 'alert' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push', 'alert' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push', 'alert' ]
-[ 'recallIsCheckeds', 'selectedDelay', 'mail', 'sms', 'push', 'alert' ]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:18
-        if ()
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7e50casm57298445e9.8 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7e50casm57298445e9.8 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fa4csm33097306f8f.26 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fa4csm33097306f8f.26 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7e64b0sm75563115e9.11 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7e64b0sm75563115e9.11 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832096f127sm157822825e9.6 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832096f127sm157822825e9.6 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+TypeError: this.delayMission is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:76:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7f1e4fsm84646705e9.15 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7f1e4fsm84646705e9.15 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48323c12d74sm213820425e9.2 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48323c12d74sm213820425e9.2 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc26sm32318839f8f.22 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc26sm32318839f8f.22 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832040e91fsm117679615e9.6 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832040e91fsm117679615e9.6 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e11f5sm58632065e9.4 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e11f5sm58632065e9.4 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53
+            return getUsersWithMissionInNext24Hours
             ^
 
-SyntaxError: Unexpected token ')'
-    at internalCompileFunction (node:internal/vm:73:18)
-    at wrapSafe (node:internal/modules/cjs/loader:1274:20)
-    at Module._compile (node:internal/modules/cjs/loader:1320:27)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Module.require (node:internal/modules/cjs/loader:1225:19)
-    at require (node:internal/modules/helpers:177:18)
-    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:1:17)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+ReferenceError: getUsersWithMissionInNext24Hours is not defined
+    at RecallService.selectMissionRecallsByDelay (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:53:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-[ 'selectedDelay', 'mail', 'sms', 'push', 'alert', 'restart', 'thank' ]
-no activated
-no activated
-no activated
-no activated
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832039d238sm196707285e9.0 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832039d238sm196707285e9.0 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+undefined
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483203d5ef7sm174617735e9.1 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483203d5ef7sm174617735e9.1 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+J-3
+undefined
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d75a77b69052e-5063929099asm98767551cf.22 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials d75a77b69052e-5063929099asm98767551cf.22 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+J-7
+undefined
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376accfc0bsm20278262f8f.32 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376accfc0bsm20278262f8f.32 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+7
+[]
+[]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376accfc0bsm20285157f8f.32 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376accfc0bsm20285157f8f.32 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+[]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b2facsm35140951f8f.9 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b2facsm35140951f8f.9 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+[]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209af8e0sm200370335e9.5 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209af8e0sm200370335e9.5 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7f1e4fsm85494795e9.15 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7f1e4fsm85494795e9.15 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d930902sm53140215e9.15 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d930902sm53140215e9.15 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376accfc0bsm20313339f8f.32 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376accfc0bsm20313339f8f.32 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+[ { identifier_mail: 'mamie@gmail.com' } ]
+ReferenceError: u is not defined
+    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:38:17)
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:89:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e1a5esm63525675e9.4 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d5e1a5esm63525675e9.4 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376bd5a074sm16968550f8f.11 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4376bd5a074sm16968550f8f.11 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7d6f3esm55762655e9.9 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7d6f3esm55762655e9.9 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209e0857sm114592695e9.16 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483209e0857sm114592695e9.16 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+[ { identifier_mail: 'mamie@gmail.com' } ]
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-43629745f7asm30618447f8f.33 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-43629745f7asm30618447f8f.33 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
 [
   'recallIsCheckeds',
   'selectedDelay',
-  'mail',
-  'sms',
-  'push',
+  'emailMessage',
+  'smsMessage',
+  'pushMessage',
   'alert',
   'restart',
   'thank'
 ]
+[ { identifier_mail: 'mamie@gmail.com' } ]
+recallIsCheckeds
+selectedDelay
+emailMessage
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d82a4afsm132360415e9.11 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d82a4afsm132360415e9.11 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
 [
   'recallIsCheckeds',
   'selectedDelay',
-  'mail',
-  'sms',
-  'push',
+  'emailMessage',
+  'smsMessage',
+  'pushMessage',
   'alert',
   'restart',
   'thank'
 ]
+[ { identifier_mail: 'mamie@gmail.com' } ]
+recallIsCheckeds
+selectedDelay
+emailMessage
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832097dbfbsm116383535e9.9 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4832097dbfbsm116383535e9.9 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
 [
   'recallIsCheckeds',
   'selectedDelay',
-  'mail',
-  'sms',
-  'push',
+  'emailMessage',
+  'smsMessage',
+  'pushMessage',
   'alert',
   'restart',
   'thank'
 ]
+true
+recallIsCheckeds
+selectedDelay
+emailMessage
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483228ed4f8sm264061965e9.0 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-483228ed4f8sm264061965e9.0 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
 [
   'recallIsCheckeds',
   'selectedDelay',
-  'mail',
-  'sms',
-  'push',
+  'emailMessage',
+  'smsMessage',
+  'pushMessage',
   'alert',
   'restart',
   'thank'
 ]
+true
+recallIsCheckeds
+selectedDelay
+emailMessage
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b2ed9sm35044370f8f.5 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-436296b2ed9sm35044370f8f.5 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
 [
   'recallIsCheckeds',
   'selectedDelay',
-  'mail',
-  'sms',
-  'push',
+  'emailMessage',
+  'smsMessage',
+  'pushMessage',
   'alert',
   'restart',
   'thank'
 ]
+recallIsCheckeds
+selectedDelay
+emailMessage
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-437699bc1cdsm20354895f8f.7 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-437699bc1cdsm20354895f8f.7 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
 [
   'recallIsCheckeds',
   'selectedDelay',
-  'mail',
-  'sms',
-  'push',
+  'emailMessage',
+  'smsMessage',
+  'pushMessage',
   'alert',
   'restart',
   'thank'
 ]
+TypeError: this.sendSms is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:91:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48320961701sm226139075e9.5 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-48320961701sm226139075e9.5 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
 [
   'recallIsCheckeds',
   'selectedDelay',
-  'mail',
-  'sms',
-  'push',
+  'emailMessage',
+  'smsMessage',
+  'pushMessage',
   'alert',
   'restart',
   'thank'
 ]
-[
-  'recallIsCheckeds',
-  'selectedDelay',
-  'mail',
-  'sms',
-  'push',
-  'alert',
-  'restart',
-  'thank'
-]
+TypeError: this.sendPush is not a function
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:94:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7d55c9sm61161715e9.8 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 5b1f17b1804b1-4834d7d55c9sm61161715e9.8 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc1bsm36968719f8f.28 - gsmtp
+    at SMTPConnection._formatError (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:912:19)
+    at SMTPConnection._actionAUTHComplete (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1722:34)
+    at SMTPConnection.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:651:26)
+    at SMTPConnection._processResponse (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:1098:20)
+    at SMTPConnection._onData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:872:14)
+    at SMTPConnection._onSocketData (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/nodemailer/lib/smtp-connection/index.js:196:44)
+    at TLSSocket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4362972fc1bsm36968719f8f.28 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}

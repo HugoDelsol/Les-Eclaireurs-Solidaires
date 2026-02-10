@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const filePath = path.join(__dirname, '..', 'config', 'checkBoxData.json');
-const messageModel = require('../models/MessageModel');
-
+const nodemailer = require('nodemailer');
+const messageMdl = require('../models/MessageModel');
 
 class RecallService {
 
@@ -18,63 +18,90 @@ class RecallService {
         return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
     }
 
-    nodemailer() {
-        let transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: 'youremail@gmail.com',
-                pass: 'yourpassword'
-            }
-        });
+    sendEmail(templateModel, users) {
 
-        let mailOptions = {
-            from: 'youremail@gmail.com',
-            to: 'myfriend@yahoo.com',
-            subject: 'Sending Email using Node.js',
-            text: 'That was easy!'
-        };
+        for (const u of users) {
 
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+            let transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: process.env.MAIL_USER,
+                    pass: process.env.MAIL_PASS
+                }
+            });
+
+            let mailOptions = {
+                from: 'hugo.delsol64@gmail.com',
+                to: u.identifier_mail,
+                subject: templateModel.message_object,
+                text: templateModel.message_content
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+
+        }
+    }
+
+    async selectMissionRecallsByDelay(delay) {
+
+        if (delay === "J-1") {
+            const getUsersWithMissionInNextValue = await messageMdl.getUsersWithMissionInNextValue(1);
+            return getUsersWithMissionInNextValue;
+        }
+
+        if (delay === "J-3") {
+            const getUsersWithMissionInNextValue = await messageMdl.getUsersWithMissionInNextValue(3);
+            return getUsersWithMissionInNextValue;
+        }
+
+        if (delay === "J-7") {
+            const getUsersWithMissionInNextValue = await messageMdl.getUsersWithMissionInNextValue(7);
+            return getUsersWithMissionInNextValue;
+        }
+
     }
 
     async cronScript(stringVal) {
 
+        try {
 
+            if (stringVal.recallIsCheckeds) {
 
-        if (stringVal.recallIsCheckeds) {
+                const recallModel = await messageMdl.recallModel();
 
-            let tabCheck = Object.keys(stringVal);
-            const result = await messageModel.managementRecall(tabCheck)
+                const selectUsersRecallsByDelay = await this.selectMissionRecallsByDelay(stringVal.selectedDelay);
 
-        } else {
-            console.log('no activated')
+                if (stringVal.emailMessage) {
+                    this.sendEmail(recallModel[0], selectUsersRecallsByDelay);
+                }
+                
+               /*  if (stringVal.smsMessage) {
+                    this.sendSms(recallModel[1], selectUsersRecallsByDelay);
+                } */
+
+               /*  if (stringVal.pushMessage) {
+                    this.sendPush(recallModel[2], selectUsersRecallsByDelay);
+                }  */  
+
+            } else {
+
+                console.log('no activated');
+            }
+
+        } catch (error) {
+
+            console.log(error)
         }
     }
-
 }
 
 module.exports = {
     RecallService,
 }
-
-/* 
-for (let s in stringVal) {
-    //console.log(stringVal[s] === "true")
-
-}
-
-console.log(stringVal.selectedDelay)
-
-if (stringVal.recallIsCheckeds) {
-
-    if (stringVal.mail) {
-
-    }
-
-} */

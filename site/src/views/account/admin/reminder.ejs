@@ -48,15 +48,15 @@
                 <fieldset>
                     <legend>Canaux prioritaires</legend>
                     <label for="imgEmail" class="rowReverse">
-                        <input <%= stringVal.mail ? "checked" : "" %> type="checkbox" value="true" name="mail" id="imgEmail">- Email (Détails complets)
+                        <input <%= stringVal.emailMessage ? "checked" : "" %> type="checkbox" value="true" name="emailMessage" id="imgEmail">- Email (Détails complets)
                         <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div> 
                     </label><br>
                     <label for="imgSms" class="rowReverse">
-                        <input <%= stringVal.sms ? "checked" : "" %> type="checkbox" value="true" name="sms" id="imgSms">- SMS (Urgent / Rappel jour J)
+                        <input <%= stringVal.smsMessage ? "checked" : "" %> type="checkbox" value="true" name="smsMessage" id="imgSms">- SMS (Urgent / Rappel jour J)
                         <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div>                         
                     </label><br>
                     <label for="imgPush" class="rowReverse">
-                        <input <%= stringVal.push ? "checked" : "" %> type="checkbox" value="true" name="push" id="imgPush">- Notification Push (Alerte mobile)
+                        <input <%= stringVal.pushMessage ? "checked" : "" %> type="checkbox" value="true" name="pushMessage" id="imgPush">- Notification Push (Alerte mobile)
                         <div class="label"> <img src="/pictures/LogoV2/lanterne.png" alt="" srcset=""> </div>                         
                     </label><br>
                 </fieldset>

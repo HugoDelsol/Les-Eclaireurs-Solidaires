@@ -6,7 +6,7 @@ exports.reminderShow = async (req, res) => {
     try {
 
         const rServ = new service.RecallService();
-      
+
         res.render('account/admin/reminder', {
             stringVal: rServ.parseReadFile()
         })
@@ -26,9 +26,12 @@ exports.recallManagement = async (req, res) => {
 
         let jsonData = JSON.stringify(checkBoxData);
 
-        console.log(checkBoxData)
-        
         rServ.writeFile(jsonData);
+
+        ///////////
+        const stringVal = rServ.parseReadFile()
+        rServ.cronScript(stringVal);
+        /////////////////
 
         res.render('account/admin/reminder', {
             stringVal: rServ.parseReadFile(),
