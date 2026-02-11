@@ -5261,3 +5261,197 @@ ReferenceError: news is not defined
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 
 Node.js v18.19.1
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+[
+  {
+    id_registration: 242,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 243,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 244,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  },
+  {
+    id_registration: 245,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  }
+]
+[
+  {
+    id_registration: 242,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 243,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 244,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  },
+  {
+    id_registration: 245,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  }
+]
+Nous vous rappelons que votre mission Nettoyage des berges est prévue le 7777 à {{heure}}.
+
+Voici quelques détails pour vous préparer :  
+- Lieu : {{lieu}}  
+- Responsable : {{responsable}}  
+- Instructions particulières : {{instructions}}
+
+Merci de confirmer votre disponibilité en répondant à cet email ou via votre espace personnel.
+
+Cordialement,  
+L'équipe FILROUGE
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+[
+  {
+    id_registration: 242,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 243,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 244,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  },
+  {
+    id_registration: 245,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  }
+]
+[
+  {
+    id_registration: 242,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 243,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Nettoyage des berges',
+    mission_date: 2026-02-13T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '299 Che De La Placette'
+  },
+  {
+    id_registration: 244,
+    identifier_mail: 'mamie@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  },
+  {
+    id_registration: 245,
+    identifier_mail: 'tes@gmail.com',
+    mission_title: 'Soutien Scolaire',
+    mission_date: 2026-02-10T23:00:00.000Z,
+    mission_start_time: '09:00:00',
+    mission_place_name: '38 Allée des ecoles '
+  }
+]
+Nous vous rappelons que votre mission Nettoyage des berges est prévue le 7777 à {{heure}}.
+
+Voici quelques détails pour vous préparer :  
+- Lieu : {{lieu}}  
+- Responsable : {{responsable}}  
+- Instructions particulières : {{instructions}}
+
+Merci de confirmer votre disponibilité en répondant à cet email ou via votre espace personnel.
+
+Cordialement,  
+L'équipe FILROUGE
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+Error: connect ECONNREFUSED 127.0.0.1:3300
+    at PromisePool.query (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at exports.recallModel (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/models/MessageModel.js:9:35)
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:93:54)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:8:7)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'ECONNREFUSED',
+  errno: -111,
+  sql: undefined,
+  sqlState: undefined,
+  sqlMessage: undefined
+}
+Error: connect ECONNREFUSED 127.0.0.1:3300
+    at PromisePool.query (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at exports.getUsersWithMissionInNextValue (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/models/MessageModel.js:32:35)
+    at RecallService.selectMissionRecallsByDelay (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:69:69)
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:95:62)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  code: 'ECONNREFUSED',
+  errno: -111,
+  sql: undefined,
+  sqlState: undefined,
+  sqlMessage: undefined
+}
+undefined
+TypeError: Cannot read properties of undefined (reading '0')
+    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:100:47)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
