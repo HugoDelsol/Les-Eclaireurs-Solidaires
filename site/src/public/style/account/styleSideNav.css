@@ -10,7 +10,6 @@
     scroll-behavior: smooth;
 }
 
-
 .sideNav .btnPrimary {
     display: flex;
     justify-content: center;
@@ -44,19 +43,25 @@
     border-color: #00000075;
 }
 
+.sideNav .urlFind {
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid #00000075;
+}
+
 .center {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
- 
+
 .linesideNav {
     border-bottom: 0.2em solid #F28B50;
     border-radius: 4em;
     width: 33%;
     margin-top: 1.4em;
-} 
+}
 
 .sideNav {
     width: 12%;
@@ -78,7 +83,7 @@
     margin-bottom: 1em;
 }
 
-.sideNav .logoImg{
+.sideNav .logoImg {
     width: 40px;
     height: auto;
     margin: 0 auto;

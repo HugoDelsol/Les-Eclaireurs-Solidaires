@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 const filePath = path.join(__dirname, '..', 'config', 'checkBoxData.json');
 const nodemailer = require('nodemailer');
@@ -6,38 +6,44 @@ const messageMdl = require('../models/MessageModel');
 
 class RecallService {
 
-    constructor() {
-
+    async writeFile(jsonData) {
+        try {            
+            await fs.writeFile(filePath, jsonData, 'utf-8');
+        } catch (error) {
+            console.log("Erreur lors de l'écriture du fichier :", error);
+        }
     }
 
-    writeFile(jsonData) {
-        fs.writeFileSync(filePath, jsonData);
-    }
-
-    parseReadFile() {
-        return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    async parseReadFile() {
+        try {
+            const data = await fs.readFile(filePath, 'utf-8');
+            return JSON.parse(data);
+        } catch (error) {
+            console.log("Erreur lors de la lecture ou du parse JSON :", error);
+            return null;
+        }
     }
 
     async sendEmail(templateModel, users) {
 
-        if (users.length === 0){ return null; }
+        if (users.length === 0) { return null; }
+
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS
+            }
+        });
 
         for (const u of users) {
 
-            const emailContent = this.updateTemplate(templateModel, u);            
-
-            let transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 587,
-                secure: false,
-                auth: {
-                    user: process.env.MAIL_USER,
-                    pass: process.env.MAIL_PASS
-                }
-            });
+            const emailContent = this.updateTemplate(templateModel, u);
 
             let mailOptions = {
-                from: 'hugo.delsol64@gmail.com',
+                from: process.env.MAIL_FROM,
                 to: u.identifier_mail,
                 subject: templateModel.message_object,
                 text: emailContent
@@ -50,7 +56,7 @@ class RecallService {
                 } else {
                     console.log('Email sent: ', info.response);
                 }
-            });           
+            });
 
             await messageMdl.updateValueSend(u.id_registration);
         }

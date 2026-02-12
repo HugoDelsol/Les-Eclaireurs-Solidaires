@@ -1,22 +1,360 @@
-[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
-[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
-[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
-[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
-[]
 [dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
-[]
-/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:23
-        if (user.length === 0){
-        ^
+Email sent:  250 2.0.0 OK  1770901563 ffacd0b85a97d-43783e0196bsm12888408f8f.23 - gsmtp
+Email sent:  250 2.0.0 OK  1770901563 ffacd0b85a97d-43783d746a3sm12371106f8f.17 - gsmtp
+Email sent:  250 2.0.0 OK  1770901564 5b1f17b1804b1-4836131d4e8sm31335165e9.31 - gsmtp
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:14
+        const data = fs.readFileSync(filePath, 'utf-8')
+                        ^
 
-ReferenceError: user is not defined
-    at RecallService.sendEmail (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:23:9)
-    at RecallService.cronScript (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:104:26)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+TypeError: fs.readFileSync is not a function
+    at RecallService.parseReadFile (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:14:25)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:6:25)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
 
 Node.js v18.19.1
-[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
-[]
-test
-[dotenv@17.2.3] injecting env (10) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
-[]
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+TypeError: fs.readFileSync is not a function
+    at RecallService.parseReadFile (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/services/recallService.js:17:35)
+    at Object.<anonymous> (/mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/site/src/cron/recall.cron.js:6:25)
+    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+    at Module.load (node:internal/modules/cjs/loader:1197:32)
+    at Module._load (node:internal/modules/cjs/loader:1013:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  override existing env vars with { override: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  enable debug logging with { debug: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+no activated
+[dotenv@17.2.3] injecting env (11) from ../mnt/c/Users/PC/Documents/WebJunior/M2I/FILROUGE_GIT/fil-rouge-NodeJs/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+no activated

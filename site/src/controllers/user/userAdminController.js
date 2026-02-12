@@ -118,31 +118,36 @@ exports.findVolunteer = async (req, res) => {
 
 exports.generateToken = async (req, res) => {
 
-    let generateTokenSuper;
-    let generateTokenAdmin;
+    let generateTokenSuper = [];
+    let generateTokenAdmin = [];
 
     try {
 
-        const emailTokenSuper = req.body.emailTokenSuper;
-        const emailTokenAdmin = req.body.emailTokenAdmin;
+        const admins = await userModel.getAllAdmins();
 
-        if (req.body.emailTokenSuper) {
+        res.locals.admins = admins.resultAdmins;
+        res.locals.superAdmins = admins.resultSuperAdmins;
+
+        const safeData = matchedData(req)
+        const {emailTokenSuper, emailTokenAdmin} = safeData
+
+        if (!emailTokenAdmin && !emailTokenSuper) {
+            throw new Error(res.locals.errorAlertMsg)
+        }
+        console.log("test")
+
+        if (emailTokenSuper) {
 
             generateTokenSuper = service.generateToken(emailTokenSuper, "superAdmin");
 
-        } else if (req.body.emailTokenAdmin) {
+        } else if (emailTokenAdmin) {
 
             generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
 
         } else {
 
             res.locals.errorAlertMsg = "Aucune adresse e-mail n’a été renseignée."
-        }
-
-        const admins = await userModel.getAllAdmins();
-
-        res.locals.admins = admins.resultAdmins;
-        res.locals.superAdmins = admins.resultSuperAdmins;
+        }        
 
         res.render('account/admin/generateToken', {
             tokenAdmin: generateTokenAdmin,
@@ -151,8 +156,7 @@ exports.generateToken = async (req, res) => {
 
     } catch (error) {
 
-        console.log(error);
-        res.locals.errorAlertMsg = "Problème lors de la génération du token.";
+        res.locals.errorAlertMsg = error.message;
         res.render('account/admin/generateToken', {
             tokenAdmin: [],
             tokenSuper: [],

@@ -27,14 +27,12 @@ exports.getUsersWithMissionInNextValue = async (value) => {
             LEFT JOIN user ON _id_user = id_user
             LEFT JOIN identifier ON _id_identifier = id_identifier
             WHERE mission_date >= NOW() AND mission_date <= DATE_ADD(NOW(), INTERVAL ${value} DAY) 
-            AND registration_mission_recall_send = 1
+            AND registration_mission_recall_send = 0
             GROUP BY id_registration, identifier_mail, mission_title, mission_date, mission_start_time, mission_place_name;
         `
         const [result] = await db.query(request);
 
-        console.log(result[1])
         return result[1];
-
 
     } catch (error) {
 

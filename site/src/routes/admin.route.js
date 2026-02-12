@@ -26,7 +26,7 @@ router.post('/searchByCategories', sessionMdw.requireAuth, missionGeneralCtrl.se
 
 // --- USER MANAGEMENT ---
 router.get('/superAdmin/tokenView', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userAdminCtrl.tokenView);
-router.post('/superAdmin/generateToken', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, userAdminCtrl.generateToken);
+router.post('/superAdmin/generateToken', sessionMdw.requireAuth, sessionMdw.superAdminAuthorization, inputProtection.generateTokenInputProtection, userAdminCtrl.generateToken);
 router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.listOfVolunteers);
 router.get('/activeVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.activeVolunteer);
 router.post('/findVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization , userAdminCtrl.findVolunteer);
