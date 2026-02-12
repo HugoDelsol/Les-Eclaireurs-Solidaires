@@ -28,11 +28,6 @@ exports.recallManagement = async (req, res) => {
 
         rServ.writeFile(jsonData);
 
-        ///////////
-        const stringVal = rServ.parseReadFile()
-        rServ.cronScript(stringVal);
-        /////////////////
-
         res.render('account/admin/reminder', {
             stringVal: rServ.parseReadFile(),
             successAlertMsg: "Vos modifications ont bien été prises en compte."
