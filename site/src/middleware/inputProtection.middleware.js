@@ -79,7 +79,7 @@ const signInFormProtection = [
     body('password')
         .notEmpty().withMessage("Veuillez saisir votre mot de passe"),
 
-    (req, res, next) => {        
+    (req, res, next) => {
 
         const error = validationResult(req);
 
@@ -166,12 +166,32 @@ const homeFormProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.json({ mdlError: "Données invalides. Veuillez vérifier les champs." , mdlErrorIsTrue: true});
+            return res.json({ mdlError: "Données invalides. Veuillez vérifier les champs.", mdlErrorIsTrue: true });
         }
 
         next();
     }
 ]
+
+const generateTokenInputProtection = [
+
+    body('emailTokenAdmin').optional().trim().isEmail().normalizeEmail(),
+    body('emailTokenSuper').optional().trim().isEmail().normalizeEmail(),
+
+    (req, res, next) => {
+
+        const error = validationResult(req);
+
+        if(!error.isEmpty()) {
+            res.locals.errorAlertMsg = "L'email renseigner n'est pas valide"
+        }
+
+        next()
+    }
+]
+
+
+
 
 module.exports = {
     signUpFormProtection,
@@ -179,4 +199,5 @@ module.exports = {
     updateUserProfile,
     adminSignFormProtection,
     homeFormProtection,
+    generateTokenInputProtection,
 };

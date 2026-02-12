@@ -1,5 +1,4 @@
 const service = require('../services/recallService');
-const fs = require('fs');
 
 exports.reminderShow = async (req, res) => {
 
@@ -7,8 +6,10 @@ exports.reminderShow = async (req, res) => {
 
         const rServ = new service.RecallService();
 
+        const dataView = await rServ.parseReadFile()
+
         res.render('account/admin/reminder', {
-            stringVal: rServ.parseReadFile()
+            dataView: dataView
         })
 
     } catch (error) {
@@ -18,7 +19,9 @@ exports.reminderShow = async (req, res) => {
 
 exports.recallManagement = async (req, res) => {
 
-    try {
+    let dataView = null;
+
+    try {       
 
         const rServ = new service.RecallService;
 
@@ -26,15 +29,25 @@ exports.recallManagement = async (req, res) => {
 
         let jsonData = JSON.stringify(checkBoxData);
 
-        rServ.writeFile(jsonData);
+        await rServ.writeFile(jsonData);
+
+        dataView = await rServ.parseReadFile()
+
+        if (req.body.recallIsCheckeds && !req.body.emailMessage && !req.body.smsMessag && !req.body.pushMessage) {   
+            throw new Error("Sélectionnez au moins un canal de diffusion ou désactivez les rappels automatiques.")
+        }
 
         res.render('account/admin/reminder', {
-            stringVal: rServ.parseReadFile(),
+            dataView: dataView,
             successAlertMsg: "Vos modifications ont bien été prises en compte."
         })
 
     } catch (error) {
 
         console.log(error)
+        res.render('account/admin/reminder', {
+            dataView: dataView,
+            errorAlertMsg: error.message
+        });
     }
 }

@@ -1,5 +1,3 @@
-<script type="module" src="/javaScript/sideNav.js" defer></script>
-
 <nav class="sideNav">
     <div class="center">
         <img src="/pictures/globalIcons/securite-personnelle.png" alt="">
@@ -7,13 +5,37 @@
         <div class="linesideNav"></div>
     </div>
     <div class="linkStyle">
-        <a href="/admin/dashboardAdmin" class="btnPrimary btnHover btnNav">📊 Tableau de bord</a>
-        <a href="/admin/missionAdminShow" class="btnPrimary btnHover btnNav">🎯 Missions</a>
-        <a href="/admin/listOfVolunteers" class="btnPrimary btnHover btnNav">🐝 Bénévoles</a>
-        <a href="" class="btnPrimary btnHover">💬 Messagerie</a>
-        <a href="/admin/reminder" class="btnPrimary btnHover">⏰ Rappel</a>
+        <a href="/admin/dashboardAdmin" class="btnPrimary btnHover btnNav <%= urlFind === "/auth" || urlFind === "/admin/dashboardAdmin"  ? "urlFind" : "" %>">📊 Tableau de bord</a>
+        <a href="/admin/missionAdminShow" class="btnPrimary btnHover btnNav 
+            <%= urlFind === "/admin/missionAdminShow" || 
+                urlFind === "/admin/addMissionShow" || 
+                urlFind === "/admin/addMission" ? "urlFind" : "" 
+            %>">🎯 Missions
+        </a>
+        <a href="/admin/listOfVolunteers" class="btnPrimary btnHover btnNav 
+            <%= urlFind === "/admin/listOfVolunteers" ||
+                urlFind === "/admin/activeVolunteer" ||
+                urlFind === "/admin/findVolunteer" 
+                ? "urlFind" : "" 
+            %>">🐝 Bénévoles
+        </a>
+        <a href="" class="btnPrimary btnHover 
+            <%=
+            %>">💬 Messagerie
+        </a>
+        <a href="/admin/reminder" class="btnPrimary btnHover
+            <%= urlFind === "/admin/reminder" ||
+                urlFind === "/admin/recallManagement" 
+                ? "urlFind" : "" 
+            %>">⏰ Rappel
+        </a>
         <% if (isSuperAdmin) { %>
-        <a href="/admin/superAdmin/tokenView" class="btnPrimary btnHover btnNav">👤 Admin</a>
+            <a href="/admin/superAdmin/tokenView" class="btnPrimary btnHover btnNav 
+                <%= urlFind === "/admin/superAdmin/tokenView" ||
+                    urlFind === "/admin/superAdmin/generateToken" 
+                    ? "urlFind" : "" 
+                %>">👤 Admin
+            </a>
         <% } %>
     </div>
     <a href="/logout" class="btnSecondary btnHover">Deconnexion</a>
