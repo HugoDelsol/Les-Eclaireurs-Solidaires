@@ -20,13 +20,16 @@ class RecallService {
 
     async sendEmail(templateModel, users) {
 
+        if (users.length === 0){ return null; }
+
         for (const u of users) {
 
-            this.updateTemplate(templateModel, u)
-            break;
+            const emailContent = this.updateTemplate(templateModel, u);            
 
             let transporter = nodemailer.createTransport({
-                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 587,
+                secure: false,
                 auth: {
                     user: process.env.MAIL_USER,
                     pass: process.env.MAIL_PASS
@@ -37,7 +40,7 @@ class RecallService {
                 from: 'hugo.delsol64@gmail.com',
                 to: u.identifier_mail,
                 subject: templateModel.message_object,
-                text: templateModel.message_content
+                text: emailContent
             };
 
             transporter.sendMail(mailOptions, (error, info) => {
@@ -47,7 +50,7 @@ class RecallService {
                 } else {
                     console.log('Email sent: ', info.response);
                 }
-            });
+            });           
 
             await messageMdl.updateValueSend(u.id_registration);
         }
@@ -76,12 +79,11 @@ class RecallService {
         let content = recallModel.message_content;
 
         content = content.replace("{{mission}}", u.mission_title);
-        content = content.replace("{{date}}", 7777);
+        content = content.replace("{{date}}", u.mission_date);
+        content = content.replace("{{heure}}", u.mission_start_time);
+        content = content.replace("{{lieu}}", u.mission_place_name);
 
-
-
-        console.log(content)
-
+        return content;
     }
 
     async cronScript(stringVal) {
@@ -94,7 +96,7 @@ class RecallService {
 
                 const selectUsersRecallsByDelay = await this.selectMissionRecallsByDelay(stringVal.selectedDelay);
 
-                console.log(selectUsersRecallsByDelay)
+                //console.log(selectUsersRecallsByDelay)
 
                 if (stringVal.emailMessage) {
                     this.sendEmail(recallModel[0], selectUsersRecallsByDelay);

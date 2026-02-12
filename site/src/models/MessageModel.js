@@ -21,7 +21,8 @@ exports.getUsersWithMissionInNextValue = async (value) => {
     try {
 
         const request = `
-            SELECT id_registration, identifier_mail, mission_title, mission_date, mission_start_time, mission_place_name FROM registration_mission
+            SET lc_time_names = 'fr_FR';
+            SELECT id_registration, identifier_mail, mission_title, DATE_FORMAT(mission_date, "%W %e %M %Y") AS mission_date , DATE_FORMAT(mission_start_time, "%Hh%i") AS mission_start_time, mission_place_name FROM registration_mission
             LEFT JOIN mission ON _id_mission = id_mission 
             LEFT JOIN user ON _id_user = id_user
             LEFT JOIN identifier ON _id_identifier = id_identifier
@@ -31,9 +32,9 @@ exports.getUsersWithMissionInNextValue = async (value) => {
         `
         const [result] = await db.query(request);
 
-        console.log(result)
+        console.log(result[1])
+        return result[1];
 
-        return result;
 
     } catch (error) {
 
