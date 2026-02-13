@@ -97,11 +97,11 @@ exports.obtainStatsOnVolunteer = async (idUser) => {
         const [resultTimeDiff] = await db.query(timeDiff, [idUser])
         
         const nbrMissionAccomplished = `
-            SELECT mission_date, COUNT(_id_user) 
+            SELECT COUNT(_id_user) AS nbr
             FROM registration_mission 
             LEFT JOIN mission ON id_mission = _id_mission 
             WHERE _id_user = ? AND mission_date < CURRENT_DATE
-            GROUP BY _id_user, mission_date;
+            GROUP BY _id_user;
         `
         const [resultNbrMissionAccomplished] = await db.query(nbrMissionAccomplished, [idUser])
 

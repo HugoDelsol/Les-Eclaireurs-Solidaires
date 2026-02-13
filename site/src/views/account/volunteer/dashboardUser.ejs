@@ -24,12 +24,12 @@
 
                     <div class="statAlign">
                         <p>Mission complétées</p>
-                        <p><span><%= statsOnVolunteer.resultNbrMissionAccomplished.length ? statsOnVolunteer.resultNbrMissionAccomplished : "0" %></span></p>
+                        <p><span><%= statsOnVolunteer.resultNbrMissionAccomplished.length === 0 ? "0" : statsOnVolunteer.resultNbrMissionAccomplished[0].nbr %></span></p>
                     </div>
 
                     <div class="statAlign">
                         <p>Heures de bénévolat</p>
-                        <p><span><%= nbrTimeAccomplished%></span></p>
+                        <p><span><%= nbrTimeAccomplished %></span></p>
                     </div>
 
                     <div class="statAlign">
