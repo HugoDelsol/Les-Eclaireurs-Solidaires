@@ -26,19 +26,19 @@
                     <label class="marginLeft">
                         - Délai d'anticipation :
                         <select name="selectedDelay">                            
-                            <option
-                                value="J-7"
-                                <%= dataView.selectedDelay === "J-7" ? "selected" : "" %> 
-                                > J-7
-                            </option>
-                            <option value="J-3"
-                                <%= dataView.selectedDelay === "J-3" ? "selected" : "" %> 
-                                > J-3
-                            </option>
                             <option 
                                 value="J-1"
                                 <%= dataView.selectedDelay === "J-1" ? "selected" : "" %>
                                 > J-1
+                            </option>
+                            <option value="J-3"
+                                <%= dataView.selectedDelay === "J-3" ? "selected" : "" %> 
+                                > J-3
+                            </option>                            
+                            <option
+                                value="J-7"
+                                <%= dataView.selectedDelay === "J-7" ? "selected" : "" %> 
+                                > J-7
                             </option>
                         </select>
                     </label><br>

@@ -180,6 +180,8 @@ const generateTokenInputProtection = [
 
     (req, res, next) => {
 
+        console.log(req.body)
+
         const error = validationResult(req);
 
         if(!error.isEmpty()) {

@@ -46,7 +46,7 @@
 
 .tokenContainer {
     width: 80%;
-    height: 90vh;
+    height: 98vh;
     margin: auto;
     display: flex;
     justify-content: space-around;
@@ -54,6 +54,7 @@
 }
 
 .token {
+    padding: 10px;
     margin-top: 10px;
     width: 100%;
     word-break: break-all;

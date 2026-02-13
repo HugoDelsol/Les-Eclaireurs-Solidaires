@@ -51,3 +51,7 @@ exports.recallManagement = async (req, res) => {
         });
     }
 }
+
+exports.adminMessagingShow = async (req, res) => {
+    res.render('account/admin/messaging')
+}
