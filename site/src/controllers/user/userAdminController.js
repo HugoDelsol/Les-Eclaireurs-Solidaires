@@ -125,8 +125,6 @@ exports.generateToken = async (req, res) => {
 
     try {
 
-        
-
         const admins = await userModel.getAllAdmins();
 
         res.locals.admins = admins.resultAdmins;
