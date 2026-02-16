@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
-const filePath = path.join(__dirname, '..', 'config', 'checkBoxData.json');
+const filePath = path.join(__dirname, '..', 'config', 'manageRecall.json');
 const nodemailer = require('nodemailer');
 const messageMdl = require('../models/MessageModel');
 

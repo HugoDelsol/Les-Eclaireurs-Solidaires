@@ -1,10 +1,11 @@
+<link rel="stylesheet" href="/style/globalStyle.css">
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleDashboardAdmin.css">
 <%- include('../../partials/_head') %>
     <%- include('../../partials/_alert') %>
 
         <main>
-            <div class="container" style='display: flex;'>
+            <div class="container">
                 <%- include('../../partials/_sideNavAdmin') %>
 
                     <div class="dashboardContainer">
@@ -15,7 +16,7 @@
                                 <p>Période : 30 prochains jours</p>
                             </div>
                             <div class="header">
-                                <div class="headerCards background">
+                                <div class="headerCards backgroundCards">
                                     <div class="designLine">
                                         <h2>Missions à venir</h2>
                                         <div class="line"></div> 
@@ -23,7 +24,7 @@
                                     <h3><%= totalMission.nbr_missions %></h3>  
                                     <p>Planifiées sur 30 jours</p>
                                 </div>
-                                <div class="headerCards background">
+                                <div class="headerCards backgroundCards">
                                     <div class="designLine">
                                         <h2>Bénévoles engagés</h2>
                                         <div class="line"></div> 
@@ -31,7 +32,7 @@
                                     <h3><%= resultSum %></h3>
                                     <p>Sommes des inscrits</p>
                                 </div>
-                                <div class="headerCards background">
+                                <div class="headerCards backgroundCards">
                                     <div class="designLine">
                                         <h2>Taux moyen de remplissage</h2>
                                         <div class="line"></div> 
@@ -42,7 +43,7 @@
                             </div>
                         </div>
 
-                        <table class="background tablePadding">
+                        <table class="backgroundCards tablePadding">
                                 <thead>
                                     <tr class="colorBack">
                                         <th>Mission</th>
