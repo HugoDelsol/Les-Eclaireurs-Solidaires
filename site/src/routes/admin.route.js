@@ -3,7 +3,7 @@ const router = express.Router();
 const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 const userAdminCtrl = require('../controllers/user/userAdminController');
-const messaging = require('../controllers/messaging.ctrl');
+const messagingCtrl = require('../controllers/messaging.ctrl');
 
 
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
@@ -31,9 +31,9 @@ router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministra
 router.get('/activeVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.activeVolunteer);
 router.post('/findVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization , userAdminCtrl.findVolunteer);
 
-router.get('/reminder', messaging.reminderShow);
-router.post('/recallManagement', messaging.recallManagement);
+router.get('/reminder', messagingCtrl.reminderShow);
+router.post('/recallManagement', messagingCtrl.recallManagement);
 
-router.get('/messaging', messaging.adminMessagingShow);
+router.get('/messaging', messagingCtrl.adminMessagingShow);
 
 module.exports = router;

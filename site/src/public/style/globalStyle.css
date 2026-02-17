@@ -57,3 +57,8 @@ body {
     border-color: #0000007e;
     box-shadow: 0px 0px 6px #00000025;
 }
+
+.line {
+    border-bottom: 0.2em solid #F28B50;
+    border-radius: 4em;
+}

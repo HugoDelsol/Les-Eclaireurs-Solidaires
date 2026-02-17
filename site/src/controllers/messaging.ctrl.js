@@ -53,5 +53,9 @@ exports.recallManagement = async (req, res) => {
 }
 
 exports.adminMessagingShow = async (req, res) => {
-    res.render('account/admin/messaging')
+    res.render('messaging/messaging')
+}
+
+exports.messageRediger = async (req, res) => {
+    res.render('messaging/chat')
 }

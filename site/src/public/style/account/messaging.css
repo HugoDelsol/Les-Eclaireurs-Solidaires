@@ -1,0 +1,79 @@
+.rowLine {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.line {
+    width: 30%;
+    margin-left: 40px;
+}
+
+.btnSecondary {
+    padding: 0.4em 1.4em ;
+}
+
+.rowLine .h1Line {
+	display: flex;
+	width: 50%;
+	align-items: center;
+
+}
+
+.rowLine img {
+    width: 34px;
+    margin-left: 20px;
+}
+
+.rowLine a {
+    display: flex; 
+    align-items: center;   
+}
+
+.backgroundCards {
+    padding: 20px 40px;
+    width: 74vw;
+    height: 84vh;
+    margin: auto;
+}
+
+.colMessage {
+	height: 80%;
+	margin: auto;
+	overflow-y: scroll;
+	background-color: #f8f5ee6c;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.rowMessage {
+    margin: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+    left: 0;    
+    transition: all 0.2s ;
+}
+
+.rowMessage:hover{
+   left: -10px;
+}
+
+.rowMessage img {
+    width: 34px;
+}
+
+.rowMessage .red, 
+.rowMessage .green {
+    width: 14px;
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    opacity: 0.8;
+}
+

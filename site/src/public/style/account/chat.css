@@ -1,0 +1,74 @@
+.colContainer {
+	margin: auto;
+	height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.rowLine {
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.line {
+    width: 10%;
+}
+
+.btnSecondary {
+    padding: 0.4em 1.4em ;
+}
+
+.rowLine a {
+    text-decoration: underline; 
+}
+
+.backgroundCards {
+    padding: 24px 40px;
+    width: 74vw;
+}
+
+.displayChat {
+    width: 100%;
+    height: 80%;
+    margin: auto;
+    border-radius: 10px;
+    border: 1px solid #00000020;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.chat {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.txtArea {
+    height: 14%;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    height: 100%;
+}
+
+form a {
+    height: fit-content;
+}
+
+textarea {
+	height: 100%;
+	width: 88%;
+	border: 1px solid #00000020;
+	border-radius: 10px;
+	padding: 10px;
+    resize: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.9);
+}
