@@ -1,0 +1,83 @@
+.newMessage {
+    width: 70vw;
+    height: 80vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btnReset {
+    width: 44px;    
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btnReset:hover {
+    transform: rotate(90deg);
+}
+
+fieldset {
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.507);
+}
+
+form {
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.h1Line {
+    display: flex;
+    width: 50%;
+    align-items: center;
+}
+
+.line {
+    width: 30%;
+    margin-left: 40px;
+}
+
+.colForm {
+    display: flex;
+}
+
+textarea {
+    height: 50%;
+    resize: none;
+    border-radius: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.288);
+    padding: 10px;
+    margin-top: 10px 
+}
+
+input {
+    padding: 0px 14px;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    border: 1px solid rgba(128, 128, 128, 0.288);
+    background-color: white;
+    margin: 10px auto;
+}
+
+form button {
+    width: fit-content;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.479);
+}

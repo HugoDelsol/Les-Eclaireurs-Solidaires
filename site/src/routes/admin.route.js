@@ -35,5 +35,6 @@ router.get('/reminder', messagingCtrl.reminderShow);
 router.post('/recallManagement', messagingCtrl.recallManagement);
 
 router.get('/messaging', messagingCtrl.adminMessagingShow);
+router.post('/message', messagingCtrl.sendMessage);
 
 module.exports = router;

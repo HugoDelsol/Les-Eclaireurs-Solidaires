@@ -20,7 +20,10 @@
             %>">🐝 Bénévoles
         </a>
         <a href="/admin/messaging" class="btnPrimary btnHover 
-            <%=
+            <%= urlFind === "/admin/messaging" ||
+             urlFind === "/chatMessage" ||
+                urlFind === "/newMessage"
+                ? "urlfind" : "" 
             %>">💬 Messagerie
         </a>
         <a href="/admin/reminder" class="btnPrimary btnHover

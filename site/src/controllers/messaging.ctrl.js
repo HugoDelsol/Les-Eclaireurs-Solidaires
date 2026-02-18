@@ -1,4 +1,5 @@
 const service = require('../services/recallService');
+const messageMdl = require('../models/MessageModel');
 
 exports.reminderShow = async (req, res) => {
 
@@ -52,10 +53,28 @@ exports.recallManagement = async (req, res) => {
     }
 }
 
-exports.adminMessagingShow = async (req, res) => {
-    res.render('messaging/messaging')
+exports.adminMessagingShow = (req, res) => {
+    res.render('messaging/messaging');
 }
 
-exports.messageRediger = async (req, res) => {
-    res.render('messaging/chat')
+exports.messageRediger = (req, res) => {
+    res.render('messaging/chat');
+}
+
+exports.newMessageRediger = (req, res) => {
+    res.render('messaging/newMessage');
+}
+
+exports.sendMessage = async (req, res) => {
+    console.log("coucou")
+
+    
+    const {object, email, content} = req.body
+    
+    console.log(object, email, content)
+    
+    //await messageMdl.sendMessage()
+    res.render('messaging/newMessage', {
+            successAlertMsg: "Vos modifications ont bien été prises en compte."
+        })
 }
