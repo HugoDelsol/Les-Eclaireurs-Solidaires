@@ -10,15 +10,17 @@
         <%- include('../partials/_sideNavAdmin') %>
         <div class="colContainer">
             <section class="chat backgroundCards">
-                <div class="rowLine">
-                    <div class="line"></div>                                        
-                    <p>Objet : Probleme d'inscription</p>
+                <div class="rowLine"> 
+                    <div class="line"></div>                                      
+                    <p>Objet : <%= data[0].chat_channel_object  %></p>
                     <p>|</p>
                     <p>Nom : Clark Kent</p>
                     <p>|</p>
-                    <p>Email : <a href="">Kent@wanadoo.fr</a></p>
-                    <div class="line"></div>                                        
-                </div> 
+                    <p>Email : <a href="">Kent@wanadoo.fr</a></p> 
+                     <a href="/admin/messaging">
+                        <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                    </a>                                    
+                </div>                 
                 <div class="displayChat">
                     
                 </div>              

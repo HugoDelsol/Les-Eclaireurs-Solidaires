@@ -1,5 +1,6 @@
 const service = require('../services/recallService');
 const messageMdl = require('../models/MessageModel');
+const userMdl = require('../models/UserModel');
 
 exports.reminderShow = async (req, res) => {
 
@@ -22,7 +23,7 @@ exports.recallManagement = async (req, res) => {
 
     let dataView = null;
 
-    try {       
+    try {
 
         const rServ = new service.RecallService;
 
@@ -34,7 +35,7 @@ exports.recallManagement = async (req, res) => {
 
         dataView = await rServ.parseReadFile()
 
-        if (req.body.recallIsCheckeds && !req.body.emailMessage && !req.body.smsMessag && !req.body.pushMessage) {   
+        if (req.body.recallIsCheckeds && !req.body.emailMessage && !req.body.smsMessag && !req.body.pushMessage) {
             throw new Error("Sélectionnez au moins un canal de diffusion ou désactivez les rappels automatiques.")
         }
 
@@ -53,28 +54,68 @@ exports.recallManagement = async (req, res) => {
     }
 }
 
-exports.adminMessagingShow = (req, res) => {
-    res.render('messaging/messaging');
+exports.adminMessagingShow = async (req, res) => {
+
+    try {
+
+        let messageFrom = null;
+        
+        const listOfChannel = await messageMdl.listOfChannel()
+
+        listOfChannel.chat_from_message_user === 1 ? messageFrom = "Bénévole" : messageFrom = "Administrateur";
+
+        res.render('messaging/messaging', {
+            data: listOfChannel[1],
+            messageFrom: messageFrom 
+        });
+
+    } catch (error) {
+
+        console.log(error)
+    }
 }
 
-exports.messageRediger = (req, res) => {
-    res.render('messaging/chat');
+exports.messageRediger = async (req, res) => {
+
+    const test = await messageMdl.allMessageInChannel(req.params.idChannel)
+    res.render('messaging/chat', {
+        data: test
+    });
 }
 
 exports.newMessageRediger = (req, res) => {
     res.render('messaging/newMessage');
 }
 
-exports.sendMessage = async (req, res) => {
-    console.log("coucou")
+exports.sendNewMessageFromAdmin = async (req, res) => {
 
-    
-    const {object, email, content} = req.body
-    
-    console.log(object, email, content)
-    
-    //await messageMdl.sendMessage()
-    res.render('messaging/newMessage', {
-            successAlertMsg: "Vos modifications ont bien été prises en compte."
+    try {
+
+        const { object, email, content } = req.body;
+        const mailIsOk = await userMdl.getOneUserByEmail(email);     
+
+        if (mailIsOk) {
+
+            const senderId = req.session.userExist.id;
+            const recipientId = mailIsOk.id_user;  
+            const fromUser =  0;
+            await messageMdl.sendNewMessageFromAdmin(senderId, recipientId, object, content, fromUser); 
+
+        } else {
+
+            throw new Error("L'email ne correspond à aucun bénévole enregistré.");
+        }        
+
+        res.render('messaging/newMessage', {
+            successAlertMsg: "Votre message a bien été envoyé.",
         })
+
+    } catch (error) {
+
+        res.render('messaging/newMessage', {
+            errorAlertMsg: error.message
+        })
+    }
+
+
 }

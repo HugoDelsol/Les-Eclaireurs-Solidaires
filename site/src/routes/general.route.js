@@ -14,7 +14,7 @@ router.get('/signUp', userGeneralCtrl.signUp);
 router.get('/signIn', userGeneralCtrl.signIn);
 router.post('/auth', inputProtection.signInFormProtection, userGeneralCtrl.auth); 
 
-router.get('/chatMessage', sessionMdw.requireAuth, messagingCtrl.messageRediger);
+router.get('/chatMessage/:idChannel', sessionMdw.requireAuth, messagingCtrl.messageRediger);
 router.get('/newMessage', sessionMdw.requireAuth, messagingCtrl.newMessageRediger);
 
 router.get('/logout', sessionMdw.logout);

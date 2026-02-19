@@ -8,15 +8,25 @@
 
 .rowLine {
     display: flex;
-    margin: 20px;
     align-items: center;
-    justify-content: space-around;
-    width: 80%;
+    justify-content: space-between;
+    width: 100%;
     margin: 20px auto;
 }
 
 .line {
     width: 10%;
+}
+
+.btnReset {
+    margin-left: 240px;
+    width: 44px;    
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btnReset:hover {
+    transform: rotate(90deg);
 }
 
 .btnSecondary {
@@ -38,7 +48,6 @@
     margin: auto;
     border-radius: 10px;
     border: 1px solid #00000020;
-    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .chat {
@@ -72,3 +81,4 @@ textarea {
     outline: none;
     background-color: rgba(255, 255, 255, 0.9);
 }
+

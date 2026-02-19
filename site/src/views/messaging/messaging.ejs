@@ -17,101 +17,21 @@
                     <a class="btnHover btnSecondary" href="/newMessage"> Nouveau message<img src="/pictures/globalIcons/message-ouvert.png" alt=""></a>
                 </div>
                 <div class="colMessage">
-                    <a href="/chatMessage"class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Objet : Info Inscription Mission</p>
-                        <p>Envoyé par : Clark Kent</p>
-                        <p>Le 30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </a>                    
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/cercle.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                    <div class="rowMessage">
-                        <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                        <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Info Inscription Mission</p>
-                        <p>30 Janvier 2025</p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
-                    </div>
-                </div>
-
-               
+                    <% for (const d of data) { %>
+                        <a href="/chatMessage/<%= d.id_chat_channel %>"class="rowMessage">
+                            <% if (d.chat_message_status === 0) { %>
+                                <img class="red" src="/pictures/globalIcons/cercle.png" alt="">
+                            <% } else { %>
+                                    <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
+                            <% } %>
+                            <img src="/pictures/globalIcons/bavarder.png" alt="">
+                            <p>Objet : <%= d.chat_channel_object  %></p>
+                            <p>Canal créer par un <%= messageFrom %></p>
+                            <p>Le <%= d.chat_channel_date %></p>
+                            <img src="/pictures/globalIcons/envoyer.png" alt="">
+                        </a>   
+                    <% } %> 
+                </div>               
             </section>
     </div>
 </main>
