@@ -58,15 +58,12 @@ exports.adminMessagingShow = async (req, res) => {
 
     try {
 
-        let messageFrom = null;
-        
         const listOfChannel = await messageMdl.listOfChannel()
 
-        listOfChannel.chat_from_message_user === 1 ? messageFrom = "Bénévole" : messageFrom = "Administrateur";
+        console.log(listOfChannel[1])
 
         res.render('messaging/messaging', {
             data: listOfChannel[1],
-            messageFrom: messageFrom 
         });
 
     } catch (error) {
@@ -77,10 +74,17 @@ exports.adminMessagingShow = async (req, res) => {
 
 exports.messageRediger = async (req, res) => {
 
-    const test = await messageMdl.allMessageInChannel(req.params.idChannel)
-    res.render('messaging/chat', {
-        data: test
-    });
+    try {
+
+        const data = await messageMdl.allMessageInChannel(req.params.idChannel);
+
+        res.render('messaging/chat', {
+            data: data
+        });
+
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 exports.newMessageRediger = (req, res) => {
@@ -92,19 +96,19 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
     try {
 
         const { object, email, content } = req.body;
-        const mailIsOk = await userMdl.getOneUserByEmail(email);     
+        const mailIsOk = await userMdl.getOneUserByEmail(email);
 
         if (mailIsOk) {
 
             const senderId = req.session.userExist.id;
-            const recipientId = mailIsOk.id_user;  
-            const fromUser =  0;
-            await messageMdl.sendNewMessageFromAdmin(senderId, recipientId, object, content, fromUser); 
+            const recipientId = mailIsOk.id_user;
+            const fromUser = 0;
+            await messageMdl.sendNewMessageFromAdmin(senderId, recipientId, object, content, fromUser);
 
         } else {
 
             throw new Error("L'email ne correspond à aucun bénévole enregistré.");
-        }        
+        }
 
         res.render('messaging/newMessage', {
             successAlertMsg: "Votre message a bien été envoyé.",
@@ -116,6 +120,57 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
             errorAlertMsg: error.message
         })
     }
-
-
 }
+
+exports.replyToAMessage = async (req, res) => {
+
+    try {
+
+        let messageStatus = null;
+
+        const { textarea, idChannel, idUser } = req.body;
+
+        const getStatusMessage = await messageMdl.getStatusMessage(idChannel);
+
+        for (let i = 0; i < getStatusMessage.length; i++) {
+
+            for (let u = 1; u < getStatusMessage.length - 1; i++) {
+
+                if ( 
+                    getStatusMessage[i].chat_message_from_user == 1 && getStatusMessage[u].chat_message_from_user == 0 ||
+                    getStatusMessage[i].chat_message_from_user == 0 && getStatusMessage[u].chat_message_from_user == 1
+                ) {
+                    // message repondu
+                    break;
+                }
+            }
+            /* console.log(getStatusMessage[i+1].chat_message_from_user) */
+            /* console.log(getStatusMessage.chat_message_from_user[i]) */
+            /* if (s.chat_message_from_user == 1 && s.chat_message_from_user + 1){
+
+            } */
+        }
+
+        if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
+
+            const idAdmin = req.session.userExist.id;
+            const chatMessageFromUser = 0
+            await messageMdl.replyToAMessage(idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus);
+
+        } else {
+
+            await messageMdl.replyToAMessage(idChannel, idUser, textarea, messageStatus);
+        }
+
+        const data = await messageMdl.allMessageInChannel(idChannel);
+
+        res.render('messaging/chat', {
+            data: data
+        });
+
+
+    } catch (error) {
+
+    }
+}
+

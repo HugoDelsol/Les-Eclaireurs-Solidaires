@@ -83,8 +83,20 @@ exports.listOfChannel = async () => {
 
         const request = `
             SET lc_time_names = 'fr_FR';
-            SELECT DISTINCT id_chat_channel, chat_channel_object, DATE_FORMAT(chat_channel_date, "%W %e %M %Y") AS chat_channel_date, chat_message_from_user, chat_message_status FROM chat_channel 
-            LEFT JOIN chat_message ON _id_chat_channel = id_chat_channel;            
+            SELECT 
+                cc.id_chat_channel,
+                cc.chat_channel_object,
+                DATE_FORMAT(cc.chat_channel_date, "%W %e %M %Y") AS chat_channel_date,
+                cm.chat_message_from_user,
+                cm.chat_message_status
+            FROM chat_channel cc
+            LEFT JOIN chat_message cm 
+                ON cm.id_chat_message = (
+                    SELECT MAX(id_chat_message)
+                    FROM chat_message
+                    WHERE _id_chat_channel = cc.id_chat_channel
+                )
+            ORDER BY chat_message_status ASC;            
         `
         const [result] = await db.query(request)
         return result
@@ -100,16 +112,16 @@ exports.allMessageInChannel = async (idChannel) => {
     try {
         
         const request = `
-            SELECT * FROM chat_message 
-            LEFT JOIN chat_channel ON _id_chat_channel = id_chat_channel 
-            LEFT JOIN admin ON _id_admin = id_admin
-            LEFT JOIN user ON _id_user = id_user
-            LEFT JOIN identifier ON _id_identifier = id_identifier
+            SELECT * FROM chat_message AS cm
+            LEFT JOIN chat_channel AS ch ON cm._id_chat_channel = ch.id_chat_channel 
+            LEFT JOIN admin AS a ON cm._id_admin = a.id_admin
+            LEFT JOIN user AS u ON cm._id_user = u.id_user
+            LEFT JOIN identifier AS i ON u._id_identifier = i.id_identifier
             WHERE id_chat_channel = ?`;
 
         const [result] = await db.query(request, idChannel);
 
-        console.log(result)
+        //console.log(result)
 
         return result
 
@@ -118,3 +130,49 @@ exports.allMessageInChannel = async (idChannel) => {
         console.log(error);
     }
 }
+
+exports.replyToAMessage = async (idChannel, idUser, idAdmin, textarea, chatMessageFromUser) => {
+
+    try {
+
+        let query = null;
+        chatMessageStatus = 1;
+
+        if (chatMessageFromUser == 0) {
+
+            query = `
+                INSERT INTO chat_message (_id_chat_channel, _id_user, _id_admin, chat_message_content, chat_message_from_user, chat_message_status) VALUES (?, ?, ?, ?, ?, ?);
+                `
+            await db.query(query, [idChannel, idUser, idAdmin, textarea, chatMessageFromUser, chatMessageStatus]);
+
+        } else  {
+
+            query = `
+                INSERT INTO chat_message (_id_chat_channel, _id_user, _id_admin, chat_message_content, chat_message_from_user) VALUES (?, ?, ?, ?, ?);
+            `
+        }
+
+
+    } catch (error) {
+
+        console.log(error)
+    }
+}
+
+exports.getStatusMessage = async (idChannel) => {
+
+    try {
+        
+        const request = `
+             SELECT chat_message_from_user FROM chat_message LEFT JOIN chat_channel ON  _id_chat_channel = id_chat_channel WHERE id_chat_channel = ?;
+        `
+        const [result] = await db.query(request, idChannel);
+
+        return result;
+        
+    } catch (error) {
+        
+    }
+}
+
+

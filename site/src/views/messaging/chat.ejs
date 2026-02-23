@@ -21,14 +21,22 @@
                         <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
                     </a>                                    
                 </div>                 
-                <div class="displayChat">
-                    
+                <div class="displayChat">  
+                    <% for (const d of data) { %>
+                        <div class="<%= d.chat_message_from_user === 0 ? "messageSent" :  "messageReceived" %>">
+                            <p><%= d.chat_message_content %></p>                            
+                        </div>  
+                    <% } %>
                 </div>              
             </section>
             <section class="txtArea backgroundCards">
-                <form action="">
-                    <textarea name="" id=""></textarea>               
-                    <a class="btnHover btnSecondary" href="">ENVOYER</a>
+                <form action="/replyToAMessage" method="post">
+                    <label for="textarea"></label>
+                    <textarea name="textarea" id="textarea"></textarea>
+                    <label for="idChannel"></label>
+                    <input type="hidden" name="idChannel" value="<%= data[0].id_chat_channel %>">
+                    <input type="hidden" name="idUser" value="<%= data[0]._id_user %>">
+                    <button class="btnHover btnSecondary">ENVOYER</button>
                 </form>
             </section>
         </div>
@@ -39,3 +47,8 @@
 </body>
 
 </html>
+
+<script>
+    const scrollDiv = document.querySelector(".displayChat");
+    scrollDiv.scrollTop = scrollDiv.scrollHeight;
+</script>
