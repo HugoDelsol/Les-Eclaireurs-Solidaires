@@ -42,6 +42,10 @@ const centralizedVar = (req, res, next) => {
 
 
     res.locals.dataView = null;
+    
+    res.locals.object = null;
+    res.locals.textarea = null;
+    res.locals.email = null;
 
     next();
 }

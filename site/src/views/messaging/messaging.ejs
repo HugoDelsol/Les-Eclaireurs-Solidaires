@@ -5,34 +5,36 @@
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
 
-    <main>
-        <div class="container">
+<main>
+    <div class="container">
         <%- include('../partials/_sideNavAdmin') %>
-            <section class="listOfMessage backgroundCards">
-                <div class="rowLine">
-                    <div class="h1Line">
-                        <h1>Liste des messages</h1>
-                        <div class="line"></div>
-                    </div>                    
-                    <a class="btnHover btnSecondary" href="/newMessage"> Nouveau message<img src="/pictures/globalIcons/message-ouvert.png" alt=""></a>
-                </div>
-                <div class="colMessage">
-                    <% for (const d of data) { %>
-                        <a href="/chatMessage/<%= d.id_chat_channel %>"class="rowMessage">
-                            <% if (d.chat_message_status === 0) { %>
-                                <img class="red" src="/pictures/globalIcons/cercle.png" alt="">
-                            <% } else { %>
-                                <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
-                            <% } %>
-                            <img src="/pictures/globalIcons/bavarder.png" alt="">
-                            <p>Objet : <%= d.chat_channel_object  %></p>
-                            <!-- <p>Canal créer par un <%= //d.chat_message_from_user === 1 ? "Bénévole" : "Administrateur"; %></p> -->
-                            <p>Le <%= d.chat_channel_date %></p>
-                            <img src="/pictures/globalIcons/envoyer.png" alt="">
-                        </a>   
-                    <% } %> 
-                </div>               
-            </section>
+        <section class="listOfMessage backgroundCards">
+            <div class="rowLine">
+                <div class="h1Line">
+                    <h1>Liste des messages</h1>
+                    <div class="line"></div>
+                </div>                    
+                <a class="btnHover btnSecondary" href="/newMessage"> Nouveau message<img src="/pictures/globalIcons/message-ouvert.png" alt=""></a>
+            </div>
+            <div class="colMessage">
+                <% for (const d of data) { %>
+                    <a href="/chatMessage/<%= d.id_chat_channel %>"class="rowMessage">
+                        <% if (d.chat_message_from_user === 1) { %>
+                            <img class="red" src="/pictures/globalIcons/cercle.png" alt="">
+                        <% } else if (d.chat_message_status === 0) { %>
+                            <img class="grey" src="/pictures/globalIcons/grey.png" alt="">
+                        <% } else if (d.chat_message_status === 1) { %>
+                            <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
+                        <% } %>
+                        <img src="/pictures/globalIcons/bavarder.png" alt="">
+                        <p>Objet : <%= d.chat_channel_object  %></p>
+                        <p>Bénévole : <%= d.user_first_name + " " + d.user_last_name.toUpperCase() %></p>
+                        <p>Canal créer le : <%= d.chat_channel_date.toUpperCase() %></p>
+                        <img src="/pictures/globalIcons/envoyer.png" alt="">
+                    </a>   
+                <% } %> 
+            </div>               
+        </section>
     </div>
 </main>
 

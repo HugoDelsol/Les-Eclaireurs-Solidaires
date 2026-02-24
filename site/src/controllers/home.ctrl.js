@@ -38,7 +38,7 @@ exports.homePage = async (req, res) => {
     } catch (error) {
 
         console.log("Erreur homePage : ", error);
-        res.locals.errorAlertMsg = "Impossible d’afficher la liste des missions disponibles dans la section « Nos besoins actuels ».";
+        res.locals.errorAlertMsg = "Impossible d'afficher la liste des missions disponibles dans la section « Nos besoins actuels ».";
         res.render('home/homePage')
     }
 }

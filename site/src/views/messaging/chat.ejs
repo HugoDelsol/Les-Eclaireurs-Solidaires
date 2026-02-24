@@ -14,19 +14,20 @@
                     <div class="line"></div>                                      
                     <p>Objet : <%= data[0].chat_channel_object  %></p>
                     <p>|</p>
-                    <p>Nom : <%= data[0].user_last_name  %></p>
-                    <p>|</p>
                     <p>Email : <a href=""><%= data[0].identifier_mail   %></a></p> 
-                     <a href="/admin/messaging">
+                     <a class="cross" href="/admin/messaging">
                         <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
                     </a>                                    
                 </div>                 
-                <div class="displayChat">  
-                    <% for (const d of data) { %>
-                        <div class="<%= d.chat_message_from_user === 0 ? "messageSent" :  "messageReceived" %>">
-                            <p><%= d.chat_message_content %></p>                            
-                        </div>  
-                    <% } %>
+                <div class="displayChat"> 
+                    <% if (data[0].id_chat_channel) { %>
+                        <% for (const d of data) { %>
+                            <div class="<%= d.chat_message_from_user === 0 ? "messageSent" :  "messageReceived" %>">
+                                <p><%= d.chat_message_content %></p>                                                          
+                                <div class="<%= d.chat_message_from_user === 0 ? "dateMessageSent" :  "dateMessageReceived" %>"><%= d.date %></div> 
+                            </div>  
+                        <% } %>
+                    <% } %>                    
                 </div>              
             </section>
             <section class="txtArea backgroundCards">

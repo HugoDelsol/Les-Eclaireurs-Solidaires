@@ -37,6 +37,12 @@
     text-decoration: underline; 
 }
 
+.rowLine .cross {
+	width: 50%;
+	display: flex;
+	justify-content: end;
+}
+
 .backgroundCards {
     padding: 24px 40px;
     width: 74vw;
@@ -52,13 +58,23 @@
     overflow-y: scroll;
 }
 
+
+.dateMessageReceived, .dateMessageSent {
+	font-size: 12px;
+	width: fit-content;
+    margin-top: 4px;
+}
+
 .messageReceived {
     padding: 20px;
 }
+
 .messageSent {
-    display: flex;
-    justify-content: end;
-    padding: 20px;
+	display: flex;
+	justify-content: end;
+	padding: 20px;
+	flex-direction: column;
+	align-items: end;
 }
 
 .messageSent p,

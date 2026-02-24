@@ -69,7 +69,8 @@
 }
 
 .rowMessage .red, 
-.rowMessage .green {
+.rowMessage .green,
+.rowMessage .grey {
     width: 14px;
     position: absolute;
     top: 6px;

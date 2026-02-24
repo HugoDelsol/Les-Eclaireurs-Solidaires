@@ -12,7 +12,8 @@ exports.recallModel = async () => {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }
 
@@ -36,7 +37,8 @@ exports.getUsersWithMissionInNextValue = async (value) => {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }
 
@@ -54,13 +56,15 @@ exports.updateValueSend = async (idRegistration) => {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }
 
 exports.sendNewMessageFromAdmin = async (senderId, recipientId, object, content, fromUser, messageStatus) => {
 
     try {
+
         const insertObject = `        
             INSERT INTO chat_channel (chat_channel_object) VALUE (?)
         `
@@ -71,9 +75,12 @@ exports.sendNewMessageFromAdmin = async (senderId, recipientId, object, content,
         const insertAll = `
             INSERT INTO chat_message (chat_message_content, _id_user, _id_admin, chat_message_from_user, _id_chat_channel, chat_message_status) VALUES (?, ?, ?, ?, ?, ?)
         `
-        await db.query(insertAll, [content, recipientId, senderId, fromUser, lastInsertIdChannel, messageStatus])
+        await db.query(insertAll, [content, recipientId, senderId, fromUser, lastInsertIdChannel, messageStatus]);
+
     } catch (error) {
-        console.log(error)
+
+        console.log(error);
+        throw error;
     }
 }
 
@@ -86,26 +93,28 @@ exports.listOfChannel = async () => {
             SELECT 
                 cc.id_chat_channel,
                 cc.chat_channel_object,
-                DATE_FORMAT(cc.chat_channel_date, "%W %e %M %Y") AS chat_channel_date,
+                DATE_FORMAT(cc.chat_channel_date, "%e %M %Y") AS chat_channel_date,
                 cm.chat_message_from_user,
                 cm.chat_message_status,
-            FROM chat_channel cc
-            LEFT JOIN admin a ON cm._id_admin = a.id_admin
-            LEFT JOIN user u ON cm._id_user = u.id_user
+                u.user_first_name,
+                u.user_last_name
+            FROM chat_channel cc            
             LEFT JOIN chat_message cm 
                 ON cm.id_chat_message = (
                     SELECT MAX(id_chat_message)
                     FROM chat_message
                     WHERE _id_chat_channel = cc.id_chat_channel
                 )
-            ORDER BY chat_message_status ASC;            
+           	LEFT JOIN user u ON cm._id_user = u.id_user
+            ORDER BY chat_message_status ASC;           
         `
         const [result] = await db.query(request)
         return result
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }
 
@@ -114,22 +123,22 @@ exports.allMessageInChannel = async (idChannel) => {
     try {
         
         const request = `
-            SELECT * FROM chat_message AS cm
-            LEFT JOIN chat_channel AS ch ON cm._id_chat_channel = ch.id_chat_channel 
-            LEFT JOIN admin AS a ON cm._id_admin = a.id_admin
+            SET lc_time_names = 'fr_FR';
+            SELECT chat_channel_object, identifier_mail, DATE_FORMAT(chat_message_date, "%d/%m/%Y - %Hh") AS date, chat_message_content, id_chat_channel, _id_user, chat_message_from_user FROM chat_message AS cm
+            LEFT JOIN chat_channel AS ch ON cm._id_chat_channel = ch.id_chat_channel
             LEFT JOIN user AS u ON cm._id_user = u.id_user
             LEFT JOIN identifier AS i ON u._id_identifier = i.id_identifier
-            WHERE id_chat_channel = ?`;
+            WHERE id_chat_channel = ?;
+        `
 
         const [result] = await db.query(request, idChannel);
 
-        //console.log(result)
-
-        return result
+        return result[1];
 
     } catch (error) {
         
         console.log(error);
+        throw error;
     }
 }
 
@@ -153,10 +162,10 @@ exports.replyToAMessage = async (idChannel, idUser, idAdmin, textarea, chatMessa
             `
         }
 
-
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }
 
@@ -172,7 +181,9 @@ exports.getStatusMessage = async (idChannel) => {
         return result;
         
     } catch (error) {
-        
+
+        console.log(error);
+        throw error;        
     }
 }
 
