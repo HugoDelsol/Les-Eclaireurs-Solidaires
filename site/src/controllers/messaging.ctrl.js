@@ -103,7 +103,8 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
             const senderId = req.session.userExist.id;
             const recipientId = mailIsOk.id_user;
             const fromUser = 0;
-            await messageMdl.sendNewMessageFromAdmin(senderId, recipientId, object, content, fromUser);
+            const messageStatus = 1;
+            await messageMdl.sendNewMessageFromAdmin(senderId, recipientId, object, content, fromUser, messageStatus);
 
         } else {
 
@@ -132,23 +133,14 @@ exports.replyToAMessage = async (req, res) => {
 
         const getStatusMessage = await messageMdl.getStatusMessage(idChannel);
 
-        for (let i = 0; i < getStatusMessage.length; i++) {
+        for (let i = 0; i < getStatusMessage.length - 1; i++) {
 
-            for (let u = 1; u < getStatusMessage.length - 1; i++) {
-
-                if ( 
-                    getStatusMessage[i].chat_message_from_user == 1 && getStatusMessage[u].chat_message_from_user == 0 ||
-                    getStatusMessage[i].chat_message_from_user == 0 && getStatusMessage[u].chat_message_from_user == 1
-                ) {
-                    // message repondu
-                    break;
-                }
+            if (
+                getStatusMessage[i].chat_message_from_user == 1 && getStatusMessage[i+1].chat_message_from_user == 0 || 
+                getStatusMessage[i].chat_message_from_user == 0 && getStatusMessage[i+1].chat_message_from_user == 1
+            ){
+                messageStatus = 1;
             }
-            /* console.log(getStatusMessage[i+1].chat_message_from_user) */
-            /* console.log(getStatusMessage.chat_message_from_user[i]) */
-            /* if (s.chat_message_from_user == 1 && s.chat_message_from_user + 1){
-
-            } */
         }
 
         if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {

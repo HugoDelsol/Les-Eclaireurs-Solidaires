@@ -58,7 +58,7 @@ exports.updateValueSend = async (idRegistration) => {
     }
 }
 
-exports.sendNewMessageFromAdmin = async (senderId, recipientId, object, content, fromUser) => {
+exports.sendNewMessageFromAdmin = async (senderId, recipientId, object, content, fromUser, messageStatus) => {
 
     try {
         const insertObject = `        
@@ -69,9 +69,9 @@ exports.sendNewMessageFromAdmin = async (senderId, recipientId, object, content,
         const lastInsertIdChannel = resultIdChannel.insertId;
 
         const insertAll = `
-            INSERT INTO chat_message (chat_message_content, _id_user, _id_admin, chat_message_from_user, _id_chat_channel) VALUES (?, ?, ?, ?, ?)
+            INSERT INTO chat_message (chat_message_content, _id_user, _id_admin, chat_message_from_user, _id_chat_channel, chat_message_status) VALUES (?, ?, ?, ?, ?, ?)
         `
-        await db.query(insertAll, [content, recipientId, senderId, fromUser, lastInsertIdChannel])
+        await db.query(insertAll, [content, recipientId, senderId, fromUser, lastInsertIdChannel, messageStatus])
     } catch (error) {
         console.log(error)
     }
@@ -88,8 +88,10 @@ exports.listOfChannel = async () => {
                 cc.chat_channel_object,
                 DATE_FORMAT(cc.chat_channel_date, "%W %e %M %Y") AS chat_channel_date,
                 cm.chat_message_from_user,
-                cm.chat_message_status
+                cm.chat_message_status,
             FROM chat_channel cc
+            LEFT JOIN admin a ON cm._id_admin = a.id_admin
+            LEFT JOIN user u ON cm._id_user = u.id_user
             LEFT JOIN chat_message cm 
                 ON cm.id_chat_message = (
                     SELECT MAX(id_chat_message)
@@ -131,19 +133,18 @@ exports.allMessageInChannel = async (idChannel) => {
     }
 }
 
-exports.replyToAMessage = async (idChannel, idUser, idAdmin, textarea, chatMessageFromUser) => {
+exports.replyToAMessage = async (idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus) => {
 
     try {
 
         let query = null;
-        chatMessageStatus = 1;
 
         if (chatMessageFromUser == 0) {
 
             query = `
                 INSERT INTO chat_message (_id_chat_channel, _id_user, _id_admin, chat_message_content, chat_message_from_user, chat_message_status) VALUES (?, ?, ?, ?, ?, ?);
                 `
-            await db.query(query, [idChannel, idUser, idAdmin, textarea, chatMessageFromUser, chatMessageStatus]);
+            await db.query(query, [idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus]);
 
         } else  {
 
