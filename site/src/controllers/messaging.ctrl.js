@@ -5,7 +5,7 @@ const userMdl = require('../models/UserModel');
 exports.reminderShow = async (req, res) => {
 
     try {
-        
+
         const rServ = new service.RecallService();
 
         const dataView = await rServ.parseReadFile();
@@ -59,6 +59,18 @@ exports.recallManagement = async (req, res) => {
     }
 }
 
+exports.volunteerMessagingShow = async (req, res) => {
+    try {
+
+        res.render('messaging/volunteerMessaging', {
+            data: [[]],
+        });
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 exports.adminMessagingShow = async (req, res) => {
 
     try {
@@ -75,8 +87,7 @@ exports.adminMessagingShow = async (req, res) => {
         res.render('messaging/messaging', {
             data: [],
             errorAlertMsg: "Impossible de charger la liste des messages pour le moment."
-        })
-
+        });
     }
 }
 
@@ -85,7 +96,7 @@ exports.messageRediger = async (req, res) => {
     try {
 
         const data = await messageMdl.allMessageInChannel(req.params.idChannel);
-        
+
         res.render('messaging/chat', {
             data: data
         });
@@ -103,9 +114,12 @@ exports.messageRediger = async (req, res) => {
 exports.newMessageRediger = (req, res) => {
     res.render('messaging/newMessage');
 }
+exports.newMessageByVolunteer = (req, res) => {
+    res.render('messaging/volunteerNewMessage');
+}
 
 exports.sendNewMessageFromAdmin = async (req, res) => {
-    
+
     try {
 
         const { object, email, content } = req.body;
@@ -126,7 +140,7 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
 
         res.render('messaging/newMessage', {
             successAlertMsg: "Votre message a bien été envoyé.",
-        })
+        });
 
     } catch (error) {
 
@@ -137,7 +151,7 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
             textarea: content,
             email: email,
             errorAlertMsg: error.message || "L'envoi de votre message a échoué. Veuillez réessayer."
-        })
+        });
     }
 }
 
@@ -154,12 +168,12 @@ exports.replyToAMessage = async (req, res) => {
         for (let i = 0; i < getStatusMessage.length - 1; i++) {
 
             if (
-                getStatusMessage[i].chat_message_from_user == 1 && getStatusMessage[i+1].chat_message_from_user == 0 || 
-                getStatusMessage[i].chat_message_from_user == 0 && getStatusMessage[i+1].chat_message_from_user == 1
-            ){
+                getStatusMessage[i].chat_message_from_user == 1 && getStatusMessage[i + 1].chat_message_from_user == 0 ||
+                getStatusMessage[i].chat_message_from_user == 0 && getStatusMessage[i + 1].chat_message_from_user == 1
+            ) {
 
                 messageStatus = 1;
-            }              
+            }
         }
 
         if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
@@ -182,6 +196,31 @@ exports.replyToAMessage = async (req, res) => {
 
     } catch (error) {
 
+        const { textarea } = req.body;
+
+        res.render('messaging/chat', {
+            data: [[]],
+            errorAlertMsg: "Une erreur est survenue. Veuillez réessayer dans quelques instants.",
+            textarea: textarea,
+        });
+    }
+}
+
+exports.sendMessageTo = async (req, res) => {
+
+    try {
+
+        const getEmailUserById = await userMdl.getEmailUserById(req.params.idUser);
+        res.render('messaging/newMessage', {
+            emailFrom : getEmailUserById[0].identifier_mail
+        });
+
+    } catch (error) {
+
+        console.log(error);
+        res.render('messaging/newMessage', {
+            errorAlertMsg: "L'import de l'email n'a pas été pris en compte. Veuillez réessayer plus tard."
+        });
     }
 }
 

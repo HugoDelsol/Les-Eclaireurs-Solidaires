@@ -160,6 +160,25 @@ exports.getOneUserByEmail = async (email) => {
     }
 }
 
+exports.getEmailUserById = async (id) => {
+
+    try {
+
+        const request = `SELECT identifier_mail FROM identifier 
+                        LEFT JOIN user
+                        ON user._id_identifier = identifier.id_identifier
+                        WHERE id_user = ?`;
+
+        const [result] = await db.query(request, [id]);
+
+        return result;
+
+    } catch (e) {
+
+        throw e;
+    }
+}
+
 exports.addUser = async (
 
     firstName,

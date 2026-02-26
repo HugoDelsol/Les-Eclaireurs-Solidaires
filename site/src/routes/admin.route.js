@@ -4,11 +4,8 @@ const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 const userAdminCtrl = require('../controllers/user/userAdminController');
 const messagingCtrl = require('../controllers/messaging.ctrl');
-
-
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
 const missionAdminCtrl = require('../controllers/mission/missionAdminController');
-
 
 // --- SIGN ---
 router.get('/signUpAdminForm', userAdminCtrl.signUpAdminForm);
@@ -36,5 +33,6 @@ router.post('/recallManagement', messagingCtrl.recallManagement);
 
 router.get('/messaging', messagingCtrl.adminMessagingShow);
 router.post('/message', messagingCtrl.sendNewMessageFromAdmin);
+router.get('/sendMessageTo/:idUser', messagingCtrl.sendMessageTo)
 
 module.exports = router;

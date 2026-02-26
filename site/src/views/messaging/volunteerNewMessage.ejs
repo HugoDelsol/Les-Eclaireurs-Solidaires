@@ -1,13 +1,14 @@
 <link rel="stylesheet" href="/style/globalStyle.css">
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/newMessage.css">
+<link rel="stylesheet" href="/style/account/newMessageVolunteer.css">
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
 
     <main>
         <div class="container">
-        <%- include('../partials/_sideNavAdmin') %>                
+        <%- include('../partials/_sideNavUser') %>                
             
         <section class="newMessage backgroundCards">
             <div class="row">
@@ -15,7 +16,7 @@
                     <h1>Nouveau message</h1>
                     <div class="line"></div>
                 </div>                
-                <a href="/admin/messaging">
+                <a href="/messaging">
                     <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
                 </a>
             </div>
@@ -24,9 +25,6 @@
                 <form action="/admin/message"  method="POST">
                     <label for="object">
                         <input type="text" name="object" placeholder="Demande d'informations, Question technique..." id="object" value="<%= object ? object : "" %>">
-                    </label>
-                    <label for="email">
-                        <input type="email" name="email" placeholder="nom@exemple.com" id="email" value="<%= email ? email : "" || emailFrom ? emailFrom : "" %>">
                     </label>
                     <label for="textarea" class="textareaLabel"></label>
                     <textarea placeholder="Écrivez votre message ici..." name="content" id="textarea"><%= textarea ? textarea : "" %></textarea>

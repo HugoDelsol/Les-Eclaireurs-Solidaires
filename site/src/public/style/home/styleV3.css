@@ -433,7 +433,6 @@ form textarea {
     justify-content: space-around;
     align-items: center;
     margin-top: 2em;
-    margin-bottom: 8em;
 }
 
 .reviewsSize {
@@ -585,7 +584,7 @@ footer h4 {
     .nameForm,
     .emailForm,
     .rowDown {
-        margin: auto;
+        margin: 6px auto;
         width: 100%;
     }
 
@@ -595,6 +594,7 @@ footer h4 {
         margin: auto;
         margin-top: 2em;
         margin-bottom: 2em;
+        background-color: #ffffff;
     }
 
 
@@ -1084,7 +1084,7 @@ footer h4 {
     .nameForm,
     .emailForm,
     .rowDown {
-        margin: auto;
+        margin: 6px auto;
         width: 100%;
     }
 
@@ -1092,6 +1092,8 @@ footer h4 {
         font-size: 1em;
         width: 100%;
         margin: 2em 0;
+        background-color: #ffffff;
+
     }
 
     /**************/

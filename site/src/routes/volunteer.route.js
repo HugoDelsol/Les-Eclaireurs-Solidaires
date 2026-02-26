@@ -3,6 +3,7 @@ const router = express.Router();
 const userVolunteerCtrl = require('../controllers/user/userVolunteerController');
 const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
+const messageCtrl = require('../controllers/messaging.ctrl');
 
 
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
@@ -28,6 +29,9 @@ router.post('/addRegisterMissionUser', sessionMdw.requireAuth, sessionMdw.volunt
 router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerCtrl.userProfilSettingsShow);
 router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, inputProtection.updateUserProfile, userVolunteerCtrl.editUserProfile);
 router.get('/searchCity', sessionMdw.requireAuth, missionGeneralCtrl.searchCity);
+
+router.get('/messaging', messageCtrl.volunteerMessagingShow);
+router.get('/newMessageByVolunteer', messageCtrl.newMessageByVolunteer)
 
 
 module.exports = router;

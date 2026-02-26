@@ -47,6 +47,15 @@
 	border-radius: 10px;
 }
 
+.colMessage p {
+    width: 30%;
+    text-align: center;
+}
+
+.colMessage p span {
+    color: rgb(0, 0, 0);
+}
+
 .rowMessage {
     margin: 10px 20px;
     display: flex;

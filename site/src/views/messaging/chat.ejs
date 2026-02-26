@@ -33,7 +33,7 @@
             <section class="txtArea backgroundCards">
                 <form action="/replyToAMessage" method="post">
                     <label for="textarea"></label>
-                    <textarea name="textarea" id="textarea"></textarea>
+                    <textarea name="textarea" id="textarea"><%= textarea ? textarea : "" %></textarea>
                     <label for="idChannel"></label>
                     <input type="hidden" name="idChannel" value="<%= data[0].id_chat_channel %>">
                     <input type="hidden" name="idUser" value="<%= data[0]._id_user %>">
