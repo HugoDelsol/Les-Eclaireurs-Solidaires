@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le : lun. 19 jan. 2026 à 08:43
+-- Généré le : sam. 28 fév. 2026 à 20:49
 -- Version du serveur : 8.0.43
 -- Version de PHP : 8.2.27
 
@@ -74,6 +74,66 @@ CREATE TABLE `admin_role` (
 INSERT INTO `admin_role` (`id_admin_role`, `role_name`, `description`) VALUES
 (1, 'super_admin', 'Contrôle total sur le site, peut gérer tous les admins et modifier la configuration globale.'),
 (2, 'admin', 'Gère le contenu et les utilisateurs standard, mais ne peut pas toucher aux superadmins.');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat_channel`
+--
+
+CREATE TABLE `chat_channel` (
+  `id_chat_channel` int NOT NULL,
+  `chat_channel_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `chat_channel_object` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `chat_channel`
+--
+
+INSERT INTO `chat_channel` (`id_chat_channel`, `chat_channel_date`, `chat_channel_object`) VALUES
+(25, '2026-02-24 14:53:57', 'Un message pour Mamie'),
+(26, '2026-02-24 14:54:29', 'Un message pour Lucas l\'homme des bois'),
+(27, '2026-02-26 14:33:24', 'Demande');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat_message`
+--
+
+CREATE TABLE `chat_message` (
+  `id_chat_message` int NOT NULL,
+  `chat_message_content` text NOT NULL,
+  `chat_message_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `chat_message_status` tinyint(1) NOT NULL DEFAULT '0',
+  `_id_user` int NOT NULL,
+  `_id_admin` int DEFAULT NULL,
+  `chat_message_from_user` tinyint(1) NOT NULL,
+  `_id_chat_channel` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `chat_message`
+--
+
+INSERT INTO `chat_message` (`id_chat_message`, `chat_message_content`, `chat_message_date`, `chat_message_status`, `_id_user`, `_id_admin`, `chat_message_from_user`, `_id_chat_channel`) VALUES
+(103, 'Mamie Je T\'aime <3', '2026-02-24 14:53:57', 0, 62, 15, 0, 25),
+(104, 'Lucas est dans la foret.', '2026-02-24 14:54:29', 0, 49, 15, 0, 26),
+(105, 'Pas moi petit con', '2026-02-24 15:04:24', 0, 62, NULL, 1, 25),
+(106, 'Reponse Test', '2026-02-24 15:13:10', 1, 62, 15, 0, 25),
+(107, 'Reponse Test', '2026-02-24 15:15:35', 1, 62, 15, 0, 25),
+(108, 'Reponse Test', '2026-02-24 15:15:49', 1, 62, 15, 0, 25),
+(109, 'Reponse Test', '2026-02-24 15:18:45', 1, 62, 15, 0, 25),
+(110, 'Reponse Test', '2026-02-24 15:19:08', 1, 62, 15, 0, 25),
+(111, 'Test vue heure', '2026-02-24 15:33:17', 0, 49, 15, 0, 26),
+(112, 'Test jour', '2026-02-26 13:08:19', 0, 49, 15, 0, 26),
+(113, 'ans une application réelle, les données ne seront pas envoyées directement dans le res.json(). Les données seront lues à partir d\'une base de données.\r\n\r\nPour les exemples suivants, nous allons créer une base de données texte JSON pour aider à imiter ce scénario.', '2026-02-26 14:33:24', 0, 54, 15, 0, 27),
+(114, 'Jattend une reponse', '2026-02-26 14:34:18', 0, 54, 15, 0, 27),
+(115, 'Reponse test\r\n', '2026-02-26 14:50:06', 1, 62, 15, 0, 25),
+(116, 'Encore', '2026-02-26 14:50:16', 1, 62, 15, 0, 25),
+(117, 'xqxqxx', '2026-02-26 14:55:03', 0, 49, 15, 0, 26),
+(118, 'fefefexqxqxq', '2026-02-26 14:55:15', 1, 62, 15, 0, 25);
 
 -- --------------------------------------------------------
 
@@ -39370,7 +39430,12 @@ INSERT INTO `identifier` (`id_identifier`, `identifier_mail`, `identifier_passwo
 (94, 'hugoSuper@gmail.com', '$2b$10$tLXjVterJYVoN/eAmNbBw.BSe7zcTwQ3JUKQnJamgjICy/BolA5Yy'),
 (95, 'mamie@gmail.com', '$2b$10$TDSQDRdcqRJ8hXUEdz209u1W1Dhtm/f9pRGxZpL2sSRIwyk7wkMhy'),
 (96, 'pouet@gmail.com', '$2b$10$tj7F3vi0XNvBIKDf6TAicuVU9F.wR2S6SeRhSslPgzw4K09nw/6Lm'),
-(97, 'game@gmail.com', '$2b$10$pWm7TMqUvbDzIJW9KUDTxeSlu9w3VK7Nyf96IeBaQGh1Exqsd8cn6');
+(97, 'game@gmail.com', '$2b$10$pWm7TMqUvbDzIJW9KUDTxeSlu9w3VK7Nyf96IeBaQGh1Exqsd8cn6'),
+(98, 'test@gmail.com', '$2b$10$4JB/YZYW7JH4iQiKN4ePzuUgMiB33C/D.FC1OI/Mg0R3J.zXFyryO'),
+(99, 'hgui@gmail.com', '$2b$10$fgBmY/3F5qM1VXX3unOpPOagm5/ADs9oLXMLTZ0A3aQhFY6nEULKu'),
+(100, 'm@gmail.com', '$2b$10$6prUMQqv/spi7BSGDlc9ReTIbMlOwJ7Pwy4VZMEmSg63Vtr/OLwue'),
+(101, 'tes@gmail.com', '$2b$10$S0tczjRysZS.xC2bHa7uquPClGjQfVWhKLxbcobs0Woi7uk2PVJ/i'),
+(102, 'hugodelsol64@gmail.com', '$2b$10$Mq/wYTMxHSbA8AIrX4IOieB5j1p4CEwruxYVeF72YrJMkyotPscia');
 
 -- --------------------------------------------------------
 
@@ -39391,16 +39456,41 @@ CREATE TABLE `message_form` (
 --
 
 INSERT INTO `message_form` (`id_message_form`, `name_form`, `email_form`, `message_text_form`, `date_sent_message_form`) VALUES
-(66, 'Hugo', 'hugo.delsol64@gmail.com', 'Formulaire d\'envoi avec NodeJs', '2025-10-20 15:18:26'),
-(67, 'Hugo', 'hugo.delsol64@gmail.com', 'Formulaire d\'envoi avec NodeJs', '2025-10-20 15:19:46'),
-(68, 'rrvrv', 'h@gmail.com', 'cececeecec', '2025-11-10 15:10:30'),
-(69, 'rrvrv', 'h@gmail.com', 'cececeecec', '2025-11-10 15:11:13'),
-(70, 'vt', 'g@gmail.com', 'crcr', '2025-11-10 15:11:25'),
-(71, 'vt', 'g@gmail.com', 'crcr', '2025-11-10 15:11:36'),
-(72, 'ftf', 'h@gmail.com', 'hyh', '2025-11-10 15:13:17'),
-(73, 'ololol', 'h@gmail.com', 'kokoollo', '2025-11-10 15:13:55'),
-(74, 'ololol', 'h@gmail.com', 'kokoollo', '2025-11-10 15:15:14'),
-(75, 'ftf', 'h@gmail.com', 'hyh', '2025-11-10 15:15:14');
+(135, 'UserHugo', 'prout@gmail.com', 'test json', '2026-01-28 15:17:01'),
+(136, 'TEST', 'h@gmail.com', 'test json 2 alert', '2026-01-28 15:18:50'),
+(137, 'cscss', 'ah@gmail.com', 'cscs', '2026-01-28 15:21:06'),
+(138, 'xsxsxsxs', 'yryryrah@gmail.com', 'vfv', '2026-01-28 15:27:21'),
+(139, '', '', '', '2026-01-29 08:32:13'),
+(140, '', '', '', '2026-01-29 08:33:23'),
+(156, 'H', 'hd@gmail.com', 'BTN Form dans form alors navigateur prend le dessus si pas de event.preventdefault() \nrequete envoyer via action ou via fetch', '2026-01-29 09:32:59'),
+(157, 'hrgrrg', 'hd@gmail.com', 'fefef', '2026-01-29 09:34:36'),
+(158, 'dzddz&lt;:!!!!ds&gt;', 'fdfsqsf@gmail.com', 'dzdz', '2026-01-29 09:36:19'),
+(159, 'hfufeu dzdzdziz ffdzzzfzfz dzd dzdz', 'gqqq@gmail.com', 'fefefefe', '2026-01-29 09:37:34'),
+(160, 'gudzehdzjzd fdhzeidziehdez', 'gqqq@gmail.com', 'CECEF', '2026-01-29 09:39:12'),
+(161, 'HEFHEFHEFHEF', 'gqqq@gmail.com', 'DZDZDZZ', '2026-01-29 09:40:36'),
+(162, 'ffe', 'fdfsqsf@gmail.com', 'fef', '2026-01-29 09:42:59'),
+(163, 'ffeef', 'rggr@gmail.com', 'fefefeef', '2026-01-29 09:43:46'),
+(164, 'cscscsc  DEZDEDE fefefDFFEFEF', 'gqqq@gmail.com', 'FEFEFEF', '2026-01-29 09:45:30'),
+(165, 'efe fefefeef ffefef feffe fedf', 'fdfsqsf@gmail.com', 'ffrfrferfe fef efe efefe ef cdfsds', '2026-01-29 09:46:36'),
+(166, 'ynygn', 'gqqq@gmail.com', 'bfbbf', '2026-01-29 10:27:21'),
+(167, 'vdvd', 'gqqq@gmail.com', 'cecece', '2026-01-29 10:27:42'),
+(168, 'cecec', 'cssccsc@gmail.com', 'cece', '2026-01-29 10:28:36'),
+(169, 'h', 'ff@gmail.com', 'dvvd', '2026-02-02 09:17:32'),
+(170, 'dddd', 'lucas@gmail.com', 'cecece', '2026-02-02 14:28:00'),
+(171, 'hhh', 'lucas@gmail.com', 'fdfdf', '2026-02-03 16:31:21'),
+(172, 'qxscscs', 'admin@gmail.com', 'cscscsc', '2026-02-03 16:34:49'),
+(173, 'xsxsxsxs', 'admin01@gmail.com', 'sxxsxsxsxsxs', '2026-02-03 16:36:44'),
+(174, 'dzdz', 'admin01@gmail.com', 'dzdzdzdzddz', '2026-02-03 16:37:05'),
+(175, 'd&quot;d&quot;&quot;d', 'hd@gmail.com', 'd&quot;d&quot;d&quot;d', '2026-02-04 08:15:10'),
+(176, 'nngntrn', 'admin@gmail.com', 'gthtrrhr', '2026-02-04 08:17:22'),
+(177, 'dcdcdcdc', 'lucas@gmail.com', 'cdcdcdcdc', '2026-02-04 08:21:05'),
+(178, 'vrvrvr', 'admin@gmail.com', 'vrvrvrv', '2026-02-04 08:21:27'),
+(179, 'fefeff', 'hd@gmail.com', 'fefefe', '2026-02-04 08:23:13'),
+(180, 'fefefe', 'efefefeadmin@gmail.com', 'fefefe', '2026-02-04 08:23:53'),
+(181, 'frfrf', 'admin01@gmail.com', 'frfrr', '2026-02-04 08:26:30'),
+(182, 'cecece', 'admin@gmail.com', 'cececec', '2026-02-04 08:40:45'),
+(183, 'ddd', 'admin@gmail.com', 'kukukuk', '2026-02-04 08:42:23'),
+(184, 'gfg', 'admin@gmail.com', 'gfgfgfg', '2026-02-04 08:42:49');
 
 -- --------------------------------------------------------
 
@@ -39412,8 +39502,17 @@ CREATE TABLE `message_recall_template` (
   `id_message_recall_template` int NOT NULL,
   `message_object` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `message_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
+  `message_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `message_recall_template`
+--
+
+INSERT INTO `message_recall_template` (`id_message_recall_template`, `message_object`, `message_content`, `message_label`) VALUES
+(2, 'Rappel – Votre mission approche', 'Salut !\n\nLe grand jour approche ! On a hâte de vous retrouver pour notre mission \"{{mission}}\" qui aura lieu le :\n\n📅 {{date}} \n🕘 Rendez-vous à {{heure}} pile \n📍 Lieu : {{lieu}}\n\nPour que tout se passe au mieux, pensez simplement à bien vous munir de votre carte d\'identité, car elle vous sera demandée dès votre arrivée. 🪪\n\nOn compte sur vous ! Merci de nous confirmer votre présence en répondant directement à ce mail ou via votre espace personnel. Ça nous aide énormément pour l\'organisation ! 🙌\n\nOn se voit bientôt ? 😊\n\nChaleureusement,\n\nL\'équipe Éclaireurs 🌟', 'emailMessage'),
+(3, '', 'Bonjour {{prenom}}, votre mission \"{{mission}}\" est prévue le {{date}} à {{heure}}. Lieu : {{lieu}}. Merci de confirmer votre disponibilité.\r\n', 'smsMessage'),
+(4, 'Rappel de mission', 'Bonjour {{prenom}},  \nVotre mission \"{{mission}}\" est prévue le {{date}} à {{heure}}.  \nLieu : {{lieu}}  \nResponsable : {{responsable}}  \n\nMerci de confirmer votre disponibilité via votre espace personnel.\n', 'pushMessage');
 
 -- --------------------------------------------------------
 
@@ -39497,7 +39596,6 @@ INSERT INTO `mission` (`id_mission`, `mission_title`, `mission_date`, `mission_s
 (114, 'Mission 55', '2026-01-16', '09:00:00', '17:00:00', 'description', 'Lieu 55', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 5, 555),
 (115, 'Mission 56', '2026-01-17', '09:00:00', '17:00:00', 'description', 'Lieu 56', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 6, 656),
 (116, 'Mission 57', '2026-01-18', '09:00:00', '17:00:00', 'description', 'Lieu 57', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 7, 757),
-(117, 'Mission 58', '2026-01-19', '09:00:00', '17:00:00', 'description', 'Lieu 58', 20, 'image.png', 8, 858),
 (118, 'Mission 59', '2026-01-20', '09:00:00', '17:00:00', 'description', 'Lieu 59', 20, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 9, 959),
 (119, 'Mission 60', '2026-01-21', '09:00:00', '17:00:00', 'description', 'Lieu 60', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 10, 1060),
 (124, 'J\'accompagne des personnes déficientes visuelles', '2026-02-06', '08:00:00', '19:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.', 'Place du trib', 10, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182', 7, 15897),
@@ -39505,7 +39603,15 @@ INSERT INTO `mission` (`id_mission`, `mission_title`, `mission_date`, `mission_s
 (126, 'dzdzzd', '2026-02-06', '02:00:00', '23:02:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.', 'dezdedede', 9, 'https://images.unsplash.com/photo-1758685733907-42e9651721f5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1, 31323),
 (127, 'Blalalalalalala', '2026-01-28', '01:00:00', '23:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'dddd', 9, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 30394),
 (128, 'Jestttttttt', '2026-01-27', '01:10:00', '20:02:00', 'JesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJestttttttt', 'fefefe', 12, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 10, 32631),
-(129, 'Grenoble test', '2026-04-03', '02:00:00', '08:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.', 'place', 10, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 15700);
+(129, 'Grenoble test', '2026-04-03', '02:00:00', '08:00:00', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.', 'place', 10, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 2, 15700),
+(130, 'Entraide et Bénévolat', '2026-01-29', '12:00:00', '16:00:00', 'lorem ispum', 'Place', 45, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 7, 15700),
+(131, 'Pas facile tou ca', '2026-01-20', '01:02:00', '23:27:00', 'loremp', 'frfzezdzedza', 10, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/8499/conversions/ksa0J6PYwh8hODt-small.jpg?v=1737369561', 7, 17420),
+(132, 'Bénévolat', '2026-02-27', '09:00:00', '18:00:00', 'lorem ipsum', 'Place notre dame', 20, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/59791/conversions/meGVwCCzxmwRfTmvWX3xv4Z23sXwjS-small.jpg?v=1737022262', 5, 18050),
+(133, 'Nettoyage des berges', '2026-02-14', '09:00:00', '13:00:00', 'Lorem Ipsum Loria Sina ...', '299 Che De La Placette', 15, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 3, 30387),
+(134, 'Soutien Scolaire', '2026-02-11', '09:00:00', '18:00:00', 'Lorem Ispum Tradi Kalo Frame Genesis ', '38 Allée des ecoles ', 5, 'https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg', 1, 4835),
+(135, 'Nettoyage des berges', '2026-10-20', '13:00:00', '17:00:00', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage.', '36 Place de Coublevie', 10, 'https://plus.unsplash.com/premium_photo-1664811569310-04a7c276df1c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 3, 32614),
+(136, 'Nettoyage des berges', '2026-06-20', '10:00:00', '13:00:00', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage.', '50 Place du chalet', 10, 'https://plus.unsplash.com/premium_photo-1664811569310-04a7c276df1c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 3, 32629),
+(137, 'Collecte solidaire', '2026-04-14', '08:00:00', '14:00:00', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage.', '12 Rue de la borne', 15, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12167/conversions/solidarite-et-insertion-3-small.jpg?v=1737022224', 4, 13767);
 
 -- --------------------------------------------------------
 
@@ -39562,7 +39668,7 @@ INSERT INTO `mission_image` (`id_mission_image`, `mission_image_url`, `_id_missi
 (10, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/83980/conversions/EMM2Cf3yaSc4KVRHdKG5rUbsuhBgae-small.jpg?v=1737022302', 3),
 (11, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12137/conversions/prevention-et-protection-6-small.jpg?v=1737022139', 4),
 (12, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/16512/conversions/T3Zcag5cuAbpxOysr6IlESeAEQtWNG-small.jpg?v=1750858530', 4),
-(13, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/59794/conversions/REC9eUAHMreGo0FdjWC7VViX7D62YJ-small.jpg?v=1737022273', 4),
+(13, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/12167/conversions/solidarite-et-insertion-3-small.jpg?v=1737022224', 4),
 (14, 'https://images.unsplash.com/photo-1463592177119-bab2a00f3ccb?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 5),
 (15, 'https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/59791/conversions/meGVwCCzxmwRfTmvWX3xv4Z23sXwjS-small.jpg?v=1737022262', 5),
 (16, 'https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 5),
@@ -39628,6 +39734,7 @@ INSERT INTO `region` (`id_region`, `region_name`) VALUES
 CREATE TABLE `registration_mission` (
   `id_registration` int NOT NULL,
   `registration_mission_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `registration_mission_recall_send` tinyint NOT NULL DEFAULT '0',
   `_id_user` int NOT NULL,
   `_id_mission` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -39636,24 +39743,18 @@ CREATE TABLE `registration_mission` (
 -- Déchargement des données de la table `registration_mission`
 --
 
-INSERT INTO `registration_mission` (`id_registration`, `registration_mission_date`, `_id_user`, `_id_mission`) VALUES
-(160, '2025-12-30 12:08:10', 49, 74),
-(161, '2025-12-30 12:08:16', 49, 76),
-(162, '2025-12-30 12:08:35', 49, 77),
-(163, '2025-12-30 13:03:28', 49, 97),
-(164, '2025-12-30 13:03:39', 49, 75),
-(165, '2025-12-30 13:03:52', 49, 98),
-(166, '2025-12-30 13:04:23', 49, 99),
-(167, '2025-12-30 13:08:08', 49, 102),
-(168, '2025-12-30 13:08:20', 49, 100),
-(169, '2026-01-02 10:41:11', 49, 87),
-(170, '2026-01-02 11:01:14', 49, 119),
-(171, '2026-01-04 11:00:58', 49, 79),
-(172, '2026-01-04 11:01:11', 49, 80),
-(173, '2026-01-04 11:01:17', 49, 103),
-(174, '2026-01-04 11:01:25', 49, 81),
-(175, '2026-01-04 11:01:45', 49, 106),
-(176, '2026-01-08 15:50:23', 62, 86);
+INSERT INTO `registration_mission` (`id_registration`, `registration_mission_date`, `registration_mission_recall_send`, `_id_user`, `_id_mission`) VALUES
+(238, '2026-02-10 09:44:47', 0, 62, 132),
+(239, '2026-02-10 10:33:39', 0, 62, 129),
+(240, '2026-02-10 13:13:13', 0, 66, 132),
+(241, '2026-02-10 13:13:18', 0, 66, 129),
+(242, '2026-02-10 14:15:56', 0, 62, 133),
+(243, '2026-02-10 15:17:26', 0, 66, 133),
+(244, '2026-02-10 15:20:33', 0, 62, 134),
+(245, '2026-02-10 15:25:02', 0, 66, 134),
+(246, '2026-02-12 11:27:28', 0, 67, 133),
+(247, '2026-02-12 11:27:34', 0, 67, 132),
+(248, '2026-02-12 11:27:39', 0, 67, 129);
 
 -- --------------------------------------------------------
 
@@ -39672,19 +39773,11 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
-('8kcBMskR_Swysglx57V6UpLcLBQDosMi', 1768659323, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T14:15:23.403Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('9A0hXlzlNDWYB8omQLeUJe90T66nV8Zu', 1768898549, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-20T08:42:25.027Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('BFSeg1bXVGl2CApn1AVF9Q8pOqoZAqcq', 1768577893, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:38:13.265Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('G2U10tSAipKxLTFSqF5-D4Dwb3K1Qru5', 1768577893, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:38:13.256Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('Isi6d_jkrEFw5n5nChD9tO1v81xp6Txt', 1768576696, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:18:15.853Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('TCQRUCAO-i1xdkK3ZyfvLKphOnix9VkJ', 1768640237, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T08:57:17.387Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('U_gip7NmffXwS5w0XmLOlg-nbrK6GCOe', 1768574830, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T14:47:09.696Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('WtGu4_2mjfZFbzcYuhlFsOzhMS3p00pE', 1768646985, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T10:49:45.170Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('YYsfC9zl6V9oeV5IiBLW1WBGSn9FzBCe', 1768637670, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T08:14:29.944Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('hE9r85FyLYwuGUI2IYFwDsdZLohR2gas', 1768637740, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T08:15:40.127Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('mX3mX09OuxoQ7E9WOMnJRvN7AYUqWKr5', 1768659323, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T14:15:23.398Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
-('oKmXNP2wIdadrKWK0gRZCcFM0JlQ9ZUv', 1768666304, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-17T13:31:23.688Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"},\"userExist\":{\"id\":49,\"firstName\":\"Lucas\",\"isVolunteer\":true},\"regions\":[{\"id_region\":1,\"region_name\":\"Auvergne-Rhône-Alpes\"},{\"id_region\":9,\"region_name\":\"Bourgogne-Franche-Comté\"},{\"id_region\":10,\"region_name\":\"Bretagne\"},{\"id_region\":8,\"region_name\":\"Centre-Val de Loire\"},{\"id_region\":11,\"region_name\":\"Corse\"},{\"id_region\":4,\"region_name\":\"Grand Est\"},{\"id_region\":14,\"region_name\":\"Guadeloupe\"},{\"id_region\":16,\"region_name\":\"Guyane\"},{\"id_region\":2,\"region_name\":\"Hauts-de-France\"},{\"id_region\":13,\"region_name\":\"Île-de-France\"},{\"id_region\":17,\"region_name\":\"La Réunion\"},{\"id_region\":15,\"region_name\":\"Martinique\"},{\"id_region\":19,\"region_name\":\"Mayotte\"},{\"id_region\":6,\"region_name\":\"Normandie\"},{\"id_region\":7,\"region_name\":\"Nouvelle-Aquitaine\"},{\"id_region\":18,\"region_name\":\"Nouvelle-Calédonie\"},{\"id_region\":5,\"region_name\":\"Occitanie\"},{\"id_region\":12,\"region_name\":\"Pays de la Loire\"},{\"id_region\":3,\"region_name\":\"Provence-Alpes-Côte d\'Azur\"}],\"categoriesMission\":[{\"id_mission_category\":1,\"mission_category_name\":\"Éducation & Tutorat\"},{\"id_mission_category\":2,\"mission_category_name\":\"Santé & Bien-être\"},{\"id_mission_category\":3,\"mission_category_name\":\"Environnement & Nature\"},{\"id_mission_category\":4,\"mission_category_name\":\"Solidarité & Action sociale\"},{\"id_mission_category\":5,\"mission_category_name\":\"Culture & Loisirs\"},{\"id_mission_category\":6,\"mission_category_name\":\"Urgence & Secours\"},{\"id_mission_category\":7,\"mission_category_name\":\"Sport & Loisirs\"},{\"id_mission_category\":8,\"mission_category_name\":\"Technologie & Numérique\"},{\"id_mission_category\":9,\"mission_category_name\":\"International & Humanitaire\"},{\"id_mission_category\":10,\"mission_category_name\":\"Recherche & Innovation sociale\"}],\"getAllMissions\":[{\"id_mission\":129,\"mission_title\":\"Grenoble test\",\"mission_date\":\"03/04/2026\",\"mission_category_name\":\"Santé & Bien-être\",\"city_name\":\"Grenoble\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.\",\"mission_img\":\"https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg\",\"mission_available_place\":10},{\"id_mission\":124,\"mission_title\":\"Prout Test\",\"mission_date\":\"06/02/2026\",\"mission_category_name\":\"Sport & Loisirs\",\"city_name\":\"Saint-Égrève\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.\",\"mission_img\":\"https://jeveuxaider.fra1.digitaloceanspaces.com/public/production/56406/conversions/dxuVmMYyWi7kHGXIPKc08qniPbiUny-small.jpg?v=1737022182\",\"mission_available_place\":10},{\"id_mission\":126,\"mission_title\":\"dzdzzd\",\"mission_date\":\"06/02/2026\",\"mission_category_name\":\"Éducation & Tutorat\",\"city_name\":\"Paris-l\'Hôpital\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\\\\\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.\",\"mission_img\":\"https://images.unsplash.com/photo-1758685733907-42e9651721f5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"mission_available_place\":9},{\"id_mission\":125,\"mission_title\":\"Education \",\"mission_date\":\"05/02/2026\",\"mission_category_name\":\"Éducation & Tutorat\",\"city_name\":\"Parcieux\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\"mission_img\":\"https://plus.unsplash.com/premium_photo-1661964298925-b3ea464fc9b7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUMzJTg5ZHVjYXRpb24lMjAlMjYlMjBUdXRvcmF0fGVufDB8fDB8fHww\",\"mission_available_place\":10},{\"id_mission\":127,\"mission_title\":\"Blalalalalalala\",\"mission_date\":\"28/01/2026\",\"mission_category_name\":\"Recherche & Innovation sociale\",\"city_name\":\"Lyon 09\",\"mission_description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\"mission_img\":\"https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Ffr.freepik.com%2Fphotos-premium%2Fmain-lampe-eclairage_1779212.htm&ved=0CBYQjRxqFwoTCMjUr_PljZIDFQAAAAAdAAAAABBY&opi=89978449\",\"mission_available_place\":9},{\"id_mission\":128,\"mission_title\":\"Jestttttttt\",\"mission_date\":\"27/01/2026\",\"mission_category_name\":\"Recherche & Innovation sociale\",\"city_name\":\"Paris 17\",\"mission_description\":\"JesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJesttttttttJestttttttt\",\"mission_img\":\"https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Ffr.freepik.com%2Fphotos-premium%2Fmain-lampe-eclairage_1779212.htm&ved=0CBYQjRxqFwoTCMjUr_PljZIDFQAAAAAdAAAAABBY&opi=89978449\",\"mission_available_place\":12},{\"id_mission\":118,\"mission_title\":\"Mission 59\",\"mission_date\":\"20/01/2026\",\"mission_category_name\":\"International & Humanitaire\",\"city_name\":\"Montcornet\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":117,\"mission_title\":\"Mission 58\",\"mission_date\":\"19/01/2026\",\"mission_category_name\":\"Technologie & Numérique\",\"city_name\":\"Laon\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":116,\"mission_title\":\"Mission 57\",\"mission_date\":\"18/01/2026\",\"mission_category_name\":\"Sport & Loisirs\",\"city_name\":\"La Fère\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":115,\"mission_title\":\"Mission 56\",\"mission_date\":\"17/01/2026\",\"mission_category_name\":\"Urgence & Secours\",\"city_name\":\"Clermont-les-Fermes\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20},{\"id_mission\":114,\"mission_title\":\"Mission 55\",\"mission_date\":\"16/01/2026\",\"mission_category_name\":\"Culture & Loisirs\",\"city_name\":\"Boncourt\",\"mission_description\":\"description\",\"mission_img\":\"image.png\",\"mission_available_place\":20}]}'),
-('tbLwbxTv7qxIMo1ao3KxbGRhMkCco8JA', 1768576696, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-01-16T15:18:15.846Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}');
+('4kW7y5vb-VQbWU-o1BKBkjlpxqj9VQ6i', 1772200406, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-02-27T13:53:25.732Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('U76zTunmiiAQPMaIYLE5wjUamb19Cbxj', 1772205475, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-02-27T15:12:27.908Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"},\"userExist\":{\"id\":62,\"firstName\":\"Mamie\",\"isVolunteer\":true}}'),
+('mXh7jm1O0tpjfNDCocufR2g16xR6Lq-C', 1772197761, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-02-27T13:09:20.625Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('qVxhSmzNsd5MPyBsdVRG6stf7Lb-vwfy', 1772200168, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-02-27T13:49:27.500Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}'),
+('vUTZum1f106JWWOzGt6utUoLhxyJn1wE', 1772200261, '{\"cookie\":{\"originalMaxAge\":86400000,\"expires\":\"2026-02-27T13:51:00.739Z\",\"secure\":false,\"httpOnly\":true,\"path\":\"/\",\"sameSite\":\"lax\"}}');
 
 -- --------------------------------------------------------
 
@@ -78962,13 +79055,18 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `user_first_name`, `user_last_name`, `user_created_at`, `user_adress`, `user_phone_number`, `_id_category`, `_id_city`, `_id_identifier`) VALUES
-(49, 'Lucas', 'fefef', '2025-11-03 16:25:43', '299 che des ver', '3393983398', 1, 15700, 64),
+(49, 'Lucas', 'Lucassss', '2025-11-03 16:25:43', '299 che des ver', '3393983398', 1, 15700, 64),
 (54, 'user', 'us', '2025-12-10 10:24:49', NULL, NULL, NULL, NULL, 75),
 (58, 'rgrgrgr', 'frfrff', '2025-12-29 14:54:25', NULL, NULL, NULL, NULL, 89),
 (59, 'rgrgrgr gfrgr', 'frfrff grgrgr', '2025-12-29 14:56:29', NULL, NULL, NULL, NULL, 90),
 (60, '&lt;script&gt;', '&lt;script&gt;', '2025-12-29 15:03:40', NULL, NULL, NULL, NULL, 91),
 (61, '&quot; &quot;', '&quot; &quot;', '2025-12-29 15:08:32', NULL, NULL, NULL, NULL, 93),
-(62, 'Mamie', 'Arnaud', '2026-01-08 15:48:33', NULL, '0647149259', NULL, 32626, 95);
+(62, 'Mamie', 'Mamiiiie', '2026-01-08 15:48:33', NULL, '066666666', NULL, 15701, 95),
+(63, 'Test', 'TestTest', '2026-01-21 16:23:19', NULL, NULL, NULL, NULL, 98),
+(64, 'hh', 'ththth', '2026-01-29 14:37:53', NULL, NULL, NULL, NULL, 99),
+(65, 'moi', 'meme', '2026-02-02 16:00:13', NULL, NULL, NULL, NULL, 100),
+(66, 'Test123', 'testtest', '2026-02-02 20:31:50', NULL, NULL, NULL, 15701, 101),
+(67, 'Hugo', 'Dels', '2026-02-12 11:26:34', NULL, NULL, NULL, 15701, 102);
 
 -- --------------------------------------------------------
 
@@ -79000,6 +79098,21 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `admin_role`
   ADD PRIMARY KEY (`id_admin_role`);
+
+--
+-- Index pour la table `chat_channel`
+--
+ALTER TABLE `chat_channel`
+  ADD PRIMARY KEY (`id_chat_channel`);
+
+--
+-- Index pour la table `chat_message`
+--
+ALTER TABLE `chat_message`
+  ADD PRIMARY KEY (`id_chat_message`),
+  ADD KEY `fk_msg_user` (`_id_user`),
+  ADD KEY `fk_msg_admin` (`_id_admin`),
+  ADD KEY `fk_msg_channel` (`_id_chat_channel`);
 
 --
 -- Index pour la table `city`
@@ -79107,6 +79220,18 @@ ALTER TABLE `admin_role`
   MODIFY `id_admin_role` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT pour la table `chat_channel`
+--
+ALTER TABLE `chat_channel`
+  MODIFY `id_chat_channel` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT pour la table `chat_message`
+--
+ALTER TABLE `chat_message`
+  MODIFY `id_chat_message` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+
+--
 -- AUTO_INCREMENT pour la table `city`
 --
 ALTER TABLE `city`
@@ -79122,25 +79247,25 @@ ALTER TABLE `history_mission`
 -- AUTO_INCREMENT pour la table `identifier`
 --
 ALTER TABLE `identifier`
-  MODIFY `id_identifier` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id_identifier` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT pour la table `message_form`
 --
 ALTER TABLE `message_form`
-  MODIFY `id_message_form` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_message_form` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- AUTO_INCREMENT pour la table `message_recall_template`
 --
 ALTER TABLE `message_recall_template`
-  MODIFY `id_message_recall_template` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_message_recall_template` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `mission`
 --
 ALTER TABLE `mission`
-  MODIFY `id_mission` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `id_mission` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT pour la table `mission_category`
@@ -79164,13 +79289,13 @@ ALTER TABLE `region`
 -- AUTO_INCREMENT pour la table `registration_mission`
 --
 ALTER TABLE `registration_mission`
-  MODIFY `id_registration` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `id_registration` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=249;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT pour la table `user_opinion`
@@ -79187,6 +79312,14 @@ ALTER TABLE `user_opinion`
 --
 ALTER TABLE `admin`
   ADD CONSTRAINT `admin_ibfk_3` FOREIGN KEY (`_id_identifier`) REFERENCES `identifier` (`id_identifier`);
+
+--
+-- Contraintes pour la table `chat_message`
+--
+ALTER TABLE `chat_message`
+  ADD CONSTRAINT `fk_msg_admin` FOREIGN KEY (`_id_admin`) REFERENCES `admin` (`id_admin`),
+  ADD CONSTRAINT `fk_msg_channel` FOREIGN KEY (`_id_chat_channel`) REFERENCES `chat_channel` (`id_chat_channel`),
+  ADD CONSTRAINT `fk_msg_user` FOREIGN KEY (`_id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Contraintes pour la table `city`

@@ -112,6 +112,8 @@ exports.getStatsMissions = async (req, res) => {
 
         const resultService = await service.formatMissionStats(getStatsMissions)
 
+        console.log(resultService)
+
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
         res.locals.isAdmin = req.session.userExist.isAdmin;
 

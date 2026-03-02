@@ -49,7 +49,7 @@ exports.updateValueSend = async (idRegistration) => {
         const update = `
             UPDATE registration_mission
             SET registration_mission_recall_send = 1
-            WHERE id_registration = ?
+            WHERE id_registration = ?        
         `
 
         await db.query(update, [idRegistration]);
@@ -106,15 +106,48 @@ exports.listOfChannel = async () => {
                     WHERE _id_chat_channel = cc.id_chat_channel
                 )
            	LEFT JOIN user u ON cm._id_user = u.id_user
-            ORDER BY chat_message_status ASC;           
+            ORDER BY chat_message_from_user DESC;           
         `
         const [result] = await db.query(request)
-        return result
+        return result[1]
 
     } catch (error) {
 
         console.log(error);
         throw error;
+    }
+}
+
+exports.listOfChannelForVolunteer = async (idUser) => {
+
+    try {
+        
+        const request = `
+            SET lc_time_names = 'fr_FR';
+            SELECT 
+                cc.id_chat_channel,
+                cc.chat_channel_object,
+                DATE_FORMAT(cc.chat_channel_date, "%e %M %Y") AS chat_channel_date,
+                cm.chat_message_from_user,
+                cm.chat_message_status
+            FROM chat_channel cc            
+            LEFT JOIN chat_message cm 
+                ON cm.id_chat_message = (
+                    SELECT MAX(id_chat_message)
+                    FROM chat_message
+                    WHERE _id_chat_channel = cc.id_chat_channel
+                )
+           	LEFT JOIN user u ON cm._id_user = u.id_user
+            WHERE cm._id_user = ?
+            ORDER BY chat_message_from_user ASC; 
+        `
+
+        const [result] = await db.query(request, idUser); 
+
+        return result[1];
+
+    } catch (error) {
+        
     }
 }
 
@@ -142,24 +175,25 @@ exports.allMessageInChannel = async (idChannel) => {
     }
 }
 
-exports.replyToAMessage = async (idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus) => {
+exports.replyToAMessage = async (data) => {
 
     try {
 
         let query = null;
 
-        if (chatMessageFromUser == 0) {
+        if (data.chatMessageFromUser == 0) {
 
             query = `
                 INSERT INTO chat_message (_id_chat_channel, _id_user, _id_admin, chat_message_content, chat_message_from_user, chat_message_status) VALUES (?, ?, ?, ?, ?, ?);
                 `
-            await db.query(query, [idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus]);
+            await db.query(query, [data.idChannel, data.idUser, data.idAdmin, data.textarea, data.chatMessageFromUser, data.messageStatus]);
 
         } else  {
 
             query = `
-                INSERT INTO chat_message (_id_chat_channel, _id_user, _id_admin, chat_message_content, chat_message_from_user) VALUES (?, ?, ?, ?, ?);
+                INSERT INTO chat_message (_id_chat_channel, _id_user, chat_message_content, chat_message_from_user, chat_message_status) VALUES (?, ?, ?, ?, ?);
             `
+            await db.query(query, [data.idChannel, data.idUser, data.textarea, data.chatMessageFromUser, data.messageStatus ]);
         }
 
     } catch (error) {

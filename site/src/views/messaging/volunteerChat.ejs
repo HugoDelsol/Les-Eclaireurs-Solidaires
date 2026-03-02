@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/style/globalStyle.css">
+<link rel="stylesheet" href="/style/account/styleSideNav.css">
+<link rel="stylesheet" href="/style/account/chat.css">
+
+<%- include('../partials/_head') %>
+<%- include('../partials/_alert') %>
+
+    <main>
+        <div class="container">
+        <%- include('../partials/_sideNavUser') %>
+        <div class="colContainer">
+            <section class="chat backgroundCards">
+                <div class="rowLine"> 
+                    <div class="line"></div>                                      
+                    <p>Objet : <%= data[0].chat_channel_object  %></p>
+                    <p>|</p>
+                    <p>Email : <a href=""><%= data[0].identifier_mail   %></a></p> 
+                    <% console.log(status) %>
+                     <a class="cross" href="<%= status === "admin" ? "/admin/messaging" : "/messaging"  %>">
+                        <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                    </a>                                    
+                </div>                 
+                <div class="displayChat"> 
+                    <% if (data[0].id_chat_channel) { %>
+                        <% for (const d of data) { %>
+                            <div class="<%= d.chat_message_from_user === 0 ? "messageSent" :  "messageReceived" %>">
+                                <p><%= d.chat_message_content %></p>                                                          
+                                <div class="<%= d.chat_message_from_user === 0 ? "dateMessageSent" :  "dateMessageReceived" %>"><%= d.date %></div> 
+                            </div>  
+                        <% } %>
+                    <% } %>                    
+                </div>              
+            </section>
+            <section class="txtArea backgroundCards">
+                <form action="/replyToAMessage" method="post">
+                    <label for="textarea"></label>
+                    <textarea name="textarea" id="textarea"><%= textarea ? textarea : "" %></textarea>
+                    <label for="idChannel"></label>
+                    <input type="hidden" name="idChannel" value="<%= data[0].id_chat_channel %>">
+                    <input type="hidden" name="idUser" value="<%= data[0]._id_user %>">
+                    <button class="btnHover btnSecondary">ENVOYER</button>
+                </form>
+            </section>
+        </div>
+            
+    </div>
+</main>
+
+</body>
+
+</html>
+
+<script>
+    const scrollDiv = document.querySelector(".displayChat");
+    scrollDiv.scrollTop = scrollDiv.scrollHeight;
+</script>

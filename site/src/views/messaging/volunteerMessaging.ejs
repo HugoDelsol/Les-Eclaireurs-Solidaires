@@ -21,15 +21,14 @@
                     <a href="/chatMessage/<%= d.id_chat_channel %>"class="rowMessage">
                         <% if (d.chat_message_from_user === 0) { %>
                             <img class="red" src="/pictures/globalIcons/cercle.png" alt="">
-                        <% } else if (d.chat_message_status === 0) { %>
+                        <% } else if (d.chat_message_status === 2) { %>
                             <img class="grey" src="/pictures/globalIcons/grey.png" alt="">
-                        <% } else if (d.chat_message_status === 1) { %>
+                        <% } else if (d.chat_message_status === 3) { %>
                             <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
                         <% } %>
                         <img src="/pictures/globalIcons/bavarder.png" alt="">
                         <p>Objet : <span><%= d.chat_channel_object  %></span></p>
-                        <p>Bénévole : <span><%=  %></span></p>
-                        <p>Canal créer le : <span><%=  %></span></p>
+                        <p>Canal créer le : <span><%= d.chat_channel_date %></span></p>
                         <img src="/pictures/globalIcons/envoyer.png" alt="">
                     </a>   
                 <% } %> 

@@ -101,7 +101,11 @@ exports.formatMissionStats = async (data) => {
     let tabStats = [];
 
     let average = Math.round((data.resultSumVolunteers[0].total_next_30_days / data.resultSumPlaces[0].nbr_places) * 100);
-    const averageToFixed = average.toFixed(0);
+    let averageToFixed = average.toFixed(0);
+
+    if (averageToFixed === "NaN") {
+        averageToFixed = 0;
+    }
 
     for (let g of data.resultList) {
 

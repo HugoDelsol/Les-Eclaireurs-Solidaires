@@ -21,9 +21,9 @@
                     <a href="/chatMessage/<%= d.id_chat_channel %>"class="rowMessage">
                         <% if (d.chat_message_from_user === 1) { %>
                             <img class="red" src="/pictures/globalIcons/cercle.png" alt="">
-                        <% } else if (d.chat_message_status === 0) { %>
+                        <% } else if (d.chat_message_status === 2) { %>
                             <img class="grey" src="/pictures/globalIcons/grey.png" alt="">
-                        <% } else if (d.chat_message_status === 1) { %>
+                        <% } else if (d.chat_message_status === 3) { %>
                             <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
                         <% } %>
                         <img src="/pictures/globalIcons/bavarder.png" alt="">

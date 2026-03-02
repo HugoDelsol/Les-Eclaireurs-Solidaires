@@ -259,9 +259,10 @@ span {
 }
 
 .currentMission img {
-    width: 350px;
-    border-radius: 0.5em;
-    object-fit: cover;
+	min-width: 350px;
+	border-radius: 0.5em;
+	object-fit: cover;
+	max-height: 280px;
 }
 
 .widthBtnMission {
