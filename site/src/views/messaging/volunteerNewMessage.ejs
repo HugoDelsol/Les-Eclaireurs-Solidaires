@@ -2,14 +2,16 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/newMessage.css">
 <link rel="stylesheet" href="/style/account/newMessageVolunteer.css">
+<link rel="stylesheet" href="/style/account/messagingMobile.css">
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
 
-    <main>
-        <div class="container">
+<main>
+    <div class="container">
         <%- include('../partials/_sideNavUser') %>                
-            
+        <%- include('../partials/_mobileHeader') %>
+
         <section class="newMessage backgroundCards">
             <div class="row">
                 <div class="h1Line">
@@ -33,9 +35,11 @@
             </fieldset>
             
         </section>        
-            
+        
     </div>
+    <%- include('../partials/_mobileFooter') %>
 </main>
+
 
 </body>
 

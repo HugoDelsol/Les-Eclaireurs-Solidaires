@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/style/globalStyle.css">
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/messaging.css">
+<link rel="stylesheet" href="/style/account/messagingMobile.css">
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
@@ -8,6 +9,7 @@
 <main>
     <div class="container">
         <%- include('../partials/_sideNavUser') %>
+        <%- include('../partials/_mobileHeader') %>
         <section class="listOfMessage backgroundCards">
             <div class="rowLine">
                 <div class="h1Line">
@@ -28,7 +30,7 @@
                         <% } %>
                         <img src="/pictures/globalIcons/bavarder.png" alt="">
                         <p>Objet : <span><%= d.chat_channel_object  %></span></p>
-                        <p>Canal créer le : <span><%= d.chat_channel_date %></span></p>
+                        <p class="paragraph">Canal créer le : <span><%= d.chat_channel_date %></span></p>
                         <img src="/pictures/globalIcons/envoyer.png" alt="">
                     </a>   
                 <% } %> 
@@ -36,6 +38,8 @@
         </section>
     </div>
 </main>
+
+<%- include('../partials/_mobileFooter') %>
 
 </body>
 

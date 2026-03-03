@@ -389,7 +389,7 @@ td a {
         margin: 0 20px;
         cursor: pointer;
         padding: 10px 20px;
-        border-radius: 6px;
+        border-radius: 30px;
         box-shadow: 0px 0px 6px #00000040;
         background-color: rgba(255, 255, 255, 0.74);
         position: absolute;

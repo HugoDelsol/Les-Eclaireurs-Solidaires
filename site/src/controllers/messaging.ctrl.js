@@ -194,8 +194,6 @@ exports.replyToAMessage = async (req, res) => {
         const { textarea, idChannel, idUser } = req.body;
 
         const getStatusMessage = await messageMdl.getStatusMessage(idChannel);
-        console.log(getStatusMessage[0].chat_message_from_user)
-        console.log(req.session.userExist.isVolunteer)
 
         if (
             getStatusMessage[0].chat_message_from_user == 0 && req.session.userExist.isVolunteer || 

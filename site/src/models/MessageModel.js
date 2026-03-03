@@ -121,7 +121,7 @@ exports.listOfChannel = async () => {
 exports.listOfChannelForVolunteer = async (idUser) => {
 
     try {
-        
+
         const request = `
             SET lc_time_names = 'fr_FR';
             SELECT 
@@ -142,19 +142,19 @@ exports.listOfChannelForVolunteer = async (idUser) => {
             ORDER BY chat_message_from_user ASC; 
         `
 
-        const [result] = await db.query(request, idUser); 
+        const [result] = await db.query(request, idUser);
 
         return result[1];
 
     } catch (error) {
-        
+
     }
 }
 
 exports.allMessageInChannel = async (idChannel) => {
 
     try {
-        
+
         const request = `
             SET lc_time_names = 'fr_FR';
             SELECT chat_channel_object, identifier_mail, DATE_FORMAT(chat_message_date, "%d/%m/%Y - %Hh") AS date, chat_message_content, id_chat_channel, _id_user, chat_message_from_user FROM chat_message AS cm
@@ -169,7 +169,7 @@ exports.allMessageInChannel = async (idChannel) => {
         return result[1];
 
     } catch (error) {
-        
+
         console.log(error);
         throw error;
     }
@@ -188,12 +188,12 @@ exports.replyToAMessage = async (data) => {
                 `
             await db.query(query, [data.idChannel, data.idUser, data.idAdmin, data.textarea, data.chatMessageFromUser, data.messageStatus]);
 
-        } else  {
+        } else {
 
             query = `
                 INSERT INTO chat_message (_id_chat_channel, _id_user, chat_message_content, chat_message_from_user, chat_message_status) VALUES (?, ?, ?, ?, ?);
             `
-            await db.query(query, [data.idChannel, data.idUser, data.textarea, data.chatMessageFromUser, data.messageStatus ]);
+            await db.query(query, [data.idChannel, data.idUser, data.textarea, data.chatMessageFromUser, data.messageStatus]);
         }
 
     } catch (error) {
@@ -206,18 +206,41 @@ exports.replyToAMessage = async (data) => {
 exports.getStatusMessage = async (idChannel) => {
 
     try {
-        
+
         const request = `
              SELECT chat_message_from_user FROM chat_message LEFT JOIN chat_channel ON  _id_chat_channel = id_chat_channel WHERE id_chat_channel = ?;
         `
         const [result] = await db.query(request, idChannel);
 
         return result;
-        
+
     } catch (error) {
 
         console.log(error);
-        throw error;        
+        throw error;
+    }
+}
+
+exports.getStatusMessageForSideNav = async (idUser) => {
+
+    try {
+
+        const request = `
+             SELECT
+                cm.chat_message_status
+            FROM chat_channel cc            
+            LEFT JOIN chat_message cm 
+                ON cm.id_chat_message = (
+                    SELECT MAX(id_chat_message)
+                    FROM chat_message
+                    WHERE _id_chat_channel = cc.id_chat_channel
+                )
+           	LEFT JOIN user u ON cm._id_user = u.id_user
+            WHERE cm._id_user = ?
+            ORDER BY chat_message_from_user ASC
+        `
+    } catch (error) {
+
     }
 }
 

@@ -4,7 +4,7 @@
 
 require('dotenv').config();
 const globalVars = require('../site/src/middleware/globalVars.middleware');
-const pathName = require('../site/src/middleware/selectTab');
+const sideNav = require('../site/src/middleware/sideNav.middleware');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -65,8 +65,7 @@ const generalRoute = require('./src/routes/general.route');
 const volunteerRoute = require('./src/routes/volunteer.route');
 const adminRoute = require('./src/routes/admin.route');
 
-app.use(pathName.tabSelected)
-
+app.use(sideNav.tabSelected);
 // Injecte des variables globales accessibles dans toutes les vues
 app.use(globalVars.centralizedVar);
 // Récupère et attache les informations de l'utilisateur 

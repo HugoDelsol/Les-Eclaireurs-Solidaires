@@ -6,7 +6,7 @@
 
 // Models
 const missionMdl = require('../../models/MissionModel');
-const userModel = require('../../models/UserModel');
+const userMdl = require('../../models/UserModel');
 
 // Controllers
 
@@ -32,7 +32,7 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
     try {
 
-        const getUserAddress = await userModel.getUserAddress(req.session.userExist.id);
+        const getUserAddress = await userMdl.getUserAddress(req.session.userExist.id);
 
         const idRegion = getUserAddress[0].id_region;
 
@@ -42,7 +42,7 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
     } catch (error) {
 
-        res.status(400).json({errorMsg : "Impossible d'afficher la liste des missions sélectionnées pour vous."});
+        res.status(400).json({ errorMsg: "Impossible d'afficher la liste des missions sélectionnées pour vous." });
     }
 }
 
@@ -58,7 +58,7 @@ exports.fetchMissionByRegistrationDashboardUser = async (req, res) => {
 
     } catch (error) {
 
-        res.status(400).json({errorMsg : "Impossible d'afficher la liste des missions liées aux inscriptions."});
+        res.status(400).json({ errorMsg: "Impossible d'afficher la liste des missions liées aux inscriptions." });
     }
 }
 
@@ -74,7 +74,7 @@ exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
 
     } catch (error) {
 
-        res.status(400).json({errorMsg : "Impossible d'afficher la liste des missions accomplies."});
+        res.status(400).json({ errorMsg: "Impossible d'afficher la liste des missions accomplies." });
     }
 }
 
@@ -122,9 +122,9 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
     try {
 
-        const getUserAddress = await userModel.getUserAddress(idUser);
+        const getUserAddress = await userMdl.getUserAddress(idUser);
 
-        const idRegionByUser = getUserAddress[0].id_region
+        const idRegionByUser = getUserAddress[0].id_region;
 
         res.locals.missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
 
@@ -138,16 +138,16 @@ exports.dashboardAllStats = async (req, res, idUser) => {
         let i = 0;
         let tab = [];
 
-        obtainStatsOnVolunteer.resultTimeDiff.forEach((e) => {            
-            tab.push(parseInt(e.timeDiff));        
+        obtainStatsOnVolunteer.resultTimeDiff.forEach((e) => {
+            tab.push(parseInt(e.timeDiff));
             count += tab[i];
             i++;
         })
 
-        res.locals.statsOnVolunteer = obtainStatsOnVolunteer
-        res.locals.nbrTimeAccomplished = count
+        res.locals.statsOnVolunteer = obtainStatsOnVolunteer;
+        res.locals.nbrTimeAccomplished = count;
 
-        res.render('account/volunteer/dashboardUser')
+        res.render('account/volunteer/dashboardUser');
 
     } catch (error) {
 

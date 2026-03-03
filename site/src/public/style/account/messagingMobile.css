@@ -1,0 +1,55 @@
+.responsiv {
+    display: none;
+}
+
+@media all and (max-width : 1300px) {
+    .sideNav {
+        display: none;
+    }
+
+    .container {
+        height: 100vh;
+    }
+
+    .colContainer {
+        height: 80vh;
+    }
+
+    .rowLine {
+        flex-direction: column;
+    }
+
+    .backgroundCards {
+        width: 100vw;
+        height: auto;
+        padding: 100px 0;
+    }
+
+    .colMessage {
+        border-radius: 0;
+    }
+
+    .paragraph {
+        display: none;
+    }
+
+    .colMessage p {
+        width: 100%;
+        text-align: center;
+    }
+
+    .h1Line h1 {
+        text-align: center;
+    }
+
+    .rowLine .h1Line {
+        display: flex;
+        margin-bottom: 10px;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .line {
+        margin: 10px 0;
+    }
+}
