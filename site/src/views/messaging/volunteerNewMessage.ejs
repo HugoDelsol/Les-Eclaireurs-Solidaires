@@ -12,18 +12,18 @@
         <%- include('../partials/_sideNavUser') %>                
         <%- include('../partials/_mobileHeader') %>
 
-        <section class="newMessage backgroundCards">
-            <div class="row">
-                <div class="h1Line">
+        <section class="newMessage backgroundCards backgroundResponsiv">
+            <div class="row rowResponsiv">
+                <div class="h1Line h1LineResponsiv">
                     <h1>Nouveau message</h1>
-                    <div class="line"></div>
+                    <div class="line lineResponsiv"></div>
                 </div>                
                 <a href="/messaging">
                     <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
                 </a>
             </div>
             <fieldset>
-                <legend>Objet, destinataire et contenu</legend>
+                <legend>Objet et contenu</legend>
                 <form action="/admin/message"  method="POST">
                     <label for="object">
                         <input type="text" name="object" placeholder="Demande d'informations, Question technique..." id="object" value="<%= object ? object : "" %>">

@@ -259,10 +259,12 @@ span {
 }
 
 .currentMission img {
-	min-width: 350px;
+	min-width: 350px; 
 	border-radius: 0.5em;
 	object-fit: cover;
-	max-height: 280px;
+	max-height: 280px; 
+	/* width: 350px;
+	max-height: 300px; */
 }
 
 .widthBtnMission {
@@ -993,6 +995,7 @@ footer h4 {
     .currentMission img {
         width: 100%;
         height: 160px;
+        min-width: auto;
     }
 
     .widthBtnMission {

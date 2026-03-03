@@ -110,9 +110,7 @@ exports.getStatsMissions = async (req, res) => {
 
         const getStatsMissions = await missionMdl.getStatsMissions();
 
-        const resultService = await service.formatMissionStats(getStatsMissions)
-
-        console.log(resultService)
+        const resultService = await service.formatMissionStats(getStatsMissions);
 
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
         res.locals.isAdmin = req.session.userExist.isAdmin;

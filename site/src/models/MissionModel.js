@@ -291,7 +291,7 @@ exports.searchByCategories = async (regionSelected, categorySelected, tripStart,
                 ON id_mission_category = _id_mission_category
                 ${where}
                 AND mission_date > CURRENT_DATE()
-                ORDER BY mission_date DESC              
+                ORDER BY mission_date ASC              
 
             `;
 
