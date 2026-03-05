@@ -37,18 +37,6 @@
     border: 1px solid #00000075;
 }
 
-
-.sideNav .relativePosition {
-	display: flex;
-	align-items: center;
-}
-
-.sideNav .red {
-	width: 10px;
-	height: auto;
-	margin: 0 0 0 6px;
-}
-
 .center {
     width: 100%;
     display: flex;

@@ -12,9 +12,9 @@
             <section class="chat backgroundCards">
                 <div class="rowLine"> 
                     <div class="line"></div>                                      
-                    <p>OBJET : <%= data[0].chat_channel_object  %></p>
+                    <p><span>OBJET :</span> <%= data[0].chat_channel_object  %></p>
                     <p>|</p>
-                    <p>EMAIL : <a href=""><%= data[0].identifier_mail   %></a></p> 
+                    <p><span>EMAIL :</span> <a href=""><%= data[0].identifier_mail   %></a></p> 
                      <a class="cross" href="/admin/messaging">
                         <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
                     </a>                                    
@@ -23,7 +23,7 @@
                     <% if (data[0].id_chat_channel) { %>
                         <% for (const d of data) { %>
                             <div class="<%= d.chat_message_from_user === 1 ? "messageSent" :  "messageReceived" %>">
-                                <p><%= d.chat_message_content %></p>                                                          
+                                <pre><%= d.chat_message_content %></pre>                                                          
                                 <div class="<%= d.chat_message_from_user === 1 ? "dateMessageSent" :  "dateMessageReceived" %>"><%= d.date %></div> 
                             </div>  
                         <% } %>

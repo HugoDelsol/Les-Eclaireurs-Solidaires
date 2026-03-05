@@ -46,7 +46,7 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
         }
 
         const htmlResponse = await response.text();
-        document.querySelector(".modalContain").innerHTML = htmlResponse
+        document.querySelector(".modalContain").innerHTML = htmlResponse;
 
         const btnClose = document.querySelector(".close");
         const btnSubscribe = document.querySelector(".subscribe");

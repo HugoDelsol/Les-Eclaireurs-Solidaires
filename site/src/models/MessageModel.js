@@ -84,6 +84,30 @@ exports.sendNewMessageFromAdmin = async (senderId, recipientId, object, content,
     }
 }
 
+exports.sendNewMessageFromVolunteer = async (senderId, object, content, fromUser, messageStatus) => {
+
+    try {
+
+        const insertObject = `
+
+            INSERT INTO chat_channel (chat_channel_object) VALUE (?);
+        `
+        const [resultIdChannel] = await db.query(insertObject, object);
+
+        const lastInsertIdChannel = resultIdChannel.insertId;
+
+        const insertAll = `
+            INSERT INTO chat_message (_id_user, chat_message_content, chat_message_from_user, chat_message_status, _id_chat_channel) VALUES (?, ?, ?, ?, ?);
+        `
+        await db.query(insertAll, [senderId, content, fromUser, messageStatus, lastInsertIdChannel]);
+
+    } catch (error) {
+
+        console.log(error);
+        throw error;
+    }
+}
+
 exports.listOfChannel = async () => {
 
     try {

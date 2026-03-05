@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="/style/home/header.css">
+<link rel="stylesheet" href="/style/globalStyle.css">
 <script src="/javaScript/menuBurger.js" defer></script>
+<link rel="stylesheet" href="/style/connection/styleLogin.css">
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_header') %>
-<%- include('../partials/_alert')  %> 
-
-<link rel="stylesheet" href="/style/connection/styleLogin.css">
+<%- include('../partials/_alert')  %>
 
 <main>
     <section class="login">
@@ -18,12 +18,14 @@
                     <label><input type="checkbox"></label>
                     <p>Se souvenir de moi</p>
                 </div>
-                <a href="">Mot de passe oublié ?</a>
+                <a href="">Mot de passe oublié</a>
             </div>
             <div class="buttonLogin">
                 <button type="submit" class="btnSecondary btnHover widthBtnContact">CONNEXION</button>
-                <a href="/signUp">Créer un compte ?</a>
+                <a href="/signUp">Créer un compte</a>
             </div>                    
         </form>
     </section>
-</main>
+</main>    
+</body>
+</html>

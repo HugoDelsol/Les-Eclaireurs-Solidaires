@@ -1,6 +1,14 @@
 const service = require('../services/recallService');
+const utils = require('../utils/utils');
 const messageMdl = require('../models/MessageModel');
 const userMdl = require('../models/UserModel');
+
+exports.newMessageRediger = (req, res) => {
+    res.render('messaging/newMessage');
+}
+exports.newMessageByVolunteer = (req, res) => {
+    res.render('messaging/volunteerNewMessage');
+}
 
 exports.reminderShow = async (req, res) => {
 
@@ -60,19 +68,28 @@ exports.recallManagement = async (req, res) => {
 }
 
 exports.volunteerMessagingShow = async (req, res) => {
+
     try {
 
-        const listOfChannel = await messageMdl.listOfChannelForVolunteer(req.session.userExist.id)
+        let message = null;
+
+        const listOfChannel = await messageMdl.listOfChannelForVolunteer(req.session.userExist.id);
+
+        if (listOfChannel.length == 0) {
+            message = "Votre liste ne contient actuellement aucun message"
+        }
 
         res.render('messaging/volunteerMessaging', {
             data: listOfChannel,
+            successAlertMsg: message || ""
         });
 
     } catch (error) {
+
         console.log(error);
         res.render('messaging/volunteerMessaging', {
             data: [[]],
-            errorAlertMsg: "Impossible de charger la liste des messages pour le moment."
+            errorAlertMsg: "Impossible de charger la liste des messages pour le moment"
         });
     }
 }
@@ -81,10 +98,19 @@ exports.adminMessagingShow = async (req, res) => {
 
     try {
 
+        let message = null;
+
         const listOfChannel = await messageMdl.listOfChannel();
+
+        if (listOfChannel.length == 0) {
+            message = "Votre liste ne contient actuellement aucun message"
+        }
+
+        console.log(message)
 
         res.render('messaging/messaging', {
             data: listOfChannel,
+            successAlertMsg: message || ""
         });
 
     } catch (error) {
@@ -92,7 +118,7 @@ exports.adminMessagingShow = async (req, res) => {
         console.log(error);
         res.render('messaging/messaging', {
             data: [[]],
-            errorAlertMsg: "Impossible de charger la liste des messages pour le moment."
+            errorAlertMsg: "Impossible de charger la liste des messages pour le moment"
         });
     }
 }
@@ -128,13 +154,6 @@ exports.messageRediger = async (req, res) => {
             status: status
         })
     }
-}
-
-exports.newMessageRediger = (req, res) => {
-    res.render('messaging/newMessage');
-}
-exports.newMessageByVolunteer = (req, res) => {
-    res.render('messaging/volunteerNewMessage');
 }
 
 exports.sendNewMessageFromAdmin = async (req, res) => {
@@ -174,6 +193,33 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
     }
 }
 
+exports.sendNewMessageFromVolunteer = async (req, res) => {
+
+    try {
+
+        const { object, content } = req.body;
+        const fromUser = 1;
+        const messageStatus = 2;
+        const senderId = req.session.userExist.id;
+        await messageMdl.sendNewMessageFromVolunteer(senderId, object, content, fromUser, messageStatus);
+
+        res.render('messaging/volunteerNewMessage', {
+            successAlertMsg: "Votre message a bien été envoyé.",
+        });
+
+
+    } catch (error) {
+
+        const { object, content } = req.body;
+
+        res.render('messaging/volunteerNewMessage', {
+            object: object,
+            textarea: content,
+            errorAlertMsg: error.message || "L'envoi de votre message a échoué. Veuillez réessayer."
+        });
+    }
+}
+
 exports.replyToAMessage = async (req, res) => {
 
     let pathView = "";
@@ -196,7 +242,7 @@ exports.replyToAMessage = async (req, res) => {
         const getStatusMessage = await messageMdl.getStatusMessage(idChannel);
 
         if (
-            getStatusMessage[0].chat_message_from_user == 0 && req.session.userExist.isVolunteer || 
+            getStatusMessage[0].chat_message_from_user == 0 && req.session.userExist.isVolunteer ||
             getStatusMessage[0].chat_message_from_user == 1 && !req.session.userExist.isVolunteer
         ) {
             messageStatus = 3;

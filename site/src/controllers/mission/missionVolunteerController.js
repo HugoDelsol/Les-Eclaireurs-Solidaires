@@ -175,7 +175,6 @@ exports.addRegisterMissionUser = async (req, res) => {
 
         const registrationByUser = await missionMdl.getRegistrationByUserId(idMission, idUser);
 
-
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
 
             return res.status(400).json({ message: "Petit coquin, tu as bien failli m'avoir" });

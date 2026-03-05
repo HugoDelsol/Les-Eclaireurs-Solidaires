@@ -1,3 +1,7 @@
+span {
+    font-weight: 600;
+}
+
 .rowLine {
     display: flex;
     margin: 20px;
@@ -50,10 +54,6 @@
 .colMessage p {
     width: 30%;
     text-align: center;
-}
-
-.colMessage p span {
-    color: rgb(0, 0, 0);
 }
 
 .rowMessage {

@@ -31,7 +31,9 @@ router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuth
 router.get('/searchCity', sessionMdw.requireAuth, missionGeneralCtrl.searchCity);
 
 router.get('/messaging', messageCtrl.volunteerMessagingShow);
-router.get('/newMessageByVolunteer', messageCtrl.newMessageByVolunteer)
+router.get('/newMessageByVolunteer', messageCtrl.newMessageByVolunteer);
+router.post('/sendNewMessageFromVolunteer', messageCtrl.sendNewMessageFromVolunteer);
+
 
 
 module.exports = router;

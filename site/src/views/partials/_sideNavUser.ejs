@@ -6,13 +6,25 @@
         <div class="linesideNav"></div>
     </div>
     <div class="linkStyle">
-        <a href="/dashboardUser" class="btnPrimary btnHover btnNav">📊 Tableau de bord</a>
-        <a href="/missionUserShow" class="btnPrimary btnHover btnNav">🎯 Missions</a>
-        <a href="/userProfilSettingsShow" class="btnPrimary btnHover btnNav">👤 Profil</a>
-        <a href="/messaging" class="btnPrimary btnHover relativePosition">💬 Contact
-            <% // if (message) { %>
-                <img class="red" src="/pictures/globalIcons/cercle.png" alt="">
-            <% // } %>
+        <a href="/dashboardUser" class="btnPrimary btnHover btnNav 
+            <%= urlFind === "/auth" ||
+                urlFind === "/dashboardUser" ? "urlFind" : "" 
+            %>">📊 Tableau de bord
+        </a>
+        <a href="/missionUserShow" class="btnPrimary btnHover btnNav
+            <%= urlFind === "/missionUserShow" || 
+                urlFind === "/searchByCategories" ? "urlFind" : "" 
+            %>">🎯 Missions
+        </a>
+        <a href="/userProfilSettingsShow" class="btnPrimary btnHover btnNav
+            <%= urlFind === "/userProfilSettingsShow" || 
+                urlFind === "/editUserProfile" ? "urlFind" : "" 
+            %>">👤 Profil
+        </a>
+        <a href="/messaging" class="btnPrimary btnHover relativePosition
+            <%= urlFind === "/messaging" || 
+                urlFind === "/newMessageByVolunteer" ? "urlFind" : "" 
+            %>">💬 Contact
         </a> 
     </div>
     <a href="/logout" class="btnSecondary btnHover">Deconnexion</a>

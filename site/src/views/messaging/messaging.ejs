@@ -27,9 +27,9 @@
                             <img class="red" src="/pictures/globalIcons/bouton.png" alt="">
                         <% } %>
                         <img src="/pictures/globalIcons/bavarder.png" alt="">
-                        <p>Objet : <span><%= d.chat_channel_object  %></span></p>
-                        <p>Bénévole : <span><%= d.user_first_name + " " + d.user_last_name.toUpperCase() %></span></p>
-                        <p>Canal créer le : <span><%= d.chat_channel_date.toUpperCase() %></span></p>
+                        <p><span>Objet :</span> <%= d.chat_channel_object  %></p>
+                        <p><span>Bénévole :</span> <%= d.user_first_name + " " + d.user_last_name.toUpperCase() %></p>
+                        <p><span>Canal créer le :</span> <%= d.chat_channel_date.toUpperCase() %></p>
                         <img src="/pictures/globalIcons/envoyer.png" alt="">
                     </a>   
                 <% } %> 

@@ -14,7 +14,7 @@
             <section class="chat backgroundCards backgroundCardsChat">
                 <div class="rowLineChat"> 
                     <div class="rowChat">
-                        <p>OBJET : <%= data[0].chat_channel_object  %></p>
+                        <p><span>OBJET :</span> <%= data[0].chat_channel_object  %></p>
                         <div class="line"></div>   
                     </div>                                                       
                      <a class="cross" href="/messaging">
@@ -25,7 +25,7 @@
                     <% if (data[0].id_chat_channel) { %>
                         <% for (const d of data) { %>
                             <div class="<%= d.chat_message_from_user === 0 ? "messageSent" :  "messageReceived" %>">
-                                <p><%= d.chat_message_content %></p>                                                          
+                                <pre><%= d.chat_message_content %></pre>                                                          
                                 <div class="<%= d.chat_message_from_user === 0 ? "dateMessageSent" :  "dateMessageReceived" %>"><%= d.date %></div> 
                             </div>  
                         <% } %>
