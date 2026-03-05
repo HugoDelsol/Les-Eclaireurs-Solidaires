@@ -101,7 +101,7 @@ span {
     border: 1px solid rgba(0, 0, 0, 0.103);
     border-radius: 10px;
     padding: 16px;
-    word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .chat {

@@ -2,14 +2,15 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/chat.css">
 <link rel="stylesheet" href="/style/account/messagingMobile.css">
+<script src="/javaScript/style.js" defer></script>
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
+<%- include('../partials/_mobileHeader') %>
 
     <main>
         <div class="container">
         <%- include('../partials/_sideNavUser') %>
-        <%- include('../partials/_mobileHeader') %>
         <div class="colContainer">
             <section class="chat backgroundCards backgroundCardsChat">
                 <div class="rowLineChat"> 
@@ -45,9 +46,9 @@
         </div>
             
     </div>
-    <%- include('../partials/_mobileFooter') %>
-
+    
 </main>
+<%- include('../partials/_mobileFooter') %>
 
 </body>
 
