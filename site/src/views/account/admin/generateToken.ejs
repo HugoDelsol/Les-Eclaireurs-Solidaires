@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/style/globalStyle.css">
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleGenerateToken.css">
+<script src="/javaScript/style.js" defer></script>
 
 <%- include('../../partials/_head') %>
     <%- include('../../partials/_alert') %>
@@ -27,7 +28,7 @@
                             </form>
                             <div class="token">
                                 <h3>
-                                    <%= tokenAdmin ? tokenAdmin : tokenSuper %>
+                                    <%= tokenValue %>
                                 </h3>
                             </div>
                         </div>

@@ -1,14 +1,16 @@
 <link rel="stylesheet" href="/style/home/header.css">
 <link rel="stylesheet" href="/style/globalStyle.css">
 <link rel="stylesheet" href="/style/connection/styleRegister.css">
+<link rel="stylesheet" href="/style/globalStyle.css">
 <script src="/javaScript/menuBurger.js" defer></script>
 <script src="/javaScript/login.js" defer></script>
+<script src="/javaScript/style.js" defer></script>
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_header') %>
 <%- include('../partials/_alert')  %>
 
-<main>
+<main class="mainFrontOffice">
     <section class="register">
         <form class="form" action="/admin/saveAdmin" method="post">
             <img src="/pictures/globalIcons/login.png" alt="">

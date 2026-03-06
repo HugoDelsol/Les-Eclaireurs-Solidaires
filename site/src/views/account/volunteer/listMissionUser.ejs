@@ -9,11 +9,10 @@
 <%- include('../../partials/_alert') %>
 <%- include('../../partials/_mobileHeader') %>
 
-<main>
+<div class="containerDisplay">
+    <%- include('../../partials/_sideNavUser') %>
+<main class="mainBackOffice">
     <div class="modalContain"></div>
-
-    <div class="container">
-        <%- include('../../partials/_sideNavUser') %>
 
         <section class="blocListMission">
             <div class="titleAndCategorySearch">
@@ -160,7 +159,9 @@
                 <% } %>
             <% } %>
         </div>
-    </div>
+    
 </main>
+</div>
+
 
 <%- include('../../partials/_mobileFooter') %>

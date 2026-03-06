@@ -8,9 +8,10 @@
 <%- include('../../partials/_alert') %>
 <%- include('../../partials/_mobileHeader') %>
 
-<main>
-    <div class="container" style="display: flex;">
-        <%- include('../../partials/_sideNavUser') %>
+<div class="containerDisplay">
+    <%- include('../../partials/_sideNavUser') %>
+<main class="mainBackOffice">
+    
         <div class="alertFront"></div>
 
         <div class="dashboardContainer">            
@@ -191,7 +192,11 @@
             </div>
 
         </div>
-    </div>
+    
 </main>
+</div>
+
+
+
 
 <%- include('../../partials/_mobileFooter') %>

@@ -99,7 +99,7 @@ exports.findVolunteer = async (req, res) => {
         res.locals.findVolunteerList.length === 0
             ? res.locals.errorAlertMsg = "Aucun résultat pour cette recherche."
             : res.locals.errorAlertMsg = ""
-            ;
+        ;
 
         res.render('account/admin/listOfVolunteers');
 
@@ -116,16 +116,11 @@ exports.findVolunteer = async (req, res) => {
 // GENERATE TOKEN ADMIN
 // ==============================
 
-let count = 0;
-
 exports.generateToken = async (req, res) => {
 
-    let generateTokenSuper = [];
-    let generateTokenAdmin = [];
+    let tokenValue = null;
 
-    try {
-
-        
+    try {        
 
         const admins = await userModel.getAllAdmins();
 
@@ -136,21 +131,13 @@ exports.generateToken = async (req, res) => {
         const {emailTokenSuper, emailTokenAdmin} = safeData
 
         if (emailTokenSuper) {
-            count ++
-            generateTokenSuper = service.generateToken(emailTokenSuper, "superAdmin");
+            tokenValue = service.generateToken(emailTokenSuper, "superAdmin");
         } else if (emailTokenAdmin) {
-            count ++
-            generateTokenAdmin = service.generateToken(emailTokenAdmin, "admin");
-        }        
-        
-        if (count > 1){
-            count = 0;
-            throw new Error
-        }
+            tokenValue = service.generateToken(emailTokenAdmin, "admin");
+        } 
 
         res.render('account/admin/generateToken', {
-            tokenAdmin: generateTokenAdmin,
-            tokenSuper: generateTokenSuper,
+            tokenValue : tokenValue
         })
 
     } catch (error) {

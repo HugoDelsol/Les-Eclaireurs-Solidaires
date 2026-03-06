@@ -10,8 +10,6 @@ if (window.innerWidth < 1300) {
 
 if (alertMsgBack.innerText.length > 0) {
 
-    console.log("test")
-
     alertMsgBack.style.transform = "translateX(102vw)";
 
     setTimeout(() => {

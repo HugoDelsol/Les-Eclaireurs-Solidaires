@@ -173,14 +173,16 @@ const homeFormProtection = [
     }
 ]
 
+// ==============================
+// PROTECTION INPUT IN THE GENERATE TOKEN PAGE
+// ==============================
+
 const generateTokenInputProtection = [
 
     body('emailTokenAdmin').optional().trim().isEmail().normalizeEmail(),
     body('emailTokenSuper').optional().trim().isEmail().normalizeEmail(),
 
     (req, res, next) => {
-
-        console.log(req.body)
 
         const error = validationResult(req);
 
@@ -191,9 +193,6 @@ const generateTokenInputProtection = [
         next()
     }
 ]
-
-
-
 
 module.exports = {
     signUpFormProtection,

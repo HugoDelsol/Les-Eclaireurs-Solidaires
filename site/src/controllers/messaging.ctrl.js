@@ -103,10 +103,8 @@ exports.adminMessagingShow = async (req, res) => {
         const listOfChannel = await messageMdl.listOfChannel();
 
         if (listOfChannel.length == 0) {
-            message = "Votre liste ne contient actuellement aucun message"
+            message = "Votre liste ne contient actuellement aucun message";
         }
-
-        console.log(message)
 
         res.render('messaging/messaging', {
             data: listOfChannel,

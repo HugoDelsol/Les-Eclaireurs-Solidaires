@@ -1,35 +1,12 @@
 /***STYLE-GENERAL***/
-/* 
-* {
-    margin: 0;
-    color: rgb(15, 28, 63);
-    font-family: "Lora", serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
-    text-decoration: none;
-    font-weight: 300;
-    scroll-behavior: smooth;
-} */
 
-* {
-    margin: 0;
-    color: rgb(9, 17, 39);
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    text-decoration: none;
-    scroll-behavior: smooth;
-} 
 
-.container {
+.containerHome {
     max-width: 1900px;
     margin: auto;
 }
 
 body {
-
     background: #F8F5EE;
     position: relative;
 }
@@ -38,7 +15,7 @@ span {
     color: #F28B50;
 }
 
-.btnPrimary {
+.containerHome .btnPrimary {
     display: flex;
     justify-content: center;
     background-color: #F9CF80;
@@ -48,7 +25,7 @@ span {
     font-weight: 400;
 }
 
-.btnSecondary {
+.containerHome .btnSecondary {
     display: flex;
     justify-content: center;
     border: 0.1px solid rgba(0, 0, 0, 0.150);
@@ -57,14 +34,14 @@ span {
     font-weight: 400;
 }
 
-.btnHover {
+.containerHome .btnHover {
     display: inline-block;
     font-size: 1.2em;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.btnHover:hover {
+.containerHome .btnHover:hover {
     border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
@@ -171,11 +148,11 @@ span {
     font-weight: 400;
 }
 
-.buttonTitleMarginTop {
+.containerHome .buttonTitleMarginTop {
     margin-top: 2.8em;
 }
 
-.marginBtnTitle {
+.containerHome .marginBtnTitle {
     margin-right: 2em;
 }
 
@@ -200,14 +177,14 @@ span {
     padding: 0em 0.8em;
 }
 
-.btnReserch {
+.containerHome .btnReserch {
     margin: 0.6em 0em;
     border-radius: 1.4em;
     font-size: 2.4em;
     padding: 0.4em 0.6em;
 }
 
-.btnReserch img {
+.containerHome .btnReserch img {
     margin-right: 0.4em;
     position: relative;
     top: 4px;
@@ -267,7 +244,7 @@ span {
 	max-height: 300px; */
 }
 
-.widthBtnMission {
+.containerHome .widthBtnMission {
     display: flex;
     justify-content: center;
     margin-right: 2em;
@@ -396,7 +373,7 @@ form textarea {
     width: 70%;
 }
 
-.widthBtnContact {
+.containerHome .widthBtnContact {
     display: flex;
     justify-content: center;
     margin: auto;
@@ -591,7 +568,7 @@ footer h4 {
         width: 100%;
     }
 
-    .widthBtnContact {
+    .containerHome .widthBtnContact {
         font-size: 1em;
         width: 50%;
         margin: auto;
@@ -715,7 +692,7 @@ footer h4 {
         font-size: 1.2em;
     }
 
-    .btnReserch {
+    .containerHome .btnReserch {
         margin: 1em 0.8em;
         border-radius: 0.8em;
         font-size: 2em;
@@ -723,7 +700,7 @@ footer h4 {
         text-align: center;
     }
 
-    .btnReserch img {
+    .containerHome .btnReserch img {
         margin-right: 0.6em;
         position: relative;
         top: 2px;
@@ -807,14 +784,14 @@ footer h4 {
         font-size: 2.2em;
     }
 
-    .buttonTitleMarginTop .btnPrimary {
+    .containerHome .buttonTitleMarginTop .btnPrimary {
         display: flex;
         justify-content: center;
         width: 50%;
         margin-bottom: 1em;
     }
 
-    .buttonTitleMarginTop .btnSecondary {
+    .containerHome .buttonTitleMarginTop .btnSecondary {
         display: flex;
         justify-content: center;
         width: 50%;
@@ -826,13 +803,13 @@ footer h4 {
         justify-content: center;
     }
 
-    .btnReserch {
+    .containerHome .btnReserch {
         width: 75%;
         font-size: 1.4em;
         padding: 0.6em 0.2em;
     }
 
-    .btnReserch img {
+    .containerHome .btnReserch img {
         margin-right: 0.4em;
         position: relative;
         top: 4px;
@@ -867,7 +844,7 @@ footer h4 {
     }
 
     .displayDesktop {
-        display: none;
+        display: none !important;
     }
 
     .displayResponsivMobile {
@@ -895,7 +872,7 @@ footer h4 {
         height: 1.2em;
     }
 
-    .btnPrimary {
+    .containerHome .btnPrimary {
         text-align: center;
         padding: 0.6em 1.2em;
         font-weight: 400;
@@ -930,7 +907,7 @@ footer h4 {
         width: 90%;
     }
 
-    .buttonTitleMarginTop {
+    .containerHome .buttonTitleMarginTop {
         margin-top: 1em;
     }
 
@@ -963,7 +940,7 @@ footer h4 {
         justify-content: center;
     }
 
-    .btnReserch {
+    .containerHome .btnReserch {
         padding: 0.8em 0;
         margin: 1em 0.8em;
         border-radius: 0.6em;
@@ -972,7 +949,7 @@ footer h4 {
         width: 100%;
     }
 
-    .btnReserch img {
+    .containerHome .btnReserch img {
         margin-right: 0.2em;
         position: relative;
         top: 2px;
@@ -998,7 +975,7 @@ footer h4 {
         min-width: auto;
     }
 
-    .widthBtnMission {
+    .containerHome .widthBtnMission {
         display: flex;
         justify-content: center;
         margin-right: 2em;
@@ -1092,7 +1069,7 @@ footer h4 {
         width: 100%;
     }
 
-    .widthBtnContact {
+    .containerHome .widthBtnContact {
         font-size: 1em;
         width: 100%;
         margin: 2em 0;
