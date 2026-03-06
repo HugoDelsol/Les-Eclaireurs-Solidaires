@@ -6,23 +6,23 @@
 <%- include('../../partials/_head') %>
     <%- include('../../partials/_alert') %>
 
-        <main>
+    <div class="containerDisplay">
+        <%- include('../../partials/_sideNavAdmin') %>
+        <main class="mainBackOffice">
             <div class="modalContain"></div>
 
-            <div class="container">
-                <%- include('../../partials/_sideNavAdmin') %>
                     <div class="tokenContainer">
                         <div class="headTitle">
-                            <h1>Jetons d'authentification</h1>
+                            <h1>Jetons d'administration</h1>
                             <form action="/admin/superAdmin/generateToken" method="post">
                                 <label for="emailTokenAdmin">
-                                    <input type="text" placeholder="Email" name="emailTokenAdmin" id="emailTokenAdmin">
+                                    <input type="text" placeholder="nom.prenom@example.com" name="emailTokenAdmin" id="emailTokenAdmin">
                                 </label>
                                 <button class="btnSecondary btnHover" type="submit">Administrateur</button>
                             </form>
                             <form action="/admin/superAdmin/generateToken" method="post">
                                 <label for="emailTokenSuper">
-                                    <input type="text" placeholder="Email" id="emailTokenSuper" name="emailTokenSuper">
+                                    <input type="text" placeholder="nom.prenom@example.com" id="emailTokenSuper" name="emailTokenSuper">
                                 </label>
                                 <button class="btnSecondary btnHover" type="submit">Super Administrateur </button>
                             </form>
@@ -114,8 +114,8 @@
                             </div>
                         </div>
                     </div>
+                </main>
             </div>
-        </main>
         </body>
 
         </html>

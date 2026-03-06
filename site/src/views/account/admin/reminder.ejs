@@ -5,10 +5,10 @@
 <%- include('../../partials/_head') %>
 <%- include('../../partials/_alert') %>
 
+<div class="containerDisplay">        
 
-<main>
-    <div class="container">        
-        <%- include('../../partials/_sideNavAdmin') %>
+    <%- include('../../partials/_sideNavAdmin') %>
+<main class="mainBackOffice">
         <section class="managementSection">
             <form class="recallManagement bloc" method="post" action="/admin/recallManagement" >
                 <div class="justify">                    
@@ -148,5 +148,7 @@
 
             </form>
         </section>
-    </div>
-</main>
+    </main>
+</div>
+   </body>
+</html>

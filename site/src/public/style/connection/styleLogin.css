@@ -108,6 +108,18 @@ input {
     padding: 1em;
 }
 
+.labelRelative {
+    position: relative;
+}
+
+label img {
+	width: 32px;
+	position: absolute;
+	right: 30;
+	top: 20;
+    cursor: pointer;
+}
+
 .remember {
     display: flex;
     align-items: center;
