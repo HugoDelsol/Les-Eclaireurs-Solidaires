@@ -13,7 +13,6 @@ for (let i = 0; i < input.length; i++) {
 
     input[i].value = "";
     txtArea.value = "";
-
 }
 
 btnSubmit.addEventListener("click", function (event) {

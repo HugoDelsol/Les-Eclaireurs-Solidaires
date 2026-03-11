@@ -9,12 +9,12 @@ body {
 }
 
 span {
-    color: #F28B50;  
+    color: #F28B50;
 }
 
 .btnPrimary {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
     background-color: #f9cf807c;
     border: 0.1px solid #f9cf807c;
     padding: 0.6em 2em;
@@ -25,7 +25,7 @@ span {
 .btnSecondary {
     display: flex;
     justify-content: center;
-    border: 0.1px solid rgba(0, 0, 0, 0.11);    
+    border: 0.1px solid rgba(0, 0, 0, 0.11);
     background-color: #F8F5EE;
     padding: 0.6em 2em;
     border-radius: 2em;
@@ -39,8 +39,8 @@ span {
     transition: all 0.3s;
 }
 
-.btnHover:hover {   
-    border-bottom-right-radius: 5px; 
+.btnHover:hover {
+    border-bottom-right-radius: 5px;
     border-top-left-radius: 5px;
     /*border-inline-start-width: 5px;*/
     border-color: #00000075;
@@ -100,10 +100,18 @@ form {
     right: -46%;
 }
 
+input:focus {
+    outline: none;
+}
+
+#password::selection {
+    background: transparent;
+}
+
 input {
     border: none;
     border-radius: 0.8em;
-    width: 400px;    
+    width: 400px;
     margin: 1em;
     padding: 1em;
 }
@@ -113,11 +121,13 @@ input {
 }
 
 label img {
-	width: 32px;
-	position: absolute;
-	right: 30;
-	top: 20;
+    z-index: 100;
+    width: 24px;
+    position: absolute;
+    right: 30;
+    top: 24;
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .remember {
@@ -137,7 +147,7 @@ label img {
     background-color: white;
     cursor: pointer;
     margin-left: 1.2em;
-    
+
 }
 
 .buttonLogin {
@@ -279,7 +289,7 @@ footer {
     .remember {
         display: none;
     }
-    
+
     .headerResponsiv {
         display: flex;
         justify-content: space-between;

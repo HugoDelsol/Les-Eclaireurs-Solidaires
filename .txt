@@ -1,5 +1,10 @@
 SEPARATION IDENTIFIER ET USER ET ADMIN
 
+Vous avez dit
+
+----------- BROWSER - SYNC --------------------
+npx browser-sync start --proxy "localhost:3000" --files "**/*.ejs, **/*.css, **/*.js" 
+---------------------------------------------------------------------------------------------------------------
 
 
 /src

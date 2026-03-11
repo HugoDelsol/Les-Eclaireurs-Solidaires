@@ -32,3 +32,5 @@ similarPasswordConfirm.addEventListener("input", verifPassword);
 
 
 
+
+

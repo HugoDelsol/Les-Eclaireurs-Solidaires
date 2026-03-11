@@ -236,11 +236,11 @@ span {
 }
 
 .currentMission img {
-	min-width: 350px; 
-	border-radius: 0.5em;
-	object-fit: cover;
-	max-height: 280px; 
-	/* width: 350px;
+    min-width: 350px;
+    border-radius: 0.5em;
+    object-fit: cover;
+    max-height: 280px;
+    /* width: 350px;
 	max-height: 300px; */
 }
 
@@ -347,6 +347,12 @@ form textarea {
     border: rgba(0, 0, 0, 0.205) solid 1px;
     border-radius: 0.4em;
     height: 8em;
+}
+
+.alertForm {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .rowUp {
