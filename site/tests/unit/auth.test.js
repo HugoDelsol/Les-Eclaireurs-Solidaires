@@ -8,31 +8,32 @@ const { matchedData } = require('express-validator');
 jest.mock("bcrypt");
 jest.mock("../../src/models/UserModel");
 jest.mock("express-validator");
+jest.mock("../../src/controllers/mission/missionVolunteerController")
 
-describe('Tests Authentication', () => {    
+describe('Tests Authentication', () => {
 
-     it("Return user when email and password are correct", async () => {
-        
+    it("Return user when email and password are correct", async () => {
+
         const email = "test@test.com";
         const password = "password123";
-        
+
         const mockUser = {
             email: "test@test.com",
             identifier_password: "hashedPassword",
             id_user: 1
         };
-        
+
         userModel.getOneUserByEmail.mockResolvedValue(mockUser);
-        
+
         bcrypt.compare.mockResolvedValue(true);
-        
+
         const result = await verifyAccountExist(email, password);
-        
+
         expect(result.email).toBe("test@test.com");
         expect(result.role).toBe("user");
-        
+
         expect(userModel.getOneUserByEmail).toHaveBeenCalledWith(email);
-        expect(bcrypt.compare).toHaveBeenCalledWith(password, "hashedPassword");        
+        expect(bcrypt.compare).toHaveBeenCalledWith(password, "hashedPassword");
     });
 
     it('Must complete the session if the user is valid', async () => {
@@ -48,10 +49,10 @@ describe('Tests Authentication', () => {
             user_first_name: 'Alice'
         };
 
-        jest.spyOn(controller, "verifyAccountExist").mockResolvedValue(mockUserFound)
+        jest.spyOn(controller, "verifyAccountExist").mockResolvedValue(mockUserFound);
 
         res.render = jest.fn();
-        
+
         await auth(req, res);
 
         expect(req.session.userExist.id).toBe(99);
@@ -70,9 +71,9 @@ describe('Tests Authentication', () => {
 
         const testCalledWidth = "test@gmail.com";
 
-        const dataMock = {            
+        const dataMock = {
             id_pirate: 100,
-            identifier_password: "hash"            
+            identifier_password: "hash"
         }
 
         userModel.getOneUserByEmail.mockResolvedValue(dataMock);
@@ -82,6 +83,20 @@ describe('Tests Authentication', () => {
 
         expect(userModel.getOneUserByEmail).toHaveBeenCalledWith(testCalledWidth);
         expect(result).toBe(false);
+    });
+
+    it('Must be incorrect if email is not found', async () => {
+
+        const email = "invalid.test@gmail.com";
+        const password = "hashTest";
+
+        userModel.getOneUserByEmail.mockResolvedValue(null);
+
+        const result = await verifyAccountExist(email, password);
+
+        expect(result).toBeFalsy();
+        expect(userModel.getOneUserByEmail).toHaveBeenCalledWith(email);
+
     })
 });
 

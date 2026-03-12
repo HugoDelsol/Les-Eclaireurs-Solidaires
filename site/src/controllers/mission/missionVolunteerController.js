@@ -124,7 +124,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         const getUserAddress = await userModel.getUserAddress(idUser);
 
-        const idRegionByUser = getUserAddress[0].id_region
+        const idRegionByUser = getUserAddress[0].id_region || null;
 
         res.locals.missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
 
@@ -151,7 +151,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
     } catch (error) {
 
-        console.log("Controler getAllMissionsByUser: ", error);
+        console.log("Controler dashboardAllStats: ", error);
         res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
 
         res.render('account/volunteer/dashboardUser', {

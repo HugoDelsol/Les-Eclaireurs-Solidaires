@@ -145,12 +145,14 @@ exports.getOneUserByEmail = async (email) => {
 
     try {
 
-        const request = `SELECT * FROM identifier 
-                        LEFT JOIN user
-                        ON user._id_identifier = identifier.id_identifier
-                        LEFT JOIN admin
-                        ON admin._id_identifier = identifier.id_identifier
-                        WHERE identifier_mail = ?`;
+        const request = `        
+            SELECT * FROM identifier 
+            LEFT JOIN user
+            ON user._id_identifier = identifier.id_identifier
+            LEFT JOIN admin
+            ON admin._id_identifier = identifier.id_identifier
+            WHERE identifier_mail = ?
+        `;
 
         const [result] = await db.query(request, [email]);
 
