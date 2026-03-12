@@ -23,6 +23,7 @@ body {
 
 .mainBackOffice {
     display: flex;
+    flex-direction: column;
     width: 100%;
     visibility: hidden;
     transform: translateX(-20px);

@@ -6,6 +6,7 @@ const userAdminCtrl = require('../controllers/user/userAdminController');
 const messagingCtrl = require('../controllers/messaging.ctrl');
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
 const missionAdminCtrl = require('../controllers/mission/missionAdminController');
+const messagingProtection = require('../middleware/messagingProtection.middleware');
 
 // --- SIGN ---
 router.get('/signUpAdminForm', userAdminCtrl.signUpAdminForm);
@@ -32,7 +33,7 @@ router.get('/reminder', messagingCtrl.reminderShow);
 router.post('/recallManagement', messagingCtrl.recallManagement);
 
 router.get('/messaging', messagingCtrl.adminMessagingShow);
-router.post('/message', messagingCtrl.sendNewMessageFromAdmin);
+router.post('/message', messagingProtection.messagingAddNewMessage, messagingCtrl.sendNewMessageFromAdmin);
 router.get('/sendMessageTo/:idUser', messagingCtrl.sendMessageTo)
 
 module.exports = router;

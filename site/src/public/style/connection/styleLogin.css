@@ -257,6 +257,17 @@ footer {
         margin-top: 6em;
     }
 
+    label img {
+        z-index: 100;
+        width: 24px;
+        position: absolute;
+        right: 30px;
+        top: -72px;
+        cursor: pointer;
+        opacity: 0.8;
+        height: auto;
+    }
+
     .login {
         margin: 0;
         padding: 0;

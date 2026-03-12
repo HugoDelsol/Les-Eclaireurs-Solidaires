@@ -5,6 +5,7 @@ const userGeneralCtrl = require("../controllers/user/userGeneralController");
 const homeCtrl = require("../controllers/home.ctrl");
 const sessionMdw = require('../middleware/session.middleware');
 const messagingCtrl = require('../controllers/messaging.ctrl');
+const messagingProtection = require('../middleware/messagingProtection.middleware');
 
 router.get('/', homeCtrl.homePage);
 router.get('/becomeVolunteer', homeCtrl.becomeVolunteer);
@@ -15,7 +16,7 @@ router.get('/signIn', userGeneralCtrl.signIn);
 router.post('/auth', inputProtection.signInFormProtection, userGeneralCtrl.auth); 
 
 router.get('/chatMessage/:idChannel', sessionMdw.requireAuth, messagingCtrl.messageRediger);
-router.post('/replyToAMessage', messagingCtrl.replyToAMessage);
+router.post('/replyToAMessage', messagingProtection.chatMessagingProtection, messagingCtrl.replyToAMessage);
 router.get('/newMessage', sessionMdw.requireAuth, messagingCtrl.newMessageRediger);
 
 router.get('/logout', sessionMdw.logout);

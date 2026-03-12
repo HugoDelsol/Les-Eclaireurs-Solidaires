@@ -47,7 +47,7 @@
 
     header p,
     footer p {
-        font-weight: 600;
+        font-weight: 100;
         color: black;
         margin-top: 4px;
     }

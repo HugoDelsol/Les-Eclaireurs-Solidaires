@@ -48,8 +48,6 @@ const signUpFormProtection = [
 
             const message = errors.array()[0].msg
 
-            console.log(message)
-
             return res.render('connection/signUp', {
                 errorAlertMsg: message,
                 firstName: req.body.firstName,

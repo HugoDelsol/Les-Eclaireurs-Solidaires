@@ -2,6 +2,7 @@ const service = require('../services/recallService');
 const utils = require('../utils/utils');
 const messageMdl = require('../models/MessageModel');
 const userMdl = require('../models/UserModel');
+const { matchedData } = require('express-validator');
 
 exports.newMessageRediger = (req, res) => {
     res.render('messaging/newMessage');
@@ -158,7 +159,10 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
 
     try {
 
-        const { object, email, content } = req.body;
+        const safeData = matchedData(req);
+
+        const { object, email, content } = safeData;
+        
         const mailIsOk = await userMdl.getOneUserByEmail(email);
 
         if (mailIsOk) {
@@ -235,8 +239,16 @@ exports.replyToAMessage = async (req, res) => {
 
         let messageStatus = 2;
 
-        const { textarea, idChannel, idUser } = req.body;
+        const safeData = matchedData(req);
 
+        const { textarea } = safeData;
+        const { idChannel, idUser } = req.body;
+
+        console.log(idChannel)
+
+        console.log(safeData)
+
+        const dataBeforeSend = await messageMdl.allMessageInChannel(idChannel);
         const getStatusMessage = await messageMdl.getStatusMessage(idChannel);
 
         if (
@@ -258,25 +270,36 @@ exports.replyToAMessage = async (req, res) => {
             }
         }
 
-        if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
+        if (res.locals.errorAlertMsg.length > 0) {
 
-            const idAdmin = req.session.userExist.id;
-            const chatMessageFromUser = 0;
-            const data = { idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus }
-            await messageMdl.replyToAMessage(data);
+            return res.render(pathView, {
+                data: dataBeforeSend,
+                status: status,
+                errorAlertMsg: res.locals.errorAlertMsg,
+            });
 
         } else {
 
-            const idUser = req.session.userExist.id;
-            const chatMessageFromUser = 1;
-            const data = { idChannel, idUser, textarea, messageStatus, chatMessageFromUser }
-            await messageMdl.replyToAMessage(data);
+            if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
+
+                const idAdmin = req.session.userExist.id;
+                const chatMessageFromUser = 0;
+                const data = { idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus }
+                await messageMdl.replyToAMessage(data);
+
+            } else {
+
+                const idUser = req.session.userExist.id;
+                const chatMessageFromUser = 1;
+                const data = { idChannel, idUser, textarea, messageStatus, chatMessageFromUser }
+                await messageMdl.replyToAMessage(data);
+            }
         }
 
-        const data = await messageMdl.allMessageInChannel(idChannel);
+        const dataAfterSend = await messageMdl.allMessageInChannel(idChannel);
 
         res.render(pathView, {
-            data: data,
+            data: dataAfterSend,
             status: status
         });
 

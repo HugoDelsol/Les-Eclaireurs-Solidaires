@@ -4,8 +4,24 @@
 
 @media all and (max-width : 1300px) {
 
+    p, pre {
+        font-size: 14px;
+    }
+
+    .rowChat p {
+        padding: 0 20px 0 0;
+    }
+
+    .btnReset {
+        width: 32px;
+    }
+
     .sideNav {
         display: none;
+    }
+
+    .containerDisplay {
+        height: 100vh;
     }
 
     .container {
@@ -18,12 +34,13 @@
 
     .backgroundCards {
         width: 100vw;
-        height: auto;
+        height: 100vh;
         padding: 100px 0;
     }
 
     .colMessage {
         border-radius: 0;
+        height: 50%;
     }
 
     .rowMessage img {
@@ -42,6 +59,7 @@
 
     .colMessage p {
         width: 100%;
+        padding: 0 20px;
         text-align: center;
         font-size: 14px;
     }

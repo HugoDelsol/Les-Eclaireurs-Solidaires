@@ -4,7 +4,7 @@ const userVolunteerCtrl = require('../controllers/user/userVolunteerController')
 const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 const messageCtrl = require('../controllers/messaging.ctrl');
-
+const messagingProtection = require('../middleware/messagingProtection.middleware');
 
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
 const missionVolunteerCtrl = require('../controllers/mission/missionVolunteerController');
@@ -32,7 +32,7 @@ router.get('/searchCity', sessionMdw.requireAuth, missionGeneralCtrl.searchCity)
 
 router.get('/messaging', messageCtrl.volunteerMessagingShow);
 router.get('/newMessageByVolunteer', messageCtrl.newMessageByVolunteer);
-router.post('/sendNewMessageFromVolunteer', messageCtrl.sendNewMessageFromVolunteer);
+router.post('/sendNewMessageFromVolunteer', messagingProtection.messagingAddNewMessageFromVolunteer, messageCtrl.sendNewMessageFromVolunteer);
 
 
 
