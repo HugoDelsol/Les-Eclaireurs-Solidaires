@@ -3,6 +3,7 @@
 // ------------------------------------
 
 require('dotenv').config();
+const { testDb } = require('../site/src/models/UserModel')
 const globalVars = require('../site/src/middleware/globalVars.middleware');
 const pathName = require('../site/src/middleware/selectTab');
 const express = require('express');
@@ -24,7 +25,7 @@ const sessionStore = new MySQLStore({
   user: process.env.DB_USER,
   password: process.env.DB_PSWRD,
   database: process.env.DB_NAME,
-  port: 3300 
+  port: 3300
 });
 
 app.use(session({
@@ -83,12 +84,29 @@ app.use('/admin', adminRoute);
 
 // Page 404 pour les routes non trouvées
 app.use((req, res) => {
-    res.status(404).render('home/404');
+  res.status(404).render('home/404');
 });
 
 // ------------------------------------
 // 🚀 LANCEMENT DU SERVEUR
 // ------------------------------------
-app.listen(port, () => {
-  console.log(`✅ Serveur démarré sur http://localhost:${port}`);
-});
+
+async function startApp() {
+
+  try {
+
+    await testDb();
+
+    app.listen(port, () => {
+      console.log(`✅ Serveur démarré sur http://localhost:${port}`);
+    });
+
+  } catch (error) {
+
+    console.error('Échec du démarrage :', error);
+  }
+}
+
+startApp()
+
+

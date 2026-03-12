@@ -11,13 +11,13 @@ describe('Database connection', () => {
 
     it('connection limit', async () => {
         let promises = [];
-        const req = `SELECT id_city FROM city WHERE id_city = 1`;
+        const req = `SELECT 1 + 2 AS solutionTest`;
         for (let i = 0; i < 15; i++) {
             promises.push(db.query(req));
         }
         const results = await Promise.all(promises);
         results.forEach(([rows]) => {
-            expect(rows[0].id_city).toEqual(1)
+            expect(rows[0].solutionTest).toEqual(3)
         })
     })
 

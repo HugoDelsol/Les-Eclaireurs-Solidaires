@@ -121,6 +121,10 @@ exports.verifyAccountExist = async (email, password) => {
             } else if (userMail.id_admin) {
 
                 userMail['role'] = 'admin';
+
+            } else {
+                
+                return false;
             }
 
             return userMail;
@@ -133,5 +137,6 @@ exports.verifyAccountExist = async (email, password) => {
     } catch (e) {
 
         console.error(e);
+        throw e;
     }
 }
