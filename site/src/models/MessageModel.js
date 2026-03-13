@@ -175,7 +175,7 @@ exports.listOfChannelForVolunteer = async (idUser) => {
     }
 }
 
-exports.authorizeDisplayMessagesForUser = async (idUser, idChannel) => {
+exports.authorizeDisplayMessagesForUser = async (idChannel) => {
 
     try {
 

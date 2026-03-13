@@ -144,7 +144,7 @@ exports.messageRediger = async (req, res) => {
         }
 
         if (req.session.userExist.isVolunteer) {
-            const userAccess = await messageMdl.authorizeDisplayMessagesForUser(req.session.userExist.id, req.params.idChannel);
+            const userAccess = await messageMdl.authorizeDisplayMessagesForUser(req.params.idChannel);
             if (req.session.userExist.id !== userAccess._id_user) {
                 return res.render('home/404')
             }
