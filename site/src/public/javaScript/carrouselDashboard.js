@@ -72,7 +72,7 @@ async function carrouselMissionByRegion() {
 
     } catch (error) {
 
-        console.log("test",error);
+        console.log(error);
     }
 }
 

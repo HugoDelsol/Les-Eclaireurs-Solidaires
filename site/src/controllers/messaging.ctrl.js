@@ -137,10 +137,27 @@ exports.messageRediger = async (req, res) => {
 
     try {
 
-        const data = await messageMdl.allMessageInChannel(req.params.idChannel);
+        const data = await messageMdl.allMessageInChannel(req.params.idChannel);        
+
+        if (!data.resultForId || !data.resultForMessages[1] || data.resultForId.length === 0 || data.resultForMessages[1].length === 0) {
+            return res.render('home/404')
+        }
+
+        if (req.session.userExist.isVolunteer) {
+            const userAccess = await messageMdl.authorizeDisplayMessagesForUser(req.session.userExist.id, req.params.idChannel);
+            if (req.session.userExist.id !== userAccess._id_user) {
+                return res.render('home/404')
+            }
+        }
+
+        req.session.chatData = {
+            idChannel: data.resultForId[0].id_chat_channel || [],
+            idUser: data.resultForId[0]._id_user || []
+        }
 
         res.render(pathView, {
-            data: data,
+            dataId: data.resultForId,
+            dataMessages: data.resultForMessages[1],
             status: status
         });
 
@@ -149,7 +166,7 @@ exports.messageRediger = async (req, res) => {
         console.log(error);
         res.render(pathView, {
             data: [[]],
-            errorAlertMsg: "Impossible de charger les messages de cette conversation pour le moment.",
+            errorAlertMsg: error.message || "Impossible de charger les messages de cette conversation pour le moment.",
             status: status
         })
     }
@@ -162,7 +179,7 @@ exports.sendNewMessageFromAdmin = async (req, res) => {
         const safeData = matchedData(req);
 
         const { object, email, content } = safeData;
-        
+
         const mailIsOk = await userMdl.getOneUserByEmail(email);
 
         if (mailIsOk) {
@@ -240,13 +257,8 @@ exports.replyToAMessage = async (req, res) => {
         let messageStatus = 2;
 
         const safeData = matchedData(req);
-
         const { textarea } = safeData;
-        const { idChannel, idUser } = req.body;
-
-        console.log(idChannel)
-
-        console.log(safeData)
+        const idChannel = req.session.chatData.idChannel;        
 
         const dataBeforeSend = await messageMdl.allMessageInChannel(idChannel);
         const getStatusMessage = await messageMdl.getStatusMessage(idChannel);
@@ -269,37 +281,40 @@ exports.replyToAMessage = async (req, res) => {
                 messageStatus = 3;
             }
         }
-
+        
         if (res.locals.errorAlertMsg.length > 0) {
-
+            
             return res.render(pathView, {
-                data: dataBeforeSend,
+                dataId: dataBeforeSend.resultForId,
+                dataMessages: dataBeforeSend.resultForMessages[1],
                 status: status,
                 errorAlertMsg: res.locals.errorAlertMsg,
             });
-
+            
         } else {
-
+            
             if (req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
-
+                
+                const idUser = req.session.chatData.idUser  
                 const idAdmin = req.session.userExist.id;
                 const chatMessageFromUser = 0;
                 const data = { idChannel, idUser, idAdmin, textarea, chatMessageFromUser, messageStatus }
                 await messageMdl.replyToAMessage(data);
-
+                
             } else {
-
+                
                 const idUser = req.session.userExist.id;
                 const chatMessageFromUser = 1;
                 const data = { idChannel, idUser, textarea, messageStatus, chatMessageFromUser }
                 await messageMdl.replyToAMessage(data);
             }
         }
-
+        
         const dataAfterSend = await messageMdl.allMessageInChannel(idChannel);
 
         res.render(pathView, {
-            data: dataAfterSend,
+            dataId: dataAfterSend.resultForId,
+            dataMessages: dataAfterSend.resultForMessages[1],
             status: status
         });
 
@@ -309,7 +324,8 @@ exports.replyToAMessage = async (req, res) => {
         const { textarea } = req.body;
 
         res.render(pathView, {
-            data: [[]],
+            dataId: [[]],
+            dataMessages: [[]],
             errorAlertMsg: "Une erreur est survenue. Veuillez réessayer dans quelques instants.",
             textarea: textarea,
             status: status

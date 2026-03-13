@@ -29,11 +29,11 @@ router.get('/listOfVolunteers', sessionMdw.requireAuth, sessionMdw.allAdministra
 router.get('/activeVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, userAdminCtrl.activeVolunteer);
 router.post('/findVolunteer', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization , userAdminCtrl.findVolunteer);
 
-router.get('/reminder', messagingCtrl.reminderShow);
-router.post('/recallManagement', messagingCtrl.recallManagement);
+router.get('/reminder', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, messagingCtrl.reminderShow);
+router.post('/recallManagement', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, messagingCtrl.recallManagement);
 
-router.get('/messaging', messagingCtrl.adminMessagingShow);
-router.post('/message', messagingProtection.messagingAddNewMessage, messagingCtrl.sendNewMessageFromAdmin);
-router.get('/sendMessageTo/:idUser', messagingCtrl.sendMessageTo)
+router.get('/messaging', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, messagingCtrl.adminMessagingShow);
+router.post('/message', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, messagingProtection.messagingAddNewMessage, messagingCtrl.sendNewMessageFromAdmin);
+router.get('/sendMessageTo/:idUser', sessionMdw.requireAuth, sessionMdw.allAdministratorAuthorization, messagingCtrl.sendMessageTo)
 
 module.exports = router;

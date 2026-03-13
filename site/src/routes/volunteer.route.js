@@ -28,11 +28,11 @@ router.post('/addRegisterMissionUser', sessionMdw.requireAuth, sessionMdw.volunt
 // --- PROFILE ---
 router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerCtrl.userProfilSettingsShow);
 router.post('/editUserProfile', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, inputProtection.updateUserProfile, userVolunteerCtrl.editUserProfile);
-router.get('/searchCity', sessionMdw.requireAuth, missionGeneralCtrl.searchCity);
+router.get('/searchCity', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionGeneralCtrl.searchCity);
 
-router.get('/messaging', messageCtrl.volunteerMessagingShow);
-router.get('/newMessageByVolunteer', messageCtrl.newMessageByVolunteer);
-router.post('/sendNewMessageFromVolunteer', messagingProtection.messagingAddNewMessageFromVolunteer, messageCtrl.sendNewMessageFromVolunteer);
+router.get('/messaging', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, messageCtrl.volunteerMessagingShow);
+router.get('/newMessageByVolunteer', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, messageCtrl.newMessageByVolunteer);
+router.post('/sendNewMessageFromVolunteer', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, messagingProtection.messagingAddNewMessageFromVolunteer, messageCtrl.sendNewMessageFromVolunteer);
 
 
 

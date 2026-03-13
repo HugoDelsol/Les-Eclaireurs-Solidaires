@@ -16,7 +16,7 @@
             <section class="chat backgroundCards backgroundCardsChat">
                 <div class="rowLineChat"> 
                     <div class="rowChat">
-                        <p><span>OBJET :</span> <%= data[0].chat_channel_object  %></p>
+                        <p><span>OBJET :</span> <%= dataId[0].chat_channel_object  %></p>
                         <div class="line"></div>   
                     </div>                                                       
                      <a class="cross" href="/messaging">
@@ -24,14 +24,12 @@
                     </a>                                    
                 </div>                 
                 <div class="displayChat"> 
-                    <% if (data[0].id_chat_channel) { %>
-                        <% for (const d of data) { %>
-                            <div class="<%= d.chat_message_from_user === 0 ? "messageSent" :  "messageReceived" %>">
-                                <pre><%= d.chat_message_content %></pre>                                                          
-                                <div class="<%= d.chat_message_from_user === 0 ? "dateMessageSent" :  "dateMessageReceived" %>"><%= d.date %></div> 
-                            </div>  
-                        <% } %>
-                    <% } %>                    
+                    <% for (const dm of dataMessages) { %>
+                        <div class="<%= dm.chat_message_from_user === 0 ? "messageSent" :  "messageReceived" %>">
+                            <pre><%= dm.chat_message_content %></pre>                                                          
+                            <div class="<%= dm.chat_message_from_user === 0 ? "dateMessageSent" :  "dateMessageReceived" %>"><%= dm.date %></div> 
+                        </div>  
+                    <% } %>                                 
                 </div>              
             </section>
             <section class="txtArea backgroundCards backgroundCardsChat">
@@ -39,8 +37,6 @@
                     <label for="textarea"></label>
                     <textarea name="textarea" id="textarea"><%= textarea ? textarea : "" %></textarea>
                     <label for="idChannel"></label>
-                    <input type="hidden" name="idChannel" value="<%= data[0].id_chat_channel %>">
-                    <input type="hidden" name="idUser" value="<%= data[0]._id_user %>">
                     <button class="btnHover btnSecondary">ENVOYER</button>
                 </form>
             </section>

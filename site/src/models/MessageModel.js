@@ -175,22 +175,51 @@ exports.listOfChannelForVolunteer = async (idUser) => {
     }
 }
 
+exports.authorizeDisplayMessagesForUser = async (idUser, idChannel) => {
+
+    try {
+
+        const req = `
+            SELECT _id_user FROM chat_message WHERE _id_chat_channel = ? LIMIT 1
+        `
+
+        const [result] = await db.query(req, [idChannel]);
+
+        return result[0]
+        
+    } catch (error) {
+
+        console.log(error);
+        throw error;
+    }
+}
+
 exports.allMessageInChannel = async (idChannel) => {
 
     try {
 
-        const request = `
-            SET lc_time_names = 'fr_FR';
-            SELECT chat_channel_object, identifier_mail, DATE_FORMAT(chat_message_date, "%d/%m/%Y - %Hh") AS date, chat_message_content, id_chat_channel, _id_user, chat_message_from_user FROM chat_message AS cm
+        const reqForId = `
+            SELECT chat_channel_object, identifier_mail, id_chat_channel, _id_user FROM chat_message AS cm
             LEFT JOIN chat_channel AS ch ON cm._id_chat_channel = ch.id_chat_channel
             LEFT JOIN user AS u ON cm._id_user = u.id_user
             LEFT JOIN identifier AS i ON u._id_identifier = i.id_identifier
+            WHERE id_chat_channel = ?
+            LIMIT 1;
+        `
+        const [resultForId] = await db.query(reqForId, idChannel);
+
+        const reqForMessages = `
+            SET lc_time_names = 'fr_FR';
+            SELECT DATE_FORMAT(chat_message_date, "%d/%m/%Y - %Hh") AS date, chat_message_content, chat_message_from_user FROM chat_message AS cm
+            LEFT JOIN chat_channel AS ch ON cm._id_chat_channel = ch.id_chat_channel
             WHERE id_chat_channel = ?;
         `
+        const [resultForMessages] = await db.query(reqForMessages, idChannel);        
 
-        const [result] = await db.query(request, idChannel);
-
-        return result[1];
+        return data = {
+            resultForId,
+            resultForMessages
+        } 
 
     } catch (error) {
 

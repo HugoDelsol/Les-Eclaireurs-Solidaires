@@ -4,6 +4,10 @@
 
 const { body, validationResult } = require('express-validator');
 
+// ==============================
+// FORM ADD NEW MESSAGE FROM ADMIN PROTECTION
+// ==============================
+
 const messagingAddNewMessage = [
 
     body('object').trim().escape().notEmpty().withMessage("L'objet de votre demande est requis"),
@@ -15,8 +19,6 @@ const messagingAddNewMessage = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-
-            console.log("test")
 
             const message = error.array()[0].msg;
 
@@ -32,6 +34,10 @@ const messagingAddNewMessage = [
     }
 ];
 
+// ==============================
+// FORM ADD NEW MESSAGE FROM VOLUNTEER PROTECTION
+// ==============================
+
 const messagingAddNewMessageFromVolunteer = [
 
     body('object').trim().escape().notEmpty().withMessage("L'objet de votre demande est requis"),
@@ -42,8 +48,6 @@ const messagingAddNewMessageFromVolunteer = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-
-            console.log("test")
 
             const message = error.array()[0].msg;
 
@@ -58,19 +62,17 @@ const messagingAddNewMessageFromVolunteer = [
     }
 ];
 
+// ==============================
+// CHAT MESSAGING PROTECTION FROM ALL USERS
+// ==============================
+
 const chatMessagingProtection = [
 
     body('textarea')
         .trim()
         .escape()
         .notEmpty().withMessage("Un message est requis")
-        .isLength({ max: 2000 }).withMessage("Le message doit faire au maximum 2000 caractères")
-        .custom((value) => {
-
-            const urlCount = (value.match(/https?:\/\//g) || []).length;
-            if (urlCount > 3) throw new Error("Trop de liens dans le message");
-            return true;
-        }),
+        .isLength({ max: 2000 }).withMessage("Le message doit faire au maximum 2000 caractères"),        
 
     (req, res, next) => {
 
