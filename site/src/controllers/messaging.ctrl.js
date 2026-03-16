@@ -140,13 +140,13 @@ exports.messageRediger = async (req, res) => {
         const data = await messageMdl.allMessageInChannel(req.params.idChannel);        
 
         if (!data.resultForId || !data.resultForMessages[1] || data.resultForId.length === 0 || data.resultForMessages[1].length === 0) {
-            return res.render('home/404')
+            return res.render('home/404');
         }
 
         if (req.session.userExist.isVolunteer) {
             const userAccess = await messageMdl.authorizeDisplayMessagesForUser(req.params.idChannel);
             if (req.session.userExist.id !== userAccess._id_user) {
-                return res.render('home/404')
+                return res.render('home/404');
             }
         }
 
@@ -165,7 +165,8 @@ exports.messageRediger = async (req, res) => {
 
         console.log(error);
         res.render(pathView, {
-            data: [[]],
+            dataId: [[]],
+            dataMessages: [[]],
             errorAlertMsg: error.message || "Impossible de charger les messages de cette conversation pour le moment.",
             status: status
         })
