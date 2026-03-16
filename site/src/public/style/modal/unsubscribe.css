@@ -1,0 +1,143 @@
+.modalBackground .btnPrimary {
+    display: flex;
+    justify-content: center;
+    background-color: #f9cf807c;
+    border: 0.1px solid #00000013;
+    padding: 0.6em 1em;
+    border-radius: 2em;
+    font-weight: 400;
+}
+
+.modalBackground .btnSecondary {
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid rgba(0, 0, 0, 0.11);
+    background-color: #F8F5EE;
+    padding: 0.6em 1em;
+    border-radius: 2em;
+    font-weight: 400;
+}
+
+.modalBackground .btnHover {
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modalBackground .btnHover:hover {
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-color: #00000075;
+}
+
+.modalBackground {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+    position: fixed;
+    z-index: 100;
+    top: 25vh;
+    left: 25vw;
+    width: 50%;
+    height: 50%;
+    background: #F8F5EE;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.modalToggle {
+    position: fixed;
+    z-index: 100;
+    top: 25vh;
+    left: 25vw;
+    width: 50%;
+    height: 50%;
+    background: #F8F5EE;
+    border-radius: 2em;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.modal h2 {
+    font-weight: 900;
+}
+
+.sizedBox {
+    width: 80%;
+}
+
+.sizedBox p {
+    font-size: 20px;
+}
+
+.modal div {
+    display: flex;
+    margin-top: 2em;
+    justify-content: center;
+}
+
+.modal div a {
+    margin-right: 1em;
+}
+
+.spanText {
+    font-weight: 900;
+    color: #8d5d05;
+}
+
+.toggleNone {
+    display: none;
+}
+
+.toggleBlock {
+    display: flex;
+}
+
+
+@media all and (max-width : 1000px) {
+    .modal h2 {
+        font-size: 20px;
+    }
+
+    .modal p {
+        font-size: 14px;
+    }
+
+    .btnCol {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal div a {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .modal {
+        width: 70%;
+        left: 15%;
+    }
+
+    .modalToggle {
+        width: 70%;
+        left: 15%;
+    }
+
+    .modalToggle h2 {
+        font-size: 20px;
+    }
+}

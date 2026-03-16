@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="/style/globalStyle.css">
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleDashboardUser.css">
+<link rel="stylesheet" href="/style/modal/unsubscribe.css">
 <script src="/javaScript/carrouselDashboard.js" defer></script>
 <script src="/javaScript/style.js" defer></script>
+<script src="/javaScript/unsubscribe.js" defer></script>
 
 <%- include('../../partials/_head') %>
 <%- include('../../partials/_alert') %>
@@ -11,7 +13,7 @@
 <div class="containerDisplay">
     <%- include('../../partials/_sideNavUser') %>
 <main class="mainBackOffice">
-    
+    <div class="modalContain"></div>
         <div class="alertFront"></div>
 
         <div class="dashboardContainer">            
@@ -114,7 +116,7 @@
                                 <td class="color"><%= missionsUser[i].mission_date %></td>
                                 <td class="color"><%= missionsUser[i].city_name %></td>
                                 <td><a href="#">Voir davantage</a></td>
-                                <td>Désinscription <input type="checkbox"></td>
+                                <td>Désinscription <input type="checkbox" data-id="<%= JSON.stringify({id: missionsUser[i].id_registration, title: missionsUser[i].mission_title}) %>" class="checkbox"></td>
                             </tr>
                         <% } %>
                     </tbody>
@@ -131,7 +133,7 @@
                                 <p class="place-mission-register">lieux</p>
                                 <p class="date-mission-register">date</p>
                                 <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                <a class="btnPrimary btnHover" href="">Se désinscrire</a>
+                                <a class="btnPrimary btnHover btnUnsubscribe" href="">Se désinscrire</a>
                             </div>
                         </div>
 

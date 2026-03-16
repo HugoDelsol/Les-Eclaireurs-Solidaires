@@ -93,7 +93,18 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
             } else {
                 document.querySelector('.alertFrontOfficeError').textContent = data.message
                 c.checked = false
+                setTimeout(() => {
+                    if (window.innerWidth < 1300) {
+                        location.reload();
+                    }
+                    document.querySelector('.modalContain').innerHTML = "";
+                    c.checked = false                 
+                }, 3000);
             }
         });
+
+    } else {
+
+        console.log("Erreur modalRegisterMission")
     }
 }

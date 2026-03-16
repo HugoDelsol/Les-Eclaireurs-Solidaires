@@ -95,7 +95,7 @@ exports.obtainStatsOnVolunteer = async (idUser) => {
         `;
 
         const [resultTimeDiff] = await db.query(timeDiff, [idUser])
-        
+
         const nbrMissionAccomplished = `
             SELECT COUNT(_id_user) AS nbr
             FROM registration_mission 
@@ -449,20 +449,6 @@ exports.getAllMission = async (sqlLimit) => {
     }
 }
 
-exports.registerMissionUser = async (idUser, idMission) => {
-
-    try {
-
-        const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
-        await db.query(request, [idUser, idMission]);
-
-    } catch (error) {
-
-        console.error("Erreur SQL registerMissionUser :", error);
-        throw error;
-    }
-};
-
 exports.getRegistrationByUserId = async (idMission, idUser) => {
 
     try {
@@ -476,6 +462,53 @@ exports.getRegistrationByUserId = async (idMission, idUser) => {
 
         console.error("Erreur SQL getRegistrationByUserId :", error);
         throw error;
+    }
+}
+
+exports.registerMissionUser = async (idUser, idMission) => {
+
+    try {
+
+        throw new Error
+
+        const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
+        const [result] = await db.query(request, [idUser, idMission]);
+
+        console.log(result)
+
+        if (result.affectedRows !== 1){
+            return false;
+        }
+
+        return true;
+
+    } catch (error) {
+
+        console.error("Erreur SQL registerMissionUser :", error);
+        return false;
+    }
+};
+
+exports.unregisterAVolunteer = async (idRegistration) => {
+
+    try {
+
+        const request = `
+            DELETE FROM registration_mission
+            WHERE id_registration = ?
+        `
+        const [result] = await db.query(request, idRegistration);
+
+         if (result.affectedRows !== 1){
+            return false;
+        }
+
+        return true;
+
+    } catch (error) {
+
+        console.error("Erreur SQL unregisterAVolunteer :", error);
+        return false;
     }
 }
 

@@ -25,6 +25,14 @@ exports.modalRegisterMission = async (req, res) => {
 }
 
 // ==============================
+// DISPLAY MODAL UNSUBSCRIBE MISSION
+// ==============================
+
+exports.modalUnsubscribeMission = async (req, res) => {
+    return res.render('modals/unsubscribe');
+}
+
+// ==============================
 // RESPONSIV MISSION DASHBOARD VOLUNTEER
 // ==============================
 
@@ -168,7 +176,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
 exports.addRegisterMissionUser = async (req, res) => {
 
-    try {
+    try {        
 
         const idUser = parseInt(req.query.idUser);
         const idMission = parseInt(req.query.idMission);
@@ -196,6 +204,33 @@ exports.addRegisterMissionUser = async (req, res) => {
             console.log("alreadyAdded: false");
             return res.json({ alreadyAdded: false });
         }
+
+    } catch (error) {
+
+        console.error("Erreur registerMissionUser :", error);
+        return res.json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
+    }
+}
+
+exports.unregisterAVolunteer = async (req, res) => {
+
+    try {
+
+        const idRegistration = parseInt(req.query.idRegistration);
+        const idUser = parseInt(req.query.idUser);
+
+        if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
+
+            return res.status(400).json({ message: "Petit coquin, tu as bien failli m'avoir" });
+        }
+
+        const result = await missionMdl.unregisterAVolunteer(idRegistration);
+        
+        if (result === false) {
+            return res.json({ registrationDeleted: false , message: "Une erreur est survenu, veuillez réessayer dans un instant."})
+        }
+        
+        return res.json({ registrationDeleted: true})
 
     } catch (error) {
 

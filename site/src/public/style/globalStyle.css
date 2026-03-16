@@ -19,6 +19,7 @@ body {
     transform: translateX(-20px);
     opacity: 0;
     transition: transform 0.4s, opacity 0.4s ease-out; 
+    
 }
 
 .mainBackOffice {
@@ -29,6 +30,7 @@ body {
     transform: translateX(-20px);
     opacity: 0;
     transition: transform 0.4s, opacity 0.4s ease-out; 
+    overflow-y: scroll;
 }
 .mainBackOffice.isVisible,
 .mainFrontOffice.isVisible {

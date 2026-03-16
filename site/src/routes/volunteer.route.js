@@ -22,8 +22,10 @@ router.get('/fetchMissionAccomplishedDashboardUser', sessionMdw.requireAuth, mis
 router.get('/missionUserShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionVolunteerCtrl.missionUserShow);
 router.post('/searchByCategories', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionGeneralCtrl.searchByCategories);
 router.get('/dataMission/:idMission', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionGeneralCtrl.getDataMission);
-router.get('/modalRegisterMission', sessionMdw.volunteerAuthorization, missionVolunteerCtrl.modalRegisterMission);
+router.get('/modalRegisterMission', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionVolunteerCtrl.modalRegisterMission);
 router.post('/addRegisterMissionUser', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionVolunteerCtrl.addRegisterMissionUser);
+router.get('/modalUnsubscribeMission', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionVolunteerCtrl.modalUnsubscribeMission);
+router.delete('/unregisterAVolunteer', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, missionVolunteerCtrl.unregisterAVolunteer);
 
 // --- PROFILE ---
 router.get('/userProfilSettingsShow', sessionMdw.requireAuth, sessionMdw.volunteerAuthorization, userVolunteerCtrl.userProfilSettingsShow);
