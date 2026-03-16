@@ -60,8 +60,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
 
         btnClose.addEventListener("click", () => {
             
-            document.querySelector('.modalContain').innerHTML = ""
-            c.checked = false
+            document.querySelector('.modalContain').innerHTML = "";
+            c.checked = false;
         })
 
         btnSubscribe.addEventListener("click", async () => {
@@ -83,7 +83,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 modalToggle.classList.toggle('toggleBlock');
 
                 setTimeout(() => {
-                    if (window.innerWidth < 1300) {
+                    if (window.innerWidth < 1301) {
+                        document.body.style.display = "none";
                         location.reload();
                     }
                     document.querySelector('.modalContain').innerHTML = "";
@@ -91,10 +92,12 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 }, 3000);
 
             } else {
-                document.querySelector('.alertFrontOfficeError').textContent = data.message
-                c.checked = false
+
+                document.querySelector('.alertFrontOfficeError').textContent = data.message;
+                c.checked = false;
+
                 setTimeout(() => {
-                    if (window.innerWidth < 1300) {
+                    if (window.innerWidth < 1301) {
                         location.reload();
                     }
                     document.querySelector('.modalContain').innerHTML = "";

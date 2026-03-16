@@ -469,8 +469,6 @@ exports.registerMissionUser = async (idUser, idMission) => {
 
     try {
 
-        throw new Error
-
         const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
         const [result] = await db.query(request, [idUser, idMission]);
 

@@ -46,11 +46,11 @@
     width: 50%;
     height: 50%;
     background: #F8F5EE;
-    border-radius: 2em;
+    border-radius: 0.6em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     text-align: center;
 }
 
@@ -58,11 +58,12 @@
     position: fixed;
     z-index: 100;
     top: 25vh;
-    left: 25vw;
-    width: 50%;
-    height: 50%;
+    left: 20vw;
+    width: 60%;
+    height: fit-content;
+    padding: 20px 0;
     background: #F8F5EE;
-    border-radius: 2em;
+    border-radius: 0.6em;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -84,7 +85,6 @@
 
 .modal div {
     display: flex;
-    margin-top: 2em;
     justify-content: center;
 }
 
@@ -98,7 +98,8 @@
 }
 
 .toggleNone {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .toggleBlock {
@@ -130,6 +131,9 @@
     .modal {
         width: 70%;
         left: 15%;
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     .modalToggle {

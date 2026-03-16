@@ -10,12 +10,13 @@
 <%- include('../../partials/_alert') %>
 <%- include('../../partials/_mobileHeader') %>
 
-<div class="containerDisplay">
-    <%- include('../../partials/_sideNavUser') %>
-<main class="mainBackOffice">
-    <div class="modalContain"></div>
-        <div class="alertFront"></div>
+<div class="modalContain"></div>
 
+<div class="containerDisplay">
+<%- include('../../partials/_sideNavUser') %>
+<main class="mainBackOffice">
+    
+        <div class="alertFront"></div>
         <div class="dashboardContainer">            
 
             <!-- ================= HEADER ================= -->
@@ -133,7 +134,7 @@
                                 <p class="place-mission-register">lieux</p>
                                 <p class="date-mission-register">date</p>
                                 <a class="btnSecondary btnHover" href="">Voir d'avantage</a>
-                                <a class="btnPrimary btnHover btnUnsubscribe" href="">Se désinscrire</a>
+                                <a class="btnPrimary btnHover btnUnsubscribe" data-id="">Se désinscrire</a>
                             </div>
                         </div>
 

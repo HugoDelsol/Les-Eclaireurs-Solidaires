@@ -1,24 +1,31 @@
+const btnResponsiv = document.querySelector('.btnUnsubscribe');
 const checkBox = document.querySelectorAll('.checkbox');
-const unsubscribe = document.querySelector('.btnUnsubscribe');
 const idUser = document.querySelector('.idUser');
 const idUserValue = parseInt(idUser.textContent);
 
 for (let c of checkBox) {
 
+    const dataParse = JSON.parse(c.dataset.id);
+    const dataId = dataParse.id;
+    const dataTitle = dataParse.title;
+
     c.addEventListener('click', () => {
-
-        const dataParse = JSON.parse(c.dataset.id);
-
-        const dataId = dataParse.id
-        const dataTitle = dataParse.title
-
-        modalUnsubscriveMission(c, dataId, dataTitle);
-    })
+        modalUnsubscriveMission(c, "", dataId, dataTitle);
+    });
 }
 
-async function modalUnsubscriveMission(c, dataId, dataTitle) {
+btnResponsiv.addEventListener('click', () => {
 
-    if (c.checked) {
+    const dataParse = JSON.parse(btnUnsubscribe.dataset.id)
+    const dataId = dataParse.id;
+    const dataTitle = dataParse.title;
+
+    modalUnsubscriveMission("", btnResponsiv, dataId, dataTitle);
+});
+
+async function modalUnsubscriveMission(c, btnResponsiv, dataId, dataTitle) {
+
+    if (c.checked || btnResponsiv.classList.contains("btnUnsubscribe")) {
 
         const response = await fetch('modalUnsubscribeMission', {
             method: 'GET',
@@ -65,13 +72,13 @@ async function modalUnsubscriveMission(c, dataId, dataTitle) {
 
                 setTimeout(() => {
 
-                    if (window.innerWidth < 1300) {
+                    if (window.innerWidth < 1301) {
                         location.reload();
                     }
 
                     document.querySelector('.modalContain').innerHTML = "";
                     c.checked = false;
-                    
+
                 }, 3000);
 
             } else {
@@ -81,7 +88,7 @@ async function modalUnsubscriveMission(c, dataId, dataTitle) {
 
                 setTimeout(() => {
 
-                    if (window.innerWidth < 1300) {
+                    if (window.innerWidth < 1301) {
                         location.reload();
                     }
 

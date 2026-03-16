@@ -1,9 +1,9 @@
-let isBelow1300 = window.innerWidth < 1300;
+let isBelow1300 = window.innerWidth < 1301;
 let currentWidth = window.innerWidth;
 
 const alertFront = document.querySelector(".alertFront");
 
-if (currentWidth < 1300) {
+if (currentWidth < 1301) {
     carrouselMissionByRegion();
     carrouselMissionByRegistration();
     carrouselMissionAccomplished();
@@ -111,7 +111,7 @@ const arrowRightRegistration = document.querySelector(".arrowRightRegistration")
 const titleMissionRegister = document.querySelector(".title-mission-register");
 const dateMissionRegister = document.querySelector(".date-mission-register");
 const backgroundImageRegister = document.querySelector(".imgRegister");
-
+const btnUnsubscribe = document.querySelector(".btnUnsubscribe");
 
 let indexRegistration = 0;
 let dataRegistration = [];
@@ -154,7 +154,8 @@ async function carrouselMissionByRegistration() {
 function updateCarrouselRegistration() {
     titleMissionRegister.textContent = dataRegistration[indexRegistration].mission_title;
     dateMissionRegister.textContent = `Lieu : ${dataRegistration[indexRegistration].city_name}`;
-    backgroundImageRegister.style.backgroundImage = `url('${dataRegistration[indexRegistration].mission_img}')`
+    backgroundImageRegister.style.backgroundImage = `url('${dataRegistration[indexRegistration].mission_img}')`;
+    btnUnsubscribe.setAttribute("data-id", JSON.stringify({id:dataRegistration[indexRegistration].id_registration, title: titleMissionRegister.textContent}));
 }
 
 arrowRightRegistration.addEventListener('click', () => {
