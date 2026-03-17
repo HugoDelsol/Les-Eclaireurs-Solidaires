@@ -568,15 +568,20 @@ exports.fetchImgByCategory = async (category) => {
 
 exports.getDataMissionById = async (idMission) => {
 
-    try {
+    try {        
         
         const request = `
-        
-            SELECT * FROM mission WHERE id_mission = ?;
+            SELECT * FROM mission 
+            LEFT JOIN city
+            ON _id_city = id_city
+            LEFT JOIN mission_category
+            ON _id_mission_category = id_mission_category
+            WHERE id_mission = ?;
         `
         const [result] = await db.query(request, idMission);
 
-        console.log(result)
+        return result;
+
     } catch (error) {
         console.log(error);
     }

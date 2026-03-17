@@ -1,0 +1,72 @@
+.mainBackOffice {
+    height: 100vh;
+}
+
+.background {
+    padding: 40px;
+    margin: auto;
+    position: relative;
+    width: 70vw;
+}
+
+.background img {
+    border-radius: 10px 10px 0 0;
+    height: 200px;
+    width: 70vw;
+    position: absolute;
+    object-fit: cover;
+}
+
+.background .lineTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.background .line {
+    width: 10%;
+    margin-left: 20px;
+}
+
+.background a {
+    width: 20vw;
+    margin: auto;
+    text-align: center;
+}
+
+.btnHover {
+    display: block;
+}
+
+.imagetest {
+    border-radius: 10px 10px 0 0;
+    position: relative;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(247, 230, 216));
+    height: 200px;
+}
+
+.container {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.colLeft,
+.colRight {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.colRight p {
+    margin: 4px 0;
+}
+
+.border {
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+}

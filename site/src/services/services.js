@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const missionModel = require('../models/MissionModel');
+const { PassThrough } = require('nodemailer/lib/xoauth2');
 
 const secretToken = process.env.TOKEN_SECRET;
 
@@ -128,5 +129,34 @@ exports.formatMissionStats = async (data) => {
         tabStats,
         averageToFixed,
     }
+}
+
+
+exports.dateFormat = (date) => {
+
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
+
+    const dateObj = new Date(date);
+    const dateFormat = dateObj.toLocaleDateString('fr', options).toUpperCase();
+    return dateFormat;
+}
+ 
+exports.timeFormat = (startTime, endTime) => {
+
+    const splitStartTime = startTime.split(':');    
+    const splitEndTime = endTime.split(':');
+
+    const timeFormatStart = `${splitStartTime[0]}h${splitStartTime[1]}`;
+    const timeFormatEnd = `${splitEndTime[0]}h${splitEndTime[1]}`;
+
+    return data = {
+        timeFormatStart,
+        timeFormatEnd
+    }; 
 }
 

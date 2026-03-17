@@ -191,7 +191,7 @@ exports.addRegisterMissionUser = async (req, res) => {
         if (registrationByUser) {
 
             console.log("alreadyAdded: true");
-            return res.json({ alreadyAdded: true });
+            return res.json({ alreadyAdded: true , message: "Vous êtes déjà inscrit à cette mission"});
 
         } else {
 

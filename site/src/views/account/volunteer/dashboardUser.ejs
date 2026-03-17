@@ -116,7 +116,7 @@
                                 <td><p><%= missionsUser[i].mission_title %></p></td>
                                 <td class="color"><%= missionsUser[i].mission_date %></td>
                                 <td class="color"><%= missionsUser[i].city_name %></td>
-                                <td><a href="#">Voir davantage</a></td>
+                                <td><a href="/missionDetails/<%= missionsUser[i].id_mission %>">Voir davantage</a></td>
                                 <td>Désinscription <input type="checkbox" data-id="<%= JSON.stringify({id: missionsUser[i].id_registration, title: missionsUser[i].mission_title}) %>" class="checkbox"></td>
                             </tr>
                         <% } %>

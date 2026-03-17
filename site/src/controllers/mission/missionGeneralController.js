@@ -104,13 +104,23 @@ exports.searchCity = async (req, res) => {
 // ==============================
 
 exports.getDataMission = async (req, res) => {
-    console.log(req.params.idMission);
 
     try {
         
-        const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
-        res.render('account/volunteer/missionDetails')
+        const dataMission = await missionMdl.getDataMissionById(req.params.idMission);        
+        const dateFormat = service.dateFormat(dataMission[0].mission_date);
+        const timeFormat = service.timeFormat(dataMission[0].mission_start_time, dataMission[0].mission_end_time);
+
+        console.log(timeFormat)
+
+        res.render('account/volunteer/missionDetails', {
+            dataMission: dataMission,
+            dateFormat: dateFormat,
+            timeFormat: timeFormat,
+        })
+
     } catch (error) {
-        
+
+        console.log(error)
     }
 }
