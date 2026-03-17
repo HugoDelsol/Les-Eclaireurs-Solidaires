@@ -20,7 +20,7 @@ const service = require('../../services/services.js');
 // ==============================
 
 exports.searchByCategories = async (req, res) => {
-    
+
     let renderPathByRole = "home/404"
 
     try {
@@ -37,8 +37,8 @@ exports.searchByCategories = async (req, res) => {
             res.locals.errorAlertMsg = isDateIncomplete
                 ? "Veuillez saisir une date de début ET une date de fin."
                 : "Veuillez sélectionner une région ou une catégorie."
-            ;
-                            
+                ;
+
             user.isVolunteer ? res.locals.missionsClear = [] : res.locals.missions = [];
             return res.render(renderPathByRole);
         }
@@ -49,16 +49,16 @@ exports.searchByCategories = async (req, res) => {
 
         res.locals.missions = filterOutRegisteredMissions
         res.locals.missionsClear = utils.clearData(filterOutRegisteredMissions);
-        res.locals.searchFilters = { regionSelected, categorySelected }; 
-        
+        res.locals.searchFilters = { regionSelected, categorySelected };
+
         res.render(renderPathByRole);
 
     } catch (error) {
-        
+
         console.error(error);
 
         res.locals.missions = [],
-        res.locals.missionsClear = [];
+            res.locals.missionsClear = [];
         res.locals.searchFilters = [];
         res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants."
 
@@ -105,4 +105,12 @@ exports.searchCity = async (req, res) => {
 
 exports.getDataMission = async (req, res) => {
     console.log(req.params.idMission);
+
+    try {
+        
+        const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
+        res.render('account/volunteer/missionDetails')
+    } catch (error) {
+        
+    }
 }

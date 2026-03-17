@@ -472,8 +472,6 @@ exports.registerMissionUser = async (idUser, idMission) => {
         const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
         const [result] = await db.query(request, [idUser, idMission]);
 
-        console.log(result)
-
         if (result.affectedRows !== 1){
             return false;
         }
@@ -565,5 +563,21 @@ exports.fetchImgByCategory = async (category) => {
         console.error("Erreur SQL fetchImgByCategory :", error);
 
         throw error;
+    }
+}
+
+exports.getDataMissionById = async (idMission) => {
+
+    try {
+        
+        const request = `
+        
+            SELECT * FROM mission WHERE id_mission = ?;
+        `
+        const [result] = await db.query(request, idMission);
+
+        console.log(result)
+    } catch (error) {
+        console.log(error);
     }
 }

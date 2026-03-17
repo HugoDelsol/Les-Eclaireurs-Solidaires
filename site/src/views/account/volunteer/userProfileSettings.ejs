@@ -11,92 +11,92 @@
 
 <div class="containerDisplay">
     <%- include('../../partials/_sideNavUser') %>
-<main class="mainBackOffice">
+    <main class="mainBackOffice">
 
-        <section class="blocUserProfileSettings">
+            <section class="blocUserProfileSettings">
 
-            <div class="rowLine">
-                <h1>Gestion du profil</h1>
-                <div class="line"></div>
-            </div>           
+                <div class="rowLine">
+                    <h1>Gestion du profil</h1>
+                    <div class="line"></div>
+                </div>           
 
-            <form action="/editUserProfile" method="post">
+                <form action="/editUserProfile" method="post">
 
-                <fieldset>
-                    <legend>Informations personnelles</legend>
+                    <fieldset>
+                        <legend>Informations personnelles</legend>
 
-                    <div class="row">
-                        <div class="col">
-                            <label for="lastname">Nom</label>
-                            <input type="text" id="lastname" name="lastname" placeholder="Votre nom">
+                        <div class="row">
+                            <div class="col">
+                                <label for="lastname">Nom</label>
+                                <input type="text" id="lastname" name="lastname" placeholder="Votre nom">
+                            </div>
+                            
+                            <div class="col">
+                                <label for="firstname">Prénom</label>
+                                <input type="text" id="firstname" name="firstname" placeholder="Votre prénom">                    
+                            </div>
+                            
+                            <div class="col">
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone">
+                            </div>                        
                         </div>
+
+                        <div class="row">                        
+                            <div class="col">                                
+                                <label for="address">Adresse</label>
+                                <input type="text" id="address" name="address" placeholder="Votre adresse">
+                            </div>
+
+                            <div class="col relativePosition">                                
+                                <label for="city">Ville</label>
+                                <input type="text" class="city" name="city" placeholder="Votre ville">
+                                <input type="hidden" class="cityId" name="cityId">
+                                <ul class="displayListCity"></ul>
+                            </div>
                         
-                        <div class="col">
-                            <label for="firstname">Prénom</label>
-                            <input type="text" id="firstname" name="firstname" placeholder="Votre prénom">                    
+                            <div class="col">
+                                <label for="category">Type de mission recherché</label>
+                                <select name="category" id="category">
+                                    <option value="">Sélectionner une catégorie</option>
+                                    <% for (let c of categoriesMission) { %>
+                                        <option value="<%= c.id_mission_category %>">
+                                            <%= c.mission_category_name %>
+                                        </option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            
                         </div>
-                        
-                        <div class="col">
-                            <label for="phone">Téléphone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone">
-                        </div>                        
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Sécurité</legend>
+
+                        <div>
+                            <label for="currentPassword">Mot de passe actuel</label>
+                            <input type="password" id="currentPassword" name="currentPassword" class="inputSecurity">
+                        </div>
+
+                        <div>
+                            <label for="newPassword">Nouveau mot de passe</label>
+                            <input type="password" id="newPassword" name="newPassword" class="inputSecurity">
+                        </div>
+                    </fieldset>
+
+                    <div class="rowBtn">
+                        <button type="submit" class="btnSecondary btnHover">Enregistrer les modifications</button>
+                        <a href=""  class="btnPrimary btnHover">Supprimer mon compte</a>
                     </div>
-
-                    <div class="row">                        
-                        <div class="col">                                
-                            <label for="address">Adresse</label>
-                            <input type="text" id="address" name="address" placeholder="Votre adresse">
-                        </div>
-
-                        <div class="col relativePosition">                                
-                            <label for="city">Ville</label>
-                            <input type="text" class="city" name="city" placeholder="Votre ville">
-                            <input type="hidden" class="cityId" name="cityId">
-                            <ul class="displayListCity"></ul>
-                        </div>
                     
-                        <div class="col">
-                            <label for="category">Type de mission recherché</label>
-                            <select name="category" id="category">
-                                <option value="">Sélectionner une catégorie</option>
-                                <% for (let c of categoriesMission) { %>
-                                    <option value="<%= c.id_mission_category %>">
-                                        <%= c.mission_category_name %>
-                                    </option>
-                                <% } %>
-                            </select>
-                        </div>
-                        
-                    </div>
-                </fieldset>
 
-                <fieldset>
-                    <legend>Sécurité</legend>
+                </form>
 
-                    <div>
-                        <label for="currentPassword">Mot de passe actuel</label>
-                        <input type="password" id="currentPassword" name="currentPassword" class="inputSecurity">
-                    </div>
-
-                    <div>
-                        <label for="newPassword">Nouveau mot de passe</label>
-                        <input type="password" id="newPassword" name="newPassword" class="inputSecurity">
-                    </div>
-                </fieldset>
-
-                <div class="rowBtn">
-                    <button type="submit" class="btnSecondary btnHover">Enregistrer les modifications</button>
-                    <a href=""  class="btnPrimary btnHover">Supprimer mon compte</a>
-                </div>
-                
-
-            </form>
-
-        </section>
+            </section>
 
 
 
-</main>
+    </main>
 
 </div>
 

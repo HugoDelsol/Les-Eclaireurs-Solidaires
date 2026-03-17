@@ -11,15 +11,27 @@
 
 body {
     background: #F8F5EE;
-    position: relative;    
+    position: relative;
 }
 
-.mainFrontOffice {    
+.container {
+    display: flex;
+}
+
+.responsiv {
+    display: none;
+}
+
+.responsivMob {
+    display: none;
+}
+
+.mainFrontOffice {
     visibility: hidden;
     transform: translateX(-20px);
     opacity: 0;
-    transition: transform 0.4s, opacity 0.4s ease-out; 
-    
+    transition: transform 0.4s, opacity 0.4s ease-out;
+
 }
 
 .mainBackOffice {
@@ -29,15 +41,16 @@ body {
     visibility: hidden;
     transform: translateX(-20px);
     opacity: 0;
-    transition: transform 0.4s, opacity 0.4s ease-out; 
+    transition: transform 0.4s, opacity 0.4s ease-out;
     overflow-y: scroll;
 }
+
 .mainBackOffice.isVisible,
 .mainFrontOffice.isVisible {
     visibility: visible;
     transform: translateX(0);
     opacity: 1;
-    transition: transform 0.4s, opacity 0.4s ease-out; 
+    transition: transform 0.4s, opacity 0.4s ease-out;
 }
 
 .containerDisplay {
@@ -88,4 +101,15 @@ body {
 .line {
     border-bottom: 0.2em solid #F28B50;
     border-radius: 4em;
+}
+
+
+@media all and (max-width: 1300px) {
+
+    .sideNav,
+    .desktop,
+    .responsivMob {
+        display: none;
+    }
+
 }
