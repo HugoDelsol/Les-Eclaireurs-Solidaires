@@ -57,10 +57,10 @@ exports.searchByCategories = async (req, res) => {
 
         console.error(error);
 
-        res.locals.missions = [],
-            res.locals.missionsClear = [];
+        res.locals.missions = [];
+        res.locals.missionsClear = [];
         res.locals.searchFilters = [];
-        res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants."
+        res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
 
         res.render(renderPathByRole);
     }
@@ -76,7 +76,11 @@ exports.searchCity = async (req, res) => {
 
         const valueInput = req.query.q;
 
-        const searchCity = await missionMdl.searchCityInSql(valueInput);
+        const myRegex = /[^a-zA-ZÀ-ÿ \-']/g;
+
+        const valueClean = valueInput.replace(myRegex, "");
+
+        const searchCity = await missionMdl.searchCityInSql(valueClean);
 
         let allCitys = [];
 
@@ -106,12 +110,10 @@ exports.searchCity = async (req, res) => {
 exports.getDataMission = async (req, res) => {
 
     try {
-        
-        const dataMission = await missionMdl.getDataMissionById(req.params.idMission);        
+
+        const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
         const dateFormat = service.dateFormat(dataMission[0].mission_date);
         const timeFormat = service.timeFormat(dataMission[0].mission_start_time, dataMission[0].mission_end_time);
-
-        console.log(timeFormat)
 
         res.render('account/volunteer/missionDetails', {
             dataMission: dataMission,
