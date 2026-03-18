@@ -69,4 +69,40 @@
     padding: 20px;
     border-radius: 10px;
     margin: 10px 0;
+    line-height: 1.4;
+}
+
+@media all and (max-width: 1300px) {
+
+    .background .lineTitle {
+        flex-direction: column;
+    }
+
+    .background .line {
+        width: 50%;
+        margin-top: 20px;
+        margin-left: 0 ;
+    }
+
+    h1 {
+        font-size: clamp(24px, 5vw, 32px);
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .mainBackOffice {
+        height: 100vh;
+        padding: 100px 0;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .colLeft,
+    .colRight {
+        width: 100%;
+    }
 }

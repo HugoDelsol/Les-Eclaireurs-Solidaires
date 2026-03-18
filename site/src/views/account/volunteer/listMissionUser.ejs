@@ -121,6 +121,10 @@
                                 <%= missionSelected[i].date %>
                             </h3>
                             <div class="line lineMissions"></div>
+                            <div class="placeAndCat">
+                                <p>Lieu : <%= missionSelected[i].city %></p>
+                                <p>Catégorie : <%= missionSelected[i].category %></p>                            
+                            </div>
                             <p><%= missionSelected[i].description + " ..." %></p>
                             <div class="row flex">
                                 <a
@@ -129,7 +133,7 @@
                                     data-id="<%= JSON.stringify({ id: missionSelected[i].id, title: missionSelected[i].title }) %>">
                                     Rejoindre
                                 </a>
-                                <a href="" class="btnPrimary btnHover">Détail</a>
+                                <a href="/missionDetails/<%= missionSelected[i].id %>" class="btnPrimary btnHover">Détail</a>
                             </div>
                         </div>
                     </div>
@@ -144,6 +148,10 @@
                                 <%= missionsClear[i].date %>
                             </h3>
                             <div class="line lineMissions"></div>
+                            <div class="placeAndCat">
+                                <p>Lieu : <%= missionsClear[i].city %></p>
+                                <p>Catégorie : <%= missionsClear[i].category %></p>                            
+                            </div>
                             <p><%= missionsClear[i].description + " ..."%></p>
                             <div class="row flex">
                                 <a
@@ -152,7 +160,7 @@
                                     data-id="<%= JSON.stringify({ id: missionsClear[i].id, title: missionsClear[i].title }) %>">
                                     Rejoindre
                                 </a>
-                                <a href="" class="btnPrimary btnHover">Détail</a>
+                                <a href="/missionDetails/<%= missionsClear[i].id %>" class="btnPrimary btnHover">Détail</a>
                             </div>
                         </div>
                     </div>

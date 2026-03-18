@@ -83,12 +83,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 modalToggle.classList.toggle('toggleBlock');
 
                 setTimeout(() => {
-                    if (window.innerWidth < 1301) {
-                        document.body.style.display = "none";
-                        location.reload();
-                    }
                     document.querySelector('.modalContain').innerHTML = "";
-                    c.disabled = true                 
+                    c.disabled = true;                
                 }, 3000);
 
             } else {
@@ -97,11 +93,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 c.checked = false;
 
                 setTimeout(() => {
-                    if (window.innerWidth < 1301) {
-                        location.reload();
-                    }
                     document.querySelector('.modalContain').innerHTML = "";
-                    c.checked = false                 
+                    c.checked = false;               
                 }, 3000);
             }
         });

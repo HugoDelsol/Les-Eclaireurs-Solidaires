@@ -37,6 +37,9 @@ const missionTitle = document.querySelector(".mission-title");
 const missionAvailablePlace = document.querySelector(".mission-available-place");
 const backgroundImage = document.querySelector(".imgRegion");
 
+const btnDetailMissionRegion = document.querySelector(".btnDetailMissionRegion");
+
+
 let indexRegion = 0;
 let dataRegion = [];
 
@@ -77,9 +80,11 @@ async function carrouselMissionByRegion() {
 }
 
 function updateCarouselRegion() {
+    console.log(dataRegion[0])
     missionTitle.textContent = dataRegion[indexRegion].mission_title;
     missionAvailablePlace.textContent = dataRegion[indexRegion].mission_available_place;
     backgroundImage.style.backgroundImage = `url('${dataRegion[indexRegion].mission_img}')`;
+    btnDetailMissionRegion.setAttribute('href', `/missionDetails/${dataRegion[indexRegion].id_mission}`);
 }
 
 arrowRight.addEventListener('click', () => {
@@ -112,6 +117,7 @@ const titleMissionRegister = document.querySelector(".title-mission-register");
 const dateMissionRegister = document.querySelector(".date-mission-register");
 const backgroundImageRegister = document.querySelector(".imgRegister");
 const btnUnsubscribe = document.querySelector(".btnUnsubscribe");
+const btnDetailMissionRegistration = document.querySelector('.btnDetailMissionRegistration')
 
 let indexRegistration = 0;
 let dataRegistration = [];
@@ -156,6 +162,7 @@ function updateCarrouselRegistration() {
     dateMissionRegister.textContent = `Lieu : ${dataRegistration[indexRegistration].city_name}`;
     backgroundImageRegister.style.backgroundImage = `url('${dataRegistration[indexRegistration].mission_img}')`;
     btnUnsubscribe.setAttribute("data-id", JSON.stringify({id:dataRegistration[indexRegistration].id_registration, title: titleMissionRegister.textContent}));
+    btnDetailMissionRegistration.setAttribute('href', `/missionDetails/${dataRegistration[indexRegistration].id_mission}`);
 }
 
 arrowRightRegistration.addEventListener('click', () => {
