@@ -1,19 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const inputProtection = require('../middleware/inputProtection.middleware');
-const userGeneralCtrl = require("../controllers/user/userGeneralController");
-const homeCtrl = require("../controllers/home.ctrl");
+
 const sessionMdw = require('../middleware/session.middleware');
-const messagingCtrl = require('../controllers/messaging.ctrl');
 const messagingProtection = require('../middleware/messagingProtection.middleware');
+const inputProtection = require('../middleware/inputProtection.middleware');
 const urlProtection = require('../middleware/url.middleware');
+
+const userGeneralCtrl = require("../controllers/user/userGeneralController");
+const messagingCtrl = require('../controllers/messaging.ctrl');
+const HomeController = require("../controllers/home.ctrl");
+
+const homeController = new HomeController(missionMdl, service, utils);
 
 // ==============================================
 // === PUBLIC / HOME PAGES & FORMS ============
 // =============================================
 
 router.get('/', 
-    homeCtrl.homePage
+    homeController.homePage,
 );
 
 router.get('/becomeVolunteer', 

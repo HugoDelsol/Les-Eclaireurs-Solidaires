@@ -21,27 +21,38 @@ exports.becomeVolunteer = async (req, res) => {
     res.render('home/becomeVolunteer');
 }
 
-exports.homePage = async (req, res) => {
+class HomeController {
 
-    try {
+    constructor(missionMdl, service, utils){
+        this.missionMdl = missionMdl;
+        this.service = service;
+        this.utils = utils;
+    }
 
-        const getDisplayHomeMissions = await missionMdl.getAllMission("3");
+   homePage = async (req, res) => {
 
-        const remainingSpace = await service.remainingSpace(getDisplayHomeMissions);
+        try {
 
-        const clearData = utils.clearData(getDisplayHomeMissions, remainingSpace);
+            const getDisplayHomeMissions = await missionMdl.getAllMission("3");
 
-        res.render('home/homePage', {
-            displayMission: clearData,
-        });
+            const remainingSpace = await service.remainingSpace(getDisplayHomeMissions);
 
-    } catch (error) {
+            const clearData = utils.clearData(getDisplayHomeMissions, remainingSpace);
 
-        console.log("Erreur homePage : ", error);
-        res.locals.errorAlertMsg = "Impossible d'afficher la liste des missions disponibles dans la section « Nos besoins actuels ».";
-        res.render('home/homePage')
+            res.render('home/homePage', {
+                displayMission: clearData,
+            });
+
+        } catch (error) {
+
+            console.log("Erreur homePage : ", error);
+            res.locals.errorAlertMsg = "Impossible d'afficher la liste des missions disponibles dans la section « Nos besoins actuels ».";
+            res.render('home/homePage')
+        }
     }
 }
+
+module.exports = HomeController;
 
 // ==============================
 // SUBMIT THE FORM ON THE HOME PAGE
@@ -50,7 +61,7 @@ exports.homePage = async (req, res) => {
 exports.submitForm = async (req, res) => {
 
     try {
-        
+
         const safeData = matchedData(req);
 
         const { nameForm, emailForm, txtArea } = safeData;
