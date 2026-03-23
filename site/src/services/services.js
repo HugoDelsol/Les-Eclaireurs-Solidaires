@@ -12,17 +12,20 @@ class Services {
     remainingSpace = async () => {
 
         const missions = await this.missionModel.getAllMission("3");
-        const registrationsCount = [];
 
-        const registrationDataPromise = [];
+        let promiseTab = [];
+        let registrationsCount = [];
 
         for (const m of missions) {
+            const promise = this.missionModel.getNbrRegistrationByMission(m.id_mission);
+            promiseTab.push(promise);
+        }
 
-            const registrationData = await this.missionModel.getNbrRegistrationByMission(m.id_mission);
-            registrationData.push(registrationDataPromise);
+        const allDataPromise = await Promise.all(promiseTab);
 
-            if (registrationData) {
-                registrationsCount.push(registrationData.nbr_registration);
+        if (allDataPromise) {
+            for (const a of allDataPromise) {
+                registrationsCount.push(a.nbr_registration);
             }
         }
 

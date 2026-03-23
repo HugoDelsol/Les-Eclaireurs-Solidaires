@@ -8,7 +8,7 @@ const messagingProtection = require('../middleware/messagingProtection.middlewar
 const urlProtection = require('../middleware/url.middleware');
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
 const missionVolunteerCtrl = require('../controllers/mission/missionVolunteerController');
-
+/*
 // ==============================================
 // === VOLUNTEER REGISTRATION & SIGNUP =========
 // ==============================================
@@ -136,5 +136,5 @@ router.post('/sendNewMessageFromVolunteer',
     messagingProtection.messagingAddNewMessageFromVolunteer, 
     messageCtrl.sendNewMessageFromVolunteer
 );
-
+*/
 module.exports = router;

@@ -11,6 +11,57 @@ async function testConnection() {
 }
 testConnection();
 
+class UserModel {
+
+    constructor(db) {
+        this.db = db
+    }
+
+    getOneUserByEmail = async (email) => {
+
+        try {
+
+            const request = `SELECT * FROM identifier 
+                        LEFT JOIN user
+                        ON user._id_identifier = identifier.id_identifier
+                        LEFT JOIN admin
+                        ON admin._id_identifier = identifier.id_identifier
+                        WHERE identifier_mail = ?`;
+
+            const [result] = await this.db.query(request, [email]);
+
+            return result && result[0] ? result[0] : null;
+
+        } catch (e) {
+
+            throw e;
+        }
+    }
+
+    getUserAddress = async (idUser) => {
+
+        try {
+
+            const getDatas = `
+            SELECT * FROM user AS u
+            LEFT JOIN city
+            ON id_city = _id_city
+            LEFT JOIN region 
+            ON id_region = _id_region            
+            WHERE id_user = ?
+        `;
+
+            const [result] = await db.query(getDatas, idUser);
+            return result[0];
+
+        } catch (error) {
+
+        }
+    }
+
+}
+module.exports = UserModel;
+
 exports.getAllAdmins = async () => {
     try {
 
@@ -126,8 +177,8 @@ exports.findVolunteer = async (inputValue) => {
             LEFT JOIN registration_mission ON _id_user = id_user
             WHERE user_first_name LIKE ? OR user_last_name LIKE ? 
             GROUP BY user_first_name, user_last_name, identifier_mail
-        `;     
-  
+        `;
+
         const [result] = await db.query(request, [query, query]);
 
         return result;
@@ -139,26 +190,7 @@ exports.findVolunteer = async (inputValue) => {
     }
 }
 
-exports.getOneUserByEmail = async (email) => {
 
-    try {
-
-        const request = `SELECT * FROM identifier 
-                        LEFT JOIN user
-                        ON user._id_identifier = identifier.id_identifier
-                        LEFT JOIN admin
-                        ON admin._id_identifier = identifier.id_identifier
-                        WHERE identifier_mail = ?`;
-
-        const [result] = await db.query(request, [email]);
-
-        return result && result[0] ? result[0] : null;
-
-    } catch (e) {
-
-        throw e;
-    }
-}
 
 exports.getEmailUserById = async (id) => {
 
@@ -241,23 +273,3 @@ exports.addAdmin = async (
     }
 }
 
-exports.getUserAddress = async (idUser) => {
-
-    try {
-
-        const getDatas = `
-            SELECT * FROM user AS u
-            LEFT JOIN city
-            ON id_city = _id_city
-            LEFT JOIN region 
-            ON id_region = _id_region            
-            WHERE id_user = ?
-        `;
-
-        const [result] = await db.query(getDatas, idUser);
-        return result;
-
-    } catch (error) {
-
-    }
-}

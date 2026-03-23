@@ -1,5 +1,4 @@
 //FORMDATA
-
 const submitForm = document.querySelector("form");
 const input = document.querySelectorAll("input");
 
@@ -60,20 +59,25 @@ async function apiDataForm() {
 
         const jsonResult = await response.json();
 
+        console.log(jsonResult)
+
         let valueClass;
         let valueMsg;
 
         if (jsonResult.mdlError) {
             valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.mdlError
+            valueMsg = jsonResult.mdlError;
         }
         if (jsonResult.messageSuccessIsTrue) {
             valueClass = alertFrontOfficeSuccess;
-            valueMsg = jsonResult.messageSuccesss
+            valueMsg = jsonResult.messageSuccesss;
         }
         if (jsonResult.messageErrorIsTrue) {
             valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.messageError
+            valueMsg = jsonResult.messageError;
+            nameForm.value = jsonResult.data.nameForm;
+            emailForm.value = jsonResult.data.emailForm;
+            txtArea.value = jsonResult.data.txtArea;
         }        
 
         valueClass.textContent = valueMsg;        

@@ -122,53 +122,43 @@ exports.missionUserShow = async (req, res) => {
     }
 }
 
-// ==============================
-// DISPLAY DASHBOARD VOLUNTEER 
-// ==============================
+class MissionVolunteerController {
 
-exports.dashboardAllStats = async (req, res, idUser) => {
-
-    try {
-
-        const getUserAddress = await userMdl.getUserAddress(idUser);
-
-        const idRegionByUser = getUserAddress[0].id_region;
-
-        res.locals.missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
-
-        res.locals.missionsUser = await missionMdl.getAllMissionsByUser(idUser);
-
-        res.locals.historyMissionUser = await missionMdl.addUserHistoryMission(idUser);
-
-        const obtainStatsOnVolunteer = await missionMdl.obtainStatsOnVolunteer(idUser);
-
-        let count = 0;
-        let i = 0;
-        let tab = [];
-
-        obtainStatsOnVolunteer.resultTimeDiff.forEach((e) => {
-            tab.push(parseInt(e.timeDiff));
-            count += tab[i];
-            i++;
-        })
-
-        res.locals.statsOnVolunteer = obtainStatsOnVolunteer;
-        res.locals.nbrTimeAccomplished = count;
-
-        res.render('account/volunteer/dashboardUser');
-
-    } catch (error) {
-
-        console.log("Controler getAllMissionsByUser: ", error);
-        res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
-
-        res.render('account/volunteer/dashboardUser', {
-            missionByRegion: [],
-            missionsUser: [],
-            historyMissionUser: [],
-        })
+    constructor(userService){
+        this.userService = userService;
     }
+
+    // ==============================
+    // DISPLAY DASHBOARD VOLUNTEER 
+    // ==============================
+
+    dashboardAllStats = async (req, res, idUser) => {
+
+        try {
+
+            /* const dataProfile = await this.
+
+                res.locals.data = dataProfile */
+
+            res.render('account/volunteer/dashboardUser');
+
+        } catch (error) {
+
+            console.log("Controler getAllMissionsByUser: ", error);
+            res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
+
+            res.render('account/volunteer/dashboardUser', {
+                missionByRegion: [],
+                missionsUser: [],
+                historyMissionUser: [],
+            })
+        }
+    }
+
 }
+module.exports = MissionVolunteerController;
+
+
 
 // ==============================
 // SAVE VOLUNTEER REGISTRATION
@@ -176,7 +166,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
 exports.addRegisterMissionUser = async (req, res) => {
 
-    try {        
+    try {
 
         const idUser = parseInt(req.query.idUser);
         const idMission = parseInt(req.query.idMission);
@@ -191,7 +181,7 @@ exports.addRegisterMissionUser = async (req, res) => {
         if (registrationByUser) {
 
             console.log("alreadyAdded: true");
-            return res.json({ alreadyAdded: true , message: "Vous êtes déjà inscrit à cette mission"});
+            return res.json({ alreadyAdded: true, message: "Vous êtes déjà inscrit à cette mission" });
 
         } else {
 
@@ -225,12 +215,12 @@ exports.unregisterAVolunteer = async (req, res) => {
         }
 
         const result = await missionMdl.unregisterAVolunteer(idRegistration);
-        
+
         if (result === false) {
-            return res.json({ registrationDeleted: false , message: "Une erreur est survenu, veuillez réessayer dans un instant."})
+            return res.json({ registrationDeleted: false, message: "Une erreur est survenu, veuillez réessayer dans un instant." })
         }
-        
-        return res.json({ registrationDeleted: true})
+
+        return res.json({ registrationDeleted: true })
 
     } catch (error) {
 

@@ -12,22 +12,30 @@ const missionModel = require('../../models/MissionModel');
 //Services
 const { dashboardAllStats } = require('../mission/missionVolunteerController');
 
-// ==============================
-// DISPLAY VIEWS
-// ==============================
+class UserVolunteerController {
 
-exports.dashboardUser = async (req, res) => {
-    const idUser = req.session.userExist.id;
-    dashboardAllStats(req, res, idUser);
-}
+    // ==============================
+    // DISPLAY VIEWS
+    // ==============================
 
-exports.userProfilSettingsShow = async (req, res) => {
-    const getAllCategories = await missionModel.getAllCategories();
-    req.session.categoriesMission = getAllCategories
-    res.render('account/volunteer/userProfileSettings', {
-        categoriesMission: req.session.categoriesMission
-    });
+    dashboardUser = async (req, res) => {
+        const idUser = req.session.userExist.id;
+        dashboardAllStats(req, res, idUser);
+    }
+
+
+
 }
+module.exports = UserVolunteerController;
+
+    exports.userProfilSettingsShow = async (req, res) => {
+        const getAllCategories = await missionModel.getAllCategories();
+        req.session.categoriesMission = getAllCategories
+        res.render('account/volunteer/userProfileSettings', {
+            categoriesMission: req.session.categoriesMission
+        });
+    }
+
 
 // ==============================
 // SAVE NEW VOLUNTEER
@@ -107,8 +115,8 @@ exports.editUserProfile = async (req, res) => {
         );
 
         if (!request) {
-           res.locals.errorAlertMsg = "Aucune donnée à mettre à jour";
-           return res.render('account/volunteer/userProfileSettings', renderData);
+            res.locals.errorAlertMsg = "Aucune donnée à mettre à jour";
+            return res.render('account/volunteer/userProfileSettings', renderData);
         }
 
         if (firstname && firstname.trim().length > 0) {

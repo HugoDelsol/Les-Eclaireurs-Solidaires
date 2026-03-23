@@ -1,7 +1,7 @@
 class MissionModel {
 
     constructor(db) {
-        this.db = db
+        this.db = db;        
     }
 
     getAllMission = async (sqlLimit) => {
@@ -70,6 +70,40 @@ class MissionModel {
         } catch (error) {
 
             console.error("Erreur SQL getNbrRegistrationByMission :", error);
+            throw error;
+        }
+    }
+
+    obtainStatsOnVolunteer = async (idUser) => {
+
+        try {
+
+            const timeDiff = `
+            SELECT TIMEDIFF(mission_end_time, mission_start_time) as timeDiff FROM registration_mission
+            LEFT JOIN mission 
+            ON id_mission = _id_mission
+            WHERE _id_user = ? AND mission_date < CURRENT_DATE;
+        `;
+
+            const [resultTimeDiff] = await this.db.query(timeDiff, [idUser])
+
+            const nbrMissionAccomplished = `
+            SELECT COUNT(_id_user) AS nbr
+            FROM registration_mission 
+            LEFT JOIN mission ON id_mission = _id_mission 
+            WHERE _id_user = ? AND mission_date < CURRENT_DATE
+            GROUP BY _id_user;
+        `
+            const [resultNbrMissionAccomplished] = await this.db.query(nbrMissionAccomplished, [idUser])
+
+            return this.data = {
+                resultTimeDiff,
+                resultNbrMissionAccomplished
+            }
+
+        } catch (error) {
+
+            console.error("Erreur SQL obtainStatsOnVolunteer :", error);
             throw error;
         }
     }
@@ -160,39 +194,6 @@ exports.addUserHistoryMission = async (idUser) => {
     }
 }
 
-exports.obtainStatsOnVolunteer = async (idUser) => {
-
-    try {
-
-        const timeDiff = `
-            SELECT TIMEDIFF(mission_end_time, mission_start_time) as timeDiff FROM registration_mission
-            LEFT JOIN mission 
-            ON id_mission = _id_mission
-            WHERE _id_user = ? AND mission_date < CURRENT_DATE;
-        `;
-
-        const [resultTimeDiff] = await db.query(timeDiff, [idUser])
-
-        const nbrMissionAccomplished = `
-            SELECT COUNT(_id_user) AS nbr
-            FROM registration_mission 
-            LEFT JOIN mission ON id_mission = _id_mission 
-            WHERE _id_user = ? AND mission_date < CURRENT_DATE
-            GROUP BY _id_user;
-        `
-        const [resultNbrMissionAccomplished] = await db.query(nbrMissionAccomplished, [idUser])
-
-        return data = {
-            resultTimeDiff,
-            resultNbrMissionAccomplished
-        }
-
-    } catch (error) {
-
-        console.error("Erreur SQL obtainStatsOnVolunteer :", error);
-        throw error;
-    }
-}
 
 exports.getMissionByRegion = async (idRegion) => {
 

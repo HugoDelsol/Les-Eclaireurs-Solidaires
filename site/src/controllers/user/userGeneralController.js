@@ -1,4 +1,4 @@
-// ==============================
+ // ==============================
 // IMPORTS & DEPENDENCIES
 // ==============================
 
@@ -15,123 +15,72 @@ const userVolunteerCtrl = require('../user/userVolunteerController');
 // Get Functions
 const { getStatsMissions } = require('../mission/missionAdminController')
 
-// ==============================
-// DISPLAY VIEWS
-// ==============================
+class UserGeneralController {
 
-exports.signIn = async (req, res) => {
-    res.render('connection/signIn');
-}
+    constructor(userService){
+        this.userService = userService;
+    }
 
-exports.signUp = async (req, res) => {
-    res.render('connection/signUp');
-}
+    // ==============================
+    // DISPLAY VIEWS
+    // ==============================
 
-// ==============================
-// AUTHENTICATION
-// ==============================
+    signIn = async (req, res) => {
+        res.render('connection/signIn');
+    }
 
-exports.auth = async (req, res) => {
+    signUp = async (req, res) => {
+        res.render('connection/signUp');
+    }
 
-    try {  
-        
-        const safeData = matchedData(req);
-        
-        const {email, password} = safeData;
+    // ==============================
+    // AUTHENTICATION
+    // ==============================
 
-        const userExist = await exports.verifyAccountExist(email, password);
+    auth = async (req, res) => {
 
-        if (!userExist) throw new Error("Email ou mot de passe incorrect.");
+        try {
 
-        const rolesMaps = {
+            const safeData = matchedData(req);
 
-            admin_1: {
-                session: (u) => ({
-                    id: u.id_admin,
-                    firstName: u.admin_first_name,
-                    isSuperAdmin: true
-                }),
-                action: getStatsMissions
-            },
+            const userExist = await this.userService.verifyAccountExist(safeData);
 
-            admin_2: {
-                session: (u) => ({
-                    id: u.id_admin,
-                    firstName: u.admin_first_name,
-                    isAdmin: true
-                }),
-                action: getStatsMissions
-            },
+            if (!userExist) throw new Error("Email ou mot de passe incorrect.");
 
-            user: {
-                session: (u) => ({
-                    id: u.id_user,
-                    firstName: u.user_first_name,
-                    isVolunteer: true
-                }),
+            const rolesMaps = await this.userService.rolesMaps(userExist);
 
-                action: userVolunteerCtrl.dashboardUser
-            }
-        };
-        
-        let roleKey = null;
-        
-        if (userExist.role === "user"){
-            roleKey = "user";
-        } else if (userExist.role === "admin") {
-            roleKey = `admin_${userExist._id_admin_role}`;
+            console.log(rolesMaps)
+
+            /* = rolesMaps[roleKey].session(userExist); */
+
+            
+        /* res.locals.missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
+
+        res.locals.missionsUser = await missionMdl.getAllMissionsByUser(idUser);
+
+        res.locals.historyMissionUser = await missionMdl.addUserHistoryMission(idUser); */
+
+            req.session.userExist = session;
+
+            res.locals.pseudoUser = req.session.userExist.firstName;
+            res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
+            res.locals.isAdmin = req.session.userExist.isAdmin;
+
+            rolesMaps[roleKey].action(req, res);
+
+        } catch (error) {
+
+            console.error(error);
+
+            res.render('connection/signIn', {
+                errorAlertMsg: error.message
+            });
         }
-        
-        const session = rolesMaps[roleKey].session(userExist);        
-        req.session.userExist = session;
-
-        res.locals.pseudoUser = req.session.userExist.firstName;
-        res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
-        res.locals.isAdmin = req.session.userExist.isAdmin;
-        
-        
-        rolesMaps[roleKey].action(req, res);
-
-    } catch (error) {
-
-        console.error(error);
-
-        res.render('connection/signIn', {
-           errorAlertMsg : error.message
-        });
     }
 }
+module.exports = UserGeneralController;
 
-// ==============================
-// VERIFICATION
-// ==============================
 
-exports.verifyAccountExist = async (email, password) => {
 
-    try {
 
-        const userMail = await userGeneralMdl.getOneUserByEmail(email);
 
-        if (userMail && await bcrypt.compare(password, userMail.identifier_password)) {
-
-            if (userMail.id_user) {
-
-                userMail['role'] = 'user';
-
-            } else if (userMail.id_admin) {
-
-                userMail['role'] = 'admin';
-            }
-
-            return userMail;
-
-        } else {
-
-            return false;
-        }
-
-    } catch (e) {
-
-        console.error(e);
-    }
-}
