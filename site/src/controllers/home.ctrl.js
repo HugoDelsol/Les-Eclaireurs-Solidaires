@@ -3,7 +3,7 @@
 // ==============================
 
 // Libraries
-const { matchedData } = require('express-validator');
+/* const { matchedData } = require('express-validator');
 
 // Models
 const homeMdl = require('../models/HomeModel');
@@ -11,7 +11,7 @@ const missionMdl = require('../models/MissionModel');
 
 // Utils - Services
 const utils = require('../utils/utils.js');
-const service = require('../services/services.js');
+const service = require('../services/services.js'); */
 
 // ==============================
 // DISPLAY VIEWS
@@ -23,24 +23,18 @@ exports.becomeVolunteer = async (req, res) => {
 
 class HomeController {
 
-    constructor(missionMdl, service, utils){
-        this.missionMdl = missionMdl;
+    constructor(service) {
         this.service = service;
-        this.utils = utils;
     }
 
-   homePage = async (req, res) => {
+    homePage = async (req, res) => {
 
-        try {
+        try {            
 
-            const getDisplayHomeMissions = await missionMdl.getAllMission("3");
-
-            const remainingSpace = await service.remainingSpace(getDisplayHomeMissions);
-
-            const clearData = utils.clearData(getDisplayHomeMissions, remainingSpace);
+            const remainingSpace = await this.service.remainingSpace();
 
             res.render('home/homePage', {
-                displayMission: clearData,
+                displayMission: remainingSpace,
             });
 
         } catch (error) {

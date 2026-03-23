@@ -1,7 +1,37 @@
-const jwt = require('jsonwebtoken');
+/* const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const missionModel = require('../models/MissionModel');
-const { PassThrough } = require('nodemailer/lib/xoauth2');
+const missionModel = require('../models/MissionModel'); */
+
+class Services {
+
+    constructor(missionModel, utils) {
+        this.missionModel = missionModel;
+        this.utils = utils;
+    }
+
+    remainingSpace = async () => {
+
+        const missions = await this.missionModel.getAllMission("3");
+        const registrationsCount = [];
+
+        const registrationDataPromise = [];
+
+        for (const m of missions) {
+
+            const registrationData = await this.missionModel.getNbrRegistrationByMission(m.id_mission);
+            registrationData.push(registrationDataPromise);
+
+            if (registrationData) {
+                registrationsCount.push(registrationData.nbr_registration);
+            }
+        }
+
+        const formattedMissions = this.utils.clearData(missions, registrationsCount);
+        return formattedMissions;
+    }
+}
+
+module.exports = Services;
 
 const secretToken = process.env.TOKEN_SECRET;
 
@@ -81,21 +111,7 @@ exports.filterOutRegisteredMissions = async (req, missionsSelected) => {
     }
 }
 
-exports.remainingSpace = async (value) => {
 
-    const tabResult = [];
-
-    for (let v of value) {
-
-        const nbrRegistration = await missionModel.getNbrRegistrationByMission(v.id_mission);
-
-        if (nbrRegistration) {
-            tabResult.push(nbrRegistration.nbr_registration)
-        }
-    }
-
-    return tabResult;
-}
 
 exports.formatMissionStats = async (data) => {
 
@@ -145,10 +161,10 @@ exports.dateFormat = (date) => {
     const dateFormat = dateObj.toLocaleDateString('fr', options).toUpperCase();
     return dateFormat;
 }
- 
+
 exports.timeFormat = (startTime, endTime) => {
 
-    const splitStartTime = startTime.split(':');    
+    const splitStartTime = startTime.split(':');
     const splitEndTime = endTime.split(':');
 
     const timeFormatStart = `${splitStartTime[0]}h${splitStartTime[1]}`;
@@ -157,6 +173,6 @@ exports.timeFormat = (startTime, endTime) => {
     return data = {
         timeFormatStart,
         timeFormatEnd
-    }; 
+    };
 }
 

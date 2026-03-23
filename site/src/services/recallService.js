@@ -128,6 +128,4 @@ class RecallService {
     }
 }
 
-module.exports = {
-    RecallService,
-}
+module.exports = RecallService;

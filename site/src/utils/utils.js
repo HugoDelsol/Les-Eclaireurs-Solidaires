@@ -1,62 +1,65 @@
-exports.clearData = (missions, valueSpace) => {
+class Utils {
 
-    let tabResult = [];
+    clearData(missions, valueSpace) {
 
-    for (let i = 0; i < missions.length; i++) {
+        let tabResult = [];
 
-        if (valueSpace !== undefined && valueSpace[i]) {
+        for (let i = 0; i < missions.length; i++) {
 
-            let data = {
+            if (valueSpace !== undefined && valueSpace[i]) {
 
-                id: missions[i].id_mission,
-                img: missions[i].mission_img,
-                title: missions[i].mission_title,
-                description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
-                category: missions[i].mission_category_name,
-                city: missions[i].city_name,
-                places: missions[i].mission_available_place - valueSpace[i],
-                date: missions[i].mission_date,
+                let data = {
+
+                    id: missions[i].id_mission,
+                    img: missions[i].mission_img,
+                    title: missions[i].mission_title,
+                    description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
+                    category: missions[i].mission_category_name,
+                    city: missions[i].city_name,
+                    places: missions[i].mission_available_place - valueSpace[i],
+                    date: missions[i].mission_date,
+                }
+
+                tabResult.push(data);
+
+            } else {
+
+                let data = {
+
+                    id: missions[i].id_mission,
+                    img: missions[i].mission_img,
+                    title: missions[i].mission_title,
+                    description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
+                    category: missions[i].mission_category_name,
+                    city: missions[i].city_name,
+                    places: missions[i].mission_available_place,
+                    date: missions[i].mission_date,
+                }
+
+                tabResult.push(data);
             }
+        }
 
-            tabResult.push(data);
+        return tabResult;
+    }
 
+    randomImage(fetchGroupImages) {
+
+        let resultImgUrl = null;
+
+        const randomImg = Math.floor(Math.random() * fetchGroupImages.length);
+
+        if (randomImg === 0) {
+
+            resultImgUrl = "https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg"
         } else {
 
-             let data = {
-
-                id: missions[i].id_mission,
-                img: missions[i].mission_img,
-                title: missions[i].mission_title,
-                description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
-                category: missions[i].mission_category_name,
-                city: missions[i].city_name,
-                places: missions[i].mission_available_place,
-                date: missions[i].mission_date,
-            }
-
-            tabResult.push(data);
+            resultImgUrl = fetchGroupImages[randomImg].mission_image_url;
         }
+
+        return resultImgUrl;
     }
-
-    return tabResult;
 }
+module.exports = Utils;
 
-
-
-exports.randomImage = (fetchGroupImages) => {
-
-    let resultImgUrl = null;
-
-    const randomImg = Math.floor(Math.random() * fetchGroupImages.length);
-
-    if (randomImg === 0) {
-
-        resultImgUrl = "https://www.saint-brieuc.bzh/fileadmin/_processed_/c/3/csm_lanterne_pour_la_paix_930950d0f8.jpg"
-    } else {
-
-        resultImgUrl = fetchGroupImages[randomImg].mission_image_url;
-    }
-
-    return resultImgUrl;
-}
 

@@ -1,4 +1,81 @@
-const db = require('../config/database');
+class MissionModel {
+
+    constructor(db) {
+        this.db = db
+    }
+
+    getAllMission = async (sqlLimit) => {
+
+        let limitCondition = "";
+
+        if (sqlLimit) {
+            limitCondition = ` LIMIT ${sqlLimit}`;
+        }
+
+        try {
+
+            const request = `
+            SELECT 
+                id_mission, 
+                mission_title, 
+                DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, 
+                mission_category_name,  
+                city_name, 
+                mission_description,
+                mission_img,
+                mission_available_place                
+            FROM mission AS m
+            LEFT JOIN city
+                ON id_city = _id_city
+            LEFT JOIN mission_category
+                ON id_mission_category = _id_mission_category
+            WHERE mission_date > CURRENT_DATE
+            ORDER BY m.mission_date ASC
+            ${limitCondition}
+        `;
+
+            const [result] = await this.db.query(request);
+
+            return result;
+
+        } catch (error) {
+
+            console.error("Erreur SQL getAllMission :", error);
+            throw error;
+        }
+    }
+
+    getNbrRegistrationByMission = async (idMission) => {
+
+        try {
+
+            const request = `
+            SELECT _id_mission, 
+            COUNT(_id_user) as nbr_registration 
+            FROM registration_mission 
+            LEFT JOIN mission
+            ON _id_mission = id_mission
+            WHERE _id_mission = ?
+            GROUP BY _id_mission; 
+        `
+
+            const [result] = await this.db.query(request, [idMission]);
+
+            if (result.length > 0) {
+                return result[0];
+            }
+
+            return false;
+
+        } catch (error) {
+
+            console.error("Erreur SQL getNbrRegistrationByMission :", error);
+            throw error;
+        }
+    }
+}
+
+module.exports = MissionModel;
 
 exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, cityId, category) => {
 
@@ -142,34 +219,7 @@ exports.getMissionByRegion = async (idRegion) => {
     }
 }
 
-exports.getNbrRegistrationByMission = async (idMission) => {
 
-    try {
-
-        const request = `
-            SELECT _id_mission, 
-            COUNT(_id_user) as nbr_registration 
-            FROM registration_mission 
-            LEFT JOIN mission
-            ON _id_mission = id_mission
-            WHERE _id_mission = ?
-            GROUP BY _id_mission; 
-        `
-
-        const [result] = await db.query(request, [idMission]);
-
-        if (result.length > 0) {
-            return result[0];
-        }
-
-        return false;
-
-    } catch (error) {
-
-        console.error("Erreur SQL getNbrRegistrationByMission :", error);
-        throw error;
-    }
-}
 
 exports.getStatsMissions = async () => {
 
@@ -408,46 +458,7 @@ exports.getAllRegions = async () => {
 
 }
 
-exports.getAllMission = async (sqlLimit) => {
 
-    let limitCondition = "";
-
-    if (sqlLimit) {
-        limitCondition = ` LIMIT ${sqlLimit}`;
-    }
-
-    try {
-
-        const request = `
-            SELECT 
-                id_mission, 
-                mission_title, 
-                DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, 
-                mission_category_name,  
-                city_name, 
-                mission_description,
-                mission_img,
-                mission_available_place                
-            FROM mission AS m
-            LEFT JOIN city
-                ON id_city = _id_city
-            LEFT JOIN mission_category
-                ON id_mission_category = _id_mission_category
-            WHERE mission_date > CURRENT_DATE
-            ORDER BY m.mission_date ASC
-            ${limitCondition}
-        `;
-
-        const [result] = await db.query(request);
-
-        return result;
-
-    } catch (error) {
-
-        console.error("Erreur SQL getAllMission :", error);
-        throw error;
-    }
-}
 
 exports.getRegistrationByUserId = async (idMission, idUser) => {
 
@@ -472,7 +483,7 @@ exports.registerMissionUser = async (idUser, idMission) => {
         const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
         const [result] = await db.query(request, [idUser, idMission]);
 
-        if (result.affectedRows !== 1){
+        if (result.affectedRows !== 1) {
             return false;
         }
 
@@ -495,7 +506,7 @@ exports.unregisterAVolunteer = async (idRegistration) => {
         `
         const [result] = await db.query(request, idRegistration);
 
-         if (result.affectedRows !== 1){
+        if (result.affectedRows !== 1) {
             return false;
         }
 
@@ -568,8 +579,8 @@ exports.fetchImgByCategory = async (category) => {
 
 exports.getDataMissionById = async (idMission) => {
 
-    try {        
-        
+    try {
+
         const request = `
             SELECT * FROM mission 
             LEFT JOIN city

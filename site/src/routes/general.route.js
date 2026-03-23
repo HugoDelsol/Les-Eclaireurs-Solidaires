@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../config/database');
 
 const sessionMdw = require('../middleware/session.middleware');
 const messagingProtection = require('../middleware/messagingProtection.middleware');
@@ -10,7 +11,15 @@ const userGeneralCtrl = require("../controllers/user/userGeneralController");
 const messagingCtrl = require('../controllers/messaging.ctrl');
 const HomeController = require("../controllers/home.ctrl");
 
-const homeController = new HomeController(missionMdl, service, utils);
+const Utils = require("../utils/utils"); 
+const Services = require("../services/services"); 
+const MissionModel = require("../models/MissionModel"); 
+
+
+const utils = new Utils();
+const missionMdl = new MissionModel(db);
+const service = new Services(missionMdl, utils);
+const homeController = new HomeController(service);
 
 // ==============================================
 // === PUBLIC / HOME PAGES & FORMS ============
@@ -19,6 +28,8 @@ const homeController = new HomeController(missionMdl, service, utils);
 router.get('/', 
     homeController.homePage,
 );
+
+/* 
 
 router.get('/becomeVolunteer', 
     homeCtrl.becomeVolunteer
@@ -73,6 +84,6 @@ router.get('/newMessage',
 
 router.get('/logout', 
     sessionMdw.logout
-);
+); */
 
 module.exports = router;

@@ -6,7 +6,7 @@ async function testConnection() {
         const [rows] = await db.query('SELECT 1 + 2 AS solution');
         console.log('Connexion OK, test SQL:', rows[0].solution);
     } catch (err) {
-        console.error('Erreur connexion DB:', err.message);
+        console.error('Erreur connexion DB');
     }
 }
 testConnection();
