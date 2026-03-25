@@ -65,7 +65,7 @@ class HomeController {
             }
             
             return res.json({ 
-                messageSuccesss: "Message envoyé ! Nous vous répondrons dans les meilleurs délais.", 
+                messageSuccess: "Message envoyé ! Nous vous répondrons dans les meilleurs délais.", 
                 messageSuccessIsTrue: true 
             });
 

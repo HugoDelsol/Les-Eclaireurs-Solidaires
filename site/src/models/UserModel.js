@@ -51,7 +51,7 @@ class UserModel {
             WHERE id_user = ?
         `;
 
-            const [result] = await db.query(getDatas, idUser);
+            const [result] = await this.db.query(getDatas, idUser);
             return result[0];
 
         } catch (error) {
@@ -73,7 +73,7 @@ exports.getAllAdmins = async () => {
                                     ON _id_admin_role = id_admin_role
                                     WHERE id_admin_role = 1;`
 
-        const [resultSuperAdmins] = await db.query(requestSuperAdmins);
+        const [resultSuperAdmins] = await this.db.query(requestSuperAdmins);
 
         const requestAdmins = `SELECT 
                                     *,
@@ -83,7 +83,7 @@ exports.getAllAdmins = async () => {
                                     ON _id_admin_role = id_admin_role
                                     WHERE id_admin_role = 2;`
 
-        const [resultAdmins] = await db.query(requestAdmins);
+        const [resultAdmins] = await this.db.query(requestAdmins);
 
         return {
             resultSuperAdmins,
@@ -112,7 +112,7 @@ exports.listOfVolunteers = async (test) => {
                 ORDER BY user_created_at DESC;
         `;
 
-            const [resultAllVolunteers] = await db.query(allVolunteers);
+            const [resultAllVolunteers] = await this.db.query(allVolunteers);
 
             const activVolunteerCurrentDate = `
                 SELECT u.id_user, u.user_first_name, u.user_last_name, i.identifier_mail,
@@ -128,7 +128,7 @@ exports.listOfVolunteers = async (test) => {
                 GROUP BY u.id_user, u.user_first_name, u.user_last_name, i.identifier_mail
         `;
 
-            const [resultActiveVolunteerCurrentDate] = await db.query(activVolunteerCurrentDate);
+            const [resultActiveVolunteerCurrentDate] = await this.db.query(activVolunteerCurrentDate);
 
 
             return result = {
@@ -152,7 +152,7 @@ exports.listOfVolunteers = async (test) => {
                 ORDER BY nbr_registration ASC; 
             `;
 
-            const [resultAllVolunteerToSorting] = await db.query(allVolunteersToSorting)
+            const [resultAllVolunteerToSorting] = await this.db.query(allVolunteersToSorting)
 
             return resultAllVolunteerToSorting;
 
@@ -179,7 +179,7 @@ exports.findVolunteer = async (inputValue) => {
             GROUP BY user_first_name, user_last_name, identifier_mail
         `;
 
-        const [result] = await db.query(request, [query, query]);
+        const [result] = await this.db.query(request, [query, query]);
 
         return result;
 
@@ -201,7 +201,7 @@ exports.getEmailUserById = async (id) => {
                         ON user._id_identifier = identifier.id_identifier
                         WHERE id_user = ?`;
 
-        const [result] = await db.query(request, [id]);
+        const [result] = await this.db.query(request, [id]);
 
         return result;
 
@@ -226,12 +226,12 @@ exports.addUser = async (
         const passwordHash = await bcrypt.hash(password, saltRound);
 
         const requestIdentifier = `INSERT INTO identifier (identifier_mail, identifier_password) VALUES (?, ?)`
-        const [resultIdentifier] = await db.query(requestIdentifier, [email, passwordHash]);
+        const [resultIdentifier] = await this.db.query(requestIdentifier, [email, passwordHash]);
 
         let lasInsertId = resultIdentifier.insertId;
 
         const requestUser = `INSERT INTO user (user_first_name, user_last_name, _id_identifier) VALUES (?, ?, ?)`
-        const [resultUser] = await db.query(requestUser, [firstName, lastName, lasInsertId]);
+        const [resultUser] = await this.db.query(requestUser, [firstName, lastName, lasInsertId]);
 
         return resultUser;
 
@@ -258,12 +258,12 @@ exports.addAdmin = async (
         const passwordHash = await bcrypt.hash(password, saltRound);
 
         const requestIdentifier = `INSERT INTO identifier (identifier_mail, identifier_password) VALUES (?, ?)`;
-        const [resultIdentifier] = await db.query(requestIdentifier, [email, passwordHash]);
+        const [resultIdentifier] = await this.db.query(requestIdentifier, [email, passwordHash]);
 
         const lastInsertId = resultIdentifier.insertId
 
         const requestAdmin = `INSERT INTO admin (admin_first_name, admin_last_name, _id_admin_role, _id_identifier) VALUES (?, ?, ?, ?)`;
-        const [resultAdmin] = await db.query(requestAdmin, [firstName, lastName, idAdminRole, lastInsertId]);
+        const [resultAdmin] = await this.db.query(requestAdmin, [firstName, lastName, idAdminRole, lastInsertId]);
 
         return resultAdmin;
 
@@ -272,4 +272,3 @@ exports.addAdmin = async (
         throw error;
     }
 }
-
