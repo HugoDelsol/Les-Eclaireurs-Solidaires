@@ -1,5 +1,21 @@
 class Utils {
 
+    // ==============================
+    // SESSION UTILS
+    // ==============================
+
+    setUserSession = (req, res, data) => {
+        
+        req.session.user = data.session;
+        res.locals.pseudoUser = req.session.user.firstName || 'Utilisateur';
+
+        res.locals.role = {
+            isVolunteer: data.session.isVolunteer || false,
+            isAdmin: data.session.isAdmin || false,
+            isSuperAdmin: data.session.isSuperAdmin || false,
+        };
+    }
+
     clearData(missions, valueSpace) {
 
         let tabResult = [];

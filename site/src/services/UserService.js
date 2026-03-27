@@ -2,11 +2,16 @@ const bcrypt = require('bcrypt');
 
 class UserService {
 
-    constructor(userModel, missionModel, missionService) {
+    constructor(userModel, missionModel, missionService, utils) {
         this.userModel = userModel;
         this.missionModel = missionModel;
         this.missionService = missionService;
+        this.utils = utils;
     }
+
+    // ==============================
+    // ACCOUNT VERIFICATION
+    // ==============================
 
     async verifyAccountExist(safeData) {
 
@@ -33,6 +38,10 @@ class UserService {
         }
     }
 
+    // ==============================
+    // ROLE MAPPING AND SESSION
+    // ==============================
+
     async rolesMaps(userExist) {
 
         const rolesMaps = {
@@ -43,7 +52,6 @@ class UserService {
                     firstName: u.admin_first_name,
                     isSuperAdmin: true
                 }),
-                //action: getStatsMissions
             },
 
             admin_2: {
@@ -66,25 +74,23 @@ class UserService {
         let roleKey = null;
 
         if (userExist.role === "user") {
-
             roleKey = "user";
-
         } else if (userExist.role === "admin") {
-
             roleKey = `admin_${userExist._id_admin_role}`;
         }
 
         const session = rolesMaps[roleKey].session(userExist);
 
         if (session.isVolunteer) {
-
             return await this._formattedProfileVolunteer(session);
-
         } else {
-
             return await this._formattedProfileAdmin(session);
         }
     }
+
+    // ==============================
+    // VOLUNTEER PROFILE FORMATTING
+    // ==============================
 
     async _formattedProfileVolunteer(session) {
 
@@ -117,8 +123,11 @@ class UserService {
         return { session, dataProfile };
     }
 
-    async _formattedProfileAdmin(session) {
+    // ==============================
+    // ADMIN PROFILE FORMATTING
+    // ==============================
 
+    async _formattedProfileAdmin(session) {
 
         const getStatsMissions = await this.missionModel.getStatsMissions();
 

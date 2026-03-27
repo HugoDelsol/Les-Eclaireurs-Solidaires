@@ -1,5 +1,5 @@
 
-/* const sessionMdw = require('../middleware/session.middleware');
+/* 
 const messagingProtection = require('../middleware/messagingProtection.middleware');
 
 const urlProtection = require('../middleware/url.middleware');
@@ -17,6 +17,7 @@ const db = require('../config/database');
 // ---------------------------------------------------------
 // 🛡️ MIDDLEWARES
 // ---------------------------------------------------------
+const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
 
 // ---------------------------------------------------------
@@ -54,7 +55,7 @@ const UserVolunteerController = require("../controllers/user/userVolunteerContro
 const MissionVolunteerController = require("../controllers/mission/missionVolunteerController");
 
 const homeController = new HomeController(service, homeService);
-const userGeneralController = new UserGeneralController(userService, missionService);
+const userGeneralController = new UserGeneralController(userService, missionService, utils);
 const userVolunteerController = new UserVolunteerController(userService);
 const missionVolunteerController = new MissionVolunteerController(userService);
 
@@ -90,6 +91,10 @@ router.post('/auth',
 
 
 
+
+router.get('/logout', 
+    sessionMdw.logout
+);
 
 
 
@@ -129,8 +134,6 @@ router.get('/newMessage',
 // === LOGOUT / SESSION MANAGEMENT =============
 // ==============================================
 
-router.get('/logout', 
-    sessionMdw.logout
-); */
+ */
 
 module.exports = router;

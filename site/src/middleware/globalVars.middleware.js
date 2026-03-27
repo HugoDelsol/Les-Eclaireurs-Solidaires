@@ -39,7 +39,6 @@ const centralizedVar = (req, res, next) => {
     res.locals.tokenValue = null;
     res.locals.token = null;
 
-
     res.locals.dataView = null;
     
     res.locals.object = null;
