@@ -2,9 +2,10 @@ const bcrypt = require('bcrypt');
 
 class UserService {
 
-    constructor(userModel, missionModel) {
+    constructor(userModel, missionModel, missionService) {
         this.userModel = userModel;
         this.missionModel = missionModel;
+        this.missionService = missionService;
     }
 
     async verifyAccountExist(safeData) {
@@ -51,7 +52,6 @@ class UserService {
                     firstName: u.admin_first_name,
                     isAdmin: true
                 }),
-                //action: getStatsMissions
             },
 
             user: {
@@ -60,8 +60,6 @@ class UserService {
                     firstName: u.user_first_name,
                     isVolunteer: true
                 }),
-
-                //action: this.userVolunteerController.dashboardUser
             }
         };
 
@@ -76,21 +74,21 @@ class UserService {
             roleKey = `admin_${userExist._id_admin_role}`;
         }
 
-        const profileData = rolesMaps[roleKey].session(userExist);
+        const session = rolesMaps[roleKey].session(userExist);
 
-        if (profileData.isVolunteer) {
+        if (session.isVolunteer) {
 
-            return await this._formattedProfileVolunteer(profileData);
+            return await this._formattedProfileVolunteer(session);
 
         } else {
 
-            return await this._formattedProfileAdmin(profileData);
+            return await this._formattedProfileAdmin(session);
         }
     }
 
-    async _formattedProfileVolunteer(profileData) {
+    async _formattedProfileVolunteer(session) {
 
-        const idUser = profileData.id
+        const idUser = session.id
 
         const getUserAddress = await this.userModel.getUserAddress(idUser);
         const idRegionByUser = getUserAddress.id_region;
@@ -116,11 +114,17 @@ class UserService {
             nbrTimeAccomplished: count,
         }
 
-        return dataProfile;
+        return { session, dataProfile };
     }
 
-    async _formattedProfileAdmin(profileData) {
+    async _formattedProfileAdmin(session) {
 
+
+        const getStatsMissions = await this.missionModel.getStatsMissions();
+
+        const resultService = await this.missionService.formatMissionStats(getStatsMissions);
+
+        return { session, resultService, getStatsMissions };
     }
 }
 module.exports = UserService;

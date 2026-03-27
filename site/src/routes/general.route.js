@@ -37,11 +37,13 @@ const Utils = require("../utils/utils");
 const Services = require("../services/services"); 
 const HomeService = require("../services/HomeService");
 const UserService = require("../services/UserService");
+const MissionService = require('../services/MissionService');
 
 const utils = new Utils();
 const service = new Services(missionModel, utils);
 const homeService = new HomeService(homeModel);
-const userService = new UserService(userModel, missionModel);
+const missionService = new MissionService();
+const userService = new UserService(userModel, missionModel, missionService);
 
 // ---------------------------------------------------------
 // 🕹️ CONTROLLERS (Gestion des requêtes HTTP)
@@ -52,7 +54,7 @@ const UserVolunteerController = require("../controllers/user/userVolunteerContro
 const MissionVolunteerController = require("../controllers/mission/missionVolunteerController");
 
 const homeController = new HomeController(service, homeService);
-const userGeneralController = new UserGeneralController(userService);
+const userGeneralController = new UserGeneralController(userService, missionService);
 const userVolunteerController = new UserVolunteerController(userService);
 const missionVolunteerController = new MissionVolunteerController(userService);
 

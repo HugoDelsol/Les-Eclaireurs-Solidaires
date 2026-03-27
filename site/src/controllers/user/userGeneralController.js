@@ -1,4 +1,4 @@
- // ==============================
+// ==============================
 // IMPORTS & DEPENDENCIES
 // ==============================
 
@@ -17,8 +17,9 @@ const { getStatsMissions } = require('../mission/missionAdminController')
 
 class UserGeneralController {
 
-    constructor(userService){
+    constructor(userService, missionService) {
         this.userService = userService;
+        this.missionService = missionService
     }
 
     // ==============================
@@ -47,26 +48,20 @@ class UserGeneralController {
 
             if (!userExist) throw new Error("Email ou mot de passe incorrect.");
 
-            const rolesMaps = await this.userService.rolesMaps(userExist);
+            const data = await this.userService.rolesMaps(userExist);
 
-            console.log(rolesMaps)
+            if (data.session.isVolunteer) {
 
-            /* = rolesMaps[roleKey].session(userExist); */
+                this.volunteerDisplay(req, res, data);
 
-            
-        /* res.locals.missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
+            } else if (data.session.isAdmin || data.session.isSuperAdmin) {
 
-        res.locals.missionsUser = await missionMdl.getAllMissionsByUser(idUser);
+                this.adminDisplay(req, res, data);
 
-        res.locals.historyMissionUser = await missionMdl.addUserHistoryMission(idUser); */
+            } else {
 
-            req.session.userExist = session;
-
-            res.locals.pseudoUser = req.session.userExist.firstName;
-            res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
-            res.locals.isAdmin = req.session.userExist.isAdmin;
-
-            rolesMaps[roleKey].action(req, res);
+                throw new Error("Une erreur est survenue. Merci de réessayer dans quelques instants.");
+            }
 
         } catch (error) {
 
@@ -75,6 +70,68 @@ class UserGeneralController {
             res.render('connection/signIn', {
                 errorAlertMsg: error.message
             });
+        }
+    }
+
+    volunteerDisplay = (req, res, data) => {
+
+        try {
+
+            req.session.userExist = data.session;
+
+            req.session.save((err) => {
+                if (err) console.log(err);
+                res.render("account/volunteer/dashboardUser", {
+                    missionByRegion: data.dataProfile.missionByRegion,
+                    missionsUser: data.dataProfile.missionUser,
+                    historyMissionUser: data.dataProfile.historyMissionUser,
+                    resultNbrMissionAccomplished: data.dataProfile.statsOnVolunteer.resultNbrMissionAccomplished,
+                    nbrTimeAccomplished: data.dataProfile.nbrTimeAccomplished
+                });
+            })
+
+        } catch (error) {
+
+            res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
+
+            res.render('account/volunteer/dashboardUser', {
+                missionByRegion: [],
+                missionsUser: [],
+                historyMissionUser: [],
+                resultNbrMissionAccomplished: [],
+                nbrTimeAccomplished: [],
+            });
+        }
+    }
+
+    adminDisplay = async (req, res, data) => {
+
+        try {
+
+            req.session.userExist = data.session;
+
+            req.session.save((err) => {
+                if (err) console.log(err);
+                res.render("account/admin/dashboardAdmin", {
+                    tabStats: data.resultService.tabStats,
+                    resultSum: data.getStatsMissions.resultSumVolunteers[0].total_next_30_days,
+                    average: data.resultService.averageToFixed,
+                    totalMission: data.getStatsMissions.resultTotalMissions[0]
+                });
+            });
+
+
+
+        } catch (error) {
+
+            console.log(error);
+            res.render("account/admin/dashboardAdmin", {
+                errorAlertMsg: "Échec de la récupération des statistiques.",
+                tabStats: [],
+                resultSum: [],
+                average: [],
+                totalMission: [],
+            })
         }
     }
 }

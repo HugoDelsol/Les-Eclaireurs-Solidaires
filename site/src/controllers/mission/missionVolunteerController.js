@@ -145,13 +145,7 @@ class MissionVolunteerController {
         } catch (error) {
 
             console.log("Controler getAllMissionsByUser: ", error);
-            res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
-
-            res.render('account/volunteer/dashboardUser', {
-                missionByRegion: [],
-                missionsUser: [],
-                historyMissionUser: [],
-            })
+           
         }
     }
 

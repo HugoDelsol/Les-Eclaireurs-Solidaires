@@ -150,13 +150,13 @@ exports.getStatsMissions = async (req, res) => {
 
     try {
 
-        const getStatsMissions = await missionMdl.getStatsMissions();
+       /*  const getStatsMissions = await missionMdl.getStatsMissions();
 
         const resultService = await service.formatMissionStats(getStatsMissions);
 
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
         res.locals.isAdmin = req.session.userExist.isAdmin;
-
+ */
         res.render("account/admin/dashboardAdmin", {
             tabStats: resultService.tabStats,
             resultSum: getStatsMissions.resultSumVolunteers[0].total_next_30_days,
