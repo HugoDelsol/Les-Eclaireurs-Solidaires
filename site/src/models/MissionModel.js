@@ -557,9 +557,9 @@ exports.fetchImgByCategory = async (category) => {
         const fetchImg = `SELECT id_mission_image, mission_image_url FROM mission_image WHERE _id_mission_category = ?`;
         const [result] = await db.query(fetchImg, [category]);
         return result;
+
     } catch (error) {
-
-
+        
         console.error("Erreur SQL fetchImgByCategory :", error);
 
         throw error;

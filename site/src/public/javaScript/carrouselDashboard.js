@@ -39,7 +39,6 @@ const backgroundImage = document.querySelector(".imgRegion");
 
 const btnDetailMissionRegion = document.querySelector(".btnDetailMissionRegion");
 
-
 let indexRegion = 0;
 let dataRegion = [];
 

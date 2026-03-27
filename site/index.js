@@ -66,8 +66,10 @@ const volunteerRoute = require('./src/routes/volunteer.route');
 const adminRoute = require('./src/routes/admin.route');
 
 app.use(sideNav.tabSelected);
+
 // Injecte des variables globales accessibles dans toutes les vues
 app.use(globalVars.centralizedVar);
+
 // Récupère et attache les informations de l'utilisateur 
 app.use(globalVars.userData);
 
