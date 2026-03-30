@@ -8,13 +8,13 @@ const { matchedData } = require('express-validator');
 // Models
 const homeMdl = require('../models/HomeModel');
 const missionMdl = require('../models/MissionModel');
+const userMdl = require('../models/UserModel.js');
 
 // Utils - Services
 const utils = require('../utils/utils.js');
 const service = require('../services/services.js');
 
 // ==============================
-// DISPLAY VIEWS
 // ==============================
 
 exports.becomeVolunteer = async (req, res) => {
@@ -39,13 +39,32 @@ exports.homePage = async (req, res) => {
 
         console.log("Erreur homePage : ", error);
         res.locals.errorAlertMsg = "Impossible d'afficher la liste des missions disponibles dans la section « Nos besoins actuels ».";
-        res.render('home/homePage')
+        res.render('home/homePage');
     }
 }
 
-// ==============================
-// SUBMIT THE FORM ON THE HOME PAGE
-// ==============================
+exports.homeStats = async (req, res) => {
+
+    try {
+        
+        const getStatsMission = await missionMdl.fetchStatsMissionForHomePage();
+        const getStatsUser = await userMdl.fetchStatsUserForHomePage();
+
+        const nbrMissions = getStatsMission[0][0].nbrMissions;
+        const nbrCitys = getStatsMission[1][0].nbrCitys;
+        const nbrUsers = getStatsUser.nbrUsers
+        
+        return res.json({
+            dataMissions: nbrMissions,
+            dataCitys: nbrCitys,
+            dataUsers: nbrUsers
+        });
+
+    } catch (error) {
+        
+        console.log(error);
+    }
+}
 
 exports.submitForm = async (req, res) => {
 

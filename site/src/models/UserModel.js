@@ -11,6 +11,20 @@ async function testConnection() {
 }
 testConnection();
 
+exports.fetchStatsUserForHomePage = async () => {
+
+    try {
+
+        const request = ` SELECT COUNT(id_user) AS nbrUsers FROM user; `;
+        const [result] = await db.query(request);
+        return result[0];
+
+    } catch (error) {
+
+        throw new error;
+    }
+}
+
 exports.getAllAdmins = async () => {
     try {
 
@@ -25,12 +39,12 @@ exports.getAllAdmins = async () => {
         const [resultSuperAdmins] = await db.query(requestSuperAdmins);
 
         const requestAdmins = `SELECT 
-                                    *,
-                                    DATE_FORMAT(admin_created_at, '%d/%m/%Y') AS admin_created_at
-                                    FROM admin
-                                    LEFT JOIN admin_role
-                                    ON _id_admin_role = id_admin_role
-                                    WHERE id_admin_role = 2;`
+                                *,
+                                DATE_FORMAT(admin_created_at, '%d/%m/%Y') AS admin_created_at
+                                FROM admin
+                                LEFT JOIN admin_role
+                                ON _id_admin_role = id_admin_role
+                                WHERE id_admin_role = 2;`
 
         const [resultAdmins] = await db.query(requestAdmins);
 
@@ -109,8 +123,7 @@ exports.listOfVolunteers = async (test) => {
 
     } catch (error) {
 
-        console.log("error model listOfVolunteers : ")
-        throw error
+        throw error;
     }
 }
 
@@ -126,8 +139,8 @@ exports.findVolunteer = async (inputValue) => {
             LEFT JOIN registration_mission ON _id_user = id_user
             WHERE user_first_name LIKE ? OR user_last_name LIKE ? 
             GROUP BY user_first_name, user_last_name, identifier_mail
-        `;     
-  
+        `;
+
         const [result] = await db.query(request, [query, query]);
 
         return result;

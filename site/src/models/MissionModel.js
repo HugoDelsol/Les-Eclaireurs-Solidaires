@@ -58,6 +58,24 @@ exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, 
 
 }
 
+exports.fetchStatsMissionForHomePage = async () => {
+
+    try {
+        
+        const request = `
+            SELECT COUNT(id_mission) AS nbrMissions FROM mission;
+            SELECT COUNT(DISTINCT _id_city) AS nbrCitys FROM mission;
+        `
+        const [result] = await db.query(request);
+        return result;
+        
+    } catch (error) {
+
+        console.log("Erreur SQL fetchStatsForHomePage :", error);
+        throw error;
+    }
+}
+
 exports.addUserHistoryMission = async (idUser) => {
 
     try {

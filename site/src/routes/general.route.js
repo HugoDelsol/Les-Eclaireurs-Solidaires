@@ -13,8 +13,12 @@ const urlProtection = require('../middleware/url.middleware');
 // =============================================
 
 router.get('/', 
-    homeCtrl.homePage
+    homeCtrl.homePage,
 );
+
+router.get('/getStatsHomePage', 
+    homeCtrl.homeStats,
+)
 
 router.get('/becomeVolunteer', 
     homeCtrl.becomeVolunteer
