@@ -145,10 +145,10 @@ exports.dateFormat = (date) => {
     const dateFormat = dateObj.toLocaleDateString('fr', options).toUpperCase();
     return dateFormat;
 }
- 
+
 exports.timeFormat = (startTime, endTime) => {
 
-    const splitStartTime = startTime.split(':');    
+    const splitStartTime = startTime.split(':');
     const splitEndTime = endTime.split(':');
 
     const timeFormatStart = `${splitStartTime[0]}h${splitStartTime[1]}`;
@@ -157,6 +157,46 @@ exports.timeFormat = (startTime, endTime) => {
     return data = {
         timeFormatStart,
         timeFormatEnd
-    }; 
+    };
 }
 
+exports.formatedDateForUpdateMission = (data) => {
+
+    const startTime = data.mission_start_time;
+    const startTimeFormatted = startTime.split("");
+    startTimeFormatted.splice(5);
+    const startTi = startTimeFormatted.join('');
+
+    const endTime = data.mission_end_time;
+    const endTimeFormatted = endTime.split("");
+    endTimeFormatted.splice(5);
+    const endTi = endTimeFormatted.join('');
+
+    const date = new Date(data.mission_date);
+
+    let month = date.getMonth() + 1;
+
+    let dataDate = [
+        newYear = date.getFullYear().toString(),
+        newMonth = month.toString(),
+        newDate = date.getDate().toString(),
+    ]
+
+    let i = 0;
+
+    dataDate.forEach(el => {
+        if (el.length === 1) {
+            el = `0${el}`
+            dataDate.splice(i, 1, el)
+        }
+        i++
+    });
+
+    const formattedDate = dataDate.join('-');
+
+    return data = {
+        startTi,
+        endTi,
+        formattedDate
+    }
+}

@@ -7,13 +7,13 @@ cityInput.addEventListener('input', async (e) => {
 
         let inputValue = e.target.value;
 
-        const response = await fetch(`searchCity?q=${inputValue}`);
+        const response = await fetch(`/admin/searchCity?q=${inputValue}`);
 
         if (!response.ok) {
             throw new Error('--cityInput.addEventListener-->>>', response.status);
         }
 
-        const result = await response.json();        
+        const result = await response.json();
 
         displayListCity.innerHTML = '';
 

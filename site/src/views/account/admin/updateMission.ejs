@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="/style/globalStyle.css">
+<link rel="stylesheet" href="/style/account/styleSideNav.css">
+<link rel="stylesheet" href="/style/account/styleAddMission.css">
+<script src="/javaScript/style.js" defer></script>
+<script src="/javaScript/inputCityAuto.js" defer></script>
+<script src="/javaScript/minWidthRequired.js" defer></script>
+
+<%- include("../../partials/_head") %>
+<%- include('../../partials/_alert') %>
+
+<div class="containerDisplay">
+    <%- include('../../partials/_sideNavAdmin') %>
+<main class="mainBackOffice">
+
+        <section class="blocAddMission background">
+            <div class="row">
+                <div class="col">
+                    <h1>Modifier une mission :</h1>
+                    <div class="line"></div>
+                </div>
+                <a href="/admin/missionAdminShow">
+                    <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                </a>
+            </div>
+
+            <form lang="fr" action="/admin/updateMission" method="update">
+                <div class="titleCategory">
+                    <label id="title">
+                        Titre de la mission :
+                        <input type="text" name="title" id="title" value="<%= dataMission.mission_title %>" />
+                    </label>
+
+                    <select name="category" id="category">
+                        <option value=""><%= dataMission.mission_category_name %></option>
+                        <% for (let category of categoriesMission) { %>
+                            <% if (category.mission_category_name !== dataMission.mission_category_name) { %>
+                                <option value="<%= category.id_mission_category %>">
+                                    <%= category.mission_category_name %>
+                                </option>
+                            <% } %>
+                        <% } %>
+                    </select>
+                </div>
+
+                <label id="description">
+                    Description :
+                    <textarea type="text" name="description" value=""><%= dataMission.mission_description %></textarea>
+                </label>
+
+                <div class="timeDate">
+                    <label id="date">
+                        Date :
+                        <input type="date" name="date" value="<%= formattedDate %>" />
+                    </label>
+
+                    <label id="startTime">
+                        Heure de début :
+                        <input type="time" name="startTime" value="<%= startTime %>" />
+                    </label>
+
+                    <label id="endTime">
+                        Heure de fin :
+                        <input type="time" name="endTime" value="<%= endTime %>" />
+                    </label>
+                </div>
+
+                <div class="cityPlace">
+                    <label id="city">
+                        Ville :
+                        <input class="city" autocomplete="off" type="text" name="city" value="<%= dataMission.city_name %>" />
+                        <input type="hidden" name="cityId" class="cityId">
+                        <ul class="displayListCity"></ul>
+                    </label>
+
+                    <label id="placeName">
+                        Lieu :
+                        <input type="text" name="placeName" value="<%= dataMission.mission_place_name %>" />
+                    </label>
+                </div>
+
+                <div class="places">
+                    <label id="spaceAvailable" class="column">
+                        Nombre de place :
+                        <input type="number" name="spaceAvailable" value="<%= dataMission.mission_available_place %>" />
+                    </label>
+
+                    <label id="uploadImg" for="fileUpload" class="customFileUpload">
+                        Choisir une image :
+                        <input id="fileUpload" type="file" class="paddingTypeFile" name="uploadImg" value="" />
+                    </label>
+                </div>
+
+                <button type="submit" class="btnSecondary btnHover">MODIFIER</button>
+            </form>
+        </section>
+    </main>
+</div>
+   </body>
+</html>

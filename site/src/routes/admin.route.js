@@ -61,14 +61,21 @@ router.get('/missionDetails/:idMission',
     missionGeneralCtrl.getDataMission
 );
 
-router.get('/searchCity', 
+router.get('/missionUpdate/:idMission',
+  sessionMdw.requireAuth,
+  sessionMdw.allAdministratorAuthorization,
+  urlProtection.urlMustBeANumberForMissionDetail, 
+  missionAdminCtrl.updateMission
+);
+
+router.get('/searchCity',     
     sessionMdw.requireAuth, 
-    missionGeneralCtrl.searchCity
+    missionGeneralCtrl.searchCity,
 );
 
 router.post('/searchByCategories', 
     sessionMdw.requireAuth, 
-    missionGeneralCtrl.searchByCategories
+    missionGeneralCtrl.searchByCategories,
 );
 
 // ==============================================

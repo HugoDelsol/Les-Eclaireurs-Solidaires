@@ -167,8 +167,41 @@ exports.missionAdminShow = async (req, res) => {
 // ==============================
 
 exports.addMissionShow = async (req, res) => {
-    const categoriesMission = await missionMdl.getAllCategories();
-    req.session.categoriesMission = categoriesMission;
-    res.render('account/admin/addMission');
+
+    try {
+
+        const categoriesMission = await missionMdl.getAllCategories();
+        res.locals.categoriesMission = categoriesMission;
+        res.render('account/admin/addMission');
+
+    } catch (error) {
+
+        console.log(error);
+        res.locals.errorAlertMsg = "Impossible de récupérer la liste des catégories";
+        res.render('account/admin/addMission');
+    }
+
+}
+
+exports.updateMission = async (req, res) => {
+
+    try {
+        res.locals.categoriesMission = await missionMdl.getAllCategories();
+
+        const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
+        const dataFormatted = service.formatedDateForUpdateMission(dataMission[0]);
+       
+        res.render('account/admin/updateMission', {
+            dataMission: dataMission[0],
+            formattedDate: dataFormatted.formattedDate,
+            startTime: dataFormatted.startTi,
+            endTime: dataFormatted.endTi,
+        });
+
+    } catch (error) {
+
+        console.log(error)
+
+    }
 }
 

@@ -25,6 +25,9 @@ exports.searchByCategories = async (req, res) => {
 
     try {
 
+        res.locals.regions = await missionMdl.getAllRegions();
+        res.locals.categoriesMission = await missionMdl.getAllCategories();
+
         const { regionSelected, categorySelected, tripStart, tripEnd } = req.body;
         const user = req.session.userExist;
 
@@ -45,7 +48,7 @@ exports.searchByCategories = async (req, res) => {
 
         const missionsSelected = await missionMdl.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
 
-        const filterOutRegisteredMissions = await service.filterOutRegisteredMissions(req, missionsSelected)
+        const filterOutRegisteredMissions = await service.filterOutRegisteredMissions(req, missionsSelected);
 
         res.locals.missions = filterOutRegisteredMissions
         res.locals.missionsClear = utils.clearData(filterOutRegisteredMissions);
@@ -54,6 +57,8 @@ exports.searchByCategories = async (req, res) => {
         res.render(renderPathByRole);
 
     } catch (error) {
+
+        console.log("test")
 
         console.error(error);
 
@@ -127,7 +132,7 @@ exports.getDataMission = async (req, res) => {
     } catch (error) {
 
         console.log(error);
-        
+
         res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
         res.render(renderPathByRole, {
             dataMission: [[]],
