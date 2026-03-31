@@ -141,19 +141,11 @@ exports.getStatsMissions = async (req, res) => {
 
 exports.missionAdminShow = async (req, res) => {
 
-    let getAllMissions = [];
-
     try {
 
-        req.session.regions = await missionMdl.getAllRegions();
-
-        req.session.categoriesMission = await missionMdl.getAllCategories();
-
-        getAllMissions = await missionMdl.getAllMission();
-
-        res.locals.regions = req.session.regions;
-        res.locals.categoriesMission = req.session.categoriesMission;
-        res.locals.missions = getAllMissions
+        res.locals.regions = await missionMdl.getAllRegions();
+        res.locals.categoriesMission = await missionMdl.getAllCategories();
+        res.locals.missions = await missionMdl.getAllMission();
 
         res.render('account/admin/listMissionsAdmin');
 
@@ -163,9 +155,9 @@ exports.missionAdminShow = async (req, res) => {
 
         res.render('account/admin/listMissionsAdmin', {
             errorAlertMsg: "Impossible d'afficher la liste des missions.",
-            categoriesMission: req.session.categoriesMission || [],
-            regions: req.session.regions || [],
-            missions: req.session.getAllMissions || []
+            categoriesMission: res.locals.categoriesMission || [],
+            regions: res.locals.regions || [],
+            missions: res.locals.missions || []
         });
     }
 }

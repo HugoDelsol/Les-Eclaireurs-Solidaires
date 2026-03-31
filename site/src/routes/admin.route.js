@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sessionMdw = require('../middleware/session.middleware');
 const inputProtection = require('../middleware/inputProtection.middleware');
+const urlProtection = require('../middleware/url.middleware');
 const userAdminCtrl = require('../controllers/user/userAdminController');
 const messagingCtrl = require('../controllers/messaging.ctrl');
 const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
@@ -51,6 +52,13 @@ router.post('/addMission',
     sessionMdw.requireAuth, 
     sessionMdw.allAdministratorAuthorization, 
     missionAdminCtrl.addMission
+);
+
+router.get('/missionDetails/:idMission', 
+    sessionMdw.requireAuth,
+    sessionMdw.allAdministratorAuthorization, 
+    urlProtection.urlMustBeANumberForMissionDetail, 
+    missionGeneralCtrl.getDataMission
 );
 
 router.get('/searchCity', 

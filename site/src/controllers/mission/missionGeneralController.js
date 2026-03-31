@@ -109,20 +109,30 @@ exports.searchCity = async (req, res) => {
 
 exports.getDataMission = async (req, res) => {
 
+    let renderPathByRole = null;
+    req.session.userExist.isVolunteer ? renderPathByRole = "account/volunteer/missionDetails" : renderPathByRole = "account/admin/missionDetails";
+
     try {
 
         const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
         const dateFormat = service.dateFormat(dataMission[0].mission_date);
         const timeFormat = service.timeFormat(dataMission[0].mission_start_time, dataMission[0].mission_end_time);
 
-        res.render('account/volunteer/missionDetails', {
-            dataMission: dataMission,
-            dateFormat: dateFormat,
-            timeFormat: timeFormat,
-        })
+        res.render(renderPathByRole, {
+            dataMission: dataMission || [],
+            dateFormat: dateFormat || [],
+            timeFormat: timeFormat || [],
+        });
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        
+        res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
+        res.render(renderPathByRole, {
+            dataMission: [[]],
+            dateFormat: [],
+            timeFormat: [],
+        });
     }
 }

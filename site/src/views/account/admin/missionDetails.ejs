@@ -1,9 +1,7 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
-<link rel="stylesheet" href="/style/modal/subscribe.css">
 <link rel="stylesheet" href="/style/globalStyle.css">
 <link rel="stylesheet" href="/style/account/missionDetails.css">
 
-<script src="/javaScript/registerMission.js" defer></script>
 <script src="/javaScript/style.js" defer></script>
 
 <%- include('../../partials/_head') %>
@@ -13,7 +11,7 @@
 <div class="modalContain"></div>
 
 <div class="containerDisplay">
-<%- include('../../partials/_sideNavUser') %>
+<%- include('../../partials/_sideNavAdmin') %>
     <main class="mainBackOffice">
         <div class="background backgroundCards">
             <div class="lineTitle">
@@ -42,7 +40,6 @@
                     </div>                                       
                 </div>    
             </div>
-            <a href="/modalRegisterMission" class="btnSecondary btnHover btnRegistration" data-id="<%= JSON.stringify({id: dataMission[0].id_mission, title: dataMission[0].mission_title }) %>">Rejoindre</a>
         </div>
     </main>
 </div>

@@ -100,14 +100,11 @@ exports.missionUserShow = async (req, res) => {
 
         const filterOutRegisteredMissions = await service.filterOutRegisteredMissions(req);
 
-        req.session.regions = regions;
-        req.session.categoriesMission = categoriesMission;
-
         const clearData = utils.clearData(filterOutRegisteredMissions);
 
         res.locals.missionsClear = clearData;
-        res.locals.regions = req.session.regions;
-        res.locals.categoriesMission = req.session.categoriesMission;
+        res.locals.regions = regions;
+        res.locals.categoriesMission = categoriesMission;
 
         res.render('account/volunteer/listMissionUser');
 
