@@ -3,6 +3,7 @@
 // ==============================
 
 // Libraries
+const { matchedData } = require('express-validator');
 
 // Models
 const missionMdl = require('../../models/MissionModel');
@@ -183,14 +184,21 @@ exports.addMissionShow = async (req, res) => {
 
 }
 
-exports.updateMission = async (req, res) => {
+exports.updateMissionView = async (req, res, safeData) => {
 
+    
     try {
-        res.locals.categoriesMission = await missionMdl.getAllCategories();
+        
+        if(safeData){
+            const dataMission = safeData.dataMission
+        }
 
+        res.locals.categoriesMission = await missionMdl.getAllCategories();
         const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
         const dataFormatted = service.formatedDateForUpdateMission(dataMission[0]);
-       
+
+        res.locals.idMission = dataMission[0].id_mission;
+
         res.render('account/admin/updateMission', {
             dataMission: dataMission[0],
             formattedDate: dataFormatted.formattedDate,
@@ -200,8 +208,46 @@ exports.updateMission = async (req, res) => {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error);
+        res.locals.errorAlertMsg = "Un problème est survenu lors de l'accès aux détails de la mission.";
+        res.render('account/admin/updateMission', {
+            dataMission: [[]],
+            formattedDate: [],
+            startTime: [],
+            endTime: [],
+        });
 
     }
 }
+
+exports.updateMission = async (req, res) => {
+
+    try {
+
+        /* console.log("--- DEBUG UPLOAD ---");
+        console.log("Fichier reçu (req.file) :", req.file);
+        console.log("Champs texte (req.body) :", req.body); */
+
+        const safeData = matchedData(req);
+
+        console.log(safeData)
+
+        if (res.locals.errorAlertMsg) {
+            this.updateMissionView(req, res, safeData)
+        }
+
+
+
+    } catch (error) {
+
+        console.log(error);
+        res.locals.errorAlertMsg = "Un problème est survenu lors de l'accès aux détails de la mission.";
+        res.render('account/admin/updateMission', {
+
+        });
+
+    }
+}
+
+
 

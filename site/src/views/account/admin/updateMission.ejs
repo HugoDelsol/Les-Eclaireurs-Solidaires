@@ -23,7 +23,7 @@
                 </a>
             </div>
 
-            <form lang="fr" action="/admin/updateMission" method="update">
+            <form lang="fr" action="/admin/updateMission/<%= dataMission.id_mission %>" method="post">
                 <div class="titleCategory">
                     <label id="title">
                         Titre de la mission :
@@ -31,7 +31,7 @@
                     </label>
 
                     <select name="category" id="category">
-                        <option value=""><%= dataMission.mission_category_name %></option>
+                        <option value="<%= dataMission.id_mission_category %>"><%= dataMission.mission_category_name %></option>
                         <% for (let category of categoriesMission) { %>
                             <% if (category.mission_category_name !== dataMission.mission_category_name) { %>
                                 <option value="<%= category.id_mission_category %>">
@@ -68,7 +68,7 @@
                     <label id="city">
                         Ville :
                         <input class="city" autocomplete="off" type="text" name="city" value="<%= dataMission.city_name %>" />
-                        <input type="hidden" name="cityId" class="cityId">
+                        <input type="hidden" name="cityId" value="<%= dataMission.id_city %>" class="cityId">
                         <ul class="displayListCity"></ul>
                     </label>
 

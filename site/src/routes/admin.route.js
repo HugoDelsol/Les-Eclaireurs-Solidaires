@@ -61,12 +61,19 @@ router.get('/missionDetails/:idMission',
     missionGeneralCtrl.getDataMission
 );
 
-router.get('/missionUpdate/:idMission',
+router.get('/missionUpdateView/:idMission',
   sessionMdw.requireAuth,
   sessionMdw.allAdministratorAuthorization,
   urlProtection.urlMustBeANumberForMissionDetail, 
-  missionAdminCtrl.updateMission
+  missionAdminCtrl.updateMissionView
 );
+
+router.post('/updateMission/:idMission', 
+    sessionMdw.requireAuth,
+    sessionMdw.allAdministratorAuthorization,
+    inputProtection.manageMissionInputProtection,
+    missionAdminCtrl.updateMission
+)
 
 router.get('/searchCity',     
     sessionMdw.requireAuth, 
