@@ -1,4 +1,5 @@
 const db = require('../config/database');
+const { updateMission } = require('../controllers/mission/missionAdminController');
 
 exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, cityId, category) => {
 
@@ -61,14 +62,14 @@ exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, 
 exports.fetchStatsMissionForHomePage = async () => {
 
     try {
-        
+
         const request = `
             SELECT COUNT(id_mission) AS nbrMissions FROM mission;
             SELECT COUNT(DISTINCT _id_city) AS nbrCitys FROM mission;
         `
         const [result] = await db.query(request);
         return result;
-        
+
     } catch (error) {
 
         console.log("Erreur SQL fetchStatsForHomePage :", error);
@@ -390,7 +391,22 @@ exports.insertMission = async (
 
         throw error;
     }
+}
 
+exports.updateMission = async (idMission, data, imageUrl) => {
+    try {
+
+        const update = `
+            UPDATE mission 
+            SET mission_title = ?, mission_description = ?, mission_date = ?, mission_start_time = ?, mission_end_time = ?, mission_place_name = ?, mission_available_place = ?, mission_img = ?, _id_mission_category = ?, _id_city = ?
+            WHERE id_mission = ?
+        `
+        await db.query(update, [data.title, data.description, data.date, data.startTime, data.endTime, data.placeName, data.spaceAvailable, imageUrl, data.category, data.cityId, idMission]);
+
+    } catch (error) {
+
+        throw error;
+    }
 }
 
 exports.searchCityInSql = async (q) => {
@@ -490,7 +506,7 @@ exports.registerMissionUser = async (idUser, idMission) => {
         const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
         const [result] = await db.query(request, [idUser, idMission]);
 
-        if (result.affectedRows !== 1){
+        if (result.affectedRows !== 1) {
             return false;
         }
 
@@ -513,7 +529,7 @@ exports.unregisterAVolunteer = async (idRegistration) => {
         `
         const [result] = await db.query(request, idRegistration);
 
-         if (result.affectedRows !== 1){
+        if (result.affectedRows !== 1) {
             return false;
         }
 
@@ -577,7 +593,7 @@ exports.fetchImgByCategory = async (category) => {
         return result;
 
     } catch (error) {
-        
+
         console.error("Erreur SQL fetchImgByCategory :", error);
 
         throw error;
@@ -586,8 +602,8 @@ exports.fetchImgByCategory = async (category) => {
 
 exports.getDataMissionById = async (idMission) => {
 
-    try {        
-        
+    try {
+
         const request = `
             SELECT * FROM mission 
             LEFT JOIN city
@@ -598,7 +614,7 @@ exports.getDataMissionById = async (idMission) => {
         `
         const [result] = await db.query(request, idMission);
 
-        return result;
+        return result[0];
 
     } catch (error) {
         console.log(error);

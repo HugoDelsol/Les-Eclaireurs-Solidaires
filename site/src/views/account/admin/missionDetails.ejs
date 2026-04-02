@@ -17,14 +17,17 @@
             <div class="lineTitle">
                 <h1>Détails de la mission</h1>
                 <div class="line"></div>
+                <a class="linkClose" href="/admin/missionAdminShow">
+                    <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                </a>
             </div>
-            <img src="<%= dataMission[0].mission_img %>" alt="">
+            <img class="img" src="<%= dataMission.mission_img %>" alt="">
             <div class="imagetest"></div>
             <div class="container">
                 <div class="colLeft">
-                    <h1 class="border"><%= dataMission[0].mission_title %></h1>
-                    <p class="border"><%= dataMission[0].mission_description %></p>
-                    <p class="border">Catégorie : <%= dataMission[0].mission_category_name %> </p>
+                    <h1 class="border"><%= dataMission.mission_title %></h1>
+                    <p class="border"><%= dataMission.mission_description %></p>
+                    <p class="border">Catégorie : <%= dataMission.mission_category_name %> </p>
                 </div>
                 <div class="colRight">
                     <div class="border">
@@ -32,11 +35,11 @@
                         <p>De <%= timeFormat.timeFormatStart %> à <%= timeFormat.timeFormatEnd %></p>
                     </div> 
                     <div class="border">
-                        <p><%= dataMission[0].mission_place_name %></p>
-                        <p><%= dataMission[0].city_postal_code %> <%= dataMission[0].city_name %> </p>
+                        <p><%= dataMission.mission_place_name %></p>
+                        <p><%= dataMission.city_postal_code %> <%= dataMission.city_name %> </p>
                     </div>
                     <div class="border">
-                        <p><%= dataMission[0].mission_available_place %> places disponibles </p>  
+                        <p><%= dataMission.mission_available_place %> places disponibles </p>  
                     </div>                                       
                 </div>    
             </div>

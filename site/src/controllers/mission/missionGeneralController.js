@@ -120,8 +120,8 @@ exports.getDataMission = async (req, res) => {
     try {
 
         const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
-        const dateFormat = service.dateFormat(dataMission[0].mission_date);
-        const timeFormat = service.timeFormat(dataMission[0].mission_start_time, dataMission[0].mission_end_time);
+        const dateFormat = service.dateFormat(dataMission.mission_date);
+        const timeFormat = service.timeFormat(dataMission.mission_start_time, dataMission.mission_end_time);
 
         res.render(renderPathByRole, {
             dataMission: dataMission || [],

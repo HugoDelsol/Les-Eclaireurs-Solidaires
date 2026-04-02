@@ -184,23 +184,17 @@ exports.addMissionShow = async (req, res) => {
 
 }
 
-exports.updateMissionView = async (req, res, safeData) => {
+exports.updateMissionView = async (req, res) => {
 
-    
     try {
-        
-        if(safeData){
-            const dataMission = safeData.dataMission
-        }
 
         res.locals.categoriesMission = await missionMdl.getAllCategories();
         const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
-        const dataFormatted = service.formatedDateForUpdateMission(dataMission[0]);
-
-        res.locals.idMission = dataMission[0].id_mission;
+        const dataFormatted = service.formatedDateForUpdateMission(dataMission);
+        res.locals.idMission = dataMission.id_mission;
 
         res.render('account/admin/updateMission', {
-            dataMission: dataMission[0],
+            dataMission: dataMission,
             formattedDate: dataFormatted.formattedDate,
             startTime: dataFormatted.startTi,
             endTime: dataFormatted.endTi,
@@ -221,31 +215,56 @@ exports.updateMissionView = async (req, res, safeData) => {
 }
 
 exports.updateMission = async (req, res) => {
-
     try {
 
-        /* console.log("--- DEBUG UPLOAD ---");
-        console.log("Fichier reçu (req.file) :", req.file);
-        console.log("Champs texte (req.body) :", req.body); */
+        let categoryName = null;
+
+        if (res.locals.errorAlertMsg.length > 0) {
+
+            res.locals.categoriesMission = await missionMdl.getAllCategories();
+            res.locals.categoriesMission.forEach(element => {
+                if (element.id_mission_category === req.body.category) {
+                    categoryName = element.mission_category_name
+                }
+            });
+
+            res.render('account/admin/updateMission', {
+                idMission: req.params.idMission,
+                dataMission: req.body,
+                categoryName: categoryName,
+                formattedDate: req.body.date,
+                startTime: req.body.startTime,
+                endTime: req.body.endTime,
+            });
+        }
+
+        let imageUrl = null;
 
         const safeData = matchedData(req);
 
-        console.log(safeData)
+        if (!req.body.uploadImg) {
 
-        if (res.locals.errorAlertMsg) {
-            this.updateMissionView(req, res, safeData)
+            const fetchGroupImages = await missionMdl.fetchImgByCategory(safeData.category);
+
+            const randomImage = utils.randomImage(fetchGroupImages);
+
+            imageUrl = randomImage;
+
+        } else {
+
+            imageUrl = safeData.uploadImg;
         }
 
-
+        await missionMdl.updateMission(req.params.idMission, safeData, imageUrl);
+        res.locals.successAlertMsg = `La mission "${req.body.title}" a bien été mise à jour`;
+        return this.missionAdminShow(req, res);
 
     } catch (error) {
 
         console.log(error);
-        res.locals.errorAlertMsg = "Un problème est survenu lors de l'accès aux détails de la mission.";
-        res.render('account/admin/updateMission', {
-
+        res.status(500).render('home/404', {
+            errorAlertMsg: "Un problème technique est survenu."
         });
-
     }
 }
 

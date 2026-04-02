@@ -196,7 +196,7 @@ const generateTokenInputProtection = [
 const manageMissionInputProtection = [
 
     body("title").trim().escape(),
-    body("category").trim().isInt().escape(),
+    body("category").trim().isInt().toInt(),
     body("description").trim().isLength({ min: 2, max: 2000 }).withMessage("La description doit contenir entre 2 et 2000 caractères").escape(),
     body("date").trim().isDate(),
     body("startTime").trim().matches(/^[0-9:]+$/),
@@ -205,14 +205,15 @@ const manageMissionInputProtection = [
     body("cityId").trim().isInt().toInt(),
     body("placeName").trim().isLength({ min: 1, max: 500 }).escape(),
     body("spaceAvailable").trim().isInt().toInt(),
-    //body("uploadImg").trim().escape(),
+    body("uploadImg").trim().escape(),
 
     (req, res, next) => {
 
-        const error = validationResult(req);
+        const error = validationResult(req); 
 
         if (!error.isEmpty()) {
-            res.locals.errorAlertMsg = error.array()[0].msg || "Données invalides. Veuillez vérifier les champs."
+
+            res.locals.errorAlertMsg = error.array()[0].msg;
         }
 
         next();

@@ -9,7 +9,7 @@
     width: 70vw;
 }
 
-.background img {
+.background .img {
     border-radius: 10px 10px 0 0;
     height: 200px;
     width: 70vw;
@@ -28,7 +28,7 @@
     margin-left: 20px;
 }
 
-.background a {
+.background .linkJoin {
     width: 20vw;
     margin: auto;
     text-align: center;
@@ -70,6 +70,21 @@
     border-radius: 10px;
     margin: 10px 0;
     line-height: 1.4;
+}
+
+.linkClose {
+	position: absolute;
+	right: 34;
+}
+
+.btnReset {
+	width: 44px;
+	display: inline-block;
+	transition: all 0.2s;
+}
+
+.btnReset:hover {
+	transform: rotate(90deg);
 }
 
 @media all and (max-width: 1300px) {

@@ -23,17 +23,17 @@
                 </a>
             </div>
 
-            <form lang="fr" action="/admin/updateMission/<%= dataMission.id_mission %>" method="post">
+            <form lang="fr" action="/admin/updateMission/<%= dataMission.id_mission || idMission %>" method="post">
                 <div class="titleCategory">
                     <label id="title">
                         Titre de la mission :
-                        <input type="text" name="title" id="title" value="<%= dataMission.mission_title %>" />
+                        <input type="text" name="title" id="title" value="<%= dataMission.mission_title || dataMission.title %>" />
                     </label>
 
                     <select name="category" id="category">
-                        <option value="<%= dataMission.id_mission_category %>"><%= dataMission.mission_category_name %></option>
+                        <option value="<%= dataMission.id_mission_category || dataMission.category %>"><%= dataMission.mission_category_name || categoryName %></option>
                         <% for (let category of categoriesMission) { %>
-                            <% if (category.mission_category_name !== dataMission.mission_category_name) { %>
+                            <% if (category.mission_category_name !== dataMission.mission_category_name && category.mission_category_name !== categoryName ) { %>
                                 <option value="<%= category.id_mission_category %>">
                                     <%= category.mission_category_name %>
                                 </option>
@@ -44,7 +44,7 @@
 
                 <label id="description">
                     Description :
-                    <textarea type="text" name="description" value=""><%= dataMission.mission_description %></textarea>
+                    <textarea type="text" name="description" value=""><%= dataMission.mission_description || dataMission.description %></textarea>
                 </label>
 
                 <div class="timeDate">
@@ -67,21 +67,21 @@
                 <div class="cityPlace">
                     <label id="city">
                         Ville :
-                        <input class="city" autocomplete="off" type="text" name="city" value="<%= dataMission.city_name %>" />
-                        <input type="hidden" name="cityId" value="<%= dataMission.id_city %>" class="cityId">
+                        <input class="city" autocomplete="off" type="text" name="city" value="<%= dataMission.city_name || dataMission.city %>" />
+                        <input type="hidden" name="cityId" value="<%= dataMission.id_city || dataMission.cityId %>" class="cityId">
                         <ul class="displayListCity"></ul>
                     </label>
 
                     <label id="placeName">
                         Lieu :
-                        <input type="text" name="placeName" value="<%= dataMission.mission_place_name %>" />
+                        <input type="text" name="placeName" value="<%= dataMission.mission_place_name || dataMission.placeName %>" />
                     </label>
                 </div>
 
                 <div class="places">
                     <label id="spaceAvailable" class="column">
                         Nombre de place :
-                        <input type="number" name="spaceAvailable" value="<%= dataMission.mission_available_place %>" />
+                        <input type="number" name="spaceAvailable" value="<%= dataMission.mission_available_place || dataMission.spaceAvailable %>" />
                     </label>
 
                     <label id="uploadImg" for="fileUpload" class="customFileUpload">
