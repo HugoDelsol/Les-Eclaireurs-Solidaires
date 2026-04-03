@@ -23,9 +23,15 @@ const service = require('../../services/services.js');
 exports.addMission = async (req, res) => {
 
     try {
+        res.locals.categoriesMission = await missionMdl.getAllCategories();
+
+        if (res.locals.errorAlertMsg.length > 0) {
+            return res.render('account/admin/addMission', {
+                data: req.body
+            });
+        }
 
         let imageUrl = null;
-
         const category = req.body.category;
 
         if (!req.body.uploadImg) {
@@ -41,53 +47,12 @@ exports.addMission = async (req, res) => {
             imageUrl = req.body.uploadImg;
         }
 
-        const {
-            title,
-            description,
-            date,
-            startTime,
-            endTime,
-            cityId,
-            placeName,
-            spaceAvailable,
-        } = req.body;
+        const safeData = matchedData(req);
 
-        if (
-            !title ||
-            !category ||
-            !description ||
-            !date ||
-            !startTime ||
-            !endTime ||
-            !cityId ||
-            !placeName ||
-            !spaceAvailable) {
+        await missionMdl.insertMission(safeData, imageUrl);
 
-            throw new Error("Veuillez remplir tous les champs.");
-        }
-
-        const insertMission = await missionMdl.insertMission
-            (
-                title,
-                category,
-                description,
-                date,
-                startTime,
-                endTime,
-                cityId,
-                placeName,
-                spaceAvailable,
-                imageUrl
-            );
-
-        if (insertMission) {
-
-            res.render('account/admin/addMission', {
-                pseudoUser: req.session.userExist.firstName,
-                categoriesMission: req.session.categoriesMission,
-                successAlertMsg: 'Missions ajoutée !',
-            })
-        }
+        res.locals.successAlertMsg = 'Votre mission a bien été enregistrée';
+        this.missionAdminShow(req, res);
 
     } catch (error) {
 
@@ -95,9 +60,8 @@ exports.addMission = async (req, res) => {
 
         res.render('account/admin/addMission', {
             pseudoUser: req.session.userExist.firstName,
-            categoriesMission: req.session.categoriesMission,
-            errorAlertMsg: 'Veuillez remplir tous les champs.',
-        })
+            errorAlertMsg: 'Un problème technique est survenu, veuillez réessayer dans un instant',
+        });
     }
 }
 

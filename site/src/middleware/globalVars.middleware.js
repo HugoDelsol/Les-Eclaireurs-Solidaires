@@ -48,7 +48,7 @@ const centralizedVar = (req, res, next) => {
     res.locals.emailFrom = null;  
     
     res.locals.categoryName = null;
-    
+    res.locals.data = [[]];    
 
     next();
 }

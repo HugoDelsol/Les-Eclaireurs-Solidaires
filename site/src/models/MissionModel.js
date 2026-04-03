@@ -341,21 +341,11 @@ exports.getAllCategories = async () => {
     }
 }
 
-exports.insertMission = async (
-    title,
-    category,
-    description,
-    date,
-    startTime,
-    endTime,
-    city,
-    placeName,
-    spaceAvailable,
-    uploadImg
-
-) => {
+exports.insertMission = async (data, uploadImg) => {
 
     try {
+
+        console.log("modeld", data)
 
         const request = `
             INSERT INTO mission (
@@ -373,15 +363,15 @@ exports.insertMission = async (
         `;
 
         const [result] = await db.query(request, [
-            title,
-            category,
-            description,
-            date,
-            startTime,
-            endTime,
-            city,
-            placeName,
-            spaceAvailable,
+            data.title,
+            data.category,
+            data.description,
+            data.date,
+            data.startTime,
+            data.endTime,
+            data.cityId,
+            data.placeName,
+            data.spaceAvailable,
             uploadImg
         ])
 

@@ -195,21 +195,86 @@ const generateTokenInputProtection = [
 
 const manageMissionInputProtection = [
 
-    body("title").trim().escape(),
-    body("category").trim().isInt().toInt(),
-    body("description").trim().isLength({ min: 2, max: 2000 }).withMessage("La description doit contenir entre 2 et 2000 caractères").escape(),
-    body("date").trim().isDate(),
-    body("startTime").trim().matches(/^[0-9:]+$/),
-    body("endTime").trim().matches(/^[0-9:]+$/),
-    body("city").trim().isLength({ min: 1, max: 200 }).escape(),
-    body("cityId").trim().isInt().toInt(),
-    body("placeName").trim().isLength({ min: 1, max: 500 }).escape(),
-    body("spaceAvailable").trim().isInt().toInt(),
-    body("uploadImg").trim().escape(),
+    body("title")
+        .trim()
+        .notEmpty()
+        .withMessage("Le titre est obligatoire")
+        .escape(),
+
+    body("category")
+        .trim()
+        .notEmpty()
+        .withMessage("La catégorie est obligatoire")
+        .isInt()
+        .withMessage("La catégorie doit être un nombre entier")
+        .toInt(),
+
+    body("description")
+        .trim()
+        .notEmpty()
+        .withMessage("La description est obligatoire")
+        .isLength({ min: 2, max: 2000 })
+        .withMessage("La description doit contenir entre 2 et 2000 caractères")
+        .escape(),
+
+    body("date")
+        .trim()
+        .notEmpty()
+        .withMessage("La date est obligatoire")
+        .isDate()
+        .withMessage("La date doit être valide"),
+
+    body("startTime")
+        .trim()
+        .notEmpty()
+        .withMessage("L'heure de début est obligatoire")
+        .matches(/^[0-9:]+$/)
+        .withMessage("L'heure de début doit être au format valide"),
+
+    body("endTime")
+        .trim()
+        .notEmpty()
+        .withMessage("L'heure de fin est obligatoire")
+        .matches(/^[0-9:]+$/)
+        .withMessage("L'heure de fin doit être au format valide"),
+
+    body("city")
+        .trim()
+        .escape(),
+
+    body("cityId")
+        .trim()  
+        .notEmpty()
+        .withMessage("Vous n'avez pas sélectionné une ville valide")      
+        .isInt()        
+        .toInt()
+        .withMessage("Vous n'avez pas sélectionné une ville valide"),        
+
+    body("placeName")
+        .trim()
+        .notEmpty()
+        .withMessage("Le nom du lieu est obligatoire")
+        .isLength({ min: 1, max: 500 })
+        .withMessage("Le nom du lieu doit contenir entre 1 et 500 caractères")
+        .escape(),
+
+    body("spaceAvailable")
+        .trim()
+        .notEmpty()
+        .withMessage("Le nombre de places est obligatoire")
+        .isInt()
+        .withMessage("Le nombre de places doit être un entier")
+        .toInt(),
+
+    body("uploadImg")
+        .trim()
+        .escape(),
 
     (req, res, next) => {
 
-        const error = validationResult(req); 
+        console.log("test")
+
+        const error = validationResult(req);
 
         if (!error.isEmpty()) {
 

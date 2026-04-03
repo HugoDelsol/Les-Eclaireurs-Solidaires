@@ -51,6 +51,7 @@ router.get('/addMissionShow',
 router.post('/addMission', 
     sessionMdw.requireAuth, 
     sessionMdw.allAdministratorAuthorization, 
+    inputProtection.manageMissionInputProtection,
     missionAdminCtrl.addMission
 );
 
