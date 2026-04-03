@@ -1,0 +1,58 @@
+.displayResponsivMobile {
+    display: none;
+}
+
+.mainBackOffice {
+    overflow-y: hidden;
+    height: auto;
+}
+
+.background {
+    margin: 120px auto;
+}
+
+@media all and (max-width: 1080px) {
+
+    .background {
+        margin: auto;
+    }
+
+    .mainBackOffice {
+        padding: 100px 0 20px 0;
+    }
+
+    .displayResponsivMobile {
+        display: block;
+    }
+
+    .hiddenTablet {
+        display: none;
+    }
+
+    .headerResponsiv {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menuBurger,
+    .menuBurgerCross {
+        height: 1.6em;
+    }
+}
+
+@media all and (max-width: 510px) {
+
+    .headerResponsiv {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .headerResponsiv img {
+        margin: 0.2em 0.8em;
+    }
+
+    .menuBurger,
+    .menuBurgerCross {
+        height: 1.2em;
+    }
+}

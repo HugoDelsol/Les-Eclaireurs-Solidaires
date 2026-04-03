@@ -272,8 +272,6 @@ const manageMissionInputProtection = [
 
     (req, res, next) => {
 
-        console.log("test")
-
         const error = validationResult(req);
 
         if (!error.isEmpty()) {

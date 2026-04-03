@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/style/globalStyle.css">
+<link rel="stylesheet" href="/style/account/missionDetails.css">
+<link rel="stylesheet" href="/style/home/header.css">
+<link rel="stylesheet" href="/style/home/detailMission.css">
+
+<script src="/javaScript/menuBurger.js" defer></script>
+<script src="/javaScript/style.js" defer></script>
+
+<%- include('../partials/_head') %>
+<%- include('../partials/_header') %>
+<%- include('../partials/_alert') %>
+
+<div class="modalContain"></div>
+
+<div class="containerDisplay">
+    <main class="mainBackOffice">
+        <div class="background backgroundCards">
+            <div class="lineTitle">
+                <h1>Détails de la mission</h1>
+                <div class="line"></div>
+                <a class="linkClose" href="/#scrolleMission">
+                    <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                </a>
+            </div>
+            <img class="img" src="<%= dataMission.mission_img %>" alt="">
+            <div class="imagetest"></div>
+            <div class="container">
+                <div class="colLeft">
+                    <h1 class="border">
+                        <%= dataMission.mission_title %>
+                    </h1>
+                    <p class="border">
+                        <%= dataMission.mission_description %>
+                    </p>
+                    <p class="border">Catégorie : <%= dataMission.mission_category_name %>
+                    </p>
+                </div>
+                <div class="colRight">
+                    <div class="border">
+                        <p>LE <%= dateFormat %>
+                        </p>
+                        <p>De <%= timeFormat.timeFormatStart %> à <%= timeFormat.timeFormatEnd %>
+                        </p>
+                    </div>
+                    <div class="border">
+                        <p>
+                            <%= dataMission.mission_place_name %>
+                        </p>
+                        <p>
+                            <%= dataMission.city_postal_code %>
+                                <%= dataMission.city_name %>
+                        </p>
+                    </div>
+                    <div class="border">
+                        <p>
+                            <%= dataMission.mission_available_place %> places disponibles
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <a href="/signIn" class="btnSecondary btnHover btnRegistration linkJoin"
+                data-id="<%= JSON.stringify({id: dataMission.id_mission, title: dataMission.mission_title }) %>">Rejoindre</a>
+        </div>
+    </main>
+</div>
+
+<%- include('../partials/_footer') %>

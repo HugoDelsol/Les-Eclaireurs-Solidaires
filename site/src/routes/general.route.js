@@ -7,6 +7,7 @@ const sessionMdw = require('../middleware/session.middleware');
 const messagingCtrl = require('../controllers/messaging.ctrl');
 const messagingProtection = require('../middleware/messagingProtection.middleware');
 const urlProtection = require('../middleware/url.middleware');
+const missionGeneralCtrl = require('../controllers/mission/missionGeneralController');
 
 // ==============================================
 // === PUBLIC / HOME PAGES & FORMS ============
@@ -27,6 +28,10 @@ router.get('/becomeVolunteer',
 router.post('/homeForm', 
     inputProtection.homeFormProtection, 
     homeCtrl.submitForm
+);
+
+router.get('/detailMission/:idMission',  
+    missionGeneralCtrl.getDataMissionHome
 );
 
 // ==============================================
