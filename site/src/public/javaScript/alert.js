@@ -3,9 +3,9 @@ const alertFrontOfficeSuccess = document.querySelector(".alertFrontOfficeSuccess
 const alertFrontOfficeError = document.querySelector(".alertFrontOfficeError");
 
 if (window.innerWidth < 1300) {
-    alertMsgBack.style.bottom = "100px"
-    alertFrontOfficeSuccess.style.bottom = "100px"
-    alertFrontOfficeError.style.bottom = "100px"
+    alertMsgBack.style.bottom = "100px";
+    alertFrontOfficeSuccess.style.bottom = "100px";
+    alertFrontOfficeError.style.bottom = "100px";
 }
 
 if (alertMsgBack.innerText.length > 0) {
@@ -19,7 +19,7 @@ if (alertMsgBack.innerText.length > 0) {
 
 const observer = new MutationObserver(m => {
 
-    let value = null
+    let value = null;
 
     if (m[0].target.classList[0] === "alertFrontOfficeError") {
 
