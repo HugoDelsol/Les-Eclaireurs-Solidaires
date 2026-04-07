@@ -22,14 +22,14 @@ describe('test', () => {
         app.set('views', path.join(__dirname, '../../src/views'));
     })
 
-    /* it("doit pas fonctionner data erronées", async () => {
+    it("doit pas fonctionner data erronées", async () => {
         app.post('/addMission', missionAdminCtrl.addMission);
         const response = await request(app)
             .post("/addMission")
             .send({ title: "Test" });
 
         expect(response.statusCode).toBe(500);
-    }); */
+    }); 
 
     it("doit etre au bon format ", async () => {
         

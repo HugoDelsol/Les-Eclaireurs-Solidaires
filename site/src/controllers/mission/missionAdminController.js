@@ -53,11 +53,9 @@ exports.addMission = async (req, res) => {
         const safeData = matchedData(req);
 
         await missionMdl.insertMission(safeData, imageUrl);
-
-        console.log("test")
         
         res.status(200).locals.successAlertMsg = 'Votre mission a bien été enregistrée';
-        exports.missionAdminShow(req, res);
+        this.missionAdminShow(req, res);
 
     } catch (error) {
 
