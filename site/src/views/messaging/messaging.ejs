@@ -9,14 +9,16 @@
 
 <div class="containerDisplay">
     <%- include('../partials/_sideNavAdmin') %>
-<main class="mainBackOffice">
+    <main class="mainBackOffice">
         <section class="listOfMessage backgroundCards">
             <div class="rowLine">
                 <div class="h1Line">
                     <h1>Liste des messages</h1>
                     <div class="line"></div>
                 </div>                    
-                <a class="btnHover btnSecondary" href="/newMessage"> Nouveau message<img src="/pictures/globalIcons/message-ouvert.png" alt=""></a>
+                <a class="btnHover btnSecondary" href="/newMessage"> Nouveau message
+                    <img src="/pictures/globalIcons/message-ouvert.png" alt="Nouveau message">
+                </a>
             </div>
             <div class="colMessage">
                 <% for (const d of data) { %>
@@ -32,7 +34,7 @@
                         <p><span>Objet :</span> <%= d.chat_channel_object  %></p>
                         <p><span>Bénévole :</span> <%= d.user_first_name + " " + d.user_last_name.toUpperCase() %></p>
                         <p><span>Canal créer le :</span> <%= d.chat_channel_date.toUpperCase() %></p>
-                        <img src="/pictures/globalIcons/envoyer.png" alt="">
+                        <img src="/pictures/globalIcons/envoyer.png" alt="Envoyer">
                     </a>   
                 <% } %> 
             </div>               

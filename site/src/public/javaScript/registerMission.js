@@ -15,7 +15,7 @@ for (let c of checkBox) {
 
         modalRegisterMission(c, "", idMission, titleMission);
     })
-} 
+}
 
 for (let b of btnRegistration) {
 
@@ -24,7 +24,7 @@ for (let b of btnRegistration) {
         e.preventDefault();
 
         const dataParse = JSON.parse(b.dataset.id);
-        
+
         const idMission = dataParse.id;
         const titleMission = dataParse.title;
 
@@ -46,20 +46,23 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
         }
 
         const htmlResponse = await response.text();
-        document.querySelector(".modalContain").innerHTML = htmlResponse;
+
+        const cleanHtml = DOMPurify.sanitize(htmlResponse);
+
+        document.querySelector(".modalContain").innerHTML = cleanHtml;
 
         const btnClose = document.querySelector(".close");
         const btnSubscribe = document.querySelector(".subscribe");
-        const span = document.querySelector('span');  
+        const span = document.querySelector('span');
 
         const modal = document.querySelector(".modal")
         const modalToggle = document.querySelector(".modalToggle");
-        
+
         span.textContent = titleMission;
         span.classList.add("spanText")
 
         btnClose.addEventListener("click", () => {
-            
+
             document.querySelector('.modalContain').innerHTML = "";
             c.checked = false;
         })
@@ -75,8 +78,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 window.location.href = "/";
             }
 
-            const data = await response.json();             
-            
+            const data = await response.json();
+
             if (!data.alreadyAdded && !data.message) {
 
                 modal.classList.toggle('toggleNone');
@@ -84,7 +87,7 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
 
                 setTimeout(() => {
                     document.querySelector('.modalContain').innerHTML = "";
-                    c.disabled = true;                
+                    c.disabled = true;
                 }, 3000);
 
             } else {
@@ -94,7 +97,7 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
 
                 setTimeout(() => {
                     document.querySelector('.modalContain').innerHTML = "";
-                    c.checked = false;               
+                    c.checked = false;
                 }, 3000);
             }
         });
