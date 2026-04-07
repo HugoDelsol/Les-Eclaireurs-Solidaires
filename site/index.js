@@ -3,8 +3,9 @@
 // ------------------------------------
 
 require('dotenv').config();
+const { testDb } = require('../site/src/models/UserModel')
 const globalVars = require('../site/src/middleware/globalVars.middleware');
-const sideNav = require('../site/src/middleware/sideNav.middleware');
+const pathName = require('../site/src/middleware/selectTab');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -24,7 +25,7 @@ const sessionStore = new MySQLStore({
   user: process.env.DB_USER,
   password: process.env.DB_PSWRD,
   database: process.env.DB_NAME,
-  port: 3300 
+  port: 3300
 });
 
 app.use(session({
@@ -36,7 +37,7 @@ app.use(session({
     secure: false, // à mettre sur true si HTTPS
     maxAge: 24 * 60 * 60 * 1000, // 24h
     httpOnly: true,
-    sameSite: 'strict'
+    sameSite: 'lax'
   }
 }));
 
@@ -65,11 +66,10 @@ const generalRoute = require('./src/routes/general.route');
 const volunteerRoute = require('./src/routes/volunteer.route');
 const adminRoute = require('./src/routes/admin.route');
 
-app.use(sideNav.tabSelected);
+app.use(pathName.tabSelected)
 
 // Injecte des variables globales accessibles dans toutes les vues
 app.use(globalVars.centralizedVar);
-
 // Récupère et attache les informations de l'utilisateur 
 app.use(globalVars.userData);
 
@@ -84,12 +84,29 @@ app.use('/admin', adminRoute);
 
 // Page 404 pour les routes non trouvées
 app.use((req, res) => {
-    res.status(404).render('home/404');
+  res.status(404).render('home/404');
 });
 
 // ------------------------------------
 // 🚀 LANCEMENT DU SERVEUR
 // ------------------------------------
-app.listen(port, () => {
-  console.log(`✅ Serveur démarré sur http://localhost:${port}`);
-});
+
+async function startApp() {
+
+  try {
+
+    await testDb();
+
+    app.listen(port, () => {
+      console.log(`✅ Serveur démarré sur http://localhost:${port}`);
+    });
+
+  } catch (error) {
+
+    console.error('Échec du démarrage :', error);
+  }
+}
+
+startApp()
+
+
