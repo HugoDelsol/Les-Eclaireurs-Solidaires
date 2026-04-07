@@ -271,7 +271,7 @@ const manageMissionInputProtection = [
         .escape(),
 
     (req, res, next) => {
-
+        
         const error = validationResult(req);
 
         if (!error.isEmpty()) {

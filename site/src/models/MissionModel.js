@@ -345,8 +345,6 @@ exports.insertMission = async (data, uploadImg) => {
 
     try {
 
-        console.log("modeld", data)
-
         const request = `
             INSERT INTO mission (
             mission_title,
