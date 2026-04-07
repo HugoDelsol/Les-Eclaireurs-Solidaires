@@ -25,17 +25,20 @@ exports.addMission = async (req, res) => {
     try {
         res.locals.categoriesMission = await missionMdl.getAllCategories();
 
-        if (res.locals.errorAlertMsg.length > 0) {
-            return res.render('account/admin/addMission', {
+        const message = res.locals.errorAlertMsg
+
+        if (message) {
+            return res.status(400).render('account/admin/addMission', {
                 data: req.body
             });
         }
 
         let imageUrl = null;
         const category = req.body.category;
-
-        if (!req.body.uploadImg) {
-
+        const uploadImg = req.body.uploadImg;
+        
+        if (uploadImg === 0) {
+            
             const fetchGroupImages = await missionMdl.fetchImgByCategory(category);
 
             const randomImage = utils.randomImage(fetchGroupImages);
@@ -51,14 +54,17 @@ exports.addMission = async (req, res) => {
 
         await missionMdl.insertMission(safeData, imageUrl);
 
-        res.locals.successAlertMsg = 'Votre mission a bien été enregistrée';
-        this.missionAdminShow(req, res);
+        console.log("test")
+        
+        res.status(200).locals.successAlertMsg = 'Votre mission a bien été enregistrée';
+        exports.missionAdminShow(req, res);
 
     } catch (error) {
 
         console.log(error);
 
-        res.render('account/admin/addMission', {
+        console.log("catch 500")
+        res.status(500).render('account/admin/addMission', {
             pseudoUser: req.session.userExist.firstName,
             errorAlertMsg: 'Un problème technique est survenu, veuillez réessayer dans un instant',
         });
