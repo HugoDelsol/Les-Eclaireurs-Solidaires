@@ -9,7 +9,9 @@ async function testConnection() {
         console.error('Erreur connexion DB:', err.message);
     }
 }
-testConnection();
+exports.testDb = async () => {
+    await testConnection();
+}
 
 exports.fetchStatsUserForHomePage = async () => {
 

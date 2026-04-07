@@ -5,7 +5,7 @@
 require('dotenv').config();
 const { testDb } = require('../site/src/models/UserModel')
 const globalVars = require('../site/src/middleware/globalVars.middleware');
-const pathName = require('../site/src/middleware/selectTab');
+const pathName = require('../site/src/middleware/sideNav.middleware');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
