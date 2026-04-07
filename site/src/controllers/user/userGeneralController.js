@@ -33,11 +33,11 @@ exports.signUp = async (req, res) => {
 
 exports.auth = async (req, res) => {
 
-    try {  
-        
+    try {
+
         const safeData = matchedData(req);
-        
-        const {email, password} = safeData;
+
+        const { email, password } = safeData;
 
         const userExist = await exports.verifyAccountExist(email, password);
 
@@ -73,23 +73,23 @@ exports.auth = async (req, res) => {
                 action: userVolunteerCtrl.dashboardUser
             }
         };
-        
+
         let roleKey = null;
-        
-        if (userExist.role === "user"){
+
+        if (userExist.role === "user") {
             roleKey = "user";
         } else if (userExist.role === "admin") {
             roleKey = `admin_${userExist._id_admin_role}`;
         }
-        
-        const session = rolesMaps[roleKey].session(userExist);        
+
+        const session = rolesMaps[roleKey].session(userExist);
         req.session.userExist = session;
 
         res.locals.pseudoUser = req.session.userExist.firstName;
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
         res.locals.isAdmin = req.session.userExist.isAdmin;
-        
-        
+
+
         rolesMaps[roleKey].action(req, res);
 
     } catch (error) {
@@ -97,7 +97,7 @@ exports.auth = async (req, res) => {
         console.error(error);
 
         res.render('connection/signIn', {
-           errorAlertMsg : error.message
+            errorAlertMsg: error.message
         });
     }
 }
@@ -121,6 +121,10 @@ exports.verifyAccountExist = async (email, password) => {
             } else if (userMail.id_admin) {
 
                 userMail['role'] = 'admin';
+                
+            } else {
+
+                return false;
             }
 
             return userMail;
