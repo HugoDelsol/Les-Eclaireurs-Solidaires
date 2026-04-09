@@ -174,7 +174,9 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
 exports.addRegisterMissionUser = async (req, res) => {
 
-    try {        
+    try {
+
+        //console.log(req.query)
 
         const idUser = parseInt(req.query.idUser);
         const idMission = parseInt(req.query.idMission);
