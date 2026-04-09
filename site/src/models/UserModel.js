@@ -272,5 +272,19 @@ exports.getUserAddress = async (idUser) => {
 
     } catch (error) {
 
+        throw error;
+    }
+}
+
+exports.addUserOpinion = async (data, idUser) => {
+
+    try {
+
+        const insert = `INSERT INTO user_opinion (user_opinion_message, _id_user) VALUES (?, ?)`;
+        await db.query(insert, [data.textContent, idUser]);
+        
+    } catch (error) {
+        
+        throw error;
     }
 }

@@ -1,0 +1,58 @@
+.modalContainOpinion {
+    display: none;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+.modalContainOpinion form label {
+    color: white;
+    display: inline;
+    text-align: center;
+}
+.modalContainOpinion form {
+	padding: 20px;
+	border: 1px solid #ffffff3f;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 40vh;
+	width: 40vw;
+	background: #000000ec;
+}
+.modalContainOpinion textarea {
+    height: 70%;
+    border-radius: 10px;
+    border: none;
+    padding: 14px;
+    outline: none;
+    resize: none;
+}
+.modalContainOpinion img {
+	width: 34px;
+    padding: 6px 0;
+}
+.modalContainOpinion button {
+	border-radius: 10px;
+	border: none;
+	background: #fff;
+    cursor: pointer;
+     transition: 0.2s ease-in-out;
+}
+.modalContainOpinion button:hover{   
+    transform: translateY(-6px) ;
+}
+textarea:focus-visible {
+	outline: 1px solid #f4c913;
+}
+
+@media all and (max-width: 1300px){
+    .modalContainOpinion form {
+        width: 80vw;
+        height: 40vh;
+    }
+}

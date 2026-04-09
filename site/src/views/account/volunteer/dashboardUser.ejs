@@ -2,15 +2,26 @@
 <link rel="stylesheet" href="/style/account/styleSideNav.css">
 <link rel="stylesheet" href="/style/account/styleDashboardUser.css">
 <link rel="stylesheet" href="/style/modal/unsubscribe.css">
+<link rel="stylesheet" href="/style/modal/userOpinion.css">
 <script src="/javaScript/carrouselDashboard.js" defer></script>
 <script src="/javaScript/style.js" defer></script>
 <script src="/javaScript/unsubscribe.js" defer></script>
+<script src="/javaScript/addOpinion.js" defer></script>
 
 <%- include('../../partials/_head') %>
 <%- include('../../partials/_alert') %>
 <%- include('../../partials/_mobileHeader') %>
 
 <div class="modalContain"></div>
+<div class="modalContainOpinion">
+    <div>
+        <form>
+            <label for="userOpinion">Votre avis nous aide à progresser</label>
+                <textarea name="userOpinion" id="userOpinion"></textarea>        
+            <button type="submit" class="sendOpinion"><img src="pictures/globalIcons/envoyer(1).png" alt=""></button>
+        </form>
+    </div>    
+</div>
 
 <div class="containerDisplay">
 <%- include('../../partials/_sideNavUser') %>
@@ -169,7 +180,7 @@
                                 <td><p><%= h.mission_title %></p></td>
                                 <td class="color"><%= h.mission_date %></td>
                                 <td class="color">Terminé</td>
-                                <td><a href="#">Laisser un avis</a></td>
+                                <td><a class="addOpinion" href="/addOpinion">Laisser un avis</a></td>
                             </tr>
                         <% } %>
                     </tbody>
@@ -185,7 +196,7 @@
                                 <p class="strong title-mission-accomplished">title</p>
                                 <p class="date-mission-accomplished">date</p>
                                 <p class="place-mission-accomplished">statut</p>
-                                <a href="#" class="btnSecondary btnHover">Laisser un avis</a>
+                                <a href="/addOpinion" class="btnSecondary btnHover addOpinion">Laisser un avis</a>
                             </div>
                         </div>
 

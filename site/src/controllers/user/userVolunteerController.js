@@ -107,8 +107,8 @@ exports.editUserProfile = async (req, res) => {
         );
 
         if (!request) {
-           res.locals.errorAlertMsg = "Aucune donnée à mettre à jour";
-           return res.render('account/volunteer/userProfileSettings', renderData);
+            res.locals.errorAlertMsg = "Aucune donnée à mettre à jour";
+            return res.render('account/volunteer/userProfileSettings', renderData);
         }
 
         if (firstname && firstname.trim().length > 0) {
@@ -126,5 +126,22 @@ exports.editUserProfile = async (req, res) => {
 
         res.locals.errorAlertMsg = "Impossible de modifier les informations de profil";
         return res.render('account/volunteer/userProfileSettings', renderData);
+    }
+}
+
+exports.userOpinion = async (req, res) => {
+
+    try {
+
+        const idUser = req.session.userExist.id;
+        safeData = matchedData(req);
+
+        await userModel.addUserOpinion(safeData, idUser);
+        return res.json({ messageSuccesss: "Message envoyé !", messageSuccessIsTrue: true });
+
+    } catch (error) {
+
+        console.log(error);
+        return res.json({ messageError: "L'envoi de votre avis a échoué. Veuillez réessayer dans quelques instants.", messageErrorIsTrue: true });
     }
 }

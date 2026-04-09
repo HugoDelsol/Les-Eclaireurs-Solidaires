@@ -1,7 +1,7 @@
 //FORMDATA
 
 const submitForm = document.querySelector("form");
-const input = document.querySelectorAll("input");
+const inputs = document.querySelectorAll("input");
 
 const emailForm = document.querySelector("#email");
 const nameForm = document.querySelector("#firstName");
@@ -9,17 +9,17 @@ const txtArea = document.querySelector("#txtArea");
 
 const btnSubmit = document.querySelector(".btnSubmit");
 
-for (let i = 0; i < input.length; i++) {
+/* for (let i = 0; i < input.length; i++) {
 
     input[i].value = "";
     txtArea.value = "";
-}
+} */
 
 btnSubmit.addEventListener("click", function (event) {
 
     event.preventDefault();
 
-    if (
+  /*   if (
         nameForm.value == "" ||
         emailForm.value == "" ||
         txtArea.value == ""
@@ -27,15 +27,15 @@ btnSubmit.addEventListener("click", function (event) {
 
         alertFrontOfficeError.textContent = "Veuillez compléter tous les champs.";
 
-    } else {
+    } else { */
 
         apiDataForm();
 
-        input[0].value = "";
+/*         input[0].value = "";
         input[1].value = "";
         txtArea.value = "";
     }
-
+ */
 });
 
 async function apiDataForm() {
@@ -65,15 +65,19 @@ async function apiDataForm() {
 
         if (jsonResult.mdlError) {
             valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.mdlError
+            valueMsg = jsonResult.mdlError;
+        }        
+        if (jsonResult.messageErrorIsTrue) {
+            valueClass = alertFrontOfficeError;
+            valueMsg = jsonResult.messageError;
         }
         if (jsonResult.messageSuccessIsTrue) {
             valueClass = alertFrontOfficeSuccess;
-            valueMsg = jsonResult.messageSuccesss
-        }
-        if (jsonResult.messageErrorIsTrue) {
-            valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.messageError
+            valueMsg = jsonResult.messageSuccesss;
+            inputs.forEach(el => {
+                el.value = "";
+                txtArea.value = "";
+            });
         }        
 
         valueClass.textContent = valueMsg;        

@@ -149,6 +149,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
             i++;
         })
 
+        res.locals.idUser = req.session.userExist.id
         res.locals.statsOnVolunteer = obtainStatsOnVolunteer;
         res.locals.nbrTimeAccomplished = count;
 

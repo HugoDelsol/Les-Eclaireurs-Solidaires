@@ -137,4 +137,11 @@ router.post('/sendNewMessageFromVolunteer',
     messageCtrl.sendNewMessageFromVolunteer
 );
 
+router.post('/userOpinion',
+    sessionMdw.requireAuth,
+    sessionMdw.volunteerAuthorization,
+    inputProtection.userOpinionInputProtection,
+    userVolunteerCtrl.userOpinion
+)
+
 module.exports = router;

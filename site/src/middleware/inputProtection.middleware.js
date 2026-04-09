@@ -243,12 +243,12 @@ const manageMissionInputProtection = [
         .escape(),
 
     body("cityId")
-        .trim()  
+        .trim()
         .notEmpty()
-        .withMessage("Vous n'avez pas sélectionné une ville valide")      
-        .isInt()        
+        .withMessage("Vous n'avez pas sélectionné une ville valide")
+        .isInt()
         .toInt()
-        .withMessage("Vous n'avez pas sélectionné une ville valide"),        
+        .withMessage("Vous n'avez pas sélectionné une ville valide"),
 
     body("placeName")
         .trim()
@@ -283,6 +283,28 @@ const manageMissionInputProtection = [
     }
 ]
 
+const userOpinionInputProtection = [
+
+    body('textContent')
+        .trim()
+        .isLength({ min: 20, max: 500 })
+        .withMessage('Votre avis doit contenir entre 20 et 500 caractères.')
+        .escape(),
+        
+    (req, res, next) => {
+
+        console.log(req.body)
+
+        const error = validationResult(req);
+
+        if (!error.isEmpty()) {
+            return res.json({ mdlError: error.array()[0].msg, mdlErrorIsTrue: true });
+        }
+
+        next();
+    }
+]
+
 module.exports = {
     signUpFormProtection,
     signInFormProtection,
@@ -291,4 +313,5 @@ module.exports = {
     homeFormProtection,
     generateTokenInputProtection,
     manageMissionInputProtection,
+    userOpinionInputProtection
 };
