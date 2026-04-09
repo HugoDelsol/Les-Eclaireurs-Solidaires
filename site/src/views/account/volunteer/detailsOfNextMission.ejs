@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/style/account/styleSideNav.css">
+<link rel="stylesheet" href="/style/modal/subscribe.css">
+<link rel="stylesheet" href="/style/globalStyle.css">
+<link rel="stylesheet" href="/style/account/missionDetails.css">
+
+<script src="/javaScript/registerMission.js" defer></script>
+<script src="/javaScript/style.js" defer></script>
+
+<%- include('../../partials/_head') %>
+<%- include('../../partials/_alert') %>
+<%- include('../../partials/_mobileHeader') %>
+
+<div class="modalContain"></div>
+
+<div class="containerDisplay">
+<%- include('../../partials/_sideNavUser') %>
+    <main class="mainBackOffice">
+        <div class="background backgroundCards">
+            <div class="lineTitle">
+                <h1>Détails de la mission</h1>
+                <div class="line"></div>
+                <a class="linkClose" href="/dashboardUser">
+                    <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                </a>
+            </div>
+            <img class="img" src="<%= dataMission.mission_img %>" alt="">
+            <div class="imagetest"></div>
+            <div class="container">
+                <div class="colLeft">
+                    <h1 class="border"><%= dataMission.mission_title %></h1>
+                    <p class="border"><%= dataMission.mission_description %></p>
+                    <p class="border">Catégorie : <%= dataMission.mission_category_name %> </p>
+                </div>
+                <div class="colRight">
+                    <div class="border">
+                        <p>LE <%= dateFormat %></p>
+                        <p>De <%= timeFormat.timeFormatStart %> à <%= timeFormat.timeFormatEnd %></p>
+                    </div> 
+                    <div class="border">
+                        <p><%= dataMission.mission_place_name %></p>
+                        <p><%= dataMission.city_postal_code %> <%= dataMission.city_name %> </p>
+                    </div>
+                    <div class="border">
+                        <p><%= dataMission.mission_available_place %> places disponibles </p>  
+                    </div>                                       
+                </div>    
+            </div> 
+        </div>
+    </main>
+</div>
+
+
+
+<%- include('../../partials/_mobileFooter') %>

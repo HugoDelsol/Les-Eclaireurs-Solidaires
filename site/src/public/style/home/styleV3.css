@@ -438,8 +438,15 @@ form textarea {
 }
 
 .reviewPictureAndName img {
-    margin-right: 2em;
+    margin-right: 1.2em;
     width: 60px;
+}
+
+.reviewsSize div p {
+	height: 100px;
+	overflow-y: auto;
+	padding: 4px;
+	line-height: 1.4;
 }
 
 /***FOOTER***/

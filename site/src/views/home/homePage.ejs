@@ -157,57 +157,21 @@
             <div class="line reviewsLine"></div>
         </div>
         <div class="reviewsDisplay">
-            <div class="reviewsSize">
-                <div class="reviewPictureAndName">
-                    <img src="/pictures/Reviews/benevole.png" alt="">
+            <% userOpinion.forEach(el => { %>
+                <div class="reviewsSize">
+                    <div class="reviewPictureAndName">
+                        <img src="/pictures/globalIcons/utilisateur.png" alt="">
+                        <div>
+                            <h3><%= el.user_first_name %></h3>
+                        </div>
+                    </div>
                     <div>
-                        <h3>Marie</h3>
-                        <h4>4 Décembre 2024</h4>
+                        <p>
+                            <%= el.user_opinion_message %>
+                        </p>
                     </div>
                 </div>
-                <div>
-                    <div class=""></div>
-                    <p>
-                        Super expérience !
-                        L’équipe est accueillante et l’ambiance très positive.
-                        Je me sens vraiment utile.
-                    </p>
-                </div>
-            </div>
-            <div class="reviewsSize">
-                <div class="reviewPictureAndName">
-                    <img src="/pictures/Reviews/benevole.png" alt="">
-                    <div>
-                        <h3>Marie</h3>
-                        <h4>4 Décembre 2024</h4>
-                    </div>
-                </div>
-                <div>
-                    <div class=""></div>
-                    <p>
-                        Super expérience !
-                        L’équipe est accueillante et l’ambiance très positive.
-                        Je me sens vraiment utile.
-                    </p>
-                </div>
-            </div>
-            <div class="reviewsSize">
-                <div class="reviewPictureAndName">
-                    <img src="/pictures/Reviews/benevole.png" alt="">
-                    <div>
-                        <h3>Marie</h3>
-                        <h4>4 Décembre 2024</h4>
-                    </div>
-                </div>
-                <div>
-                    <div class=""></div>
-                    <p>
-                        Super expérience !
-                        L’équipe est accueillante et l’ambiance très positive.
-                        Je me sens vraiment utile.
-                    </p>
-                </div>
-            </div>
+            <% }); %>            
         </div>
     </section>
 </main>

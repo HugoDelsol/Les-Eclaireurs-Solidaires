@@ -26,6 +26,7 @@ exports.homePage = async (req, res) => {
     try {
 
         const getDisplayHomeMissions = await missionMdl.getAllMission("3");
+        const getUserOpinion = await userMdl.getUserOpinion();
 
         const remainingSpace = await service.remainingSpace(getDisplayHomeMissions);
 
@@ -33,6 +34,7 @@ exports.homePage = async (req, res) => {
 
         res.render('home/homePage', {
             displayMission: clearData,
+            userOpinion: getUserOpinion
         });
 
     } catch (error) {
@@ -75,7 +77,7 @@ exports.submitForm = async (req, res) => {
         const { nameForm, emailForm, txtArea } = safeData;
         await homeMdl.addMessageForm(nameForm, emailForm, txtArea);
 
-        return res.json({ messageSuccesss: "Message envoyé !", messageSuccessIsTrue: true });
+        return res.json({ messageSuccesss: "Votre message a bien été envoyé. Nous revenons vers vous très bientôt.", messageSuccessIsTrue: true });
 
     } catch (error) {
 

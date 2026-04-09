@@ -60,7 +60,8 @@ async function sendUserOpinion() {
         if (jsonResult.messageSuccessIsTrue) {
             valueClass = alertFrontOfficeSuccess;
             valueMsg = jsonResult.messageSuccesss;
-            closeModal()
+            textarea.value = "";
+            closeModal();
         }
 
         valueClass.textContent = valueMsg;

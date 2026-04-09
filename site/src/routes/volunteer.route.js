@@ -90,6 +90,12 @@ router.delete('/unregisterAVolunteer',
     missionVolunteerCtrl.unregisterAVolunteer
 );
 
+router.get('/detailsOfNextMission/:idMission', 
+    sessionMdw.requireAuth, 
+    sessionMdw.volunteerAuthorization, 
+    missionVolunteerCtrl.detailsOfNextMission
+)
+
 
 // ==============================================
 // === VOLUNTEER PROFILE & SETTINGS ============

@@ -161,10 +161,12 @@ function updateCarrouselRegistration() {
     dateMissionRegister.textContent = `Lieu : ${dataRegistration[indexRegistration].city_name}`;
     backgroundImageRegister.style.backgroundImage = `url('${dataRegistration[indexRegistration].mission_img}')`;
     btnUnsubscribe.setAttribute("data-id", JSON.stringify({id:dataRegistration[indexRegistration].id_registration, title: titleMissionRegister.textContent}));
-    btnDetailMissionRegistration.setAttribute('href', `/missionDetails/${dataRegistration[indexRegistration].id_mission}`);
+    btnDetailMissionRegistration.setAttribute('href', `/detailsOfNextMission/${dataRegistration[indexRegistration].id_mission}`);
 }
 
 arrowRightRegistration.addEventListener('click', () => {
+
+    console.log(indexRegistration)
 
     indexRegistration += 1
 

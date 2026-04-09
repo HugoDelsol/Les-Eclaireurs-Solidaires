@@ -88,7 +88,7 @@
                                 <div class="alignItemInCard">
                                     <p class="strong mission-title"></p>
                                     <p>
-                                        <span class="mission-available-place"></span> places disponible
+                                        <span class="mission-available-place"> places disponible </span>
                                     </p>
                                     <a class="btnSecondary btnHover btnDetailMissionRegion" href="#">Voir d'avantage</a>
                                 </div>
@@ -127,7 +127,7 @@
                                 <td><p><%= missionsUser[i].mission_title %></p></td>
                                 <td class="color"><%= missionsUser[i].mission_date %></td>
                                 <td class="color"><%= missionsUser[i].city_name %></td>
-                                <td><a href="/missionDetails/<%= missionsUser[i].id_mission %>">Voir davantage</a></td>
+                                <td><a href="/detailsOfNextMission/<%= missionsUser[i].id_mission %>">Voir davantage</a></td>
                                 <td>Désinscription <input type="checkbox" data-id="<%= JSON.stringify({id: missionsUser[i].id_registration, title: missionsUser[i].mission_title}) %>" class="checkbox"></td>
                             </tr>
                         <% } %>

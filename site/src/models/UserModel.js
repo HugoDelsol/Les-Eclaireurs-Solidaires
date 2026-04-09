@@ -288,3 +288,17 @@ exports.addUserOpinion = async (data, idUser) => {
         throw error;
     }
 }
+
+exports.getUserOpinion = async () => {
+
+    try {
+        
+        const select =  `SELECT user_opinion_message, user_first_name, user_opinion_date FROM user_opinion LEFT JOIN user ON _id_user = id_user ORDER BY user_opinion_date DESC LIMIT 3;`;
+        const [response] = await db.query(select);
+        return response;
+
+    } catch (error) {
+        
+        throw error;
+    }
+}

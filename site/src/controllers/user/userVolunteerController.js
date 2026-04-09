@@ -137,7 +137,7 @@ exports.userOpinion = async (req, res) => {
         safeData = matchedData(req);
 
         await userModel.addUserOpinion(safeData, idUser);
-        return res.json({ messageSuccesss: "Message envoyé !", messageSuccessIsTrue: true });
+        return res.json({ messageSuccesss: "Avis envoyé, merci pour votre retour !", messageSuccessIsTrue: true });
 
     } catch (error) {
 

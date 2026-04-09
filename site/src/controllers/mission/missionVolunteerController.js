@@ -236,3 +236,30 @@ exports.unregisterAVolunteer = async (req, res) => {
         return res.json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
     }
 }
+
+exports.detailsOfNextMission = async (req, res) => {
+
+    try {
+
+        const dataMission = await missionMdl.getDataMissionById(req.params.idMission);
+        const dateFormat = service.dateFormat(dataMission.mission_date);
+        const timeFormat = service.timeFormat(dataMission.mission_start_time, dataMission.mission_end_time);
+
+        res.render("account/volunteer/detailsOfNextMission", {
+            dataMission: dataMission || [],
+            dateFormat: dateFormat || [],
+            timeFormat: timeFormat || [],
+        });
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
+        res.render(renderPathByRole, {
+            dataMission: [[]],
+            dateFormat: [],
+            timeFormat: [],
+        });
+    }
+}
