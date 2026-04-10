@@ -28,9 +28,11 @@ const signUpFormProtection = [
         .isEmail().withMessage('Veuillez saisir une adresse email valide.')
         .normalizeEmail(),
 
-
-    // AMELIORATION PASSWORD REQUISE AVANT DEPLOIEMENT
-    body('password'),
+    body('password')
+        .trim()
+        .isLength({min: 8}).withMessage('Le mot de passe doit contenir au moins 8 caractères')
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/)
+        .withMessage('Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial'),
 
     body('passwordConfirm')
         .custom((value, { req }) => {
@@ -100,11 +102,33 @@ const signInFormProtection = [
 
 const adminSignFormProtection = [
 
-    body('firstName').trim().escape(),
-    body('lastName').trim().escape(),
-    body('email').trim().isEmail().normalizeEmail(),
-    body('password'),
-    body('token').trim().escape(),
+  body('firstName')
+        .trim()
+        .notEmpty().withMessage('Le prénom est requis')
+        .isLength({ min: 2, max: 30 }).withMessage('Le prénom doit faire entre 2 et 30 caractères')
+        .escape(),
+
+    body('lastName')
+        .trim()
+        .notEmpty().withMessage('Le nom est requis')
+        .isLength({ min: 2, max: 30 }).withMessage('Le nom doit faire entre 2 et 30 caractères')
+        .escape(),
+
+    body('email')
+        .trim()
+        .notEmpty().withMessage('Lemail est requis')
+        .isEmail().withMessage('Veuillez saisir une adresse email valide.')
+        .normalizeEmail(),
+
+    body('password')
+        .trim()
+        .isLength({min: 8}).withMessage('Le mot de passe doit contenir au moins 8 caractères')
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/)
+        .withMessage('Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial'),
+
+    body('token')
+        .trim()
+        .escape(),
 
     (req, res, next) => {
 
@@ -112,7 +136,7 @@ const adminSignFormProtection = [
 
         if (!error.isEmpty()) {
             return res.render('connection/signUpAdmin', {
-                errorAlertMsg: 'Données invalides. Veuillez vérifier les champs.'
+                errorAlertMsg: error.array()[0].msg,
             })
         }
 

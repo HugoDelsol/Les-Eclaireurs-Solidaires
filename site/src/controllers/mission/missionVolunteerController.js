@@ -161,7 +161,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
         res.locals.statsOnVolunteer = obtainStatsOnVolunteer;
         res.locals.nbrTimeAccomplished = count;
 
-        res.locals.missionByRegion = ourSelection
+        res.locals.missionByRegion = ourSelection;
 
         res.render('account/volunteer/dashboardUser');
 
