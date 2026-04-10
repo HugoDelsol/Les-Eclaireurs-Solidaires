@@ -57,16 +57,13 @@
 
                 <div class="nearMission background">
                     <div class="titleCard">
-                        <% if (missionByRegion.length == 0) { %>
                             <h1>Sélections pour vous</h1>
-                        <% } else { %>
-                            <h1>Proche de chez vous</h1>
-                        <% } %>
                         <div class="lineTitle"></div>
                     </div>
 
                     <div class="flexCardsMission">
                         <% for (let m of missionByRegion) { %>
+                            <% console.log(m) %>
                             <div class="cardMission" style="background-image: url('<%= m.mission_img %>');">
                                 <div class="alignItemInCard" >
                                     <p class="strong"><%= m.mission_title %></p>
@@ -88,7 +85,7 @@
                                 <div class="alignItemInCard">
                                     <p class="strong mission-title"></p>
                                     <p>
-                                        <span class="mission-available-place"> places disponible </span>
+                                        <span class="mission-available-place"> </span> places disponibles 
                                     </p>
                                     <a class="btnSecondary btnHover btnDetailMissionRegion" href="#">Voir d'avantage</a>
                                 </div>

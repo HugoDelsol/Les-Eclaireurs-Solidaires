@@ -59,6 +59,8 @@ async function carrouselMissionByRegion() {
 
         dataRegion = await response.json();
 
+        console.log(dataRegion)
+
         dataRegion.forEach((m) => {
             const img = new Image();
             img.src = m.mission_img;
@@ -79,7 +81,6 @@ async function carrouselMissionByRegion() {
 }
 
 function updateCarouselRegion() {
-    console.log(dataRegion[0])
     missionTitle.textContent = dataRegion[indexRegion].mission_title;
     missionAvailablePlace.textContent = dataRegion[indexRegion].mission_available_place;
     backgroundImage.style.backgroundImage = `url('${dataRegion[indexRegion].mission_img}')`;

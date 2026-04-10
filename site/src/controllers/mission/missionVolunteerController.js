@@ -40,13 +40,17 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
     try {
 
-        const getUserAddress = await userMdl.getUserAddress(req.session.userExist.id);
+        // const getUserAddress = await userMdl.getUserAddress(req.session.userExist.id);
 
-        const idRegion = getUserAddress[0].id_region;
+        // const idRegion = getUserAddress[0].id_region;
 
-        const getMissionByRegion = await missionMdl.getMissionByRegion(idRegion);
+        // const getMissionByRegion = await missionMdl.getMissionByRegion(idRegion);
+     
+        let ourSelection = await service.filterOutRegisteredMissions(req);
 
-        res.json(getMissionByRegion);
+        ourSelection.splice(3);
+        
+        res.json(ourSelection);
 
     } catch (error) {
 
@@ -127,11 +131,15 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
     try {
 
-        const getUserAddress = await userMdl.getUserAddress(idUser);
+        // const getUserAddress = await userMdl.getUserAddress(idUser);
 
-        const idRegionByUser = getUserAddress[0].id_region;
+        // const idRegionByUser = getUserAddress[0].id_region;
 
-        res.locals.missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
+        // let missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
+
+        let ourSelection = await service.filterOutRegisteredMissions(req);
+
+        ourSelection.splice(3);
 
         res.locals.missionsUser = await missionMdl.getAllMissionsByUser(idUser);
 
@@ -152,6 +160,8 @@ exports.dashboardAllStats = async (req, res, idUser) => {
         res.locals.idUser = req.session.userExist.id
         res.locals.statsOnVolunteer = obtainStatsOnVolunteer;
         res.locals.nbrTimeAccomplished = count;
+
+        res.locals.missionByRegion = ourSelection
 
         res.render('account/volunteer/dashboardUser');
 
@@ -174,7 +184,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
 exports.addRegisterMissionUser = async (req, res) => {
 
-    try {        
+    try {
 
         const idUser = parseInt(req.query.idUser);
         const idMission = parseInt(req.query.idMission);
@@ -189,7 +199,7 @@ exports.addRegisterMissionUser = async (req, res) => {
         if (registrationByUser) {
 
             console.log("alreadyAdded: true");
-            return res.json({ alreadyAdded: true , message: "Vous êtes déjà inscrit à cette mission"});
+            return res.json({ alreadyAdded: true, message: "Vous êtes déjà inscrit à cette mission" });
 
         } else {
 
@@ -223,12 +233,12 @@ exports.unregisterAVolunteer = async (req, res) => {
         }
 
         const result = await missionMdl.unregisterAVolunteer(idRegistration);
-        
+
         if (result === false) {
-            return res.json({ registrationDeleted: false , message: "Une erreur est survenu, veuillez réessayer dans un instant."})
+            return res.json({ registrationDeleted: false, message: "Une erreur est survenu, veuillez réessayer dans un instant." })
         }
-        
-        return res.json({ registrationDeleted: true})
+
+        return res.json({ registrationDeleted: true })
 
     } catch (error) {
 
