@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/style/globalStyle.css">
+<link rel="stylesheet" href="/style/legalStyle.css">
+<script src="/javaScript/menuBurger.js" defer></script>
+
+<%- include('../partials/_head') %>
+<%- include('../partials/_header') %>
+
+
+<main>
+    <div class="legalsContain">
+        <h1>Plan du Site</h1>
+
+        <section>
+            <h2>Navigation Principale</h2>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="#">Actualités</a></li>
+                <li><a href="#">Trouver une mission</a></li>
+                <li><a href="#">Faire un don</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Espace Membre</h2>
+            <ul>
+                <li><a href="/signIn">Se connecter</a></li>
+                <li><a href="/signUp">Créer un compte</a></li>
+                <li><a href="#">Mon profil</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Informations Légales</h2>
+            <ul>
+                <li><a href="/legalNotice">Mentions Légales</a></li>
+                <li><a href="/privacyPolicy">Politique de Confidentialité</a></li>
+                <li><a href="/termsAndConditions">Conditions Générales d'Utilisation</a></li>
+            </ul>
+        </section>
+    </div>
+
+</main>
+
+<%- include('../partials/_footer') %>

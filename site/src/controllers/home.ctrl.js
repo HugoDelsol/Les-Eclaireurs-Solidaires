@@ -21,6 +21,22 @@ exports.becomeVolunteer = async (req, res) => {
     res.render('home/becomeVolunteer');
 }
 
+exports.privacyPolicyDisplay = async (req, res) => {
+    res.render('legals/privacyPolicy');
+}
+
+exports.termsAndConditions = async (req, res) => {
+    res.render('legals/termsAndConditions');
+}
+
+exports.legalNotice = async (req, res) => {
+    res.render('legals/legalNotice');
+}
+
+exports.siteMap = async (req, res) => {
+    res.render('legals/siteMap');
+}
+
 exports.homePage = async (req, res) => {
 
     try {

@@ -34,6 +34,21 @@ router.get('/detailMission/:idMission',
     missionGeneralCtrl.getDataMissionHome
 );
 
+router.get('/privacyPolicy', 
+    homeCtrl.privacyPolicyDisplay
+);
+
+router.get('/termsAndConditions', 
+    homeCtrl.termsAndConditions
+);
+
+router.get('/legalNotice',
+    homeCtrl.legalNotice
+);
+
+router.get('/siteMap',
+    homeCtrl.siteMap
+);
 // ==============================================
 // === USER AUTHENTICATION & SIGNUP / SIGNIN ====
 // ==============================================

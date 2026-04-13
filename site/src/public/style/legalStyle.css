@@ -1,0 +1,62 @@
+html body main {
+    padding-top: 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+}
+
+html body main .legalsContain {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    border: 1px solid #000000;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+html body main .legalsContain h1 {
+    background: #f8e9cb;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 4px;
+}
+
+h2 {
+    margin: 24px 0;
+    border-bottom: 1px solid #F28B50;
+    width: fit-content;
+
+}
+
+.displayResponsivMobile {
+    display: none;
+}
+
+span {
+    color: #F28B50;
+}
+
+@media all and (max-width: 1080px) {
+
+    .displayResponsivMobile {
+        display: block;
+    }
+
+    .hiddenTablet {
+        display: none;
+    }
+
+    .headerResponsiv {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menuBurger,
+    .menuBurgerCross {
+        height: 1.6em;
+    }
+}
