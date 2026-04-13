@@ -153,6 +153,7 @@ router.post('/message',
 router.get('/sendMessageTo/:idUser', 
     sessionMdw.requireAuth, 
     sessionMdw.allAdministratorAuthorization, 
+    urlProtection.urlMustBeANumberForSendMessageToUser,
     messagingCtrl.sendMessageTo
 );
 

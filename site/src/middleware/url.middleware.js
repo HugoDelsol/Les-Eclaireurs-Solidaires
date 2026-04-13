@@ -42,7 +42,7 @@ const urlMustBeANumberForMessageChannel = [
     }
 ]
 
-const urlMustBeANumberForUserOpinion = [
+const urlMustBeANumberForSendMessageToUser = [
 
     param('idUser').isInt().withMessage("Ce n'est pas l'url de ta mère"),
 
@@ -66,5 +66,5 @@ const urlMustBeANumberForUserOpinion = [
 module.exports = {
     urlMustBeANumberForMissionDetail,
     urlMustBeANumberForMessageChannel,
-    urlMustBeANumberForUserOpinion
+    urlMustBeANumberForSendMessageToUser
 }
