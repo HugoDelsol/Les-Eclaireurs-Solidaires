@@ -1,26 +1,3 @@
-/* 
-3. La philosophie du Testeur (Le conseil du Prof)
-
-En réalité, si tu testes ton Contrôleur, tu ne devrais pas tester la "vraie" valeur du Modèle. Pourquoi ?
-
-    Si ta fonction getRegistrationByUserId a un bug, ton test de contrôleur va échouer alors que le code du contrôleur est peut-être parfait.
-
-    La règle : On teste une seule chose à la fois.
-
-        Test du Modèle : Tu crées un fichier missionModel.test.js sans aucun mock, qui tape dans une DB de test pour vérifier tes requêtes SQL.
-
-        Test du Contrôleur : Tu mockes le modèle. Tu ne testes pas "si la DB renvoie vrai", tu testes "comment mon contrôleur réagit SI la DB renvoie vrai".
-
-Pourquoi ton code actuel "bloque" ?
-
-Parce que ton contrôleur est un chef d'orchestre. Si tu lui donnes des musiciens muets (des fonctions mockées qui renvoient undefined), il ne peut pas jouer la symphonie.
-
-Ce que tu dois faire pour avancer :
-Au lieu de vouloir le "vrai" code, force ton mock à renvoyer une "vraie" donnée de test.
-
-    Exemple : Si ta vraie fonction renvoie un tableau d'objets, écris :
-    missionMdl.getMissions.mockResolvedValue([{ id: 1, title: 'Mission Test' }]); */
-
 require('dotenv').config();
 const db = require('../../src/config/database')
 const request = require('supertest');
@@ -34,7 +11,8 @@ const inputProtection = require('../../src/middleware/inputProtection.middleware
 
 const sessionMdw = require('../../src/middleware/session.middleware')
 const missionMdl = require('../../src/models/MissionModel');
-jest.mock('../../src/models/MissionModel');
+
+jest.mock('../../src/models/MissionModel')
 
 let app;
 beforeEach(() => {
@@ -42,6 +20,9 @@ beforeEach(() => {
     app.use(express.json());
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, '../../src/views'));
+});
+afterEach(() => {
+    jest.restoreAllMocks();
 });
 
 describe('Tests for subscribe a mission', () => {
@@ -51,16 +32,20 @@ describe('Tests for subscribe a mission', () => {
         app.get('/modalRegisterMission', sessionMdw.requireAuth, (req, res) => {
             res.status(200).send('Success');
         });
+
         const response = await request(app).get('/modalRegisterMission');
         expect(response.status).toBe(302);
         expect(response.header.location).toBe('/signIn');
     });
 
-    it('must subscribe a mission in add in db', async () => {
+    it('should register a user when they are not already subscribed', async () => {
+
+        missionMdl.getRegistrationByUserId.mockResolvedValue(false);
+        missionMdl.registerMissionUser.mockResolvedValue(true);
 
         const data = {
-            idUser: 62,
-            missionId: 132
+            idUser: 1,
+            missionId: 1
         }
 
         app.use((req, res, next) => {
@@ -77,9 +62,23 @@ describe('Tests for subscribe a mission', () => {
             .query({ idMission: data.missionId, idUser: data.idUser });
 
         expect(response.status).toBe(200);
-        //expect(missionMdl.getRegistrationByUserId).toBe(false)
-        //expect(missionMdl.registerMissionUser).toHaveBeenCalledTimes(data.idUser, data.idMission)
-    })
+        expect(missionMdl.registerMissionUser).toHaveBeenCalledWith(data.missionId, data.idUser);
+    });
+
+    it('Must return an error message if subscription is attempted without an active session', async () => {
+
+        missionMdl.getRegistrationByUserId.mockResolvedValue(false);
+
+        app.get('/addRegisterMissionUser', missionVolunteerCtrl.addRegisterMissionUser);
+
+        const response = await request(app)
+            .get('/addRegisterMissionUser')
+            .query({ idMission: 1, idUser: 1 });
+
+
+        expect(response.status).toBe(401);
+        expect(response.body.message).toMatch(/coquin/);
+    });
 
     afterAll(async () => {
         await db.end();
@@ -88,7 +87,7 @@ describe('Tests for subscribe a mission', () => {
 
 describe('Tests for adding a mission to the database', () => {
 
-    it("should fail with invalid data", async () => {
+    it("should return 500 and render the error view if the database insertion fails", async () => {
 
         app.post('/addMission', missionAdminCtrl.addMission);
 
@@ -101,7 +100,7 @@ describe('Tests for adding a mission to the database', () => {
 
     it("must be in the correct format to pass through the middleware", async () => {
 
-        missionMdl.insertMission.mockResolvedValue({})
+        missionMdl.insertMission.mockResolvedValue()
         jest.spyOn(missionAdminCtrl, 'missionAdminShow').mockImplementation((req, res) => {
             return res.status(200).send("test ok")
         });
@@ -133,9 +132,6 @@ describe('Tests for adding a mission to the database', () => {
         await db.end();
     });
 });
-
-
-
 
 
 

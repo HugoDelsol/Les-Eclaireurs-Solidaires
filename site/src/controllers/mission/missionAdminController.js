@@ -25,7 +25,9 @@ exports.addMission = async (req, res) => {
     try {
         res.locals.categoriesMission = await missionMdl.getAllCategories();
 
-        const message = res.locals.errorAlertMsg
+        console.log(res.locals.getAllCategories)
+
+        const message = res.locals.errorAlertMsg;
 
         if (message) {
             return res.status(400).render('account/admin/addMission', {

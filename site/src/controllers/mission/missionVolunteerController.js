@@ -193,7 +193,7 @@ exports.addRegisterMissionUser = async (req, res) => {
 
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
 
-            return res.status(400).json({ message: "Petit coquin, tu as bien failli m'avoir" });
+            return res.status(401).json({ message: "Petit coquin, tu as bien failli m'avoir" });
         }
 
         if (registrationByUser) {

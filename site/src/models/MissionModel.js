@@ -473,14 +473,12 @@ exports.getAllMission = async (sqlLimit) => {
 
 exports.getRegistrationByUserId = async (idMission, idUser) => {
 
-    console.log('tesssssss', idMission, idUser)
-
     try {
 
         const request = "SELECT _id_mission FROM registration_mission WHERE _id_mission = ? AND _id_user = ?";
         const [result] = await db.query(request, [idMission, idUser]);
 
-        return result.length ? true : false;
+        return result.length > 0 ? true : false;
 
     } catch (error) {
 
