@@ -1,6 +1,7 @@
 const mysql = require('mysql2/promise');
+const path = require('path')
 const dotenv = require('dotenv');
-process.env.NODE_ENV === 'test' ? dotenv.config({ path: '.env.test' }) : dotenv.config();
+process.env.NODE_ENV === 'test' ? dotenv.config({ path: path.resolve(__dirname, '../../../.env.test') }) : dotenv.config();
 
 const connection = mysql.createPool( {
 
@@ -16,7 +17,7 @@ const connection = mysql.createPool( {
 
 });
 
-console.log(`--- Démarrage en mode : ${process.env.NODE_ENV} ---`);
-console.log(`--- Base ciblée : ${process.env.DB_NAME} ---`);
+console.log(`La configuration est : ${process.env.NODE_ENV}`)
+console.log(`La configuration de dbName : ${process.env.DB_NAME}`)
 
 module.exports = connection;

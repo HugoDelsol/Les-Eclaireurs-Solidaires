@@ -2,7 +2,7 @@
 // 📦 IMPORTS DES MODULES
 // ------------------------------------
 
-require('dotenv').config();
+require('./src/config/database');
 const { testDb } = require('../site/src/models/UserModel')
 const globalVars = require('../site/src/middleware/globalVars.middleware');
 const pathName = require('../site/src/middleware/sideNav.middleware');
