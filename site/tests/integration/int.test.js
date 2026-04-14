@@ -32,7 +32,6 @@ describe('Tests for subscribe a mission', () => {
         app.get('/modalRegisterMission', sessionMdw.requireAuth, (req, res) => {
             res.status(200).send('Success');
         });
-
         const response = await request(app).get('/modalRegisterMission');
         expect(response.status).toBe(302);
         expect(response.header.location).toBe('/signIn');
