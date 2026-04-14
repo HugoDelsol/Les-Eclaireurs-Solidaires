@@ -1,4 +1,3 @@
-require('dotenv').config();
 const db = require('../../src/config/database')
 
 describe('Database connection', () => {

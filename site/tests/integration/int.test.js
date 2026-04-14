@@ -1,4 +1,3 @@
-require('dotenv').config();
 const db = require('../../src/config/database')
 const request = require('supertest');
 const express = require('express');
@@ -131,8 +130,3 @@ describe('Tests for adding a mission to the database', () => {
         await db.end();
     });
 });
-
-
-
-
-
