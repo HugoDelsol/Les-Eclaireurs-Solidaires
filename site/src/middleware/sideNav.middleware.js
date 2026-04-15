@@ -6,10 +6,6 @@ const tabSelected = (req, res, next) => {
     next();
 }
 
-const newMessage = (req, res, next) => {
-    
-}
-
 module.exports = {
     tabSelected,
 }

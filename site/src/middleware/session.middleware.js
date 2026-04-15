@@ -49,7 +49,7 @@ const allAdministratorAuthorization = (req, res, next) => {
 const logout = (req, res, next) => {    
 
     req.session.destroy((err) => {        
-        res.redirect('/')
+        res.redirect('/home')
     })
 }
 

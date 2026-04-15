@@ -13,7 +13,7 @@ const missionGeneralCtrl = require('../controllers/mission/missionGeneralControl
 // === PUBLIC / HOME PAGES & FORMS ============
 // =============================================
 
-router.get('/', 
+router.get('/home', 
     homeCtrl.homePage,
 );
 

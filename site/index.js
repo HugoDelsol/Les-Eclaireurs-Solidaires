@@ -5,6 +5,7 @@
 require('dotenv').config();
 const globalVars = require('../site/src/middleware/globalVars.middleware');
 const sideNav = require('../site/src/middleware/sideNav.middleware');
+const seo = require('../site/src/middleware/seo.middleware');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -65,6 +66,8 @@ const generalRoute = require('./src/routes/general.route');
 const volunteerRoute = require('./src/routes/volunteer.route');
 const adminRoute = require('./src/routes/admin.route');
 
+app.use(seo.seoReferences);
+
 app.use(sideNav.tabSelected);
 
 // Injecte des variables globales accessibles dans toutes les vues
@@ -91,5 +94,5 @@ app.use((req, res) => {
 // 🚀 LANCEMENT DU SERVEUR
 // ------------------------------------
 app.listen(port, () => {
-  console.log(`✅ Serveur démarré sur http://localhost:${port}`);
+  console.log(`✅ Serveur démarré sur http://localhost:${port}/home`);
 });
