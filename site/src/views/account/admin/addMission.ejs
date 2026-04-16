@@ -15,15 +15,15 @@
         <section class="blocAddMission background">
             <div class="row">
                 <div class="col">
-                    <h1>Publier une mission :</h1>
+                    <h1>Publier une mission</h1>
                     <div class="line"></div>
                 </div>
                 <a href="/admin/missionAdminShow">
-                    <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="">
+                    <img class="btnReset" src="/pictures/iconHeader-Footer/crossList.png" alt="Fermer la page et revenir à la liste des missions">
                 </a>
             </div>
 
-            <form lang="fr" action="/admin/addMission" method="post">
+            <form action="/admin/addMission" method="post">
                 <div class="titleCategory">
                     <label id="title">
                         Titre de la mission :
@@ -41,7 +41,7 @@
 
                 <label id="description">
                     Description :
-                    <textarea type="text" name="description" value=""><%= data.description %></textarea>
+                    <textarea type="text" name="description"><%= data.description %></textarea>
                 </label>
 
                 <div class="timeDate">
@@ -83,7 +83,7 @@
 
                     <label id="uploadImg" for="fileUpload" class="customFileUpload">
                         Choisir une image :
-                        <input id="fileUpload" type="file" class="paddingTypeFile" name="uploadImg" value="" />
+                        <input id="fileUpload" type="file" class="paddingTypeFile" name="uploadImg" accept="image/*" />
                     </label>
                 </div>
 

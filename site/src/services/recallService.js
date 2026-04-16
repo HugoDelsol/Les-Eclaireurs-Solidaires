@@ -44,7 +44,7 @@ class RecallService {
 
             let mailOptions = {
                 from: process.env.MAIL_FROM,
-                to: u.identifier_mail,
+                to: 'hugo.delsol64@gmail.com',
                 subject: templateModel.message_object,
                 text: emailContent
             };
@@ -94,27 +94,19 @@ class RecallService {
 
     async cronScript(stringVal) {
 
+        const data =  await stringVal
+
         try {
 
-            if (stringVal.recallIsCheckeds) {
+            if (data.recallIsCheckeds) {
 
                 const recallModel = await messageMdl.recallModel();
 
-                const selectUsersRecallsByDelay = await this.selectMissionRecallsByDelay(stringVal.selectedDelay);
+                const selectUsersRecallsByDelay = await this.selectMissionRecallsByDelay(data.selectedDelay);
 
-                //console.log(selectUsersRecallsByDelay)
-
-                if (stringVal.emailMessage) {
+                if (data.emailMessage) {
                     this.sendEmail(recallModel[0], selectUsersRecallsByDelay);
                 }
-
-                /*  if (stringVal.smsMessage) {
-                     this.sendSms(recallModel[1], selectUsersRecallsByDelay);
-                 } */
-
-                /*  if (stringVal.pushMessage) {
-                     this.sendPush(recallModel[2], selectUsersRecallsByDelay);
-                 }  */
 
             } else {
 
