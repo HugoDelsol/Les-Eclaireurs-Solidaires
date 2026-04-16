@@ -101,7 +101,7 @@ async function startApp() {
     await testDb();
 
     app.listen(port, () => {
-      console.log(`✅ Serveur démarré sur http://localhost:${port}`);
+      console.log(`✅ Serveur démarré sur http://localhost:${port}/home`);
     });
 
   } catch (error) {
