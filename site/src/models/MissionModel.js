@@ -147,7 +147,8 @@ exports.getMissionByRegion = async (idRegion) => {
             LEFT JOIN region
                 ON id_region = _id_region
             WHERE id_region = ?
-                AND mission_date >= CURRENT_DATE()                        
+                AND mission_date >= CURRENT_DATE() 
+                AND mission_available_place > 0                        
             LIMIT 3
         `;
 
@@ -457,9 +458,43 @@ exports.getAllMission = async (sqlLimit) => {
                 ON id_city = _id_city
             LEFT JOIN mission_category
                 ON id_mission_category = _id_mission_category
-            WHERE mission_date > CURRENT_DATE
+            WHERE mission_date > CURRENT_DATE AND mission_available_place > 0
             ORDER BY m.mission_date ASC
             ${limitCondition}
+        `;
+
+        const [result] = await db.query(request);
+
+        return result;
+
+    } catch (error) {
+
+        console.error("Erreur SQL getAllMission :", error);
+        throw error;
+    }
+}
+
+exports.getAllMissionForAdmin = async () => {
+
+    try {
+
+        const request = `
+            SELECT 
+                id_mission, 
+                mission_title, 
+                DATE_FORMAT(mission_date, '%d/%m/%Y') AS mission_date, 
+                mission_category_name,  
+                city_name, 
+                mission_description,
+                mission_img,
+                mission_available_place                
+            FROM mission AS m
+            LEFT JOIN city
+                ON id_city = _id_city
+            LEFT JOIN mission_category
+                ON id_mission_category = _id_mission_category
+            WHERE mission_date > CURRENT_DATE 
+            ORDER BY m.mission_date ASC
         `;
 
         const [result] = await db.query(request);
@@ -496,9 +531,13 @@ exports.registerMissionUser = async (idUser, idMission) => {
         const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
         const [result] = await db.query(request, [idUser, idMission]);
 
-        if (result.affectedRows !== 1) {
-            return false;
-        }
+        if (result.affectedRows !== 1) return false;
+
+        const idUpdate = result.insertId
+
+        console.log(idUpdate)
+
+        await this.updateSpaceAvailable(idUpdate, '-')
 
         return true;
 
@@ -509,9 +548,31 @@ exports.registerMissionUser = async (idUser, idMission) => {
     }
 };
 
+exports.updateSpaceAvailable = async (idUpdate, value) => {
+
+    try {
+
+        if (value !== '+' && value !== '-') throw new Error;
+
+        const update = `
+            UPDATE registration_mission 
+            LEFT JOIN mission ON _id_mission = id_mission 
+            SET mission.mission_available_place = mission.mission_available_place ${value} 1 
+            WHERE id_registration = ?;`
+
+        const [result] = await db.query(update, [idUpdate])
+
+    } catch (error) {
+
+        throw error;
+    }
+}
+
 exports.unregisterAVolunteer = async (idRegistration) => {
 
     try {
+
+        await this.updateSpaceAvailable(idRegistration, '+')
 
         const request = `
             DELETE FROM registration_mission
@@ -519,9 +580,7 @@ exports.unregisterAVolunteer = async (idRegistration) => {
         `
         const [result] = await db.query(request, idRegistration);
 
-        if (result.affectedRows !== 1) {
-            return false;
-        }
+        if (result.affectedRows !== 1) return false;
 
         return true;
 

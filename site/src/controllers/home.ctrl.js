@@ -44,9 +44,7 @@ exports.homePage = async (req, res) => {
         const getDisplayHomeMissions = await missionMdl.getAllMission("3");
         const getUserOpinion = await userMdl.getUserOpinion();
 
-        const remainingSpace = await service.remainingSpace(getDisplayHomeMissions);
-
-        const clearData = utils.clearData(getDisplayHomeMissions, remainingSpace);
+        const clearData = utils.clearData(getDisplayHomeMissions);
 
         res.render('home/homePage', {
             displayMission: clearData,

@@ -81,22 +81,6 @@ exports.filterOutRegisteredMissions = async (req, missionsSelected) => {
     }
 }
 
-exports.remainingSpace = async (value) => {
-
-    const tabResult = [];
-
-    for (let v of value) {
-
-        const nbrRegistration = await missionModel.getNbrRegistrationByMission(v.id_mission);
-
-        if (nbrRegistration) {
-            tabResult.push(nbrRegistration.nbr_registration)
-        }
-    }
-
-    return tabResult;
-}
-
 exports.formatMissionStats = async (data) => {
 
     let tabStats = [];
@@ -108,10 +92,17 @@ exports.formatMissionStats = async (data) => {
         averageToFixed = 0;
     }
 
+    let fillRate = null;
+
     for (let g of data.resultList) {
 
-        const spaceAvailable = g.mission_available_place - g.nb_volunteers;
-        const fillRate = (g.nb_volunteers / g.mission_available_place) * 100;
+        const spaceAvailable = g.mission_available_place;
+
+        if (spaceAvailable === 0) {
+            fillRate = 100;
+        } else {
+            fillRate = (g.nb_volunteers / spaceAvailable) * 100;
+        }
 
         const fillRateToString = fillRate.toFixed(0) + "%";
 
@@ -122,7 +113,7 @@ exports.formatMissionStats = async (data) => {
             nbVolunteers: g.nb_volunteers,
             spaceAvailable: spaceAvailable,
             fillRate: fillRateToString,
-        })
+        });
     };
 
     return data = {

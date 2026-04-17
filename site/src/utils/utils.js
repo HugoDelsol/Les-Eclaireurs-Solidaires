@@ -1,41 +1,23 @@
-exports.clearData = (missions, valueSpace) => {
+exports.clearData = (missions) => {
 
     let tabResult = [];
 
     for (let i = 0; i < missions.length; i++) {
 
-        if (valueSpace !== undefined && valueSpace[i]) {
+        let data = {
 
-            let data = {
-
-                id: missions[i].id_mission,
-                img: missions[i].mission_img,
-                title: missions[i].mission_title,
-                description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
-                category: missions[i].mission_category_name,
-                city: missions[i].city_name,
-                places: missions[i].mission_available_place - valueSpace[i],
-                date: missions[i].mission_date,
-            }
-
-            tabResult.push(data);
-
-        } else {
-
-             let data = {
-
-                id: missions[i].id_mission,
-                img: missions[i].mission_img,
-                title: missions[i].mission_title,
-                description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
-                category: missions[i].mission_category_name,
-                city: missions[i].city_name,
-                places: missions[i].mission_available_place,
-                date: missions[i].mission_date,
-            }
-
-            tabResult.push(data);
+            id: missions[i].id_mission,
+            img: missions[i].mission_img,
+            title: missions[i].mission_title,
+            description: missions[i].mission_description.split(" ").slice(0, 30).join(" "),
+            category: missions[i].mission_category_name,
+            city: missions[i].city_name,
+            places: missions[i].mission_available_place,
+            date: missions[i].mission_date,
         }
+
+        tabResult.push(data);
+
     }
 
     return tabResult;

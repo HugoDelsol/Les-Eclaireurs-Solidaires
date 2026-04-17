@@ -40,17 +40,31 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
 
     try {
 
-        // const getUserAddress = await userMdl.getUserAddress(req.session.userExist.id);
+        const idUser = req.session.userExist.id;
 
-        // const idRegion = getUserAddress[0].id_region;
+        const getUserAddress = await userMdl.getUserAddress(idUser);
+        const idRegionByUser = getUserAddress[0].id_region;
+        let missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
 
-        // const getMissionByRegion = await missionMdl.getMissionByRegion(idRegion);
-     
-        let ourSelection = await service.filterOutRegisteredMissions(req);
+        let ourSelectionRegion = await service.filterOutRegisteredMissions(req, missionByRegion);
+        let ourSelectionAll = await service.filterOutRegisteredMissions(req);
 
-        ourSelection.splice(3);
-        
-        res.json(ourSelection);
+        for (let i = 0; i < ourSelectionAll.length; i++) {
+
+            const alreadyExist = ourSelectionRegion.some(
+                (item) => item.id_mission === ourSelectionAll[i].id_mission
+            );
+
+            if (!alreadyExist) {
+                ourSelectionRegion.push(ourSelectionAll[i])
+            }
+
+            if (ourSelectionRegion.length === 3) {
+                break;
+            }
+        }
+
+        res.json(ourSelectionRegion);
 
     } catch (error) {
 
@@ -131,15 +145,27 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
     try {
 
-        // const getUserAddress = await userMdl.getUserAddress(idUser);
+        const getUserAddress = await userMdl.getUserAddress(idUser);
+        const idRegionByUser = getUserAddress[0].id_region;
+        let missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
 
-        // const idRegionByUser = getUserAddress[0].id_region;
+        let ourSelectionRegion = await service.filterOutRegisteredMissions(req, missionByRegion);
+        let ourSelectionAll = await service.filterOutRegisteredMissions(req);
 
-        // let missionByRegion = await missionMdl.getMissionByRegion(idRegionByUser);
+        for (let i = 0; i < ourSelectionAll.length; i++) {
 
-        let ourSelection = await service.filterOutRegisteredMissions(req);
+            const alreadyExist = ourSelectionRegion.some(
+                (item) => item.id_mission === ourSelectionAll[i].id_mission
+            );
 
-        ourSelection.splice(3);
+            if (!alreadyExist) {
+                ourSelectionRegion.push(ourSelectionAll[i])
+            }
+
+            if (ourSelectionRegion.length === 3) {
+                break;
+            }
+        }
 
         res.locals.missionsUser = await missionMdl.getAllMissionsByUser(idUser);
 
@@ -161,7 +187,7 @@ exports.dashboardAllStats = async (req, res, idUser) => {
         res.locals.statsOnVolunteer = obtainStatsOnVolunteer;
         res.locals.nbrTimeAccomplished = count;
 
-        res.locals.missionByRegion = ourSelection;
+        res.locals.missionByRegion = ourSelectionRegion;
 
         res.render('account/volunteer/dashboardUser');
 

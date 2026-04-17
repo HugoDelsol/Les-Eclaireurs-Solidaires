@@ -110,7 +110,7 @@ exports.missionAdminShow = async (req, res) => {
 
         res.locals.regions = await missionMdl.getAllRegions();
         res.locals.categoriesMission = await missionMdl.getAllCategories();
-        res.locals.missions = await missionMdl.getAllMission();
+        res.locals.missions = await missionMdl.getAllMissionForAdmin();
 
         res.render('account/admin/listMissionsAdmin');
 
