@@ -2,13 +2,14 @@ const service = require('../services/recallService');
 const utils = require('../utils/utils');
 const messageMdl = require('../models/MessageModel');
 const userMdl = require('../models/UserModel');
+const logger = require('../utils/logger.js')
 const { matchedData } = require('express-validator');
 
 exports.newMessageRediger = (req, res) => {
-    res.render('messaging/newMessage');
+    res.status(200).render('messaging/newMessage');
 }
 exports.newMessageByVolunteer = (req, res) => {
-    res.render('messaging/volunteerNewMessage');
+    res.status(200).render('messaging/volunteerNewMessage');
 }
 
 exports.reminderShow = async (req, res) => {
@@ -19,13 +20,14 @@ exports.reminderShow = async (req, res) => {
 
         const dataView = await rServ.parseReadFile();
 
-        res.render('account/admin/reminder', {
+        res.status(200).render('account/admin/reminder', {
             dataView: dataView
         })
 
     } catch (error) {
 
-        console.log(error)
+        logger.error(error);
+        
         res.render('account/admin/reminder', {
             dataView: [],
             errorAlertMsg: "Impossible de charger vos données pour le moment."
@@ -38,7 +40,7 @@ exports.recallManagement = async (req, res) => {
     let dataView = null;
 
     try {
-
+        
         const rServ = new service.RecallService;
 
         const checkBoxData = req.body;

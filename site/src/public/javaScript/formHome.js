@@ -9,33 +9,9 @@ const txtArea = document.querySelector("#txtArea");
 
 const btnSubmit = document.querySelector(".btnSubmit");
 
-/* for (let i = 0; i < input.length; i++) {
-
-    input[i].value = "";
-    txtArea.value = "";
-} */
-
 btnSubmit.addEventListener("click", function (event) {
-
     event.preventDefault();
-
-  /*   if (
-        nameForm.value == "" ||
-        emailForm.value == "" ||
-        txtArea.value == ""
-    ) {
-
-        alertFrontOfficeError.textContent = "Veuillez compléter tous les champs.";
-
-    } else { */
-
-        apiDataForm();
-
-/*         input[0].value = "";
-        input[1].value = "";
-        txtArea.value = "";
-    }
- */
+    apiDataForm();
 });
 
 async function apiDataForm() {
@@ -53,24 +29,25 @@ async function apiDataForm() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataForm)
         })
-        
-        if (!response.ok) {
-            throw new Error('Erreur');
-        }
 
         const jsonResult = await response.json();
 
         let valueClass;
         let valueMsg;
 
-        if (jsonResult.mdlError) {
-            valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.mdlError;
-        }        
-        if (jsonResult.messageErrorIsTrue) {
-            valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.messageError;
+        if (!response.ok) {
+
+            if (jsonResult.mdlError) {
+                valueClass = alertFrontOfficeError;
+                valueMsg = jsonResult.mdlError;
+            }
+
+            if (jsonResult.messageErrorIsTrue) {
+                valueClass = alertFrontOfficeError;
+                valueMsg = jsonResult.messageError;
+            }
         }
+
         if (jsonResult.messageSuccessIsTrue) {
             valueClass = alertFrontOfficeSuccess;
             valueMsg = jsonResult.messageSuccesss;
@@ -78,13 +55,13 @@ async function apiDataForm() {
                 el.value = "";
                 txtArea.value = "";
             });
-        }        
+        }
 
-        valueClass.textContent = valueMsg;        
+        valueClass.textContent = valueMsg;
 
     } catch (error) {
 
-        console.log("Erreur apiDataForm : ", error);
+        alertFrontOfficeError.textContent = "Connexion au serveur impossible.";
     }
 }
 

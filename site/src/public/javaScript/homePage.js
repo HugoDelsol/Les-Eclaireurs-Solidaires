@@ -22,14 +22,20 @@ async function dataStats() {
             method: 'GET',
         })
 
-        if (!response.ok) { throw new Error('Erreur'); }
+        const jsonResult = await response.json();
 
-        const result = await response.json();
-        updateStats(result);
+        if (!response.ok) {
+            console.log("test")
+            if (jsonResult.messageErrorIsTrue) {
+                alertFrontOfficeError.textContent = jsonResult.messageError;
+            }
+        }
+
+        updateStats(jsonResult);
 
     } catch (error) {
 
-        console.log(error);
+        alertFrontOfficeError.textContent = "Connexion au serveur impossible.";
     }
 }
 dataStats()

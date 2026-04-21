@@ -12,8 +12,7 @@ exports.recallModel = async () => {
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -37,8 +36,7 @@ exports.getUsersWithMissionInNextValue = async (value) => {
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -56,8 +54,7 @@ exports.updateValueSend = async (idRegistration) => {
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -79,8 +76,7 @@ exports.sendNewMessageFromAdmin = async (senderId, recipientId, object, content,
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -103,8 +99,7 @@ exports.sendNewMessageFromVolunteer = async (senderId, object, content, fromUser
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -137,8 +132,7 @@ exports.listOfChannel = async () => {
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -172,6 +166,7 @@ exports.listOfChannelForVolunteer = async (idUser) => {
 
     } catch (error) {
 
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -189,8 +184,7 @@ exports.authorizeDisplayMessagesForUser = async (idChannel) => {
         
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -223,8 +217,7 @@ exports.allMessageInChannel = async (idChannel) => {
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -252,8 +245,7 @@ exports.replyToAMessage = async (data) => {
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -270,8 +262,7 @@ exports.getStatusMessage = async (idChannel) => {
 
     } catch (error) {
 
-        console.log(error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -294,7 +285,8 @@ exports.getStatusMessageForSideNav = async (idUser) => {
             ORDER BY chat_message_from_user ASC
         `
     } catch (error) {
-
+        
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 

@@ -21,7 +21,7 @@ exports.fetchStatsUserForHomePage = async () => {
 
     } catch (error) {
 
-        throw new error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -55,7 +55,7 @@ exports.getAllAdmins = async () => {
 
     } catch (error) {
 
-        throw new error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -123,7 +123,7 @@ exports.listOfVolunteers = async (test) => {
 
     } catch (error) {
 
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -147,8 +147,7 @@ exports.findVolunteer = async (inputValue) => {
 
     } catch (error) {
 
-        console.log("error model findVolunteer : ")
-        throw error
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -167,9 +166,9 @@ exports.getOneUserByEmail = async (email) => {
 
         return result && result[0] ? result[0] : null;
 
-    } catch (e) {
+    } catch (error) {
 
-        throw e;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -186,9 +185,9 @@ exports.getEmailUserById = async (id) => {
 
         return result;
 
-    } catch (e) {
+    } catch (error) {
 
-        throw e;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -216,10 +215,9 @@ exports.addUser = async (
 
         return resultUser;
 
-    } catch (e) {
+    } catch (error) {
 
-        throw e;
-
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -250,7 +248,7 @@ exports.addAdmin = async (
 
     } catch (error) {
 
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -272,7 +270,7 @@ exports.getUserAddress = async (idUser) => {
 
     } catch (error) {
 
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -285,7 +283,7 @@ exports.addUserOpinion = async (data, idUser) => {
         
     } catch (error) {
         
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 
@@ -299,6 +297,6 @@ exports.getUserOpinion = async () => {
 
     } catch (error) {
         
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }

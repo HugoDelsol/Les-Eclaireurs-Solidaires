@@ -72,8 +72,7 @@ exports.fetchStatsMissionForHomePage = async () => {
 
     } catch (error) {
 
-        console.log("Erreur SQL fetchStatsForHomePage :", error);
-        throw error;
+        throw new Error(`DB_ERROR: ${error}`);
     }
 }
 

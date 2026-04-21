@@ -1,15 +1,81 @@
 <script src="../../public/javaScript/style.js" defer></script>
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
-  <link rel="stylesheet" href="/style/home/404.css">
-  <link rel="stylesheet" href="/style/globalStyle.css">
+<link rel="stylesheet" href="/style/home/404.css">
+<link rel="stylesheet" href="/style/globalStyle.css">
 
-  <main>
-    <h1 style="font-size: 6rem; margin: 0;">404</h1>
-    <p style="font-size: 1.5rem; margin: 1rem 0;">Oups ! La page que vous cherchez n’existe pas ou un problème est
-      survenu. </p>
-    <a href="/home" class="">Retour à l'accueil</a>
-  </main>
-  </body>
+<main>
+  <h1 style="font-size: 6rem; margin: 0;">404</h1>
+  <p style="font-size: 1.5rem; margin: 1rem 0;">Oups ! La page que vous cherchez n’existe pas ou un problème est
+    survenu. </p>
+  <a href="/home" class="">Retour à l'accueil</a>
+  <canvas width="600px" height="400px">
 
-  </html>
+  </canvas>
+</main>
+</body>
+
+</html>
+
+<style>
+  canvas {
+    margin-top: 20px;
+    border: 1px solid black;
+  }
+</style>
+
+<script>
+
+  let keys = {
+    ArrowLeft: false,
+    ArrowRight: false,
+  }
+
+  const objectWidth = 160;
+  const objectHeight = 10;
+  const speed = 10
+
+  let positionHorizontal = 600 / 2 - objectWidth / 2
+
+  const canvas = document.querySelector('canvas');
+  const ctx = canvas.getContext('2d');
+
+  function drawRect() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = "black"
+    ctx.fillRect(positionHorizontal, canvas.height - objectHeight, objectWidth, objectHeight)
+
+    ctx.fillStyle = "red"
+    ctx.arc(100, 100, 10, 0, Math.PI * 2)
+    ctx.fill()
+  }
+
+  drawRect()
+
+
+  window.addEventListener('keydown', (e) => {
+    if (event.code in keys) keys[e.code] = true;
+  });
+
+  window.addEventListener('keyup', (e) => {
+    if (event.code in keys) keys[e.code] = false;
+  });
+
+  function update() {
+
+    if (keys.ArrowLeft && positionHorizontal > 0) {
+      positionHorizontal -= speed
+    }
+
+    if (keys.ArrowRight && positionHorizontal < canvas.width - objectWidth) {
+      positionHorizontal += speed
+    }
+
+    drawRect();
+    requestAnimationFrame(update);
+  }
+
+  update()
+</script>
