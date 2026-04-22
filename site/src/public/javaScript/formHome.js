@@ -50,7 +50,7 @@ async function apiDataForm() {
 
         if (jsonResult.messageSuccessIsTrue) {
             valueClass = alertFrontOfficeSuccess;
-            valueMsg = jsonResult.messageSuccesss;
+            valueMsg = jsonResult.messageSuccess;
             inputs.forEach(el => {
                 el.value = "";
                 txtArea.value = "";

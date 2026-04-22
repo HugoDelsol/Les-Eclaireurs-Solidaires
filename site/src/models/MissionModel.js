@@ -1,5 +1,5 @@
 const db = require('../config/database');
-const { updateMission } = require('../controllers/mission/missionAdminController');
+//const { updateMission } = require('../controllers/mission/missionAdminController');
 
 exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, cityId, category) => {
 
@@ -53,10 +53,8 @@ exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, 
 
     } catch (error) {
 
-        console.error("Erreur SQL updateUserProfile :", error);
-        throw error;
+        throw new Error(error.message);
     }
-
 }
 
 exports.fetchStatsMissionForHomePage = async () => {
@@ -72,7 +70,7 @@ exports.fetchStatsMissionForHomePage = async () => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -96,8 +94,7 @@ exports.addUserHistoryMission = async (idUser) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL addUserHistoryMission :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -130,8 +127,7 @@ exports.obtainStatsOnVolunteer = async (idUser) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL obtainStatsOnVolunteer :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -156,8 +152,7 @@ exports.getMissionByRegion = async (idRegion) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL getMissionByRegion :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -185,8 +180,7 @@ exports.getNbrRegistrationByMission = async (idMission) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL getNbrRegistrationByMission :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -265,8 +259,7 @@ exports.getStatsMissions = async () => {
 
     } catch (error) {
 
-        console.error("Erreur SQL getStatsMissions :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -320,8 +313,7 @@ exports.searchByCategories = async (regionSelected, categorySelected, tripStart,
 
     } catch (error) {
 
-        console.error("Erreur SQL searchByCategories :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -334,10 +326,9 @@ exports.getAllCategories = async () => {
 
         return result && result[0] ? result : null;
 
-    } catch (e) {
+    } catch (error) {
 
-        console.error("Erreur SQL getAllCategories :", e);
-        throw e;
+        throw new Error(error.message);
     }
 }
 
@@ -379,7 +370,7 @@ exports.insertMission = async (data, uploadImg) => {
 
     } catch (error) {
 
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -395,7 +386,7 @@ exports.updateMission = async (idMission, data, imageUrl) => {
 
     } catch (error) {
 
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -411,7 +402,7 @@ exports.searchCityInSql = async (q) => {
 
     } catch (error) {
 
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -426,10 +417,9 @@ exports.getAllRegions = async () => {
         return result;
 
     } catch (error) {
-        console.error("Erreur SQL getAllRegions :", error);
-        throw error;
-    }
 
+        throw new Error(error.message);
+    }
 }
 
 exports.getAllMission = async (sqlLimit) => {
@@ -468,8 +458,7 @@ exports.getAllMission = async (sqlLimit) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL getAllMission :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -502,8 +491,7 @@ exports.getAllMissionForAdmin = async () => {
 
     } catch (error) {
 
-        console.error("Erreur SQL getAllMission :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -518,8 +506,7 @@ exports.getRegistrationByUserId = async (idMission, idUser) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL getRegistrationByUserId :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -534,16 +521,13 @@ exports.registerMissionUser = async (idUser, idMission) => {
 
         const idUpdate = result.insertId
 
-        console.log(idUpdate)
-
         await this.updateSpaceAvailable(idUpdate, '-')
 
         return true;
 
     } catch (error) {
 
-        console.error("Erreur SQL registerMissionUser :", error);
-        return false;
+        throw new Error(error.message);
     }
 };
 
@@ -563,7 +547,7 @@ exports.updateSpaceAvailable = async (idUpdate, value) => {
 
     } catch (error) {
 
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -585,8 +569,7 @@ exports.unregisterAVolunteer = async (idRegistration) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL unregisterAVolunteer :", error);
-        return false;
+        throw new Error(error.message);
     }
 }
 
@@ -612,8 +595,7 @@ exports.getAllMissionsByUser = async (IdUser) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL getAllMissionsByUser :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -627,8 +609,7 @@ exports.alreadyRegistered = async (idUser) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL alreadyRegistered :", error);
-        throw error;
+        throw new Error(error.message);
     }
 }
 
@@ -642,9 +623,7 @@ exports.fetchImgByCategory = async (category) => {
 
     } catch (error) {
 
-        console.error("Erreur SQL fetchImgByCategory :", error);
-
-        throw error;
+       throw new Error(error.message);
     }
 }
 
@@ -665,6 +644,7 @@ exports.getDataMissionById = async (idMission) => {
         return result[0];
 
     } catch (error) {
-        console.log(error);
+
+        throw new Error(error.message);
     }
 }

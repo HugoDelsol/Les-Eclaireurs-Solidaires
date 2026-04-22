@@ -5,13 +5,13 @@
 <link rel="stylesheet" href="/style/globalStyle.css">
 
 <main>
-  <h1 style="font-size: 6rem; margin: 0;">404</h1>
+  <h1 style="font-size: 6rem; margin: 0; color: rgb(216, 141, 1) ;" >404</h1>
   <p style="font-size: 1.5rem; margin: 1rem 0;">Oups ! La page que vous cherchez n’existe pas ou un problème est
-    survenu. </p>
-  <a href="/home" class="">Retour à l'accueil</a>
-  <canvas width="600px" height="400px">
-
-  </canvas>
+    survenu. <br> Alors pourquoi ne pas faire une petite pause en jouant ?
+  </p>
+  <p>Appuyez sur l’une des touches directionnelles de votre clavier pour commencer une partie. 🕹️</p>
+  <canvas width="600px" height="400px"></canvas>
+  <a href="/home" >Retour à la page d'Accueil</a>  
 </main>
 </body>
 
@@ -21,6 +21,9 @@
   canvas {
     margin-top: 20px;
     border: 1px solid black;
+  }
+  main{
+    line-height: 1.3;
   }
 </style>
 
@@ -47,7 +50,7 @@
     ctx.fillStyle = "black"
     ctx.fillRect(positionHorizontal, canvas.height - objectHeight, objectWidth, objectHeight)
 
-    ctx.fillStyle = "red"
+    ctx.fillStyle = "orange"
     ctx.arc(100, 100, 10, 0, Math.PI * 2)
     ctx.fill()
   }

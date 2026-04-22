@@ -22,16 +22,16 @@ exports.reminderShow = async (req, res) => {
 
         res.status(200).render('account/admin/reminder', {
             dataView: dataView
-        })
+        });
 
     } catch (error) {
 
         logger.error(error);
         
-        res.render('account/admin/reminder', {
+        res.status(500).render('account/admin/reminder', {
             dataView: [],
             errorAlertMsg: "Impossible de charger vos données pour le moment."
-        })
+        });
     }
 }
 

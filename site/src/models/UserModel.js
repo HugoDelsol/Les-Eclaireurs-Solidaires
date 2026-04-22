@@ -21,7 +21,7 @@ exports.fetchStatsUserForHomePage = async () => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -55,7 +55,7 @@ exports.getAllAdmins = async () => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -123,7 +123,7 @@ exports.listOfVolunteers = async (test) => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -147,7 +147,7 @@ exports.findVolunteer = async (inputValue) => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -168,7 +168,7 @@ exports.getOneUserByEmail = async (email) => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -187,7 +187,7 @@ exports.getEmailUserById = async (id) => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -217,7 +217,7 @@ exports.addUser = async (
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -248,7 +248,7 @@ exports.addAdmin = async (
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -270,7 +270,7 @@ exports.getUserAddress = async (idUser) => {
 
     } catch (error) {
 
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -283,7 +283,7 @@ exports.addUserOpinion = async (data, idUser) => {
         
     } catch (error) {
         
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }
 
@@ -297,6 +297,6 @@ exports.getUserOpinion = async () => {
 
     } catch (error) {
         
-        throw new Error(`DB_ERROR: ${error}`);
+        throw new Error(error.message);
     }
 }

@@ -55,18 +55,11 @@ exports.homePage = async (req, res) => {
     } catch (error) {
 
         logger.error(error);
-
-        let status = 400;
         let message = "Certains éléments n'ont pas pu être chargés. Le contenu de la page peut être incomplet.";
-
-        if (error.message.includes("DB_ERROR")) {
-            status = 500;
-            message = "Une erreur interne est survenue. Veuillez réessayer plus tard.";
-        }
 
         res.locals.errorAlertMsg = message;
 
-        return res.status(status).render('home/homePage', {
+        return res.status(500).render('home/homePage', {
             displayMission: [],
             userOpinion: []
         });
@@ -93,22 +86,14 @@ exports.homeStats = async (req, res) => {
     } catch (error) {
 
         logger.error(error);
-
-        let status = 400;
         let message = "Certains éléments n'ont pas pu être chargés. Le contenu de la page peut être incomplet.";
-
-        if (error.message.includes("DB_ERROR")) {
-            status = 500;
-        }
-
-        return res.status(status).json({ messageError: message, messageErrorIsTrue: true });
+        return res.status(500).json({ messageError: message, messageErrorIsTrue: true });
     }
 }
 
 exports.submitForm = async (req, res) => {
 
     try {
-
         const safeData = matchedData(req);
 
         const { nameForm, emailForm, txtArea } = safeData;
@@ -119,11 +104,6 @@ exports.submitForm = async (req, res) => {
     } catch (error) {
 
         logger.error(error);
-
-        if (error.message.includes("DB_ERROR")) {
-            return res.status(500).json({ messageError: "Une erreur interne est survenue. Veuillez réessayer plus tard.", messageErrorIsTrue: true });
-        } else {
-            return res.status(400).json({ messageError: "L'action demandée n'a pas pu être traitée. Veuillez réessayer.", messageErrorIsTrue: true });
-        }
+        return res.status(500).json({ messageError: "Une erreur interne est survenue. Veuillez réessayer plus tard.", messageErrorIsTrue: true });
     }
 }

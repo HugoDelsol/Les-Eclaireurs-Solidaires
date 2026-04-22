@@ -30,7 +30,7 @@ const signUpFormProtection = [
 
     body('password')
         .trim()
-        .isLength({min: 8}).withMessage('Le mot de passe doit contenir au moins 8 caractères')
+        .isLength({ min: 8 }).withMessage('Le mot de passe doit contenir au moins 8 caractères')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/)
         .withMessage('Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial'),
 
@@ -50,7 +50,7 @@ const signUpFormProtection = [
 
             const message = errors.array()[0].msg
 
-            return res.render('connection/signUp', {
+            return res.status(422).render('connection/signUp', {
                 errorAlertMsg: message,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -87,7 +87,7 @@ const signInFormProtection = [
 
             const message = error.array()[0].msg
 
-            return res.render('connection/signIn', {
+            return res.status(422).render('connection/signIn', {
                 errorAlertMsg: message
             })
         }
@@ -102,7 +102,7 @@ const signInFormProtection = [
 
 const adminSignFormProtection = [
 
-  body('firstName')
+    body('firstName')
         .trim()
         .notEmpty().withMessage('Le prénom est requis')
         .isLength({ min: 2, max: 30 }).withMessage('Le prénom doit faire entre 2 et 30 caractères')
@@ -122,21 +122,30 @@ const adminSignFormProtection = [
 
     body('password')
         .trim()
-        .isLength({min: 8}).withMessage('Le mot de passe doit contenir au moins 8 caractères')
+        .isLength({ min: 8 }).withMessage('Le mot de passe doit contenir au moins 8 caractères')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/)
         .withMessage('Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial'),
 
     body('token')
         .trim()
+        .notEmpty().withMessage('Le token est requis')
         .escape(),
 
     (req, res, next) => {
 
-        const error = validationResult(req);
+        const errors = validationResult(req);
 
-        if (!error.isEmpty()) {
-            return res.render('connection/signUpAdmin', {
-                errorAlertMsg: error.array()[0].msg,
+        if (!errors.isEmpty()) {
+
+            const message = errors.array()[0].msg
+
+            return res.status(422).render('connection/signUpAdmin', {
+                errorAlertMsg: message,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: "",
+                passwordConfirm: "",
             })
         }
 
@@ -152,7 +161,7 @@ const updateUserProfile = [
 
     body('lastname').optional({ checkFalsy: true }).trim().escape(),
     body('firstname').optional({ checkFalsy: true }).trim().escape(),
-    body('phone').optional({ checkFalsy: true }).trim().isMobilePhone().escape(),
+    body('phone').optional({ checkFalsy: true }).trim().isMobilePhone().withMessage('Le numéro de téléphone est invalide').escape(),
     body('adress').optional({ checkFalsy: true }).trim().escape(),
     body('cityId').optional({ checkFalsy: true }).isInt(),
     body('category').optional({ checkFalsy: true }).isInt(),
@@ -162,11 +171,9 @@ const updateUserProfile = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.render('account/volunteer/userProfileSettings', {
-                pseudoUser: req.session.userExist.firstName,
-                categoriesMission: req.session.categoriesMission,
-                errorAlertMsg: 'Données invalides. Veuillez vérifier les champs.'
-            })
+            return res.status(422).render('account/volunteer/userProfileSettings', {
+                errorAlertMsg: error.array()[0].msg
+            });
         }
 
         next();
@@ -188,7 +195,7 @@ const homeFormProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.status(400).json({ mdlError: "Données invalides. Veuillez vérifier les champs.", mdlErrorIsTrue: true });
+            return res.status(422).json({ mdlError: "Données invalides. Veuillez vérifier les champs.", mdlErrorIsTrue: true });
         }
 
         next();
@@ -209,10 +216,10 @@ const generateTokenInputProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            res.locals.errorAlertMsg = "L'email renseigner n'est pas valide"
+            res.locals.status = 422;
         }
 
-        next()
+        next();
     }
 ]
 
@@ -314,7 +321,7 @@ const userOpinionInputProtection = [
         .isLength({ min: 20, max: 500 })
         .withMessage('Votre avis doit contenir entre 20 et 500 caractères.')
         .escape(),
-        
+
     (req, res, next) => {
 
         console.log(req.body)

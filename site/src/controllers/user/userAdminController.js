@@ -15,6 +15,8 @@ const service = require('../../services/services');
 // Get Functions
 const { getStatsMissions } = require('../../controllers/mission/missionAdminController');
 
+const logger = require('../../utils/logger');
+
 // ==============================
 // DISPLAY VIEWS
 // ==============================
@@ -54,14 +56,14 @@ exports.listOfVolunteers = async (req, res) => {
 
         res.locals.listUsers = allVolunteers.resultAllVolunteers;
 
-        res.render('account/admin/listOfVolunteers');
+        res.status(200).render('account/admin/listOfVolunteers');
 
     } catch (error) {
 
-        console.log(error);
+        logger.error(error);
         res.locals.listUsers = [];
-        res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles";
-        res.render('account/admin/listOfVolunteers');
+        res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
+        res.status(500).render('account/admin/listOfVolunteers');
     }
 }
 
@@ -77,14 +79,14 @@ exports.activeVolunteer = async (req, res) => {
 
         res.locals.listUsers = listOfVolunteers.resultActiveVolunteerCurrentDate
 
-        res.render('account/admin/listOfVolunteers');
+        res.status(200).render('account/admin/listOfVolunteers');
 
     } catch (error) {
 
-        console.log(error);
+        logger.error(error);
         res.locals.listUsers = [];
-        res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles actifs";
-        res.render('account/admin/listOfVolunteers');
+        res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
+        res.status(500).render('account/admin/listOfVolunteers');
     }
 }
 
@@ -99,16 +101,17 @@ exports.findVolunteer = async (req, res) => {
         res.locals.findVolunteerList.length === 0
             ? res.locals.errorAlertMsg = "Aucun résultat pour cette recherche."
             : res.locals.errorAlertMsg = ""
-        ;
+            ;
 
-        res.render('account/admin/listOfVolunteers');
+        res.status(200).render('account/admin/listOfVolunteers');
 
     } catch (error) {
 
-        console.log(error);
+        logger.error(error);
+
         res.locals.listUsers = [];
-        res.locals.errorAlertMsg = "Impossible d'afficher la liste des bénévoles recherchés";
-        res.render('account/admin/listOfVolunteers');
+        res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
+        res.status(500).render('account/admin/listOfVolunteers');
     }
 }
 
@@ -119,31 +122,41 @@ exports.findVolunteer = async (req, res) => {
 exports.generateToken = async (req, res) => {
 
     let tokenValue = null;
+    let status = 200;
 
-    try {        
+    try {
 
         const admins = await userModel.getAllAdmins();
 
         res.locals.admins = admins.resultAdmins;
         res.locals.superAdmins = admins.resultSuperAdmins;
 
+        if (res.locals.status === 422) {
+            return res.status(422).render('account/admin/generateToken', {
+                errorAlertMsg: "L'adresse email renseignée n'est pas valide"
+            });
+        }
+
         const safeData = matchedData(req)
-        const {emailTokenSuper, emailTokenAdmin} = safeData
+        const { emailTokenSuper, emailTokenAdmin } = safeData
 
         if (emailTokenSuper) {
             tokenValue = service.generateToken(emailTokenSuper, "superAdmin");
         } else if (emailTokenAdmin) {
             tokenValue = service.generateToken(emailTokenAdmin, "admin");
-        } 
+        }
 
-        res.render('account/admin/generateToken', {
-            tokenValue : tokenValue
+        res.status(status).render('account/admin/generateToken', {
+            tokenValue: tokenValue
         })
 
     } catch (error) {
 
-        res.locals.errorAlertMsg = "Une erreur est survenue lors de la génération du token.";
-        res.render('account/admin/generateToken', {
+        logger.error(error);
+        status = 500;
+
+        res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
+        res.status(status).render('account/admin/generateToken', {
             tokenAdmin: [],
             tokenSuper: [],
         })
@@ -160,16 +173,6 @@ exports.saveAdmin = async (req, res) => {
 
         const safeData = matchedData(req)
         const { firstName, lastName, email, password, token } = safeData;
-
-        if (!req.body.firstName ||
-            !req.body.lastName ||
-            !req.body.email ||
-            !req.body.password ||
-            !req.body.passwordConfirm ||
-            !req.body.token) {
-
-            throw new Error('Merci de compléter tous les champs');
-        }
 
         let userExist = await userModel.getOneUserByEmail(email);
         if (userExist) throw new Error("Un utilisateur utilise deja cette email");
@@ -190,18 +193,20 @@ exports.saveAdmin = async (req, res) => {
 
         if (saveAdmin) {
             res.locals.successAlertMsg = "Veuillez vous connecter pour accéder à votre compte.";
-            res.render('connection/signIn');
+            res.status(200).render('connection/signIn');
         }
 
     } catch (error) {
 
-        res.render('connection/signUpAdmin', {
+        logger.error(error);
+
+        res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
+        res.status(500).render('connection/signUpAdmin', {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: "",
             passwordConfirm: "",
-            errorAlertMsg: error.message
         });
     }
 }
