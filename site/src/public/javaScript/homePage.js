@@ -25,7 +25,6 @@ async function dataStats() {
         const jsonResult = await response.json();
 
         if (!response.ok) {
-            console.log("test")
             if (jsonResult.messageErrorIsTrue) {
                 alertFrontOfficeError.textContent = jsonResult.messageError;
             }

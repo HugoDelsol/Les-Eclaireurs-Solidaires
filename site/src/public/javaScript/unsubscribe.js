@@ -32,12 +32,13 @@ async function modalUnsubscriveMission(c, btnResponsiv, dataId, dataTitle) {
         })
 
         if (!response.ok) {
-            console.log("Erreur lors de la récupération des données");
-            window.location.href = "/";
+            alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant."
+            return;
         }
 
         const htmlResponse = await response.text();
-        document.querySelector('.modalContain').innerHTML = htmlResponse;
+        const cleanHtml = DOMPurify.sanitize(htmlResponse)
+        document.querySelector('.modalContain').innerHTML = cleanHtml;
 
         const btnClose = document.querySelector('.close');
         const btnUnsubscribeConfirmation = document.querySelector('.btnUnsubscribeConfirmation');
@@ -49,7 +50,7 @@ async function modalUnsubscriveMission(c, btnResponsiv, dataId, dataTitle) {
         span.classList.add("spanText")
 
         btnClose.addEventListener('click', () => {
-            document.querySelector('.modalContain').innerHTML = "";
+            document.querySelector('.modalContain').textContent = "";
             c.checked = false;
         })
 
@@ -60,8 +61,9 @@ async function modalUnsubscriveMission(c, btnResponsiv, dataId, dataTitle) {
             });
 
             if (!response.ok) {
-                console.log("Erreur lors de la récupération des données");
-                window.location.href = "/";
+                alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant.";
+                c.checked = false;
+                return;
             }
 
             const data = await response.json();
@@ -76,7 +78,7 @@ async function modalUnsubscriveMission(c, btnResponsiv, dataId, dataTitle) {
                         location.reload();
                     }
 
-                    document.querySelector('.modalContain').innerHTML = "";
+                    document.querySelector('.modalContain').textContent = "";
                     c.checked = false;
 
                 }, 3000);
@@ -92,12 +94,16 @@ async function modalUnsubscriveMission(c, btnResponsiv, dataId, dataTitle) {
                         location.reload();
                     }
 
-                    document.querySelector('.modalContain').innerHTML = "";
+                    document.querySelector('.modalContain').textContent = "";
                     c.disabled = true;
 
                 }, 3000);
             }
         });
+
+    } else {
+
+        alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant.";
     }
 }
 

@@ -229,8 +229,7 @@ const manageMissionInputProtection = [
     body("title")
         .trim()
         .notEmpty()
-        .withMessage("Le titre est obligatoire")
-        .escape(),
+        .withMessage("Le titre est obligatoire"),
 
     body("category")
         .trim()
@@ -245,8 +244,7 @@ const manageMissionInputProtection = [
         .notEmpty()
         .withMessage("La description est obligatoire")
         .isLength({ min: 2, max: 2000 })
-        .withMessage("La description doit contenir entre 2 et 2000 caractères")
-        .escape(),
+        .withMessage("La description doit contenir entre 2 et 2000 caractères"),
 
     body("date")
         .trim()
@@ -270,8 +268,7 @@ const manageMissionInputProtection = [
         .withMessage("L'heure de fin doit être au format valide"),
 
     body("city")
-        .trim()
-        .escape(),
+        .trim(),
 
     body("cityId")
         .trim()
@@ -286,8 +283,7 @@ const manageMissionInputProtection = [
         .notEmpty()
         .withMessage("Le nom du lieu est obligatoire")
         .isLength({ min: 1, max: 500 })
-        .withMessage("Le nom du lieu doit contenir entre 1 et 500 caractères")
-        .escape(),
+        .withMessage("Le nom du lieu doit contenir entre 1 et 500 caractères"),
 
     body("spaceAvailable")
         .trim()
@@ -306,7 +302,6 @@ const manageMissionInputProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-
             res.locals.errorAlertMsg = error.array()[0].msg;
         }
 

@@ -1,24 +1,14 @@
 // ==============================
 // IMPORTS & DEPENDENCIES
 // ==============================
-
-// Libraries
-
-// Models
+const logger = require('../../utils/logger.js');
 const missionMdl = require('../../models/MissionModel');
-
-// Controllers
-
-// Utils - Services
 const utils = require('../../utils/utils.js');
 const service = require('../../services/services.js');
-
-// Get Functions
 
 // ==============================
 // SEARCH BY CATEGORY, REGION AND DATE
 // ==============================
-
 exports.searchByCategories = async (req, res) => {
 
     let renderPathByRole = "home/404"
@@ -43,7 +33,7 @@ exports.searchByCategories = async (req, res) => {
                 ;
 
             user.isVolunteer ? res.locals.missionsClear = [] : res.locals.missions = [];
-            return res.render(renderPathByRole);
+            return res.status(422).render(renderPathByRole);
         }
 
         const missionsSelected = await missionMdl.searchByCategories(regionSelected, categorySelected, tripStart, tripEnd);
@@ -54,27 +44,24 @@ exports.searchByCategories = async (req, res) => {
         res.locals.missionsClear = utils.clearData(filterOutRegisteredMissions);
         res.locals.searchFilters = { regionSelected, categorySelected };
 
-        res.render(renderPathByRole);
+        return res.status(200).render(renderPathByRole);
 
     } catch (error) {
 
-        console.log("test")
-
-        console.error(error);
+        logger.error(error);
 
         res.locals.missions = [];
         res.locals.missionsClear = [];
         res.locals.searchFilters = [];
         res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
 
-        res.render(renderPathByRole);
+        return res.status(500).render(renderPathByRole);
     }
 }
 
 // ==============================
 // AUTO COMPLETION SYSTEM FOR INSERTING CITY IN FORM
 // ==============================
-
 exports.searchCity = async (req, res) => {
 
     try {
@@ -104,14 +91,13 @@ exports.searchCity = async (req, res) => {
 
     } catch (error) {
 
-        console.error('Erreur searchCity :', error);
+        console.error(error);
     }
 }
 
 // ==============================
 // GET DATA MISSION SHOW
 // ==============================
-
 exports.getDataMission = async (req, res) => {
 
     let renderPathByRole = null;
@@ -123,7 +109,7 @@ exports.getDataMission = async (req, res) => {
         const dateFormat = service.dateFormat(dataMission.mission_date);
         const timeFormat = service.timeFormat(dataMission.mission_start_time, dataMission.mission_end_time);
 
-        res.render(renderPathByRole, {
+        return res.status(200).render(renderPathByRole, {
             dataMission: dataMission || [],
             dateFormat: dateFormat || [],
             timeFormat: timeFormat || [],
@@ -131,10 +117,10 @@ exports.getDataMission = async (req, res) => {
 
     } catch (error) {
 
-        console.log(error);
+        logger.error(error);
 
         res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
-        res.render(renderPathByRole, {
+        return res.status(500).render(renderPathByRole, {
             dataMission: [[]],
             dateFormat: [],
             timeFormat: [],
@@ -149,7 +135,7 @@ exports.getDataMissionHome = async (req, res) => {
         const dateFormat = service.dateFormat(dataMission.mission_date);
         const timeFormat = service.timeFormat(dataMission.mission_start_time, dataMission.mission_end_time);
 
-        res.render('home/detailMission', {
+        return res.status(200).render('home/detailMission', {
             dataMission: dataMission || [],
             dateFormat: dateFormat || [],
             timeFormat: timeFormat || [],
@@ -160,7 +146,7 @@ exports.getDataMissionHome = async (req, res) => {
         console.log(error);
 
         res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
-        res.render('home/detailMission', {
+        return res.status(500).render('home/detailMission', {
             dataMission: [[]],
             dateFormat: [],
             timeFormat: [],

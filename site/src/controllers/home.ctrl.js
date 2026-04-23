@@ -104,6 +104,6 @@ exports.submitForm = async (req, res) => {
     } catch (error) {
 
         logger.error(error);
-        return res.status(500).json({ messageError: "Une erreur interne est survenue. Veuillez réessayer plus tard.", messageErrorIsTrue: true });
+        return res.status(500).json({ messageError: "Une erreur est survenue. Merci de réessayer dans un instant.", messageErrorIsTrue: true });
     }
 }

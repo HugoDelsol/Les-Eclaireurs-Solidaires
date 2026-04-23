@@ -41,8 +41,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
         });
 
         if (!response.ok) {
-            console.log("Erreur lors de la récupération des données");
-            window.location.href = "/";
+            alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant.";            
+            return;
         }
 
         const htmlResponse = await response.text();
@@ -63,7 +63,7 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
 
         btnClose.addEventListener("click", () => {
 
-            document.querySelector('.modalContain').innerHTML = "";
+            document.querySelector('.modalContain').textContent = "";
             c.checked = false;
         })
 
@@ -74,8 +74,8 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
             });
 
             if (!response.ok) {
-                console.log("Erreur lors de la récupération des données");
-                window.location.href = "/";
+                alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant."
+                return;
             }
 
             const data = await response.json();
@@ -86,7 +86,7 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 modalToggle.classList.toggle('toggleBlock');
 
                 setTimeout(() => {
-                    document.querySelector('.modalContain').innerHTML = "";
+                    document.querySelector('.modalContain').textContent = "";
                     c.disabled = true;
                 }, 3000);
 
@@ -96,7 +96,7 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
                 c.checked = false;
 
                 setTimeout(() => {
-                    document.querySelector('.modalContain').innerHTML = "";
+                    document.querySelector('.modalContain').textContent = "";
                     c.checked = false;
                 }, 3000);
             }
@@ -104,6 +104,6 @@ async function modalRegisterMission(c, b, idMission, titleMission) {
 
     } else {
 
-        console.log("Erreur modalRegisterMission")
+        alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant.";
     }
 }

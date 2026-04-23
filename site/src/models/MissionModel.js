@@ -518,7 +518,7 @@ exports.registerMissionUser = async (idUser, idMission) => {
 
         if (result.affectedRows !== 1) return false;
 
-        const idUpdate = result.insertId
+        const idUpdate = result.insertId;
 
         await this.updateSpaceAvailable(idUpdate, '-')
 

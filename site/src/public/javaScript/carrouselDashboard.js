@@ -59,13 +59,10 @@ async function carrouselMissionByRegion() {
 
         dataRegion = await response.json();
 
-        console.log(dataRegion)
-
         dataRegion.forEach((m) => {
             const img = new Image();
             img.src = m.mission_img;
         });
-
 
         if (dataRegion.length == 0) {
             ifNoDataRegion.style.display = "none";

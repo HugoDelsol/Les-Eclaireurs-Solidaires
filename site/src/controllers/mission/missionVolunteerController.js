@@ -1,27 +1,17 @@
 // ==============================
 // IMPORTS & DEPENDENCIES
 // ==============================
-
-// Libraries
-
-// Models
 const missionMdl = require('../../models/MissionModel');
 const userMdl = require('../../models/UserModel');
-
-// Controllers
-
-// Utils - Services
 const utils = require('../../utils/utils.js');
 const service = require('../../services/services.js');
-
-// Get Functions
+const logger = require('../../utils/logger.js');
 
 // ==============================
 // DISPLAY MODAL REGISTER MISSION
 // ==============================
-
 exports.modalRegisterMission = async (req, res) => {
-    return res.render('modals/subscribe');
+    return res.status(200).render('modals/subscribe');
 }
 
 // ==============================
@@ -29,7 +19,7 @@ exports.modalRegisterMission = async (req, res) => {
 // ==============================
 
 exports.modalUnsubscribeMission = async (req, res) => {
-    return res.render('modals/unsubscribe');
+    return res.status(200).render('modals/unsubscribe');
 }
 
 // ==============================
@@ -64,11 +54,12 @@ exports.fetchMissionByRegionDashboardUser = async (req, res) => {
             }
         }
 
-        res.json(ourSelectionRegion);
+        return res.status(200).json(ourSelectionRegion);
 
     } catch (error) {
 
-        res.status(400).json({ errorMsg: "Impossible d'afficher la liste des missions sélectionnées pour vous." });
+        console.log(error);
+        return res.status(500).json({ errorMsg: "Impossible d'afficher la liste des missions sélectionnées pour vous." });
     }
 }
 
@@ -80,11 +71,12 @@ exports.fetchMissionByRegistrationDashboardUser = async (req, res) => {
 
         const getAllMissionsByUser = await missionMdl.getAllMissionsByUser(idUser);
 
-        res.json(getAllMissionsByUser);
+        return res.status(200).json(getAllMissionsByUser);
 
     } catch (error) {
 
-        res.status(400).json({ errorMsg: "Impossible d'afficher la liste des missions liées aux inscriptions." });
+        console.log(error);
+        return res.status(500).json({ errorMsg: "Impossible d'afficher la liste des missions liées aux inscriptions." });
     }
 }
 
@@ -96,11 +88,12 @@ exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
 
         const getMissionAccomplishedByUser = await missionMdl.addUserHistoryMission(idUser)
 
-        res.json(getMissionAccomplishedByUser);
+        return res.status(200).json(getMissionAccomplishedByUser);
 
     } catch (error) {
-
-        res.status(400).json({ errorMsg: "Impossible d'afficher la liste des missions accomplies." });
+        
+        console.log(error);
+        return res.status(500).json({ errorMsg: "Impossible d'afficher la liste des missions accomplies." });
     }
 }
 
@@ -124,16 +117,16 @@ exports.missionUserShow = async (req, res) => {
         res.locals.regions = regions;
         res.locals.categoriesMission = categoriesMission;
 
-        res.render('account/volunteer/listMissionUser');
+        return res.status(200).render('account/volunteer/listMissionUser');
 
     } catch (error) {
 
-        console.error(error);
+        logger.error(error);
 
         res.locals.errorAlertMsg = "Impossible d'afficher la liste des missions.";
         res.locals.missionsClear = [];
 
-        res.render('account/volunteer/listMissionUser');
+        return res.status(500).render('account/volunteer/listMissionUser');
     }
 }
 
@@ -189,14 +182,14 @@ exports.dashboardAllStats = async (req, res, idUser) => {
 
         res.locals.missionByRegion = ourSelectionRegion;
 
-        res.render('account/volunteer/dashboardUser');
+        return res.status(200).render('account/volunteer/dashboardUser');
 
     } catch (error) {
 
-        console.log("Controler getAllMissionsByUser: ", error);
+        logger.error(error);
         res.locals.errorAlertMsg = "Une erreur est survenue lors du chargement de votre tableau de bord. Merci de réessayer dans quelques instants."
 
-        res.render('account/volunteer/dashboardUser', {
+        return res.status(500).render('account/volunteer/dashboardUser', {
             missionByRegion: [],
             missionsUser: [],
             historyMissionUser: [],
@@ -219,13 +212,12 @@ exports.addRegisterMissionUser = async (req, res) => {
 
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
 
-            return res.status(400).json({ message: "Petit coquin, tu as bien failli m'avoir" });
+            return res.status(403).json({ message: "Accès interdit" });
         }
 
         if (registrationByUser) {
 
-            console.log("alreadyAdded: true");
-            return res.json({ alreadyAdded: true, message: "Vous êtes déjà inscrit à cette mission" });
+            return res.status(409).json({ alreadyAdded: true, message: "Vous êtes déjà inscrit à cette mission" });
 
         } else {
 
@@ -234,15 +226,14 @@ exports.addRegisterMissionUser = async (req, res) => {
             if (result === false) {
                 throw new Error;
             }
-
-            console.log("alreadyAdded: false");
-            return res.json({ alreadyAdded: false });
+            
+            return res.status(200).json({ alreadyAdded: false });
         }
 
     } catch (error) {
 
-        console.error("Erreur registerMissionUser :", error);
-        return res.json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
+        logger.error(error);
+        return res.status(500).json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
     }
 }
 
@@ -255,7 +246,7 @@ exports.unregisterAVolunteer = async (req, res) => {
 
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
 
-            return res.status(400).json({ message: "Petit coquin, tu as bien failli m'avoir" });
+            return res.status(403).json({ message: "Accès interdit" });
         }
 
         const result = await missionMdl.unregisterAVolunteer(idRegistration);
@@ -264,12 +255,12 @@ exports.unregisterAVolunteer = async (req, res) => {
             return res.json({ registrationDeleted: false, message: "Une erreur est survenu, veuillez réessayer dans un instant." })
         }
 
-        return res.json({ registrationDeleted: true })
+        return res.status(200).json({ registrationDeleted: true })
 
     } catch (error) {
 
-        console.error("Erreur registerMissionUser :", error);
-        return res.json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
+        logger.error(error);
+        return res.status(500).json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
     }
 }
 
@@ -281,7 +272,7 @@ exports.detailsOfNextMission = async (req, res) => {
         const dateFormat = service.dateFormat(dataMission.mission_date);
         const timeFormat = service.timeFormat(dataMission.mission_start_time, dataMission.mission_end_time);
 
-        res.render("account/volunteer/detailsOfNextMission", {
+        return res.status(200).render("account/volunteer/detailsOfNextMission", {
             dataMission: dataMission || [],
             dateFormat: dateFormat || [],
             timeFormat: timeFormat || [],
@@ -289,10 +280,9 @@ exports.detailsOfNextMission = async (req, res) => {
 
     } catch (error) {
 
-        console.log(error);
-
+        logger.error(error);
         res.locals.errorAlertMsg = "Un problème est survenu. Merci de réessayer dans quelques instants.";
-        res.render(renderPathByRole, {
+        return res.status(500).render(renderPathByRole, {
             dataMission: [[]],
             dateFormat: [],
             timeFormat: [],
