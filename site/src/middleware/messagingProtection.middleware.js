@@ -10,9 +10,9 @@ const { body, validationResult } = require('express-validator');
 
 const messagingAddNewMessage = [
 
-    body('object').trim().escape().notEmpty().withMessage("L'objet de votre demande est requis"),
+    body('object').trim().notEmpty().withMessage("L'objet de votre demande est requis"),
     body('email').trim().isEmail().normalizeEmail().withMessage("L'adresse email saisie n'est pas valide"),
-    body('content').trim().escape().notEmpty().withMessage("Le contenu du message ne peut pas être vide").isLength({ min: 10 }).withMessage("Votre message est trop court (10 caractères minimum)"),
+    body('content').trim().notEmpty().withMessage("Le contenu du message ne peut pas être vide").isLength({ min: 10 }).withMessage("Votre message est trop court (10 caractères minimum)"),
 
     (req, res, next) => {
 
@@ -22,11 +22,11 @@ const messagingAddNewMessage = [
 
             const message = error.array()[0].msg;
 
-            return res.render('messaging/newMessage', {
+            return res.status(422).render('messaging/newMessage', {
                 errorAlertMsg: message,
                 object: req.body.object,
-                email: req.body.email,
-                content: req.body.content,
+                textarea: req.body.content,
+                email: req.body.email,                
             });
         }
 
@@ -40,10 +40,12 @@ const messagingAddNewMessage = [
 
 const messagingAddNewMessageFromVolunteer = [
 
-    body('object').trim().escape().notEmpty().withMessage("L'objet de votre demande est requis"),
-    body('content').trim().escape().notEmpty().withMessage("Le contenu du message ne peut pas être vide").isLength({ min: 10 }).withMessage("Votre message est trop court (10 caractères minimum)"),
+    body('object').trim().notEmpty().withMessage("L'objet de votre demande est requis"),
+    body('content').trim().notEmpty().withMessage("Le contenu du message ne peut pas être vide").isLength({ min: 10 }).withMessage("Votre message est trop court (10 caractères minimum)"),
 
     (req, res, next) => {
+
+        console.log(req.body)
 
         const error = validationResult(req);
 
@@ -51,10 +53,10 @@ const messagingAddNewMessageFromVolunteer = [
 
             const message = error.array()[0].msg;
 
-            return res.render('messaging/volunteerNewMessage', {
+            return res.status(422).render('messaging/volunteerNewMessage', {
                 errorAlertMsg: message,
                 object: req.body.object,
-                content: req.body.content,
+                textarea: req.body.content,
             });
         }
 
@@ -82,7 +84,6 @@ const chatMessagingProtection = [
 
             const message = error.array()[0].msg;
             res.locals.errorAlertMsg = message;
-            console.log(res.locals.errorAlertMsg);
         }
 
         next();

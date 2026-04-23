@@ -180,7 +180,9 @@ exports.authorizeDisplayMessagesForUser = async (idChannel) => {
 
         const [result] = await db.query(req, [idChannel]);
 
-        return result[0]
+        if (result.length === 0) return false;
+
+        return result[0];
         
     } catch (error) {
 

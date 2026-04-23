@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="/style/account/chat.css">
 <link rel="stylesheet" href="/style/account/messagingMobile.css">
 <script src="/javaScript/style.js" defer></script>
-<script src="/javaScript/sideNavStyle.js" defer></script>
 
 <%- include('../partials/_head') %>
 <%- include('../partials/_alert') %>
@@ -37,7 +36,9 @@
                     <label for="textarea"></label>
                     <textarea name="textarea" id="textarea"><%= textarea ? textarea : "" %></textarea>
                     <label for="idChannel"></label>
-                    <button class="btnHover btnSecondary">ENVOYER</button>
+                    <button class="btnHover btnSecondary">
+                        <img style="width: 28px;" src="/pictures/globalIcons/envoyer.png" alt="">
+                    </button>
                 </form>
             </section>
         </div>

@@ -1,5 +1,4 @@
 const db = require('../config/database');
-//const { updateMission } = require('../controllers/mission/missionAdminController');
 
 exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, cityId, category) => {
 
