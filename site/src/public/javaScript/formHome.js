@@ -61,6 +61,7 @@ async function apiDataForm() {
 
     } catch (error) {
 
+        console.log(error);
         alertFrontOfficeError.textContent = "Connexion au serveur impossible.";
     }
 }

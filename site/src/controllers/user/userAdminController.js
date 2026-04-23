@@ -22,7 +22,7 @@ const logger = require('../../utils/logger');
 // ==============================
 
 exports.signUpAdminForm = async (req, res) => {
-    res.render('connection/signUpAdmin');
+    return res.status(200).render('connection/signUpAdmin');
 }
 
 exports.dashboardAdmin = async (req, res) => {
@@ -36,7 +36,7 @@ exports.tokenView = async (req, res) => {
     res.locals.admins = admins.resultAdmins;
     res.locals.superAdmins = admins.resultSuperAdmins;
 
-    res.render('account/admin/generateToken');
+    return res.status(200).render('account/admin/generateToken');
 }
 
 // ==============================
@@ -56,14 +56,14 @@ exports.listOfVolunteers = async (req, res) => {
 
         res.locals.listUsers = allVolunteers.resultAllVolunteers;
 
-        res.status(200).render('account/admin/listOfVolunteers');
+        return res.status(200).render('account/admin/listOfVolunteers');
 
     } catch (error) {
 
         logger.error(error);
         res.locals.listUsers = [];
         res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
-        res.status(500).render('account/admin/listOfVolunteers');
+        return res.status(500).render('account/admin/listOfVolunteers');
     }
 }
 
@@ -79,14 +79,14 @@ exports.activeVolunteer = async (req, res) => {
 
         res.locals.listUsers = listOfVolunteers.resultActiveVolunteerCurrentDate
 
-        res.status(200).render('account/admin/listOfVolunteers');
+        return res.status(200).render('account/admin/listOfVolunteers');
 
     } catch (error) {
 
         logger.error(error);
         res.locals.listUsers = [];
         res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
-        res.status(500).render('account/admin/listOfVolunteers');
+        return res.status(500).render('account/admin/listOfVolunteers');
     }
 }
 
@@ -103,7 +103,7 @@ exports.findVolunteer = async (req, res) => {
             : res.locals.errorAlertMsg = ""
             ;
 
-        res.status(200).render('account/admin/listOfVolunteers');
+        return res.status(200).render('account/admin/listOfVolunteers');
 
     } catch (error) {
 
@@ -111,7 +111,7 @@ exports.findVolunteer = async (req, res) => {
 
         res.locals.listUsers = [];
         res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
-        res.status(500).render('account/admin/listOfVolunteers');
+        return res.status(500).render('account/admin/listOfVolunteers');
     }
 }
 
@@ -146,7 +146,7 @@ exports.generateToken = async (req, res) => {
             tokenValue = service.generateToken(emailTokenAdmin, "admin");
         }
 
-        res.status(status).render('account/admin/generateToken', {
+        return res.status(status).render('account/admin/generateToken', {
             tokenValue: tokenValue
         })
 
@@ -156,7 +156,7 @@ exports.generateToken = async (req, res) => {
         status = 500;
 
         res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
-        res.status(status).render('account/admin/generateToken', {
+        return res.status(status).render('account/admin/generateToken', {
             tokenAdmin: [],
             tokenSuper: [],
         })
@@ -193,7 +193,7 @@ exports.saveAdmin = async (req, res) => {
 
         if (saveAdmin) {
             res.locals.successAlertMsg = "Veuillez vous connecter pour accéder à votre compte.";
-            res.status(200).render('connection/signIn');
+            return res.status(200).render('connection/signIn');
         }
 
     } catch (error) {
@@ -201,7 +201,7 @@ exports.saveAdmin = async (req, res) => {
         logger.error(error);
 
         res.locals.errorAlertMsg = "Une erreur est survenue. Merci de réessayer dans un instant.";
-        res.status(500).render('connection/signUpAdmin', {
+        return res.status(500).render('connection/signUpAdmin', {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,

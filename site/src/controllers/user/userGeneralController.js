@@ -2,6 +2,8 @@
 // IMPORTS & DEPENDENCIES
 // ==============================
 
+const logger = require('../../utils/logger');
+
 // Libraries
 const bcrypt = require('bcrypt');
 const { matchedData } = require('express-validator');
@@ -9,10 +11,8 @@ const { matchedData } = require('express-validator');
 // Models
 const userGeneralMdl = require('../../models/UserModel');
 
-// Controllers
-const userVolunteerCtrl = require('../user/userVolunteerController');
-
 // Get Functions
+const { dashboardUser } = require('../user/userVolunteerController');
 const { getStatsMissions } = require('../mission/missionAdminController')
 
 // ==============================
@@ -20,11 +20,11 @@ const { getStatsMissions } = require('../mission/missionAdminController')
 // ==============================
 
 exports.signIn = async (req, res) => {
-    res.render('connection/signIn');
+    return res.status(200).render('connection/signIn');
 }
 
 exports.signUp = async (req, res) => {
-    res.render('connection/signUp');
+    return res.status(200).render('connection/signUp');
 }
 
 // ==============================
@@ -70,7 +70,7 @@ exports.auth = async (req, res) => {
                     isVolunteer: true
                 }),
 
-                action: userVolunteerCtrl.dashboardUser
+                action: dashboardUser
             }
         };
         
@@ -82,22 +82,21 @@ exports.auth = async (req, res) => {
             roleKey = `admin_${userExist._id_admin_role}`;
         }
         
-        const session = rolesMaps[roleKey].session(userExist);        
+        const session = rolesMaps[roleKey].session(userExist); 
         req.session.userExist = session;
 
         res.locals.pseudoUser = req.session.userExist.firstName;
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
-        res.locals.isAdmin = req.session.userExist.isAdmin;
-        
+        res.locals.isAdmin = req.session.userExist.isAdmin;        
         
         rolesMaps[roleKey].action(req, res);
 
     } catch (error) {
 
-        console.error(error);
+        logger.error(error);
 
-        res.render('connection/signIn', {
-           errorAlertMsg : error.message
+        return res.status(500).render('connection/signIn', {
+           errorAlertMsg : "Une erreur est survenue. Merci de réessayer dans un instant.",
         });
     }
 }

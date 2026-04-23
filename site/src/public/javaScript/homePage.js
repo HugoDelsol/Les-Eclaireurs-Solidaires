@@ -35,7 +35,8 @@ async function dataStats() {
 
     } catch (error) {
 
-        alertFrontOfficeError.textContent = "Connexion au serveur impossible.";
+        console.log(error);
+        alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant.";
     }
 }
 dataStats()
@@ -93,6 +94,8 @@ async function updateStats(result) {
     } catch (error) {
 
         console.log(error);
+        alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant.";
+
     }
 }
 

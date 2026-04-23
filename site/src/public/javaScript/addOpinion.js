@@ -12,14 +12,14 @@ btnAddOpinion.forEach(el => {
 
 modalContainOpinion.addEventListener('click', (e) => {
     if (e.target === modalContainOpinion) {
-        closeModal()
+        closeModal();
     }
 });
 
 sendOpinion.addEventListener('click', (event) => {
     event.preventDefault()
     const conf = confirm("Êtes-vous sûr de vouloir envoyer votre avis ?")
-    if (conf) { sendUserOpinion() }
+    if (conf) sendUserOpinion() 
 });
 
 function closeModal() {
@@ -38,25 +38,25 @@ async function sendUserOpinion() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(dataOpinion)
-        })
-
-        if (!response.ok) {
-            throw new Error('Erreur');
-        }
+        });
 
         const jsonResult = await response.json();
 
         let valueClass;
         let valueMsg;
 
-        if (jsonResult.mdlError) {
-            valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.mdlError
+        if (!response.ok) {
+
+            if (jsonResult.mdlError) {
+                valueClass = alertFrontOfficeError;
+                valueMsg = jsonResult.mdlError
+            }
+            if (jsonResult.messageErrorIsTrue) {
+                valueClass = alertFrontOfficeError;
+                valueMsg = jsonResult.messageError
+            }
         }
-        if (jsonResult.messageErrorIsTrue) {
-            valueClass = alertFrontOfficeError;
-            valueMsg = jsonResult.messageError
-        }
+
         if (jsonResult.messageSuccessIsTrue) {
             valueClass = alertFrontOfficeSuccess;
             valueMsg = jsonResult.messageSuccesss;
@@ -68,7 +68,8 @@ async function sendUserOpinion() {
 
     } catch (error) {
 
-        console.log("Erreur sendUserOpinion : ", error);
+        console.log(error);
+        alertFrontOfficeError.textContent = "Une erreur est survenue. Merci de réessayer dans un instant.";
     }
 }
 

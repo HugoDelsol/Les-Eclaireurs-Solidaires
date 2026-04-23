@@ -329,7 +329,7 @@ const userOpinionInputProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.json({ mdlError: error.array()[0].msg, mdlErrorIsTrue: true });
+            return res.status(422).json({ mdlError: error.array()[0].msg, mdlErrorIsTrue: true });
         }
 
         next();
