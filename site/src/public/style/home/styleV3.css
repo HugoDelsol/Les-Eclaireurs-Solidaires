@@ -237,9 +237,11 @@ span {
 
 .currentMission img {
     width: 350px;
+    height: 260px;
     border-radius: 0.5em;
     object-fit: cover;
-    max-height: 280px;
+    object-position: center;
+    flex-shrink: 0;
 }
 
 .containerHome .widthBtnMission {
@@ -443,11 +445,17 @@ form textarea {
 }
 
 .reviewsSize div p {
-	height: 100px;
-	overflow-y: auto;
-	padding: 0 6px;
-	line-height: 1.4;
-	border-left: 2px solid #e26667;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    padding: 0 10px;
+    line-height: 1.4;
+    border-left: 2px solid #e26667;
+    word-break: break-word;
+    height: auto;
+    min-height: 4.2em;
 }
 
 /***FOOTER***/

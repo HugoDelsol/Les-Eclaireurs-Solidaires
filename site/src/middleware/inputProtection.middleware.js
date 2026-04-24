@@ -313,13 +313,11 @@ const userOpinionInputProtection = [
 
     body('textContent')
         .trim()
-        .isLength({ min: 20, max: 500 })
-        .withMessage('Votre avis doit contenir entre 20 et 500 caractères.')
+        .isLength({ min: 20, max: 300 })
+        .withMessage('Votre avis doit contenir entre 20 et 300 caractères.')
         .escape(),
 
     (req, res, next) => {
-
-        console.log(req.body)
 
         const error = validationResult(req);
 
