@@ -54,10 +54,12 @@ router.get('/siteMap',
 // ==============================================
 
 router.get('/signUp', 
+    sessionMdw.sessionCookies,
     userGeneralCtrl.signUp
 );
 
 router.get('/signIn', 
+    sessionMdw.sessionCookies,
     userGeneralCtrl.signIn
 );
 

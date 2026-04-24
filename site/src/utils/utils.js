@@ -24,7 +24,6 @@ exports.clearData = (missions) => {
 }
 
 
-
 exports.randomImage = (fetchGroupImages) => {
 
     let resultImgUrl = null;

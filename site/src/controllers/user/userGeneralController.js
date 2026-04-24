@@ -10,6 +10,7 @@ const { matchedData } = require('express-validator');
 
 // Models
 const userGeneralMdl = require('../../models/UserModel');
+const service = require('../../services/services.js');
 
 // Get Functions
 const { dashboardUser } = require('../user/userVolunteerController');
@@ -89,7 +90,10 @@ exports.auth = async (req, res) => {
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
         res.locals.isAdmin = req.session.userExist.isAdmin;        
         
-        rolesMaps[roleKey].action(req, res);
+        rolesMaps[roleKey].action(req, res);        
+
+        const tokenSession = service.generateTokenSession(req.session.userExist.id);
+        res.cookie('tokenSession', tokenSession);
 
     } catch (error) {
 

@@ -1,9 +1,41 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const missionModel = require('../models/MissionModel');
-const { PassThrough } = require('nodemailer/lib/xoauth2');
+const logger = require('../utils/logger')
 
 const secretToken = process.env.TOKEN_SECRET;
+
+exports.generateTokenSession = (idUser) => {
+
+    try {
+
+        const baseToken = { idUser };
+        const expiry = { expiresIn: "1d" };
+        return jwt.sign(baseToken, secretToken, expiry);
+
+    } catch (error) {
+
+        logger.error(error);
+        return null;
+    }
+}
+
+exports.verifyTokenSession = (token, idUser) => {
+
+    try {
+
+        const decoded = jwt.verify(token, secretToken);
+
+        if (decoded.idUser !== idUser) return null;
+
+        return true;
+
+    } catch (error) {
+
+        logger.error(error);
+        return null;
+    }
+}
 
 exports.generateToken = (email, role) => {
 
@@ -17,7 +49,7 @@ exports.generateToken = (email, role) => {
 
     } catch (error) {
 
-        console.log("Generate Token Service :", error);
+        logger.error(error);
         return null;
     }
 }
@@ -38,7 +70,7 @@ exports.verifyToken = (token, email) => {
 
     } catch (error) {
 
-        console.log("Generate Token Service :", error);
+        logger.error(error);
         return null;
     }
 }
@@ -76,7 +108,7 @@ exports.filterOutRegisteredMissions = async (req, missionsSelected) => {
 
     } catch (error) {
 
-        console.log("filterOutRegisteredMissions : ", error);
+        logger.error(error);
         return null;
     }
 }

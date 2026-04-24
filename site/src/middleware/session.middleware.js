@@ -1,5 +1,6 @@
 const { header } = require('express-validator');
-const url = require('url')
+const url = require('url');
+const service = require('../services/services');
 
 const checkAuth = (req, res, next) => {
 
@@ -46,11 +47,43 @@ const allAdministratorAuthorization = (req, res, next) => {
     next();
 }
 
-const logout = (req, res, next) => {    
+const logout = (req, res, next) => {
 
-    req.session.destroy((err) => {        
+    req.session.destroy((err) => {
         res.redirect('/home')
     })
+}
+
+const sessionCookies = (req, res, next) => {
+
+    let redirectPath = "/dashboardUser";
+
+    if (!req.session.userExist) {
+        return next();
+    }
+
+    if (req.session.userExist && req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
+        redirectPath = "/admin/dashboardAdmin";
+    }
+
+    const idUser = req.session.userExist.id;
+    const cookies = req.headers.cookie;
+
+    const cookiesMap = {};
+
+    cookies.split(';').forEach(element => {
+        const [name, value] = element.split("=");
+        cookiesMap[name.trim()] = value;
+    });
+
+    const token = cookiesMap['tokenSession'];
+    const test = service.verifyTokenSession(token, idUser);
+
+    if (test) {
+        return res.redirect(redirectPath);
+    }
+
+    next();
 }
 
 module.exports = {
@@ -60,4 +93,5 @@ module.exports = {
     volunteerAuthorization,
     superAdminAuthorization,
     allAdministratorAuthorization,
+    sessionCookies,
 }

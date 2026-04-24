@@ -91,7 +91,7 @@ exports.fetchMissionAccomplishedDashboardUser = async (req, res) => {
         return res.status(200).json(getMissionAccomplishedByUser);
 
     } catch (error) {
-        
+
         console.log(error);
         return res.status(500).json({ errorMsg: "Impossible d'afficher la liste des missions accomplies." });
     }
@@ -167,11 +167,11 @@ exports.dashboardAllStats = async (req, res, idUser) => {
         const obtainStatsOnVolunteer = await missionMdl.obtainStatsOnVolunteer(idUser);
 
         let count = 0;
-        let i = 0;
         let tab = [];
 
-        obtainStatsOnVolunteer.resultTimeDiff.forEach((e) => {
-            tab.push(parseInt(e.timeDiff));
+        obtainStatsOnVolunteer.resultTimeDiff.forEach((e, i) => {
+            const hours = Math.abs(parseInt(e.timeDiff))
+            tab.push(hours);
             count += tab[i];
             i++;
         })
@@ -226,7 +226,7 @@ exports.addRegisterMissionUser = async (req, res) => {
             if (result === false) {
                 throw new Error;
             }
-            
+
             return res.status(200).json({ alreadyAdded: false });
         }
 
