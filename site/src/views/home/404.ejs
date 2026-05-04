@@ -1,84 +1,134 @@
 <%- include('../partials/_head') %>
-<%- include('../partials/_alert') %>
-<link rel="stylesheet" href="/style/home/404.css">
-<link rel="stylesheet" href="/style/globalStyle.css">
-<script src="/javaScript/style.js" defer></script>
+  <%- include('../partials/_alert') %>
+    <link rel="stylesheet" href="/style/home/404.css">
+    <link rel="stylesheet" href="/style/globalStyle.css">
+    <script src="/javaScript/style.js" defer></script>
 
-<main class="mainBackOffice">
-  <h1 style="font-size: 6rem; margin: 0; color: rgb(216, 141, 1) ;" >404</h1>
-  <p style="font-size: 1.5rem; margin: 1rem 0;">Oups ! La page que vous cherchez n’existe pas ou un problème est
-    survenu. <br> Alors pourquoi ne pas faire une petite pause en jouant ?
-  </p>
-  <p>Appuyez sur l’une des touches directionnelles de votre clavier pour commencer une partie. 🕹️</p>
-  <canvas width="600px" height="400px"></canvas>
-  <a href="/home" >Retour à la page d'Accueil</a>  
-</main>
-</body>
+    <main class="mainBackOffice">
+      <h1 style="font-size: 6rem; margin: 0; color: rgb(216, 141, 1) ;">404</h1>
+      <p style="font-size: 1.5rem; margin: 1rem 0;">Oups ! La page que vous cherchez n’existe pas ou un problème est
+        survenu... <br> Alors pourquoi ne pas faire une petite pause en jouant ?
+      </p>
+      <p>Appuyez sur l’une des touches directionnelles de votre clavier pour commencer une partie. 🕹️</p>
+      <canvas width="600px" height="400px"></canvas>
+      <a href="/home">Retour à la page d'Accueil</a>
+    </main>
+    </body>
 
-</html>
+    </html>
 
-<style>
-  canvas {
-    margin-top: 20px;
-    border: 1px solid black;
-  }
-  main{
-    line-height: 1.3;
-  }
-</style>
+    <style>
+      canvas {
+        margin-top: 20px;
+        border: 1px solid black;
+        background-color: rgb(255, 255, 255);
+      }
 
-<script>
+      main {
+        line-height: 1.3;
+      }
+    </style>
 
-  let keys = {
-    ArrowLeft: false,
-    ArrowRight: false,
-  }
+    <script>
 
-  const objectWidth = 160;
-  const objectHeight = 10;
-  const speed = 10
+      const canvas = document.querySelector('canvas');
+      const ctx = canvas.getContext('2d');
 
-  let positionHorizontal = 600 / 2 - objectWidth / 2
+      let dx = 4;
+      let dy = -4;
 
-  const canvas = document.querySelector('canvas');
-  const ctx = canvas.getContext('2d');
+      let keys = {
+        ArrowLeft: false,
+        ArrowRight: false,
+      }
 
-  function drawRect() {
+      let ball = {
+        x: canvas.width / 2 ,
+        y: 0,
+        size: 10,
+      }
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    ctx.fillStyle = "black"
-    ctx.fillRect(positionHorizontal, canvas.height - objectHeight, objectWidth, objectHeight)
+      let block = {
+        y: 12,
+        x: 0,
+        width: 100,
+        height: 10,
+        speed: 8
+      }
 
-    ctx.fillStyle = "orange"
-    ctx.arc(100, 100, 10, 0, Math.PI * 2)
-    ctx.fill()
-  }
+      block.x = canvas.width / 2 - block.width / 2;
+      block.y = canvas.height - block.y - block.height;
 
-  drawRect()
+      ball.x = canvas.width / 2;
+      ball.y = block.y - ball.size
 
+      function drawRect() {
 
-  window.addEventListener('keydown', (e) => {
-    if (event.code in keys) keys[e.code] = true;
-  });
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath()
+        ctx.fillStyle = "black";
+        ctx.fillRect(block.x, block.y, block.width, block.height);
 
-  window.addEventListener('keyup', (e) => {
-    if (event.code in keys) keys[e.code] = false;
-  });
+        ctx.fillStyle = "orange"
+        ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2)
+        ctx.fill();
+      }
 
-  function update() {
+      function ballMove() {
 
-    if (keys.ArrowLeft && positionHorizontal > 0) {
-      positionHorizontal -= speed
-    }
+        if (ball.y + dy < 0 || (ball.y + ball.size > block.y && ball.x + ball.size > block.x && ball.x < block.x + block.width)) {
+          dy = -dy;
+        }
+               
+        if (ball.x + dx < 0 || ball.x > canvas.width - ball.size * 2) {
+          dx = -dx;
+        }
 
-    if (keys.ArrowRight && positionHorizontal < canvas.width - objectWidth) {
-      positionHorizontal += speed
-    }
+        ball.y += dy
+        ball.x += dx
+      }
 
-    drawRect();
-    requestAnimationFrame(update);
-  }
+      let isRunning = false;
 
-  update()
-</script>
+      function update() {
+
+        if (isRunning) {
+
+          if (keys.ArrowLeft && block.x > 0) {
+            block.x -= block.speed
+          }
+
+          if (keys.ArrowRight && block.x < canvas.width - block.width) {
+            block.x += block.speed
+          }
+
+          
+          drawRect();
+          ballMove();
+        }
+        requestAnimationFrame(update);
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (event.code in keys) keys[e.code] = true;
+      });
+
+      window.addEventListener('keyup', (e) => {
+        if (event.code in keys) keys[e.code] = false;
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.code === "Space" && !isRunning) {
+          console.log(isRunning)
+          isRunning = true;
+        } else if (e.code === "Space" && isRunning) {
+          console.log(isRunning)
+          isRunning = false;
+        }
+      });
+
+      update();
+      ballMove();
+      drawRect();
+
+    </script>

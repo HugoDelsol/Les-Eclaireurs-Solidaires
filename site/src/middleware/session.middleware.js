@@ -56,19 +56,16 @@ const logout = (req, res, next) => {
 
 const sessionCookies = (req, res, next) => {
 
-    let redirectPath = "/dashboardUser";
-
     if (!req.session.userExist) {
         return next();
     }
-
+    
+    let redirectPath = "/dashboardUser";
     if (req.session.userExist && req.session.userExist.isAdmin || req.session.userExist.isSuperAdmin) {
         redirectPath = "/admin/dashboardAdmin";
     }
 
-    const idUser = req.session.userExist.id;
-    const cookies = req.headers.cookie;
-
+    const cookies = req.headers.cookie || "";
     const cookiesMap = {};
 
     cookies.split(';').forEach(element => {
@@ -76,10 +73,12 @@ const sessionCookies = (req, res, next) => {
         cookiesMap[name.trim()] = value;
     });
 
+    const idUser = req.session.userExist.id;
     const token = cookiesMap['tokenSession'];
-    const test = service.verifyTokenSession(token, idUser);
 
-    if (test) {
+    const isValid = service.verifyTokenSession(token, idUser);
+
+    if (isValid) {
         return res.redirect(redirectPath);
     }
 
