@@ -3,6 +3,7 @@
 // ------------------------------------
 
 require('dotenv').config();
+const helmetConfig = require('../site/src/middleware/helmet');
 const globalVars = require('../site/src/middleware/globalVars.middleware');
 const sideNav = require('../site/src/middleware/sideNav.middleware');
 const seo = require('../site/src/middleware/seo.middleware');
@@ -15,6 +16,7 @@ const MySQLStore = require('express-mysql-session')(session);
 // ⚙️ INITIALISATION DE L'APPLICATION
 // ------------------------------------
 const app = express();
+app.use(helmetConfig)
 const port = process.env.PORT || 3000;
 
 // ------------------------------------
