@@ -1,26 +1,32 @@
-const similarPassword = document.querySelector('#password');
-const similarPasswordConfirm = document.querySelector('#passwordConfirm');
+const password = document.querySelector('#password');
+const passwordConfirm = document.querySelector('#passwordConfirm');
 
-const inputValue = document.querySelectorAll('input');
-
-const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/
+const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
 
 function verifPassword() {
 
-    let password = this.value;
+    const regexValid = reg.test(password.value);
+    const samePassword = password.value === passwordConfirm.value;
 
-    if (similarPassword.value !== "" && similarPassword.value === similarPasswordConfirm.value && reg.test(password)) {
+    if (password.value === "" || passwordConfirm.value === "") {
 
-        similarPasswordConfirm.style.boxShadow = "0px 0px 24px rgba(0, 128, 0, 0.7)"
+        passwordConfirm.style.boxShadow = "none";
+        
+        return;
+    }
 
-    } else if ( similarPassword.value !== similarPasswordConfirm.value && !reg.test(password)) {
+    if (samePassword && regexValid) {
 
-        similarPasswordConfirm.style.boxShadow = "0px 0px 24px rgba(128, 0, 17, 0.7)"
+        passwordConfirm.style.boxShadow = "0px 0px 24px rgba(0, 128, 0, 0.7)";
+
+    } else {
+
+        passwordConfirm.style.boxShadow = "0px 0px 24px rgba(128, 0, 17, 0.7)";
     }
 }
 
-similarPassword.addEventListener("input", verifPassword);
-similarPasswordConfirm.addEventListener("input", verifPassword);
+password.addEventListener("input", verifPassword);
+passwordConfirm.addEventListener("input", verifPassword);
 
 
 

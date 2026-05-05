@@ -18,7 +18,7 @@ const { dashboardAllStats } = require('../mission/missionVolunteerController');
 
 exports.dashboardUser = async (req, res) => {
     const idUser = req.session.userExist.id;
-    dashboardAllStats(req, res, idUser);
+    await dashboardAllStats(req, res, idUser);
 }
 
 exports.userProfilSettingsShow = async (req, res) => {

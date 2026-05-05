@@ -26,7 +26,7 @@ exports.signUpAdminForm = async (req, res) => {
 }
 
 exports.dashboardAdmin = async (req, res) => {
-    getStatsMissions(req, res);
+    await getStatsMissions(req, res);
 }
 
 exports.tokenView = async (req, res) => {

@@ -34,11 +34,11 @@ exports.signUp = async (req, res) => {
 
 exports.auth = async (req, res) => {
 
-    try {  
-        
+    try {
+
         const safeData = matchedData(req);
-        
-        const {email, password} = safeData;
+
+        const { email, password } = safeData;
 
         const userExist = await exports.verifyAccountExist(email, password);
 
@@ -52,7 +52,7 @@ exports.auth = async (req, res) => {
                     firstName: u.admin_first_name,
                     isSuperAdmin: true
                 }),
-                action: getStatsMissions
+                action: await getStatsMissions
             },
 
             admin_2: {
@@ -61,7 +61,7 @@ exports.auth = async (req, res) => {
                     firstName: u.admin_first_name,
                     isAdmin: true
                 }),
-                action: getStatsMissions
+                action: await getStatsMissions
             },
 
             user: {
@@ -71,36 +71,40 @@ exports.auth = async (req, res) => {
                     isVolunteer: true
                 }),
 
-                action: dashboardUser
+                action: await dashboardUser
             }
         };
-        
+
         let roleKey = null;
-        
-        if (userExist.role === "user"){
+
+        if (userExist.role === "user") {
             roleKey = "user";
         } else if (userExist.role === "admin") {
             roleKey = `admin_${userExist._id_admin_role}`;
         }
-        
-        const session = rolesMaps[roleKey].session(userExist); 
+
+        const session = rolesMaps[roleKey].session(userExist);
         req.session.userExist = session;
 
         res.locals.pseudoUser = req.session.userExist.firstName;
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
-        res.locals.isAdmin = req.session.userExist.isAdmin;        
-        
-        rolesMaps[roleKey].action(req, res);        
+        res.locals.isAdmin = req.session.userExist.isAdmin;
+
+        rolesMaps[roleKey].action(req, res);
 
         const tokenSession = service.generateTokenSession(req.session.userExist.id);
-        res.cookie('tokenSession', tokenSession);
+        res.cookie('tokenSession', tokenSession, {
+            secure: false, // à mettre sur true si HTTPS
+            httpOnly: true,
+            sameSite: 'strict'
+        });
 
     } catch (error) {
 
         logger.error(error);
 
         return res.status(500).render('connection/signIn', {
-           errorAlertMsg : "Une erreur est survenue. Merci de réessayer dans un instant.",
+            errorAlertMsg: "Une erreur est survenue. Merci de réessayer dans un instant.",
         });
     }
 }

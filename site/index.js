@@ -16,7 +16,7 @@ const MySQLStore = require('express-mysql-session')(session);
 // ⚙️ INITIALISATION DE L'APPLICATION
 // ------------------------------------
 const app = express();
-app.use(helmetConfig)
+app.use(helmetConfig);
 const port = process.env.PORT || 3000;
 
 // ------------------------------------
