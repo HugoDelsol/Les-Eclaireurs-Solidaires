@@ -208,32 +208,32 @@ exports.addRegisterMissionUser = async (req, res) => {
         const idUser = parseInt(req.query.idUser);
         const idMission = parseInt(req.query.idMission);
 
-        const registrationByUser = await missionMdl.getRegistrationByUserId(idMission, idUser);
-
         if (!req.session || !req.session.userExist || req.session.userExist.id !== idUser) {
 
             return res.status(403).json({ message: "Accès interdit" });
         }
 
+        const registrationByUser = await missionMdl.getRegistrationByUserId(idMission, idUser);
+
         if (registrationByUser) {
 
-            return res.status(409).json({ alreadyAdded: true, message: "Vous êtes déjà inscrit à cette mission" });
+            return res.status(409).json({
+                alreadyAdded: true,
+                message: "Vous êtes déjà inscrit à cette mission",
+            });
 
-        } else {
-
-            const result = await missionMdl.registerMissionUser(idUser, idMission);
-
-            if (result === false) {
-                throw new Error;
-            }
-
-            return res.status(200).json({ alreadyAdded: false });
         }
+
+        const result = await missionMdl.registerMissionUser(idUser, idMission);
+
+        if (!result) throw new Error;
+
+        return res.status(200).json({ alreadyAdded: false });
 
     } catch (error) {
 
         logger.error(error);
-        return res.status(500).json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." })
+        return res.status(500).json({ message: "Une erreur est survenu, veuillez réessayer dans un instant." });
     }
 }
 

@@ -50,7 +50,8 @@ const allAdministratorAuthorization = (req, res, next) => {
 const logout = (req, res, next) => {
 
     req.session.destroy((err) => {
-        res.redirect('/home')
+        res.clearCookie('tokenSession');
+        res.redirect('/home');
     })
 }
 

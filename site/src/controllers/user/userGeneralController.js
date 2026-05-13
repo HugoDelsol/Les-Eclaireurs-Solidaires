@@ -42,7 +42,11 @@ exports.auth = async (req, res) => {
 
         const userExist = await exports.verifyAccountExist(email, password);
 
-        if (!userExist) throw new Error("Email ou mot de passe incorrect.");
+        if (!userExist) {
+            return res.status(401).render('connection/signIn', {
+                errorAlertMsg: "Email ou mot de passe incorrect.",
+            });
+        };
 
         const rolesMaps = {
 
@@ -52,7 +56,7 @@ exports.auth = async (req, res) => {
                     firstName: u.admin_first_name,
                     isSuperAdmin: true
                 }),
-                action: await getStatsMissions
+                action: getStatsMissions
             },
 
             admin_2: {
@@ -61,7 +65,7 @@ exports.auth = async (req, res) => {
                     firstName: u.admin_first_name,
                     isAdmin: true
                 }),
-                action: await getStatsMissions
+                action: getStatsMissions
             },
 
             user: {
@@ -71,7 +75,7 @@ exports.auth = async (req, res) => {
                     isVolunteer: true
                 }),
 
-                action: await dashboardUser
+                action: dashboardUser
             }
         };
 
@@ -83,6 +87,12 @@ exports.auth = async (req, res) => {
             roleKey = `admin_${userExist._id_admin_role}`;
         }
 
+        if (!rolesMaps[roleKey]) {
+            return res.status(403).render('connection/signIn', {
+                errorAlertMsg: "Accès refusé."
+            });
+        }
+
         const session = rolesMaps[roleKey].session(userExist);
         req.session.userExist = session;
 
@@ -90,14 +100,14 @@ exports.auth = async (req, res) => {
         res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
         res.locals.isAdmin = req.session.userExist.isAdmin;
 
-        rolesMaps[roleKey].action(req, res);
-
         const tokenSession = service.generateTokenSession(req.session.userExist.id);
         res.cookie('tokenSession', tokenSession, {
             secure: false, // à mettre sur true si HTTPS
             httpOnly: true,
             sameSite: 'strict'
         });
+
+        await rolesMaps[roleKey].action(req, res);
 
     } catch (error) {
 
