@@ -62,18 +62,14 @@ exports.getStatsMissions = async (req, res) => {
 
     try {
 
-        const getStatsMissions = await missionMdl.getStatsMissions();
-
-        const resultService = await service.formatMissionStats(getStatsMissions);
-
-        res.locals.isSuperAdmin = req.session.userExist.isSuperAdmin;
-        res.locals.isAdmin = req.session.userExist.isAdmin;
+        const missionStats = await missionMdl.getStatsMissions();        
+        const resultService = await service.formatMissionStats(missionStats);
 
         return res.status(200).render("account/admin/dashboardAdmin", {
             tabStats: resultService.tabStats,
-            resultSum: getStatsMissions.resultSumVolunteers[0].total_next_30_days,
-            average: resultService.averageToFixed,
-            totalMission: getStatsMissions.resultTotalMissions[0]
+            resultSum: missionStats.resultSumVolunteers[0].total_next_30_days,
+            average: resultService.average,
+            totalMission: missionStats.resultTotalMissions[0]
         });
 
     } catch (error) {
@@ -81,9 +77,9 @@ exports.getStatsMissions = async (req, res) => {
         logger.error(error);
         return res.status(500).render("account/admin/dashboardAdmin", {
             tabStats: [],
-            resultSum: [],
-            average: [],
-            totalMission: [],
+            resultSum: 0,
+            average: 0,
+            totalMission: 0,
             errorAlertMsg: "Une erreur est survenue. Merci de réessayer dans un instant.",
         })
     }

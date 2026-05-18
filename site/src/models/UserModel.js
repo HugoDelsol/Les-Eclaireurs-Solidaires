@@ -131,10 +131,10 @@ exports.findVolunteer = async (inputValue) => {
 
     try {
 
-        const query = "%" + inputValue + "%";
+        const query = `%${inputValue}%`;
 
         const request = ` 
-            SELECT user_first_name, user_last_name, identifier_mail, COUNT(_id_mission) AS "nbr_registration" FROM user 
+            SELECT user_first_name, user_last_name, identifier_mail, COUNT(_id_mission) AS nbr_registration FROM user 
             LEFT JOIN identifier ON _id_identifier = id_identifier 
             LEFT JOIN registration_mission ON _id_user = id_user
             WHERE user_first_name LIKE ? OR user_last_name LIKE ? 
@@ -191,14 +191,7 @@ exports.getEmailUserById = async (id) => {
     }
 }
 
-exports.addUser = async (
-
-    firstName,
-    lastName,
-    email,
-    password,
-
-) => {
+exports.addUser = async (firstName, lastName, email, password) => {
 
     try {
 
@@ -280,9 +273,9 @@ exports.addUserOpinion = async (data, idUser) => {
 
         const insert = `INSERT INTO user_opinion (user_opinion_message, _id_user) VALUES (?, ?)`;
         await db.query(insert, [data.textContent, idUser]);
-        
+
     } catch (error) {
-        
+
         throw new Error(error.message);
     }
 }
@@ -290,13 +283,13 @@ exports.addUserOpinion = async (data, idUser) => {
 exports.getUserOpinion = async () => {
 
     try {
-        
-        const select =  `SELECT user_opinion_message, user_first_name, user_opinion_date FROM user_opinion LEFT JOIN user ON _id_user = id_user ORDER BY user_opinion_date DESC LIMIT 3;`;
+
+        const select = `SELECT user_opinion_message, user_first_name, user_opinion_date FROM user_opinion LEFT JOIN user ON _id_user = id_user ORDER BY user_opinion_date DESC LIMIT 3;`;
         const [response] = await db.query(select);
         return response;
 
     } catch (error) {
-        
+
         throw new Error(error.message);
     }
 }

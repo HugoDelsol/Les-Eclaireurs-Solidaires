@@ -1,4 +1,4 @@
-const { param, query, validationResult } = require('express-validator');
+const { param, validationResult } = require('express-validator');
 
 const urlMustBeANumberForMissionDetail = [
 

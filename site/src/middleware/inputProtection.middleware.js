@@ -195,7 +195,10 @@ const homeFormProtection = [
         const error = validationResult(req);
 
         if (!error.isEmpty()) {
-            return res.status(422).json({ mdlError: "Données invalides. Veuillez vérifier les champs.", mdlErrorIsTrue: true });
+            return res.status(422).json({ 
+                mdlError: "Données invalides. Veuillez vérifier les champs.", 
+                mdlErrorIsTrue: true 
+            });
         }
 
         next();

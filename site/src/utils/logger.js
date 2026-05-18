@@ -1,8 +1,8 @@
 const winston = require('winston');
-const path = require('path')
+const path = require('path');
 
 const customFormat = winston.format.printf(({ timestamp, stack }) => {
-    return `${timestamp} ---> ${stack}`
+    return `${timestamp} ---> ${stack}`;
 })
 
 const logger = winston.createLogger({

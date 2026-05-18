@@ -99,11 +99,17 @@ exports.submitForm = async (req, res) => {
         const { nameForm, emailForm, txtArea } = safeData;
         await homeMdl.addMessageForm(nameForm, emailForm, txtArea);
 
-        return res.status(200).json({ messageSuccess: "Votre message a bien été envoyé. Nous revenons vers vous très bientôt.", messageSuccessIsTrue: true });
+        return res.status(200).json({ 
+            messageSuccess: "Votre message a bien été envoyé. Nous revenons vers vous très bientôt.", 
+            messageSuccessIsTrue: true 
+        });
 
     } catch (error) {
 
         logger.error(error);
-        return res.status(500).json({ messageError: "Une erreur est survenue. Merci de réessayer dans un instant.", messageErrorIsTrue: true });
+        return res.status(500).json({ 
+            messageError: "Une erreur est survenue. Merci de réessayer dans un instant.", 
+            messageErrorIsTrue: true 
+        });
     }
 }

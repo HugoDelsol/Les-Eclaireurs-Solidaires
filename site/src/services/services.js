@@ -117,40 +117,28 @@ exports.formatMissionStats = async (data) => {
 
     let tabStats = [];
 
-    let average = Math.round((data.resultSumVolunteers[0].total_next_30_days / data.resultSumPlaces[0].nbr_places) * 100);
-    let averageToFixed = average.toFixed(0);
+    let average = Math.round(
+        (data.resultSumVolunteers[0].total_next_30_days / data.resultSumPlaces[0].nbr_places) * 100
+    ) || 0;
 
-    if (averageToFixed === "NaN") {
-        averageToFixed = 0;
-    }
+    for (const d of data.resultList) {
 
-    let fillRate = null;
-
-    for (let g of data.resultList) {
-
-        const spaceAvailable = g.mission_available_place;
-
-        if (spaceAvailable === 0) {
-            fillRate = 100;
-        } else {
-            fillRate = (g.nb_volunteers / spaceAvailable) * 100;
-        }
-
-        const fillRateToString = fillRate.toFixed(0) + "%";
+        const spaceAvailable = d.mission_available_place;
+        const fillRate = spaceAvailable === 0 ? 100 : (d.nb_volunteers / spaceAvailable) * 100;
 
         tabStats.push({
-            id: g.id_mission,
-            mission: g.mission_title,
-            date: g.mission_date,
-            nbVolunteers: g.nb_volunteers,
+            id: d.id_mission,
+            mission: d.mission_title,
+            date: d.mission_date,
+            nbVolunteers: d.nb_volunteers,
             spaceAvailable: spaceAvailable,
-            fillRate: fillRateToString,
+            fillRate: `${Math.round(fillRate)}%`,
         });
     };
 
-    return data = {
+    return {
         tabStats,
-        averageToFixed,
+        average,
     }
 }
 

@@ -7,48 +7,34 @@ exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, 
         let query = [];
         let params = [];
 
-        if (lastName) {
-            query.push("user_last_name = ?");
-            params.push(lastName);
-        }
-        if (firstName) {
-            query.push("user_first_name = ?");
-            params.push(firstName)
-        }
-        if (phone) {
-            query.push("user_phone_number = ?");
-            params.push(phone)
-        }
-        if (address) {
-            query.push("user_adress = ?");
-            params.push(address)
-        }
-        if (cityId) {
-            query.push("_id_city = ?");
-            params.push(cityId)
-        }
-        if (category) {
-            query.push("_id_category = ?");
-            params.push(category)
+        const obj = {
+            'user_last_name': lastName,
+            'user_first_name': firstName,
+            'user_phone_number': phone,
+            'user_adress': address,
+            '_id_city': cityId,
+            '_id_category': category,
         }
 
-        if (query.length > 0) {
+        Object.entries(obj).forEach(([string, value]) => {
+            if (value) {
+                query.push(`${string} = ?`);
+                params.push(value)
+            }
+        })
 
-            params.push(idUser);
+        if (query.length === 0) return false;
 
-            const updateUserProfile = `
+        params.push(idUser);
+
+        const updateUserProfile = `
                 UPDATE user                                    
                 SET ${query.join(", ")}
                 WHERE id_user = ?
             `;
 
-            const [result] = await db.query(updateUserProfile, params);
-            return result;
-
-        } else {
-
-            return false
-        }
+        const [result] = await db.query(updateUserProfile, params);
+        return result;
 
     } catch (error) {
 
@@ -620,7 +606,7 @@ exports.fetchImgByCategory = async (category) => {
 
     } catch (error) {
 
-       throw new Error(error.message);
+        throw new Error(error.message);
     }
 }
 
