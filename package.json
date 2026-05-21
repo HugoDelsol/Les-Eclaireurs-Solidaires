@@ -4,7 +4,7 @@
   "main": "site/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=development nodemon site/index.js"
+    "start": "nodemon site/index.js"
   },
   "author": "",
   "license": "ISC",

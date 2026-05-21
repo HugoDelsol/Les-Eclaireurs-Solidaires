@@ -2,21 +2,21 @@
 // 📦 IMPORTS DES MODULES
 // ------------------------------------
 
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+const express = require('express');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 const helmetConfig = require('../site/src/middleware/helmet');
 const globalVars = require('../site/src/middleware/globalVars.middleware');
 const sideNav = require('../site/src/middleware/sideNav.middleware');
 const seo = require('../site/src/middleware/seo.middleware');
-const express = require('express');
-const path = require('path');
-const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
 
 // ------------------------------------
 // ⚙️ INITIALISATION DE L'APPLICATION
 // ------------------------------------
 const app = express();
-app.use(helmetConfig);
+//app.use(helmetConfig);
 const port = process.env.PORT || 3000;
 
 // ------------------------------------
@@ -25,9 +25,9 @@ const port = process.env.PORT || 3000;
 const sessionStore = new MySQLStore({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  password: process.env.DB_PSWRD,
+  password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: 3300 
+  port: 3306
 });
 
 app.use(session({
