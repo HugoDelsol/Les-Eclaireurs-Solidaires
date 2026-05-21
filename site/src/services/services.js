@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-//require('dotenv').config();
+require('dotenv').config();
 const missionModel = require('../models/MissionModel');
 const logger = require('../utils/logger')
 
-//const secretToken = process.env.TOKEN_SECRET;
+const secretToken = process.env.TOKEN_SECRET;
 
 exports.generateTokenSession = (idUser) => {
 
