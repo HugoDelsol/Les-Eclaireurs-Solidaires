@@ -162,7 +162,7 @@ const updateUserProfile = [
     body('lastname').optional({ checkFalsy: true }).trim().escape(),
     body('firstname').optional({ checkFalsy: true }).trim().escape(),
     body('phone').optional({ checkFalsy: true }).trim().isMobilePhone().withMessage('Le numéro de téléphone est invalide').escape(),
-    body('adress').optional({ checkFalsy: true }).trim().escape(),
+    body('address').optional({ checkFalsy: true }).trim().escape(),
     body('cityId').optional({ checkFalsy: true }).isInt(),
     body('category').optional({ checkFalsy: true }).isInt(),
 

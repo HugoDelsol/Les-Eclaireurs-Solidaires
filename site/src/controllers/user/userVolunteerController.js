@@ -26,10 +26,9 @@ exports.userProfilSettingsShow = async (req, res) => {
     try {
 
         const getAllCategories = await missionModel.getAllCategories();
-        req.session.categoriesMission = getAllCategories;
 
         return res.status(200).render('account/volunteer/userProfileSettings', {
-            categoriesMission: req.session.categoriesMission
+            categoriesMission: getAllCategories,
         });
 
     } catch (error) {
@@ -98,7 +97,7 @@ exports.editUserProfile = async (req, res) => {
 
     const renderData = {
         pseudoUser: req.session.userExist.firstName,
-        categoriesMission: req.session.categoriesMission,
+        categoriesMission: null,
     }
 
     try {
@@ -124,12 +123,14 @@ exports.editUserProfile = async (req, res) => {
         }
 
         if (firstname && firstname.trim().length > 0) {
-            req.session.userExist.firstname = firstname;
-            renderData.pseudoUser = req.session.userExist.firstname;
+            req.session.userExist.firstName = firstname;
+            renderData.pseudoUser = firstname;
         }
 
-        res.locals.successAlertMsg = "Profil mis à jour avec succès !";
+        const getAllCategories = await missionModel.getAllCategories();
+        renderData.categoriesMission = getAllCategories;
 
+        res.locals.successAlertMsg = "Profil mis à jour avec succès !";
         return res.status(200).render('account/volunteer/userProfileSettings', renderData);
 
     } catch (error) {
