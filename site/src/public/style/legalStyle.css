@@ -62,8 +62,13 @@ span {
 }
 
 @media (max-width: 510px) {
-    
+
     .headerResponsiv img {
         margin: 0.2em 0.8em;
+    }
+
+    .menuBurger,
+    .menuBurgerCross {
+        height: 1.2em;
     }
 }
