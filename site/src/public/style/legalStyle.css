@@ -60,3 +60,10 @@ span {
         height: 1.6em;
     }
 }
+
+@media (max-width: 510px) {
+    
+    .headerResponsiv img {
+        margin: 0.2em 0.8em;
+    }
+}
