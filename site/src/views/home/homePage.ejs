@@ -56,7 +56,7 @@
     <section class="currentMission" id="scrolleMission">
         <h2 class="txtModH2">Nos besoins actuels</h2>
         <% for (let d of displayMission) { %>
-            <% let str=null; d.places> 1 ? str = "s" : str = "";%>
+            <% let str = null; d.places > 1 ? str = "s" : str = ""; %>
                 <div class="pictureMissionAndTxt">
                     <img src=" <%= d.img %>">
                     <div class="div">
@@ -71,7 +71,7 @@
                             <%= d.description + " ..." %>
                         </p>
                         <p class="expose">
-                            <%= d.places + ` bénévole recherché${str}` %>
+                            <%= d.places + ` bénévole${str} recherché${str}` %>
                         </p>
                         <div class="row">
                             <a href="/detailMission/<%= d.id %>" class="btnSecondary btnHover widthBtnMission">Rejoindre</a>

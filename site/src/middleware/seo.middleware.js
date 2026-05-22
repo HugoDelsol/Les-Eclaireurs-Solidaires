@@ -128,13 +128,13 @@ exports.seoReferences = (req, res, next) => {
 
         if (urlPath.includes(path)) {
 
-            const dataMAp = seoMap[path];
-            seoConfig.seoTitle = dataMAp.seoTitle;
+            const dataMap = seoMap[path];
+            seoConfig.seoTitle = dataMap.seoTitle;
 
-            if (dataMAp.metaName) {
+            if (dataMap.metaName) {
 
-                seoConfig.metaName = dataMAp.metaName;
-                seoConfig.metaContent = dataMAp.metaContent;
+                seoConfig.metaName = dataMap.metaName;
+                seoConfig.metaContent = dataMap.metaContent;
             }
 
             break;
