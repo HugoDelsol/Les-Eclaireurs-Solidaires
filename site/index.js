@@ -1,39 +1,16 @@
 // ------------------------------------
 // 📦 IMPORTS DES MODULES
 // ------------------------------------
-
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const express = require('express');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const cron = require('node-cron');
-
-const RecallService = require('../site/src/services/recallService');
+const { startCron } = require('../site/src/cron/cron.js');
 const helmetConfig = require('../site/src/middleware/helmet');
 const globalVars = require('../site/src/middleware/globalVars.middleware');
 const sideNav = require('../site/src/middleware/sideNav.middleware');
 const seo = require('../site/src/middleware/seo.middleware');
-
-// ------------------------------------
-// ⏱️ TÂCHES PLANIFIÉES (CRON)
-// ------------------------------------
-
-cron.schedule('* * * * *', async () => {
-
-  try {
-    console.log('Éxecution du cron interne...');
-
-    const recallService = new RecallService();
-    const stringVal = await recallService.parseReadFile();
-
-    await recallService.cronScript(stringVal);
-
-  } catch (error) {
-
-    console.log("Erreur lors de l'exécution du cron : ", error);
-  }
-});
 
 // ------------------------------------
 // ⚙️ INITIALISATION DE L'APPLICATION
@@ -91,8 +68,10 @@ const generalRoute = require('./src/routes/general.route');
 const volunteerRoute = require('./src/routes/volunteer.route');
 const adminRoute = require('./src/routes/admin.route');
 
+// Génération et injection des métadonnées SEO dans le contexte des vues
 app.use(seo.seoReferences);
 
+// Gestion de l'état actif des onglets de la navigation latérale
 app.use(sideNav.tabSelected);
 
 // Injecte des variables globales accessibles dans toutes les vues
@@ -119,5 +98,6 @@ app.use((req, res) => {
 // 🚀 LANCEMENT DU SERVEUR
 // ------------------------------------
 app.listen(port, () => {
+  startCron();
   console.log(`✅ Serveur démarré sur http://localhost:${port}/home`);
 });
