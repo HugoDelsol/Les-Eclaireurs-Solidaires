@@ -54,7 +54,7 @@ class RecallService {
                 })
 
                 await messageMdl.updateValueSend(user.id_registration);
-                console.log(response.data);
+                console.log("response", response);
 
             } catch (error) {
 

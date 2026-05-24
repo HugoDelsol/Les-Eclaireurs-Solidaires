@@ -1,609 +1,242 @@
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+Error during cron execution :  Error: DB_ERROR: Error: Too many connections
+    at exports.recallModel (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/models/MessageModel.js:15:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async RecallService.cronScript (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/services/recallService.js:105:37)
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+Error during cron execution :  Error: DB_ERROR: Error: Too many connections
+    at exports.recallModel (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/models/MessageModel.js:15:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async RecallService.cronScript (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/services/recallService.js:105:37)
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Error during cron execution :  Error: DB_ERROR: Error: Too many connections
+    at exports.recallModel (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/models/MessageModel.js:15:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async RecallService.cronScript (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/services/recallService.js:105:37)
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+Error during cron execution :  Error: DB_ERROR: Error: Too many connections
+    at exports.recallModel (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/models/MessageModel.js:15:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async RecallService.cronScript (/home/ubuntu/Les-Eclaireurs-Solidaires/site/src/services/recallService.js:105:37)
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  override existing env vars with { override: true }
+response Response {
+  status: 201,
+  statusText: 'Created',
+  headers: Headers {
+    date: 'Sun, 24 May 2026 09:56:02 GMT',
+    'content-type': 'application/json',
+    'content-length': '64',
+    connection: 'keep-alive',
+    'x-envoy-upstream-service-time': '31',
+    'access-control-allow-credentials': 'true',
+    'sib-request-id': 'fba7c2ee-56aa-9615-9b6c-9ff7ebcebe61',
+    'access-control-allow-origin': '*',
+    'access-control-allow-headers': '*',
+    'access-control-allow-methods': 'PUT, POST, GET, DELETE, PATCH, OPTIONS',
+    'x-sib-ratelimit-limit': '1000',
+    'x-sib-ratelimit-remaining': '999',
+    'x-sib-ratelimit-reset': '1',
+    server: 'cloudflare',
+    'cf-cache-status': 'DYNAMIC',
+    'cf-ray': 'a00b6d98def03ed8-BCN'
+  },
+  body: ReadableStream { locked: false, state: 'readable', supportsBYOB: true },
+  bodyUsed: false,
+  ok: true,
+  redirected: false,
+  type: 'basic',
+  url: 'https://api.brevo.com/v3/smtp/email'
 }
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  enable debug logging with { debug: true }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  enable debug logging with { debug: true }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  enable debug logging with { debug: true }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  enable debug logging with { debug: true }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  suppress all logs with { quiet: true }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  write to custom object with { processEnv: myObject }
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
-[dotenv@17.2.3] injecting env (11) from Les-Eclaireurs-Solidaires/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
-3QWGfTXgdsL2DHRC
-{
-  recallIsCheckeds: 'true',
-  selectedDelay: 'J-7',
-  emailMessage: 'true',
-  smsMessage: 'true',
-  pushMessage: 'true'
-}
-user
-dan le for
-Error: Connection timeout
-    at SMTPConnection._formatError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:887:19)
-    at SMTPConnection._onError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:868:20)
-    at SMTPConnection._onConnectionError (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:405:18)
-    at Timeout.<anonymous> (/home/ubuntu/Les-Eclaireurs-Solidaires/node_modules/nodemailer/lib/smtp-connection/index.js:385:18)
-    at listOnTimeout (node:internal/timers:581:17)
-    at process.processTimers (node:internal/timers:519:7) {
-  code: 'ETIMEDOUT',
-  command: 'CONN'
-}
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+Killed
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  enable debug logging with { debug: true }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  suppress all logs with { quiet: true }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  override existing env vars with { override: true }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+No users found for recall.
