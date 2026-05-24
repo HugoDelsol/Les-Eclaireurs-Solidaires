@@ -26,8 +26,6 @@ class RecallService {
 
     async sendEmail(templateModel, users) {
 
-        if (users.length === 0) { return null; }
-
         const url = "https://api.brevo.com/v3/smtp/email"
 
         for (const user of users) {
@@ -97,7 +95,8 @@ class RecallService {
 
     async cronScript(stringVal) {
 
-        const data = await stringVal
+        const data = await stringVal;
+        if (!data) return;
 
         try {
 
@@ -107,18 +106,23 @@ class RecallService {
 
                 const selectUsersRecallsByDelay = await this.selectMissionRecallsByDelay(data.selectedDelay);
 
+                if (selectUsersRecallsByDelay.length === 0) {
+                    console.log("No users found for recall.");
+                    return null;
+                } 
+
                 if (data.emailMessage) {
                     await this.sendEmail(recallModel[0], selectUsersRecallsByDelay);
                 }
 
             } else {
 
-                console.log('no activated');
+                console.log('Recall not activated.');
             }
 
         } catch (error) {
 
-            console.log(error)
+            console.log("Error during cron execution : ", error);
         }
     }
 }
