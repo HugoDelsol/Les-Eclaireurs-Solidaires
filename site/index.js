@@ -7,10 +7,33 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const express = require('express');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+const cron = require('node-cron');
+
+const RecallService = require('../site/src/services/recallService');
 const helmetConfig = require('../site/src/middleware/helmet');
 const globalVars = require('../site/src/middleware/globalVars.middleware');
 const sideNav = require('../site/src/middleware/sideNav.middleware');
 const seo = require('../site/src/middleware/seo.middleware');
+
+// ------------------------------------
+// ⏱️ TÂCHES PLANIFIÉES (CRON)
+// ------------------------------------
+
+cron.schedule('* * * * *', async () => {
+
+  try {
+    console.log('Éxecution du cron interne...');
+
+    const recallService = new RecallService();
+    const stringVal = await recallService.parseReadFile();
+
+    await recallService.cronScript(stringVal);
+
+  } catch (error) {
+
+    console.log("Erreur lors de l'exécution du cron : ", error);
+  }
+});
 
 // ------------------------------------
 // ⚙️ INITIALISATION DE L'APPLICATION
@@ -89,7 +112,7 @@ app.use('/admin', adminRoute);
 
 // Page 404 pour les routes non trouvées
 app.use((req, res) => {
-    res.status(404).render('home/404');
+  res.status(404).render('home/404');
 });
 
 // ------------------------------------
