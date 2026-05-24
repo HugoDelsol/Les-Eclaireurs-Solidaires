@@ -240,3 +240,11 @@ No users found for recall.
 No users found for recall.
 [dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
 No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+No users found for recall.
+[dotenv@17.2.3] injecting env (12) from Les-Eclaireurs-Solidaires/.env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+No users found for recall.
