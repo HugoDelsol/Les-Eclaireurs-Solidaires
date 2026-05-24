@@ -7,7 +7,7 @@ const messageMdl = require('../models/MessageModel');
 class RecallService {
 
     async writeFile(jsonData) {
-        try {            
+        try {
             await fs.writeFile(filePath, jsonData, 'utf-8');
         } catch (error) {
             console.log("Erreur lors de l'écriture du fichier :", error);
@@ -25,47 +25,43 @@ class RecallService {
     }
 
     async sendEmail(templateModel, users) {
-	
+
         if (users.length === 0) { return null; }
-	console.log("user");
-        let transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS
-            }
-        });
 
-        for (const u of users) {
-	console.log('dan le for')
-            const emailContent = this.updateTemplate(templateModel, u);
+        const url = "https://api.brevo.com/v3/smtp/email"
 
-            let mailOptions = {
-                from: process.env.MAIL_FROM,
-                to: 'hugo.delsol64@gmail.com',
+        for (const user of users) {
+
+            const emailContent = this.updateTemplate(templateModel, user);
+
+            const emailData = {
+                sender: {
+                    name: 'Les Éclaireurs Solidaires',
+                    email: 'hugo.delsol64@gmail.com'
+                },
+                to: [{ email: 'hugo.delsol64@gmail.com' }],
                 subject: templateModel.message_object,
-                text: emailContent
-            };
+                textContent: emailContent
+            }
 
-	try {
-		const info = await transporter.sendMail(mailOptions); 
-		console.log(info.response); 
-	} catch(error) {
-		console.log(error); 
-	}
+            try {
 
-            //transporter.sendMail(mailOptions, (error, info) => {
-	//	console.log('dans le transporteur');
-               // if (error) {
-                 //   console.log(error);
-               // } else {
-                    //console.log('Email sent: ', info.response);
-             //   }
-           // });
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'api-key': process.env.BREVO_API_KEY
+                    },
+                    body: JSON.stringify(emailData)
+                })
 
-            //await messageMdl.updateValueSend(u.id_registration);
+                await messageMdl.updateValueSend(user.id_registration);
+                console.log(response.data);
+
+            } catch (error) {
+
+                console.log(error);
+            }
         }
     }
 
@@ -100,8 +96,8 @@ class RecallService {
     }
 
     async cronScript(stringVal) {
-	console.log( await stringVal);
-        const data =  await stringVal
+
+        const data = await stringVal
 
         try {
 
