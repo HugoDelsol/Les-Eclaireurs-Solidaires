@@ -54,10 +54,6 @@ class RecallService {
                 })
 
                 await messageMdl.updateValueSend(user.id_registration);
-<<<<<<< HEAD
-=======
-                console.log("response", response);
->>>>>>> 2e2d8be822bf524a787f788c6acd609b23574f08
 
             } catch (error) {
 
