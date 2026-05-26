@@ -6,3 +6,4 @@ logs/
 *.sql
 *.json
 *.yml
+*.txt
