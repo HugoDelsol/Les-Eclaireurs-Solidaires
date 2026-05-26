@@ -21,7 +21,7 @@ exports.updateUserProfile = async (idUser, lastName, firstName, phone, address, 
                 query.push(`${string} = ?`);
                 params.push(value)
             }
-        })
+        });
 
         if (query.length === 0) return false;
 
@@ -495,64 +495,79 @@ exports.getRegistrationByUserId = async (idMission, idUser) => {
 
 exports.registerMissionUser = async (idUser, idMission) => {
 
+    const connexion = await db.getConnection()
+
     try {
 
-        const request = 'INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?)';
-        const [result] = await db.query(request, [idUser, idMission]);
+        await connexion.beginTransaction();
 
-        if (result.affectedRows !== 1) return false;
+        const [resultUpdate] = await connexion.query(
+            `UPDATE mission
+            SET mission_available_place = mission_available_place -1
+            WHERE id_mission = ? AND mission_available_place > 0`,
+            [idMission]
+        );
 
-        const idUpdate = result.insertId;
+        if (resultUpdate.affectedRows !== 1) throw new Error;
 
-        await this.updateSpaceAvailable(idUpdate, '-')
+        const [resultInsert] = await connexion.query(
+            `INSERT INTO registration_mission (_id_user, _id_mission) VALUES (?, ?);`,
+            [idUser, idMission]
+        );
 
+        if (resultInsert.affectedRows !== 1) throw new Error;
+
+        await connexion.commit();
         return true;
 
     } catch (error) {
 
+        await connexion.rollback();
         throw new Error(error.message);
+
+    } finally {
+
+        connexion.release();
     }
 };
 
-exports.updateSpaceAvailable = async (idUpdate, value) => {
-
-    try {
-
-        if (value !== '+' && value !== '-') throw new Error;
-
-        const update = `
-            UPDATE registration_mission 
-            LEFT JOIN mission ON _id_mission = id_mission 
-            SET mission.mission_available_place = mission.mission_available_place ${value} 1 
-            WHERE id_registration = ?;`
-
-        const [result] = await db.query(update, [idUpdate])
-
-    } catch (error) {
-
-        throw new Error(error.message);
-    }
-}
-
 exports.unregisterAVolunteer = async (idRegistration) => {
 
+    const connexion = await db.getConnection();
+
     try {
 
-        await this.updateSpaceAvailable(idRegistration, '+')
+        await connexion.beginTransaction();
 
-        const request = `
-            DELETE FROM registration_mission
-            WHERE id_registration = ?
-        `
-        const [result] = await db.query(request, idRegistration);
+        const [update] = await connexion.query(
+            `UPDATE registration_mission 
+            LEFT JOIN mission ON _id_mission = id_mission 
+            SET mission.mission_available_place = mission.mission_available_place +1 
+            WHERE id_registration = ?;`,
+            idRegistration
+        );
 
-        if (result.affectedRows !== 1) return false;
+        if (update.affectedRows !== 1) throw new Error;
 
+        const [request] = await connexion.query(
+            `DELETE FROM registration_mission
+            WHERE id_registration = ?`,
+            idRegistration
+        );
+
+        if (request.affectedRows !== 1) throw new Error;
+
+        await connexion.commit();
         return true;
 
     } catch (error) {
 
+        await connexion.rollback();
         throw new Error(error.message);
+
+    } finally {
+
+        await connexion.release();
     }
 }
 
