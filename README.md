@@ -1,6 +1,6 @@
 # Les Éclaireurs Solidaires 🤝
 
-> **Note :** Ce projet est actuellement en cours de développement 🚧. Certaines fonctionnalités et documentations sont encore en phase de réalisation.
+> **Note :** Ce projet correspond à la version finale livrée pour l'examen 🏁. L'application répondant aux exigences du cahier des charges principal, certaines fonctionnalités secondaires ou documentations annexes ont été volontairement laissées de côté ou pourront être intégrées lors de futures évolutions.
 
 **Les Éclaireurs Solidaires** est une plateforme de gestion de missions destinée aux bénévoles d'une association. L'objectif est d'offrir un outil simple et intuitif pour la publication de missions tout en permettant aux volontaires de s'engager et de suivre leurs actions dans le temps.
 
