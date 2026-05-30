@@ -49,19 +49,8 @@ L'application suit une architecture **MVC** (Modèle-Vue-Contrôleur), garantiss
         ├── models/          # Modèles MySQL et requêtes SQL préparées
         ├── public/          # Ressources statiques accessibles par le client
         │   ├── javaScript/  # Scripts JS côté client (Vanilla)
-        │   ├── pictures/    # Assets visuels organisés par catégories
-        │   │   ├── Reviews/
-        │   │   ├── backGroundCards/
-        │   │   ├── globalIcons/
-        │   │   ├── homePage/
-        │   │   ├── iconHeader-Footer/
-        │   │   ├── logoV2/
-        │   │   └── mobile_account/
+        │   ├── pictures/    # Assets visuels organisés par catégories   
         │   └── style/       # Feuilles de style CSS découpées par modules
-        │       ├── account/
-        │       ├── connection/
-        │       ├── home/
-        │       └── modal/
         ├── routes/          # Définition des points d'entrée et aiguillage des requêtes
         ├── services/        # Services transversaux (Envoi d'emails, traitements tiers)
         ├── utils/           # Fonctions utilitaires et outils d'aide au développement
@@ -79,11 +68,18 @@ L'application suit une architecture **MVC** (Modèle-Vue-Contrôleur), garantiss
 
 ## 🛡️ Sécurité par Design
 
-La sécurité a été placée au centre du développement de la plateforme afin de protéger les données des utilisateurs et garantir l'intégrité du système :
+La sécurité a été intégrée tout au long du développement de la plateforme, aussi bien côté **Front-End** que **Back-End**, afin de garantir la confidentialité des données, l'intégrité du système et la protection des utilisateurs.
 
-* **Prévention des Injections SQL** : Utilisation exclusive de requêtes paramétrées et préparées via le pilote MySQL dans les couches *Models*. Aucune concaténation de variables n'est effectuée dans les requêtes.
-* **Protection contre les failles XSS** : Mise en place de middlewares de nettoyage (*sanitization*) pour filtrer, échapper et valider rigoureusement toutes les entrées utilisateurs issues des formulaires avant traitement.
-* **Authentification & Contrôle d'Accès** : Gestion stricte des sessions utilisateurs. Des middlewares dédiés interceptent les requêtes sur les routes sensibles pour vérifier les privilèges avant d'autoriser l'accès aux interfaces `admin` ou `volunteer`.
+Les principaux mécanismes de sécurité ont été mis en œuvre à chaque niveau de l'application :
+
+* **Protection contre les injections SQL** grâce à l'utilisation de requêtes préparées et paramétrées dans la couche d'accès aux données.
+* **Prévention des failles XSS** via l'échappement des données affichées, la sécurisation du rendu des vues EJS et la validation des entrées utilisateur.
+* **Validation et assainissement des données** côté client et côté serveur afin de contrôler systématiquement les informations reçues.
+* **Authentification et contrôle d'accès** reposant sur une gestion sécurisée des sessions et des vérifications de privilèges sur les routes sensibles.
+* **Protection des données sensibles** grâce à la sécurisation des mots de passe, des variables d'environnement et des cookies de session.
+* **Gestion des erreurs** adaptée côté client et côté serveur afin d'éviter l'exposition d'informations techniques critiques.
+
+Cette approche permet d'assurer une défense cohérente sur l'ensemble de l'architecture en prenant en compte les principaux risques de sécurité identifiés lors de la conception et du développement du projet.
 
 ## 📸 Aperçu de l'Interface
 
@@ -110,18 +106,46 @@ La sécurité a été placée au centre du développement de la plateforme afin 
 
 ## 🧪 Validation & Tests
 
-Pour valider le comportement fonctionnel du projet, une série de vérifications a été opérée :
-* **Tests de validation des formulaires** : Contrôles aux frontières sur les champs de saisie côté client (HTML5 / JavaScript) doublés d'une validation stricte côté serveur.
-* **Tests d'intégration des tâches planifiées** : Contrôle du déclenchement et de l'exécution des routines en arrière-plan gérées par `Node-Cron`.
+Pour garantir la robustesse et la fiabilité de la plateforme, une stratégie de tests a été mise en œuvre durant le développement, combinant plusieurs niveaux de vérification :
+
+* **Tests Unitaires (Jest)** : Implémentés pour valider le comportement isolé des composants, des fonctions utilitaires et de la logique métier de l'application.
+* **Tests d'Intégration (Jest)** : Mis en place pour vérifier la bonne communication entre les différentes couches de l'architecture MVC, les middlewares de sécurité et la base de données.
+* **Tests End-to-End / E2E (Cypress)** : Réalisés pour simuler des scénarios utilisateurs complets et automatisés directement dans le navigateur, assurant la conformité des parcours critiques.
 
 ---
 
-## 🚀 Post-Déploiement : Commandes Globales
+## 🚀 Post-Déploiement : Maintenance & Commandes Globales
 
-Suite à l'exécution du script d'automatisation `.sh` sur le VPS OVHcloud, l'environnement de production génère automatiquement le fichier de suivi `commands.md` à la racine pour guider la maintenance. En voici le résumé des commandes applicatives majeures :
+Suite à l'exécution du script de déploiement sur le VPS, un fichier `DEPLOY_GUIDE.md` est automatiquement généré à la racine du projet afin de regrouper les principales commandes d'administration.
 
-* **Lancement de l'environnement applicatif** : `npm start`
-* **Lancement en mode de surveillance (Développement)** : `npm run dev`
-* **Restauration ou initialisation de la base de données** : `mysql -u [user] -p [database_name] < site/src/config/schema.sql`
+### 🔄 Mise à jour de l'application
+
+```bash
+git pull
+npm install
+pm2 reload les-eclaireurs-solidaires
+```
+
+### 🗄️ Réinitialisation de la base de données
+
+```bash
+mysql -u root -p les_eclaireurs_solidaires < site/src/config/schema.sql
+```
+
+### 📊 Supervision PM2
+
+```bash
+pm2 list
+pm2 logs
+```
+
+### 🌐 Vérification Nginx
+
+```bash
+sudo nginx -t
+sudo systemctl status nginx
+```
+
+
 ---
 **Développé par Hugo Delsol** *Formation DWWM - M2i Formation*
