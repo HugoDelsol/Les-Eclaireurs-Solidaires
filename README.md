@@ -101,7 +101,7 @@ Cette approche permet d'assurer une défense cohérente sur l'ensemble de l'arch
 
 ---
 
-## 👥 Guide d'Utilisation Réduits
+## 👥 Guide d'Utilisation Simplifié
 
 ### 🧑‍💼 Espace Administrateur
 1. **Connexion** : Connectez-vous avec vos identifiants disposant du rôle d'administration.
@@ -125,7 +125,33 @@ Pour garantir la robustesse et la fiabilité de la plateforme, une stratégie de
 
 ---
 
-## 🚀 Post-Déploiement : Maintenance & Commandes Globales
+## 🚀 Installation et Déploiement
+
+Le déploiement de l'application est entièrement automatisé. Suivez rigoureusement les étapes ci-dessous pour préparer le serveur et lancer le script.
+
+### 1. Prérequis sur le VPS
+
+Avant d'exécuter le script, assurez-vous de remplir les conditions suivantes :
+
+* **Droits d'accès :** Posséder les droits `root` (ou un utilisateur avec les privilèges `sudo`) sur le VPS.
+* **Clé SSH GitHub :** Configurer la clé SSH sur le serveur et l'associer au compte GitHub pour permettre le clone du dépôt privé.
+* **Variables d'environnement :** Ouvrir le script `deploy.sh` et modifier les variables de configuration essentielles (ex: `DB_PASS`, `JWT_SECRET`, etc.).
+
+### 2. Procédure d'exécution
+
+Par défaut, un script téléchargé n'est pas exécutable. Vous devez lui attribuer les droits nécessaires avant de le lancer.
+
+```bash
+# 1. Rendre le script exécutable
+chmod +x deploy.sh
+
+# 2. Exécuter le script de déploiement
+./deploy.sh
+```
+
+---
+
+## ⚙️ Maintenance & Commandes Globales
 
 Suite à l'exécution du script de déploiement sur le VPS, un fichier `DEPLOY_GUIDE.md` est automatiquement généré à la racine du projet afin de regrouper les principales commandes d'administration.
 
