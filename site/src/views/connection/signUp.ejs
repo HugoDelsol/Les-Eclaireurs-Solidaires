@@ -13,7 +13,7 @@
 <main class="mainFrontOffice">
     <section class="register">
         <form class="form" action="/saveUser" method="post">
-            <img src="/pictures/globalIcons/login.png" alt="">
+            <img src="/pictures/globalIcons/login.png" alt="Logo d'utilisateur">
             <div class="nameRegister">
                 <label><input class="marginRight" type="text" placeholder="Prénom" name="firstName" value="<%= !firstName ? "" : firstName %>"></label>
                 <label><input type="text" placeholder="Nom" name="lastName" value="<%= !lastName ? "" : lastName %>"></label>
@@ -22,7 +22,7 @@
             <label><input id="password" placeholder="Mot de passe" name="password" value=""></label>
             <label class="labelRelative">
                 <input type="password" class="password" id="passwordConfirm" placeholder="Confirmer le mot de passe" name="passwordConfirm" value="">
-                <img class="imgSrc" src="/pictures/globalIcons/closeEye.png" alt="">
+                <img class="imgSrc" src="/pictures/globalIcons/closeEye.png" alt="Afficher le mot de passe">
             </label>
             <div class="buttonLogin">
                 <button type="submit" class="btnSecondary btnHover widthBtnContact">INSCRIPTION</button>                

@@ -63,7 +63,7 @@
 
                         <button class="btnSecondary btnHover" type="submit">Rechercher</button>
                         <a href="/missionUserShow">
-                            <img class="btnReset" src="/pictures/globalIcons/recycler.png" alt="">
+                            <img class="btnReset" src="/pictures/globalIcons/recycler.png" alt="Effacer l'historique de recherche">
                         </a>
                     </div>
                 </form>
@@ -114,7 +114,7 @@
             <% if (missionSelected) { %>
                 <% for (let i = 0; i < missionSelected.length; i++) { %>
                     <div class="pictureMissionAndTxt">
-                        <img src="<%= missionSelected[i].img %>" alt="">
+                        <img src="<%= missionSelected[i].img %>" alt="Illustration de la mission">
                         <div>
                             <h3>
                                 <%= missionSelected[i].title %> -
@@ -141,7 +141,7 @@
             <% } else { %>
                 <% for (let i = 0; i < missionsClear.length; i++) { %>
                     <div class="pictureMissionAndTxt">
-                        <img src="<%= missionsClear[i].img %>" alt="">
+                        <img src="<%= missionsClear[i].img %>" alt="Illustration de la mission">
                         <div>
                             <h3>
                                 <%= missionsClear[i].title %> -

@@ -19,23 +19,23 @@ if (alertMsgBack.innerText.length > 0) {
 
 const observer = new MutationObserver(m => {
 
-    let value = null;
+    let targetAlert = null;
 
     if (m[0].target.classList[0] === "alertFrontOfficeError") {
 
-        value = alertFrontOfficeError;
+        targetAlert = alertFrontOfficeError;
 
     } else if (m[0].target.classList[0] === "alertFrontOfficeSuccess") {
 
-        value = alertFrontOfficeSuccess;
+        targetAlert = alertFrontOfficeSuccess;
 
     }
 
-    value.style.transform = "translateX(102vw)";
+    targetAlert.style.transform = "translateX(102vw)";
 
     setTimeout(() => {
 
-        value.style.transform = "translateX(-100vw)";
+        targetAlert.style.transform = "translateX(-100vw)";
 
     }, 5000);
 })
