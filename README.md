@@ -66,7 +66,7 @@ L'application suit une architecture **MVC** (Modèle-Vue-Contrôleur), garantiss
             └── partials/    # Composants réutilisables (Header, Footer, Navbar)
 ```
 
-## 🛡️ Sécurité par Design
+## 🛡️ Sécurité
 
 La sécurité a été intégrée tout au long du développement de la plateforme, aussi bien côté **Front-End** que **Back-End**, afin de garantir la confidentialité des données, l'intégrité du système et la protection des utilisateurs.
 
@@ -81,15 +81,26 @@ Les principaux mécanismes de sécurité ont été mis en œuvre à chaque nivea
 
 Cette approche permet d'assurer une défense cohérente sur l'ensemble de l'architecture en prenant en compte les principaux risques de sécurité identifiés lors de la conception et du développement du projet.
 
+---
+
 ## 📸 Aperçu de l'Interface
 
-> 💡 *Les visuels ci-dessous illustrent l'ergonomie et les composants de la plateforme finale.*
+> 💡 *Les visuels ci-dessous illustrent l'ergonomie, les fonctionnalités clés et la responsivité de la plateforme finale.*
+
+### 📱 Immersion & Adaptabilité Mobile
+
+| Page d'Accueil (Section Héro) | Interface Mobile (Responsive Design) |
+| :---: | :---: |
+| ![Hero Section](./docs/images/heroSection.png) | ![Aperçu Mobile](./docs/images/mobile.png) |
+
+### 🖥️ Vue Desktop (Tableaux de Bord)
 
 | Espace Administrateur (Gestion & Supervision) | Espace Bénévole (Recherche & Engagement) |
 | :---: | :---: |
-| ![Dashboard Administrateur](./site/src/public/pictures/homePage/admin_preview.png) | ![Espace Bénévole](./site/src/public/pictures/homePage/volunteer_preview.png) |
+| ![Dashboard Administrateur](./docs/images/dashboardAdmin.png) | ![Dashboard Bénévole](./docs/images/dashboardVolunteer.png) |
 
 ---
+
 ## 👥 Guide d'Utilisation Réduits
 
 ### 🧑‍💼 Espace Administrateur
