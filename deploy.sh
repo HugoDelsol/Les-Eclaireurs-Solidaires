@@ -73,7 +73,7 @@ print_step "[2/12] Installation de Git, Curl et Node.js"
 
 sudo apt install git curl -y
 
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 
 sudo apt install -y nodejs
 
