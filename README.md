@@ -135,10 +135,11 @@ Le déploiement de l'application est entièrement automatisé grâce à un scrip
 
 ## 1. Prérequis sur le VPS
 
-Avant de lancer le script, assurez-vous simplement de remplir ces deux conditions :
+Avant de lancer le script, assurez-vous simplement de remplir ces trois conditions :
 
 * **Système d'exploitation :** un VPS vierge sous Ubuntu.
 * **Privilèges :** disposer des droits `root` ou d'un utilisateur avec accès `sudo`.
+* **Configuration du script :** renseignez les variables de configuration définies au début du fichier `.sh`. Le script utilise ces paramètres pour automatiser correctement l'installation et le déploiement.
 
 ---
 
