@@ -127,13 +127,11 @@ Pour garantir la robustesse et la fiabilité de la plateforme, une stratégie de
 
 Voici le contenu formaté en Markdown (`README.md`) :
 
-# 🚀 Installation et Déploiement
+## 🚀 Installation et Déploiement
 
 Le déploiement de l'application est entièrement automatisé grâce à un script Shell. Ce script prend en charge l'intégralité de l'installation : des dépendances système jusqu'à la configuration du pare-feu et du reverse proxy Nginx.
 
----
-
-## 1. Prérequis sur le VPS
+### 1. Prérequis sur le VPS
 
 Avant de lancer le script, assurez-vous simplement de remplir ces trois conditions :
 
@@ -141,9 +139,7 @@ Avant de lancer le script, assurez-vous simplement de remplir ces trois conditio
 * **Privilèges :** disposer des droits `root` ou d'un utilisateur avec accès `sudo`.
 * **Configuration du script :** renseignez les variables de configuration définies au début du fichier `.sh`. Le script utilise ces paramètres pour automatiser correctement l'installation et le déploiement.
 
----
-
-## 2. Procédure d'exécution
+### 2. Procédure d'exécution
 
 Connectez-vous à votre VPS en SSH, récupérez le script `deploy.sh`, attribuez-lui les droits d'exécution, puis lancez-le :
 
@@ -155,9 +151,7 @@ chmod +x deploy.sh
 sudo ./deploy.sh
 ```
 
----
-
-## 3. Déroulement de l'automatisation
+### 3. Déroulement de l'automatisation
 
 Une fois lancé, le script s'occupe de tout. Vous n'aurez qu'une seule intervention manuelle à effectuer pendant le processus :
 
