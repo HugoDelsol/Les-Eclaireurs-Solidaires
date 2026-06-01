@@ -59,7 +59,7 @@ error() {
 # ÉTAPE 1 — MISE À JOUR DU SYSTÈME
 # ============================================================================
 
-print_step "[1/9] Mise à jour du système"
+print_step "[1/12] Mise à jour du système"
 
 sudo apt update && sudo apt upgrade -y
 
@@ -69,7 +69,7 @@ success "Système mis à jour"
 # ÉTAPE 2 — INSTALLATION DES OUTILS DE BASE
 # ============================================================================
 
-print_step "[2/9] Installation de Git, Curl et Node.js"
+print_step "[2/12] Installation de Git, Curl et Node.js"
 
 sudo apt install git curl -y
 
@@ -83,7 +83,7 @@ success "Node.js installé"
 # ÉTAPE 3 — INSTALLATION MYSQL
 # ============================================================================
 
-print_step "[3/9] Installation de MySQL"
+print_step "[3/12] Installation de MySQL"
 
 sudo apt install mysql-server -y
 
@@ -93,7 +93,7 @@ success "MySQL installé"
 # ÉTAPE 4 — CONFIGURATION GIT & SSH
 # ============================================================================
 
-print_step "[4/9] Génération de la clé SSH GitHub"
+print_step "[4/12] Génération de la clé SSH GitHub"
 
 if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
     ssh-keygen -t ed25519 -C "$GIT_EMAIL" -N "" -f "$HOME/.ssh/id_ed25519"
@@ -119,7 +119,7 @@ git config --global user.name "$GIT_NAME"
 # ÉTAPE 5 — CLONAGE DU PROJET
 # ============================================================================
 
-print_step "[5/9] Clonage du projet"
+print_step "[5/12] Clonage du projet"
 
 cd $HOME
 
@@ -139,7 +139,7 @@ success "Projet cloné"
 # ÉTAPE 6 — INSTALLATION DES DÉPENDANCES
 # ============================================================================
 
-print_step "[6/9] Installation des dépendances Node.js"
+print_step "[6/12] Installation des dépendances Node.js"
 
 npm install
 
@@ -149,7 +149,7 @@ success "Dépendances installées"
 # ÉTAPE 7 — CONFIGURATION .ENV
 # ============================================================================
 
-print_step "[7/9] Création du fichier .env"
+print_step "[7/12] Création du fichier .env"
 
 if [ ! -f ".env" ]; then
 
@@ -171,7 +171,7 @@ fi
 # ÉTAPE 8 — INITIALISATION DE LA BASE DE DONNÉES
 # ============================================================================
 
-print_step "[8/9] Configuration et initialisation de la base de données"
+print_step "[8/12] Configuration et initialisation de la base de données"
 
 # Configuration du mot de passe root et sécurisation basique (méthode non-interactive)
 sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$DB_PASS'; FLUSH PRIVILEGES;"
@@ -191,7 +191,7 @@ fi
 # ÉTAPE 9 — INSTALLATION PM2 & NGINX
 # ============================================================================
 
-print_step "[9/9] Installation de PM2 et Nginx"
+print_step "[9/12] Installation de PM2 et nginx"
 
 sudo npm install -g pm2
 
@@ -207,7 +207,7 @@ sudo apt install nginx -y
 # CONFIGURATION FIREWALL (UFW)
 # ============================================================================
 
-print_step "[X/X] Configuration du pare-feu UFW"
+print_step "[10/12] Configuration du pare-feu UFW"
 
 sudo apt install ufw -y
 
@@ -227,7 +227,7 @@ success "Pare-feu UFW configuré"
 # CONFIGURATION NGINX
 # ============================================================================
 
-print_step "[X/X] Configuration du serveur Reverse Proxy Nginx"
+print_step "[11/12] Configuration du serveur Reverse Proxy Nginx"
 
 NGINX_CONF="/etc/nginx/sites-available/$APP_NAME"
 
@@ -285,6 +285,8 @@ success "Nginx configuré et redémarré"
 # ============================================================================
 # GUIDE DE DÉPLOIEMENT
 # ============================================================================
+
+print_step "[12/12] Génération du guide de maintenance (DEPLOY_GUIDE.md)"
 
 cat <<EOF > DEPLOY_GUIDE.md
 # Guide de Déploiement — Les Éclaireurs Solidaires
