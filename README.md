@@ -125,29 +125,55 @@ Pour garantir la robustesse et la fiabilité de la plateforme, une stratégie de
 
 ---
 
-## 🚀 Installation et Déploiement
+Voici le contenu formaté en Markdown (`README.md`) :
 
-Le déploiement de l'application est entièrement automatisé. Suivez rigoureusement les étapes ci-dessous pour préparer le serveur et lancer le script.
+# 🚀 Installation et Déploiement
 
-### 1. Prérequis sur le VPS
+Le déploiement de l'application est entièrement automatisé grâce à un script Shell. Ce script prend en charge l'intégralité de l'installation : des dépendances système jusqu'à la configuration du pare-feu et du reverse proxy Nginx.
 
-Avant d'exécuter le script, assurez-vous de remplir les conditions suivantes :
+---
 
-* **Droits d'accès :** Posséder les droits `root` (ou un utilisateur avec les privilèges `sudo`) sur le VPS.
-* **Clé SSH GitHub :** Configurer la clé SSH sur le serveur et l'associer au compte GitHub pour permettre le clone du dépôt privé.
-* **Variables d'environnement :** Ouvrir le script `deploy.sh` et modifier les variables de configuration essentielles (ex: `DB_PASS`, `JWT_SECRET`, etc.).
+## 1. Prérequis sur le VPS
 
-### 2. Procédure d'exécution
+Avant de lancer le script, assurez-vous simplement de remplir ces deux conditions :
 
-Par défaut, un script téléchargé n'est pas exécutable. Vous devez lui attribuer les droits nécessaires avant de le lancer.
+* **Système d'exploitation :** un VPS vierge sous Ubuntu.
+* **Privilèges :** disposer des droits `root` ou d'un utilisateur avec accès `sudo`.
+
+---
+
+## 2. Procédure d'exécution
+
+Connectez-vous à votre VPS en SSH, récupérez le script `deploy.sh`, attribuez-lui les droits d'exécution, puis lancez-le :
 
 ```bash
 # 1. Rendre le script exécutable
 chmod +x deploy.sh
 
 # 2. Exécuter le script de déploiement
-./deploy.sh
+sudo ./deploy.sh
 ```
+
+---
+
+## 3. Déroulement de l'automatisation
+
+Une fois lancé, le script s'occupe de tout. Vous n'aurez qu'une seule intervention manuelle à effectuer pendant le processus :
+
+### Génération de la clé SSH
+
+Le script génère automatiquement une clé SSH sécurisée et l'affiche dans votre terminal.
+
+### Liaison avec GitHub
+
+1. Copiez la clé SSH affichée.
+2. Connectez-vous à votre compte GitHub.
+3. Rendez-vous dans **Settings → SSH and GPG keys**.
+4. Ajoutez une nouvelle clé SSH en y collant la clé générée.
+
+### Validation
+
+Une fois la clé ajoutée à GitHub, revenez dans votre terminal et appuyez sur **Entrée** pour permettre au script de poursuivre automatiquement le déploiement.
 
 ---
 
