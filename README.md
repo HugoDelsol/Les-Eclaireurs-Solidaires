@@ -125,8 +125,6 @@ Pour garantir la robustesse et la fiabilité de la plateforme, une stratégie de
 
 ---
 
-Voici le contenu formaté en Markdown (`README.md`) :
-
 ## 🚀 Installation et Déploiement
 
 Le déploiement de l'application est entièrement automatisé grâce à un script Shell. Ce script prend en charge l'intégralité de l'installation : des dépendances système jusqu'à la configuration du pare-feu et du reverse proxy Nginx.
