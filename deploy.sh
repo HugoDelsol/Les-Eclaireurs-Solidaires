@@ -234,7 +234,7 @@ NGINX_CONF="/etc/nginx/sites-available/$APP_NAME"
 sudo bash -c "cat > $NGINX_CONF" <<EOF
 server {
         listen 80;
-        server_name 141.227.150.65;
+        server_name .........;
 
         # Optimisation Éco-conception : Compression Gzip active
         gzip on;
