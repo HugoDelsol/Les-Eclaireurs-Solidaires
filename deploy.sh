@@ -243,7 +243,7 @@ server {
 
         # Servir les assets statiques directement via Nginx pour soulager Node.js
         location ~* \.(webp|png|jpg|jpeg|css|js|ico|svg)$ {
-                root $HOME/$PROJECT_NAME/site/src/public;
+                root /var/www/$APP_NAME/public;
                 expires 30d;
                 add_header Cache-Control "public, no-transform";
                 try_files \$uri @node_backend;
