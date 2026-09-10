@@ -4,7 +4,7 @@
 
 ## Aperçu
 
-🔗 [Voir le site en ligne](https://les-eclaireurs-solidaires.duckdns.org/home)
+🔗 [Voir le projet en ligne](https://les-eclaireurs-solidaires.duckdns.org/home)
 
 ## 📋 Présentation du Projet
 Ce projet "fil rouge" est réalisé dans le cadre de la formation **Développeur Web et Web Mobile** chez **M2i Formation** (2025-2026). Il répond à un besoin de centralisation pour faciliter la communication entre les administrateurs d'une structure associative et ses membres actifs.
